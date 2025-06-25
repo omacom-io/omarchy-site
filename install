@@ -1,1 +1,1 @@
-eval "$(wget -qO- https://raw.githubusercontent.com/basecamp/omarchy/stable/boot.sh)"
+eval "$(wget -qO- https://raw.githubusercontent.com/basecamp/omarchy/master/boot.sh)"
