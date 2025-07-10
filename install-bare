@@ -1,0 +1,3 @@
+OMARCHY_REF=dev
+OMARCHY_BARE=true
+eval "$(wget -qO- https://raw.githubusercontent.com/basecamp/omarchy/refs/heads/master/boot.sh)"
