@@ -1,0 +1,35 @@
+.video {
+
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 3em;
+  margin-inline: auto;
+  margin-top: 3em;
+  position: relative;
+  width: min(100%, 80em);
+
+  iframe {
+    aspect-ratio: 16/9;
+    border: none;
+    border-radius: 0.4em;
+    box-shadow:
+      0 0 0 1px rgba(var(--rgb-black), 0.3),
+      0 0.3em 2.0em -1.2em rgba(var(--rgb-black), 0.1),
+      0 0.6em 2.4em -1.6em rgba(var(--rgb-black), 0.2),
+      0 0.9em 2.8em -2.0em rgba(var(--rgb-black), 0.3),
+      0 1.2em 3.2em -2.4em rgba(var(--rgb-black), 0.4),
+      0 1.5em 3.6em -2.8em rgba(var(--rgb-black), 0.5)
+    ;
+    display: block;
+    height: auto;
+    object-fit: cover;
+    overflow: hidden;
+    width: 100%;
+  }
+
+  @media(min-width: 64em) {
+    margin-bottom: 5em;
+    margin-top: 5em;
+  }
+
+}
