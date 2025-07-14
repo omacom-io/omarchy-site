@@ -1,14 +1,8 @@
 html {
-
   background: var(--color-background-night);
   font-size: 16px;
   scroll-behavior: smooth;
   scroll-padding-top: 3em;
-
-  @media(min-width: 64em) {
-    scroll-padding-top: 4em;
-  }
-
 }
 
 body {
@@ -51,6 +45,14 @@ img {
 
   a:hover {
     color: var(--color-white);
+  }
+
+}
+
+@media(min-width: 64em) {
+
+  html {
+    scroll-padding-top: 4em;
   }
 
 }

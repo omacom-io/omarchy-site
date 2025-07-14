@@ -1,5 +1,4 @@
 .main {
-
   display: flex;
   flex: 1;
   flex-direction: column;
@@ -7,8 +6,11 @@
   margin-top: 4em;
   padding-left: 2em;
   padding-right: 2em;
+}
 
-  @media(min-width: 64em) {
+@media(min-width: 64em) {
+
+  .main {
     margin-bottom: 8em;
     margin-top: 8em;
     padding-left: 4em;

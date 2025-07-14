@@ -1,5 +1,4 @@
 .button {
-
   align-items: center;
   background: var(--color-terminal-blue);
   border: none;
@@ -27,20 +26,19 @@
     background var(--transition),
     color var(--transition)
   ;
+}
 
-  svg {
-    height: 1.4em;
-    overflow: visible;
-    width: 1.4em;
-  }
+.button svg {
+  height: 1.4em;
+  overflow: visible;
+  width: 1.4em;
+}
 
-  @media(hover: hover) {
+@media(hover: hover) {
 
-    &:hover {
-      background: var(--color-turquoise);
-      color: var(--color-background-night);
-    }
-
+  .button:hover {
+    background: var(--color-turquoise);
+    color: var(--color-background-night);
   }
 
 }
