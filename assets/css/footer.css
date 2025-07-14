@@ -1,0 +1,21 @@
+.footer {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25em;
+  margin-inline: auto;
+  text-align: center;
+  width: min(100%, 64em);
+}
+
+.footer div {
+  align-items: center;
+  display: flex;
+  gap: 1.25em;
+}
+
+.footer img {
+  display: block;
+  height: 2em;
+  width: auto;
+}

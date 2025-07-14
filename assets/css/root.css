@@ -1,0 +1,35 @@
+:root {
+
+  --rgb-background-night: 26, 27, 38;
+  --rgb-background-storm: 36, 40, 59;
+  --rgb-black: 0, 0, 0;
+  --rgb-green: 158, 206, 106;
+  --rgb-terminal-black: 65, 72, 104;
+  --rgb-terminal-blue: 122, 162, 247;
+  --rgb-terminal-cyan: 125, 207, 255;
+  --rgb-terminal-white: 192, 202, 245;
+  --rgb-turquoise: 180, 249, 248;
+  --rgb-white: 255, 255, 255;
+
+  --color-background-night: rgb(var(--rgb-background-night));
+  --color-background-storm: rgb(var(--rgb-background-storm));
+  --color-black: rgb(var(--rgb-black));
+  --color-green: rgb(var(--rgb-green));
+  --color-terminal-black: rgb(var(--rgb-terminal-black));
+  --color-terminal-blue: rgb(var(--rgb-terminal-blue));
+  --color-terminal-cyan: rgb(var(--rgb-terminal-cyan));
+  --color-terminal-white: rgb(var(--rgb-terminal-white));
+  --color-turquoise: rgb(var(--rgb-turquoise));
+  --color-white: rgb(var(--rgb-white));
+
+  --font-family: 'Cascadia Code', Menlo, Monaco, Consolas, 'Courier New',  monospace;
+  --font-size-small: 75%;
+  --font-size-medium: 125%;
+  --font-size-large: 150%;
+  --font-size-x-large: 400%;
+
+  --line-height: 1.4;
+
+  --transition: 0.15s cubic-bezier(0.33, 1, 0.68, 1);
+
+}
