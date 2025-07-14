@@ -1,7 +1,7 @@
 .pre {
   align-self: center;
   color: var(--color-green);
-  font-size: clamp(0.475em, 1vw, 1em);
+  font-size: clamp(0.43em, 1vw, 1em);
   letter-spacing: -0.0425em;
   line-height: 1.14125;
   white-space: pre;
