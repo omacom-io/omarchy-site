@@ -1,6 +1,6 @@
 .video {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  gap: 2em;
   margin-bottom: 3em;
   margin-inline: auto;
   margin-top: 3em;
@@ -30,6 +30,7 @@
 @media(min-width: 64em) {
 
   .video {
+    gap: 3em;
     margin-bottom: 5em;
     margin-top: 5em;
   }
