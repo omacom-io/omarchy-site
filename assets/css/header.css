@@ -24,7 +24,6 @@
   flex-wrap: wrap;
   gap: 1em;
   justify-content: center;
-  margin-top: 2em;
 }
 
 @media(hover: hover) {
