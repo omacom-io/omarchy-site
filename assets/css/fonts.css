@@ -3,7 +3,7 @@
   font-family: 'Cascadia Code';
   font-style: normal;
   font-weight: 300;
-  src: url(/assets/fonts/CascadiaCode-SemiLight.woff2) format('woff2');
+  src: url('../fonts/CascadiaCode-SemiLight.woff2') format('woff2');
 }
 
 @font-face {
@@ -11,7 +11,7 @@
   font-family: 'Cascadia Code';
   font-style: italic;
   font-weight: 300;
-  src: url(/assets/fonts/CascadiaCode-SemiLightItalic.woff2) format('woff2');
+  src: url('../fonts/CascadiaCode-SemiLightItalic.woff2') format('woff2');
 }
 
 @font-face {
@@ -19,7 +19,7 @@
   font-family: 'Cascadia Code';
   font-style: normal;
   font-weight: 400;
-  src: url(/assets/fonts/CascadiaCode-Regular.woff2) format('woff2');
+  src: url('../fonts/CascadiaCode-Regular.woff2') format('woff2');
 }
 
 @font-face {
@@ -27,7 +27,7 @@
   font-family: 'Cascadia Code';
   font-style: italic;
   font-weight: 400;
-  src: url(/assets/fonts/CascadiaCode-Italic.woff2) format('woff2');
+  src: url('../fonts/CascadiaCode-Italic.woff2') format('woff2');
 }
 
 @font-face {
@@ -35,7 +35,7 @@
   font-family: 'Cascadia Code';
   font-style: normal;
   font-weight: 600;
-  src: url(/assets/fonts/CascadiaCode-SemiBold.woff2) format('woff2');
+  src: url('../fonts/CascadiaCode-SemiBold.woff2') format('woff2');
 }
 
 @font-face {
@@ -43,7 +43,7 @@
   font-family: 'Cascadia Code';
   font-style: italic;
   font-weight: 600;
-  src: url(/assets/fonts/CascadiaCode-SemiBoldItalic.woff2) format('woff2');
+  src: url('../fonts/CascadiaCode-SemiBoldItalic.woff2') format('woff2');
 }
 
 @font-face {
@@ -51,7 +51,7 @@
   font-family: 'Cascadia Code';
   font-style: normal;
   font-weight: 700;
-  src: url(/assets/fonts/CascadiaCode-Bold.woff2) format('woff2');
+  src: url('../fonts/CascadiaCode-Bold.woff2') format('woff2');
 }
 
 @font-face {
@@ -59,5 +59,5 @@
   font-family: 'Cascadia Code';
   font-style: italic;
   font-weight: 700;
-  src: url(/assets/fonts/CascadiaCode-BoldItalic.woff2) format('woff2');
+  src: url('../fonts/CascadiaCode-BoldItalic.woff2') format('woff2');
 }
