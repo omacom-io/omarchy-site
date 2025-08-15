@@ -13,32 +13,9 @@
   margin-top: 1em;
 }
 
-.header .header__command {
-  align-self: center;
-  transition: transform var(--transition);
-  will-change: transform;
-}
-
 .header .header__buttons {
   display: flex;
   flex-wrap: wrap;
   gap: 1em;
   justify-content: center;
-}
-
-@media(hover: hover) {
-
-  .header:has(.button--command:active) .header__command {
-    transform: scale(1.02);
-  }
-
-}
-
-@media(min-width: 64em) {
-
-  .header .header__command {
-    border-radius: 0.3em;
-    font-size: var(--font-size-medium);
-  }
-
 }
