@@ -1,2 +1,0 @@
-OMARCHY_BARE=true
-eval "$(curl -fsSL https://raw.githubusercontent.com/basecamp/omarchy/refs/heads/master/boot.sh)"
