@@ -1,7 +1,9 @@
 .header {
   display: flex;
   flex-direction: column;
+  gap: 1.25em;
   margin-inline: auto;
+  margin-top: 1.25em;
   text-align: center;
   width: min(100%, 48em);
 }
@@ -9,8 +11,6 @@
 .header .header__subhead p {
   color: var(--color-terminal-cyan);
   font-size: var(--font-size-medium);
-  margin-bottom: 1.25em;
-  margin-top: 1em;
 }
 
 .header .header__buttons {
