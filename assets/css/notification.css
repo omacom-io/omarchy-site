@@ -1,0 +1,21 @@
+.notification a {
+  background: var(--color-terminal-blue);
+  color: var(--color-background-night);
+  display: block;
+  padding: 0.8625em;
+  text-align: center;
+  text-decoration: none;
+  transition:
+    background var(--transition),
+    color var(--transition)
+  ;
+}
+
+@media(hover: hover) {
+
+  .notification a:hover {
+    background: var(--color-turquoise);
+    color: var(--color-background-night);
+  }
+
+}
