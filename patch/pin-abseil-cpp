@@ -1,0 +1,1 @@
+sudo pacman -U --noconfirm https://pkgs.omarchy.org/x86_64/abseil-cpp-20250512.1-1-x86_64.pkg.tar.zst
