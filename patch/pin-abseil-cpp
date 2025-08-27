@@ -1,2 +1,5 @@
 echo "Pinning abseil-cpp to https://pkgs.omarchy.org/x86_64/abseil-cpp-20250512.1-1-x86_64.pkg.tar.zst"
 sudo pacman -U --noconfirm https://pkgs.omarchy.org/x86_64/abseil-cpp-20250512.1-1-x86_64.pkg.tar.zst
+
+echo "Finished pinning rebooting now..."
+sudo reboot now
