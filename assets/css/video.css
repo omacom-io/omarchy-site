@@ -1,11 +1,10 @@
 .video {
   display: grid;
   gap: 2em;
-  margin-bottom: 3em;
   margin-inline: auto;
   margin-top: 3em;
   position: relative;
-  width: min(100%, 80em);
+  width: min(100%, 90em);
 }
 
 .video iframe {
@@ -31,7 +30,6 @@
 
   .video {
     gap: 3em;
-    margin-bottom: 5em;
     margin-top: 5em;
   }
 
