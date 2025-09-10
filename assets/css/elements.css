@@ -5,6 +5,10 @@ html {
   scroll-padding-top: 3em;
 }
 
+html:has(dialog[open]) {
+  overflow: hidden;
+}
+
 body {
   align-items: stretch;
   background: var(--color-background-night);
