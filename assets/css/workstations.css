@@ -13,8 +13,11 @@
   margin-top: calc(-1 * 1.5em);
 }
 
-.workstations__image {
+button.workstations__image {
   cursor: zoom-in;
+}
+
+.workstations__image {
   display: inline-flex;
   margin-top: 1.5em;
   user-select: none;
@@ -54,6 +57,12 @@
   position: absolute;
 }
 
+.workstations__image--modal {
+  cursor: zoom-out;
+  display: initial;
+  margin: initial;
+}
+
 .workstations__modal {
   align-items: center;
   background: none;
@@ -74,7 +83,6 @@
   backdrop-filter: blur(0.7em);
   -webkit-backdrop-filter: blur(0.7em);
   background: rgba(var(--rgb-background-night), 0.9);
-  cursor: zoom-out;
   inset: 0;
   position: fixed;
   user-select: none;
@@ -87,24 +95,6 @@
   justify-content: center;
   justify-self: center;
   position: relative;
-}
-
-.workstations__figure {
-  border-radius: 0.2em;
-  box-shadow:
-    0 0 0 1px rgba(var(--rgb-black), 0.3),
-    0 0.3em 2.0em -1.2em rgba(var(--rgb-black), 0.1),
-    0 0.6em 2.4em -1.6em rgba(var(--rgb-black), 0.2),
-    0 0.9em 2.8em -2.0em rgba(var(--rgb-black), 0.3),
-    0 1.2em 3.2em -2.4em rgba(var(--rgb-black), 0.4),
-    0 1.5em 3.6em -2.8em rgba(var(--rgb-black), 0.5)
-  ;
-  cursor: zoom-out;
-  display: grid;
-  overflow: hidden;
-  user-select: none;
-  -ms-user-select: none;
-  -webkit-user-select: none;
 }
 
 .workstations__modal[open] {
@@ -122,14 +112,14 @@
 
 @media(hover: hover) {
 
-  .workstations__image figure {
+  button.workstations__image figure {
     outline: 0.1em solid transparent;
     outline-offset: 0.2em;
     transition: outline-color var(--transition);
   }
 
-  .workstations__image figure:focus,
-  .workstations__image figure:hover {
+  button.workstations__image figure:focus,
+  button.workstations__image figure:hover {
     outline-color: var(--color-turquoise);
   }
 

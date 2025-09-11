@@ -14,7 +14,7 @@ function ready() {
 
         image.addEventListener('click', (e) => {
 
-          open(e.currentTarget.querySelector('figure img').src);
+          open(e.currentTarget.querySelector('figure'));
 
         });
 
@@ -34,17 +34,27 @@ function ready() {
 
     });
 
-    function open(src) {
+    function open(element) {
+
+      var elementImg = element.querySelector('img');
+      var elementFigcaption = element.querySelector('figcaption');
+
+      var figureImgSrc = elementImg.src;
+      var figureImgAlt = elementImg.alt;
+      var figureFigcaption = elementFigcaption ? elementFigcaption.textContent : '';
 
       modalContainer.innerHTML = `
-        <figure class="workstations__figure">
-          <img src="${src}" alt="">
-        </figure>
+        <div class="workstations__image workstations__image--modal">
+          <figure>
+            <img src="${figureImgSrc}" alt="${figureImgAlt}" loading="lazy" decoding="async">
+            ${figureFigcaption ? `<figcaption>${figureFigcaption}</figcaption>` : ''}
+          </figure>
+        </div>
       `;
 
-      var modalFigure = modalContainer.querySelector('.workstations__figure');
+      var modalImage = modalContainer.querySelector('.workstations__image');
 
-      modalFigure.addEventListener('click', () => {
+      modalImage.addEventListener('click', () => {
 
         close();
 
