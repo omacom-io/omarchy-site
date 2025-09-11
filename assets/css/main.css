@@ -1,14 +1,14 @@
 .main {
   display: grid;
-  margin-bottom: 3em;
-  margin-top: 3em;
+  margin-bottom: var(--space-xx-large);
+  margin-top: var(--space-xx-large);
 }
 
 @media(min-width: 64em) {
 
   .main {
-    margin-bottom: 5em;
-    margin-top: 5em;
+    margin-bottom: var(--space-xxxx-large);
+    margin-top: var(--space-xxxx-large);
   }
 
 }

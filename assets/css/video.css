@@ -1,9 +1,8 @@
 .video {
   display: grid;
-  gap: 2em;
   margin-inline: auto;
-  padding-left: 2em;
-  padding-right: 2em;
+  padding-left: var(--space-large);
+  padding-right: var(--space-large);
   width: min(100%, 90em);
 }
 
@@ -29,9 +28,8 @@
 @media(min-width: 64em) {
 
   .video {
-    gap: 3em;
-    padding-left: 4em;
-    padding-right: 4em;
+    padding-left: var(--space-xx-large);
+    padding-right: var(--space-xx-large);
   }
 
 }

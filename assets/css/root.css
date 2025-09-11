@@ -28,6 +28,14 @@
 
   --line-height: 1.4;
 
+  --space-small: 0.5em;
+  --space-medium: 1em;
+  --space-large: 2em;
+  --space-x-large: 3em;
+  --space-xx-large: 4em;
+  --space-xxx-large: 5em;
+  --space-xxxx-large: 6em;
+
   --transition: 0.15s cubic-bezier(0.33, 1, 0.68, 1);
 
 }

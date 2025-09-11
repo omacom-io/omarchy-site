@@ -1,9 +1,9 @@
 .workstations {
   display: grid;
-  gap: 3em;
+  gap: var(--space-large);
   margin-inline: auto;
-  padding-left: 2em;
-  padding-right: 2em;
+  padding-left: var(--space-large);
+  padding-right: var(--space-large);
   position: relative;
   width: min(100%, 90em);
 }
@@ -58,7 +58,7 @@
   left: 0;
   margin: 0;
   overflow: auto;
-  padding: 2em;
+  padding: var(--space-large);
   position: fixed;
   top: 0;
   width: 100%;
@@ -148,12 +148,18 @@
 
 @media(min-width: 64em) {
 
+  .workstations {
+    gap: var(--space-x-large);
+    padding-left: var(--space-xx-large);
+    padding-right: var(--space-xx-large);
+  }
+
   .workstations__images {
     column-width: 18em;
   }
 
   .workstations__modal {
-    padding: 4em;
+    padding: var(--space-xx-large);
   }
 
 }

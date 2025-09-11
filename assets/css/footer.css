@@ -1,9 +1,9 @@
 .footer {
   display: grid;
   gap: 1.25em;
-  margin-bottom: 3em;
-  padding-left: 2em;
-  padding-right: 2em;
+  margin-bottom: var(--space-xx-large);
+  padding-left: var(--space-large);
+  padding-right: var(--space-large);
 }
 
 .footer__subhead {
@@ -25,9 +25,9 @@
 @media(min-width: 64em) {
 
   .footer {
-    margin-bottom: 5em;
-    padding-left: 4em;
-    padding-right: 4em;
+    margin-bottom: var(--space-xxxx-large);
+    padding-left: var(--space-xx-large);
+    padding-right: var(--space-xx-large);
   }
 
 }

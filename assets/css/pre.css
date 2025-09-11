@@ -1,8 +1,8 @@
 .pre {
   display: grid;
-  margin-top: 4em;
-  padding-left: 2em;
-  padding-right: 2em;
+  margin-top: var(--space-xx-large);
+  padding-left: var(--space-large);
+  padding-right: var(--space-large);
 }
 
 .pre a {
@@ -33,9 +33,9 @@
 @media(min-width: 64em) {
 
   .pre {
-    margin-top: 8em;
-    padding-left: 4em;
-    padding-right: 4em;
+    margin-top: var(--space-xxxx-large);
+    padding-left: var(--space-xx-large);
+    padding-right: var(--space-xx-large);
   }
 
 }
