@@ -1,21 +1,33 @@
 .footer {
-  align-items: center;
-  display: flex;
-  flex-direction: column;
+  display: grid;
   gap: 1.25em;
-  margin-inline: auto;
+  margin-bottom: 3em;
+  padding-left: 2em;
+  padding-right: 2em;
+}
+
+.footer__subhead {
   text-align: center;
-  width: min(100%, 64em);
 }
 
-.footer div {
-  align-items: center;
+.footer__buttons {
   display: flex;
   gap: 1.25em;
+  justify-content: center;
 }
 
-.footer img {
+.footer__buttons img {
   display: block;
   height: 2em;
   width: auto;
+}
+
+@media(min-width: 64em) {
+
+  .footer {
+    margin-bottom: 5em;
+    padding-left: 4em;
+    padding-right: 4em;
+  }
+
 }

@@ -2,7 +2,8 @@
   display: grid;
   margin-bottom: 3em;
   margin-inline: auto;
-  margin-top: 3em;
+  padding-left: 2em;
+  padding-right: 2em;
   position: relative;
   width: min(100%, 90em);
 }
@@ -114,6 +115,14 @@
 
 }
 
+@supports(font: -apple-system-body) {
+
+  .workstations__images {
+    margin-bottom: -3.7em;
+  }
+
+}
+
 @media(min-width: 32em) {
 
   .workstations__images {
@@ -123,11 +132,6 @@
 }
 
 @media(min-width: 64em) {
-
-  .workstations {
-    margin-bottom: 5em;
-    margin-top: 5em;
-  }
 
   .workstations__images {
     column-width: 18em;

@@ -2,8 +2,8 @@
   display: grid;
   gap: 2em;
   margin-inline: auto;
-  margin-top: 3em;
-  position: relative;
+  padding-left: 2em;
+  padding-right: 2em;
   width: min(100%, 90em);
 }
 
@@ -30,7 +30,8 @@
 
   .video {
     gap: 3em;
-    margin-top: 5em;
+    padding-left: 4em;
+    padding-right: 4em;
   }
 
 }
