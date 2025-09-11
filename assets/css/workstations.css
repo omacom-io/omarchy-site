@@ -122,14 +122,14 @@
 
 @media(hover: hover) {
 
-  .workstations__image figure img {
+  .workstations__image figure {
     outline: 0.1em solid transparent;
     outline-offset: 0.2em;
     transition: outline-color var(--transition);
   }
 
-  .workstations__image:focus figure img,
-  .workstations__image:hover figure img {
+  .workstations__image figure:focus,
+  .workstations__image figure:hover {
     outline-color: var(--color-turquoise);
   }
 
