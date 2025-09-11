@@ -1,11 +1,26 @@
 .workstations {
   display: grid;
-  margin-bottom: 3em;
+  gap: 3em;
   margin-inline: auto;
   padding-left: 2em;
   padding-right: 2em;
   position: relative;
   width: min(100%, 90em);
+}
+
+.workstations__subhead {
+  text-align: center;
+}
+
+.workstations__subhead h2 {
+  color: var(--color-green);
+  font-size: var(--font-size-large);
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.workstations__subhead p {
+  font-size: var(--font-size-medium);
 }
 
 .workstations__images {
