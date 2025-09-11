@@ -9,11 +9,27 @@
 
 .workstations__images {
   column-gap: 1.5em;
-  column-width: 8.5em;
+  column-width: 16em;
   margin-top: calc(-1 * 1.5em);
 }
 
-.workstations__images img {
+.workstations__image {
+  cursor: zoom-in;
+  display: inline-flex;
+  margin-top: 1.5em;
+  user-select: none;
+  -ms-user-select: none;
+  -webkit-user-select: none;
+  vertical-align: top;
+}
+
+.workstations__image figure {
+  border-radius: 0.2em;
+  overflow: hidden;
+  position: relative;
+}
+
+.workstations__image figure img {
   background: var(--color-background-storm);
   border-radius: 0.2em;
   box-shadow:
@@ -24,13 +40,18 @@
     0 1.2em 3.2em -2.4em rgba(var(--rgb-black), 0.4),
     0 1.5em 3.6em -2.8em rgba(var(--rgb-black), 0.5)
   ;
-  cursor: zoom-in;
-  display: inline-flex;
-  margin-top: 1.5em;
-  user-select: none;
-  -ms-user-select: none;
-  -webkit-user-select: none;
-  vertical-align: top;
+}
+
+.workstations__image figure figcaption {
+  background: rgba(var(--rgb-white), 0.9);
+  border-top-right-radius: 0.2em;
+  bottom: 0;
+  color: var(--color-terminal-black);
+  font-size: var(--font-size-small);
+  font-weight: 500;
+  left: 0;
+  padding: 0.15em 0.4em;
+  position: absolute;
 }
 
 .workstations__modal {
@@ -101,14 +122,14 @@
 
 @media(hover: hover) {
 
-  .workstations__images img {
+  .workstations__image figure img {
     outline: 0.1em solid transparent;
     outline-offset: 0.2em;
     transition: outline-color var(--transition);
   }
 
-  .workstations__images img:focus,
-  .workstations__images img:hover {
+  .workstations__image:focus figure img,
+  .workstations__image:hover figure img {
     outline-color: var(--color-turquoise);
   }
 
@@ -122,10 +143,10 @@
 
 }
 
-@media(min-width: 32em) {
+@media(min-width: 48em) {
 
   .workstations__images {
-    column-width: 12em;
+    column-width: 18em;
   }
 
 }
@@ -135,10 +156,6 @@
   .workstations {
     padding-left: var(--space-xx-large);
     padding-right: var(--space-xx-large);
-  }
-
-  .workstations__images {
-    column-width: 18em;
   }
 
   .workstations__modal {

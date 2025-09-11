@@ -4,7 +4,7 @@ function ready() {
 
   if(modal) {
 
-    var modalImages = document.querySelectorAll('.workstations__images img');
+    var modalImages = document.querySelectorAll('.workstations__image');
     var modalBackdrop = modal.querySelector('.workstations__backdrop');
     var modalContainer = modal.querySelector('.workstations__container');
 
@@ -14,7 +14,7 @@ function ready() {
 
         image.addEventListener('click', (e) => {
 
-          open(e.currentTarget.src);
+          open(e.currentTarget.querySelector('figure img').src);
 
         });
 
