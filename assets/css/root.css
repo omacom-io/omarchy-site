@@ -23,6 +23,8 @@
   --color-white: rgb(var(--rgb-white));
 
   --font-family: 'Cascadia Code', Menlo, Monaco, Consolas, 'Courier New',  monospace;
+  --font-size: clamp(0.625rem, 1.25vw, 1rem);
+  --font-size-small: 80%;
   --font-size-medium: 125%;
   --font-size-large: 200%;
 
