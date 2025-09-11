@@ -9,6 +9,8 @@
 }
 
 .workstations__subhead {
+  display: grid;
+  gap: 0.25em;
   text-align: center;
 }
 
@@ -16,11 +18,13 @@
   color: var(--color-green);
   font-size: var(--font-size-large);
   font-weight: 700;
+  margin-top: -0.3375em;
   text-transform: uppercase;
 }
 
 .workstations__subhead p {
   font-size: var(--font-size-medium);
+  margin-bottom: -0.35em;
 }
 
 .workstations__images {
