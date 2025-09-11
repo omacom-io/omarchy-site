@@ -5,6 +5,13 @@
   padding-right: 2em;
 }
 
+.pre a {
+  color: var(--color-green);
+  font-weight: normal;
+  justify-self: center;
+  text-decoration: none;
+}
+
 .pre pre {
   color: var(--color-green);
   font-size: clamp(0.43em, 1vw, 1em);
@@ -12,6 +19,15 @@
   letter-spacing: -0.0425em;
   line-height: 1.09375;
   white-space: pre;
+  transition: color var(--transition);
+}
+
+@media(hover: hover) {
+
+  .pre a:hover pre {
+    color: var(--color-turquoise);
+  }
+
 }
 
 @media(min-width: 64em) {
