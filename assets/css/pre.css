@@ -1,8 +1,41 @@
 .pre {
-  align-self: center;
+  display: grid;
+  margin-top: var(--space-xx-large);
+  padding-left: var(--space-large);
+  padding-right: var(--space-large);
+}
+
+.pre a {
+  color: var(--color-green);
+  font-weight: normal;
+  justify-self: center;
+  text-decoration: none;
+}
+
+.pre pre {
   color: var(--color-green);
   font-size: clamp(0.43em, 1vw, 1em);
+  justify-self: center;
   letter-spacing: -0.0425em;
   line-height: 1.09375;
   white-space: pre;
+  transition: color var(--transition);
+}
+
+@media(hover: hover) {
+
+  .pre a:hover pre {
+    color: var(--color-turquoise);
+  }
+
+}
+
+@media(min-width: 64em) {
+
+  .pre {
+    margin-top: var(--space-xxxx-large);
+    padding-left: var(--space-xx-large);
+    padding-right: var(--space-xx-large);
+  }
+
 }

@@ -23,12 +23,18 @@
   --color-white: rgb(var(--rgb-white));
 
   --font-family: 'Cascadia Code', Menlo, Monaco, Consolas, 'Courier New',  monospace;
-  --font-size-small: 75%;
   --font-size-medium: 125%;
-  --font-size-large: 150%;
-  --font-size-x-large: 400%;
+  --font-size-large: 200%;
 
   --line-height: 1.4;
+
+  --space-small: 0.5em;
+  --space-medium: 1em;
+  --space-large: 2em;
+  --space-x-large: 3em;
+  --space-xx-large: 4em;
+  --space-xxx-large: 5em;
+  --space-xxxx-large: 6em;
 
   --transition: 0.15s cubic-bezier(0.33, 1, 0.68, 1);
 

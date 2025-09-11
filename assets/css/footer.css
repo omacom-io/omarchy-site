@@ -1,21 +1,33 @@
 .footer {
-  align-items: center;
-  display: flex;
-  flex-direction: column;
+  display: grid;
   gap: 1.25em;
-  margin-inline: auto;
+  margin-bottom: var(--space-xx-large);
+  padding-left: var(--space-large);
+  padding-right: var(--space-large);
+}
+
+.footer__subhead {
   text-align: center;
-  width: min(100%, 64em);
 }
 
-.footer div {
-  align-items: center;
+.footer__buttons {
   display: flex;
   gap: 1.25em;
+  justify-content: center;
 }
 
-.footer img {
+.footer__buttons img {
   display: block;
   height: 2em;
   width: auto;
+}
+
+@media(min-width: 64em) {
+
+  .footer {
+    margin-bottom: var(--space-xxxx-large);
+    padding-left: var(--space-xx-large);
+    padding-right: var(--space-xx-large);
+  }
+
 }

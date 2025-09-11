@@ -1,21 +1,31 @@
 .header {
-  display: flex;
-  flex-direction: column;
+  display: grid;
   gap: 1.25em;
-  margin-inline: auto;
   margin-top: 1.25em;
-  text-align: center;
-  width: min(100%, 48em);
+  padding-left: var(--space-large);
+  padding-right: var(--space-large);
 }
 
-.header .header__subhead p {
-  color: var(--color-terminal-cyan);
+.header__subhead {
+  text-align: center;
+}
+
+.header__subhead p {
   font-size: var(--font-size-medium);
 }
 
-.header .header__buttons {
+.header__buttons {
   display: flex;
   flex-wrap: wrap;
   gap: 1em;
   justify-content: center;
+}
+
+@media(min-width: 64em) {
+
+  .header {
+    padding-left: var(--space-xx-large);
+    padding-right: var(--space-xx-large);
+  }
+
 }
