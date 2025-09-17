@@ -1,2 +1,2 @@
 OMARCHY_REF=dev
-eval "$(curl -fsSL https://raw.githubusercontent.com/basecamp/omarchy/refs/heads/master/boot.sh)"
+eval "$(curl -fsSL https://raw.githubusercontent.com/basecamp/omarchy/refs/heads/dev/boot.sh)"
