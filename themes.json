@@ -8,12 +8,524 @@
     "preview_url": "https://raw.githubusercontent.com/JJDizz1L/aetheria/refs/heads/omarchy-aetheria-theme/preview.png"
   },
   {
+    "name": "Arc Blueberry",
+    "author": "vale-c",
+    "type": "dark",
+    "primary_colors": ["blue", "green"],
+    "repo_url": "https://github.com/vale-c/omarchy-arc-blueberry",
+    "preview_url": "https://raw.githubusercontent.com/vale-c/omarchy-arc-blueberry/main/theme.png"
+  },
+  {
+    "name": "Archwave",
+    "author": "davidguttman",
+    "type": "dark",
+    "primary_colors": ["purple", "cyan"],
+    "repo_url": "https://github.com/davidguttman/archwave",
+    "preview_url": "https://raw.githubusercontent.com/davidguttman/archwave/main/preview/preview-1.png"
+  },
+  {
+    "name": "Ash",
+    "author": "bjarneo",
+    "type": "dark",
+    "primary_colors": ["neutral"],
+    "repo_url": "https://github.com/bjarneo/omarchy-ash-theme",
+    "preview_url": "https://raw.githubusercontent.com/bjarneo/omarchy-ash-theme/main/theme.png"
+  },
+  {
+    "name": "Aura",
+    "author": "bjarneo",
+    "type": "dark",
+    "primary_colors": ["purple", "cyan"],
+    "repo_url": "https://github.com/bjarneo/omarchy-aura-theme",
+    "preview_url": "https://raw.githubusercontent.com/bjarneo/omarchy-aura-theme/main/theme.png"
+  },
+  {
+    "name": "All Hallow's Eve",
+    "author": "guilhermetk",
+    "type": "dark",
+    "primary_colors": ["orange", "green"],
+    "repo_url": "https://github.com/guilhermetk/omarchy-all-hallows-eve-theme",
+    "preview_url": "https://raw.githubusercontent.com/guilhermetk/omarchy-all-hallows-eve-theme/master/assets/tools-1.webp"
+  },
+  {
+    "name": "Ayaka",
+    "author": "abhijeet-swami",
+    "type": "dark",
+    "primary_colors": ["blue", "cyan"],
+    "repo_url": "https://github.com/abhijeet-swami/omarchy-ayaka-theme",
+    "preview_url": "https://raw.githubusercontent.com/abhijeet-swami/omarchy-ayaka-theme/main/screenshots/1.png"
+  },
+  {
+    "name": "Azure Glow",
+    "author": "Hydradevx",
+    "type": "dark",
+    "primary_colors": ["blue", "cyan"],
+    "repo_url": "https://github.com/Hydradevx/omarchy-azure-glow-theme",
+    "preview_url": "https://raw.githubusercontent.com/Hydradevx/omarchy-azure-glow-theme/main/preview.png"
+  },
+  {
+    "name": "Bauhaus",
+    "author": "somerocketeer",
+    "type": "dark",
+    "primary_colors": ["orange", "cyan"],
+    "repo_url": "https://github.com/somerocketeer/omarchy-bauhaus-theme",
+    "preview_url": ""
+  },
+  {
+    "name": "Black Gold",
+    "author": "HANCORE-linux",
+    "type": "dark",
+    "primary_colors": ["yellow"],
+    "repo_url": "https://github.com/HANCORE-linux/omarchy-blackgold-theme",
+    "preview_url": ""
+  },
+  {
+    "name": "Black Turq",
+    "author": "HANCORE-linux",
+    "type": "dark",
+    "primary_colors": ["cyan"],
+    "repo_url": "https://github.com/HANCORE-linux/omarchy-blackturq-theme",
+    "preview_url": ""
+  },
+  {
+    "name": "Bluedotrb",
+    "author": "dotsilva",
+    "type": "dark",
+    "primary_colors": ["blue", "green"],
+    "repo_url": "https://github.com/dotsilva/omarchy-bluedotrb-theme",
+    "preview_url": ""
+  },
+  {
+    "name": "Blue Ridge Dark",
+    "author": "hipsterusername",
+    "type": "dark",
+    "primary_colors": ["cyan", "green"],
+    "repo_url": "https://github.com/hipsterusername/omarchy-blueridge-dark-theme",
+    "preview_url": ""
+  },
+  {
+    "name": "Citrus Cynapse",
+    "author": "Grey-007",
+    "type": "dark",
+    "primary_colors": ["orange", "green"],
+    "repo_url": "https://github.com/Grey-007/citrus-cynapse",
+    "preview_url": ""
+  },
+  {
+    "name": "Cobalt2",
+    "author": "hoblin",
+    "type": "dark",
+    "primary_colors": ["blue", "cyan"],
+    "repo_url": "https://github.com/hoblin/omarchy-cobalt2-theme",
+    "preview_url": ""
+  },
+  {
+    "name": "Darcula",
+    "author": "noahljungberg",
+    "type": "dark",
+    "primary_colors": ["orange", "green"],
+    "repo_url": "https://github.com/noahljungberg/omarchy-darcula-theme",
+    "preview_url": ""
+  },
+  {
+    "name": "Demon",
+    "author": "HANCORE-linux",
+    "type": "dark",
+    "primary_colors": ["orange", "red"],
+    "repo_url": "https://github.com/HANCORE-linux/omarchy-demon-theme",
+    "preview_url": ""
+  },
+  {
+    "name": "Dotrb",
+    "author": "dotsilva",
+    "type": "dark",
+    "primary_colors": ["red"],
+    "repo_url": "https://github.com/dotsilva/omarchy-dotrb-theme",
+    "preview_url": ""
+  },
+  {
+    "name": "Dracula",
+    "author": "catlee",
+    "type": "dark",
+    "primary_colors": ["blue", "green"],
+    "repo_url": "https://github.com/catlee/omarchy-dracula-theme",
+    "preview_url": ""
+  },
+  {
+    "name": "Evergarden",
+    "author": "celsobenedetti",
+    "type": "dark",
+    "primary_colors": ["green"],
+    "repo_url": "https://github.com/celsobenedetti/omarchy-evergarden",
+    "preview_url": ""
+  },
+  {
+    "name": "Felix",
+    "author": "TyRichards",
+    "type": "dark",
+    "primary_colors": ["neutral"],
+    "repo_url": "https://github.com/TyRichards/omarchy-felix-theme",
+    "preview_url": ""
+  },
+  {
+    "name": "Fireside",
+    "author": "bjarneo",
+    "type": "dark",
+    "primary_colors": ["green", "blue", "orange"],
+    "repo_url": "https://github.com/bjarneo/omarchy-fireside-theme",
+    "preview_url": ""
+  },
+  {
     "name": "Flexoki Light",
     "author": "euandeas",
     "type": "light",
-    "primary_colors": ["blue"],
+    "primary_colors": ["blue", "green"],
     "repo_url": "https://github.com/euandeas/omarchy-flexoki-light-theme",
     "preview_url": "https://camo.githubusercontent.com/a1ef162d04c8bf063418c05f369f0a31e06d40dd76cc46bbbbad186256676c88/68747470733a2f2f692e696d6775722e636f6d2f544541784c31622e706e67"
+  },
+  {
+    "name": "Flexoki Dark",
+    "author": "euandeas",
+    "type": "dark",
+    "primary_colors": ["blue", "green"],
+    "repo_url": "https://github.com/euandeas/omarchy-flexoki-dark-theme",
+    "preview_url": ""
+  },
+  {
+    "name": "Forest Green",
+    "author": "abhijeet-swami",
+    "type": "dark",
+    "primary_colors": ["green"],
+    "repo_url": "https://github.com/abhijeet-swami/omarchy-forest-green-theme",
+    "preview_url": ""
+  },
+  {
+    "name": "Frost",
+    "author": "bjarneo",
+    "type": "dark",
+    "primary_colors": ["blue"],
+    "repo_url": "https://github.com/bjarneo/omarchy-frost-theme",
+    "preview_url": ""
+  },
+  {
+    "name": "Futurism",
+    "author": "bjarneo",
+    "type": "dark",
+    "primary_colors": ["blue", "purple"],
+    "repo_url": "https://github.com/bjarneo/omarchy-futurism-theme",
+    "preview_url": ""
+  },
+  {
+    "name": "Gold Rush",
+    "author": "tahayvr",
+    "type": "dark",
+    "primary_colors": ["yellow"],
+    "repo_url": "https://github.com/tahayvr/omarchy-gold-rush-theme",
+    "preview_url": ""
+  },
+  {
+    "name": "Green Garden",
+    "author": "kalk-ak",
+    "type": "dark",
+    "primary_colors": ["green"],
+    "repo_url": "https://github.com/kalk-ak/omarchy-green-garden-theme",
+    "preview_url": ""
+  },
+  {
+    "name": "Green Hakkar",
+    "author": "joaquinmeza",
+    "type": "dark",
+    "primary_colors": ["green"],
+    "repo_url": "https://github.com/joaquinmeza/omarchy-hakker-green-theme",
+    "preview_url": ""
+  },
+  {
+    "name": "Infernium",
+    "author": "RiO7MAKK3R",
+    "type": "dark",
+    "primary_colors": ["orange", "red"],
+    "repo_url": "https://github.com/RiO7MAKK3R/omarchy-infernium-dark-theme",
+    "preview_url": ""
+  },
+  {
+    "name": "Mars",
+    "author": "steve-lohmeyer",
+    "type": "dark",
+    "primary_colors": ["red", "orange"],
+    "repo_url": "https://github.com/steve-lohmeyer/omarchy-mars-theme",
+    "preview_url": ""
+  },
+  {
+    "name": "Midnight",
+    "author": "JaxonWright",
+    "type": "dark",
+    "primary_colors": ["blue", "cyan"],
+    "repo_url": "https://github.com/JaxonWright/omarchy-midnight-theme",
+    "preview_url": ""
+  },
+  {
+    "name": "Milk Matcha",
+    "author": "hipsterusername",
+    "type": "light",
+    "primary_colors": ["green"],
+    "repo_url": "https://github.com/hipsterusername/omarchy-milkmatcha-light-theme",
+    "preview_url": ""
+  },
+  {
+    "name": "Monochrome",
+    "author": "Swarnim114",
+    "type": "dark",
+    "primary_colors": ["neutral"],
+    "repo_url": "https://github.com/Swarnim114/omarchy-monochrome-theme",
+    "preview_url": ""
+  },
+  {
+    "name": "Monokai",
+    "author": "bjarneo",
+    "type": "dark",
+    "primary_colors": ["blue", "green"],
+    "repo_url": "https://github.com/bjarneo/omarchy-monokai-theme",
+    "preview_url": ""
+  },
+  {
+    "name": "Nagai Poolside",
+    "author": "somerocketeer",
+    "type": "dark",
+    "primary_colors": ["blue", "green"],
+    "repo_url": "https://github.com/somerocketeer/omarchy-nagai-poolside-theme",
+    "preview_url": ""
+  },
+  {
+    "name": "Neovoid",
+    "author": "RiO7MAKK3R",
+    "type": "dark",
+    "primary_colors": ["blue", "cyan"],
+    "repo_url": "https://github.com/RiO7MAKK3R/omarchy-neovoid-theme",
+    "preview_url": ""
+  },
+  {
+    "name": "NES",
+    "author": "bjarneo",
+    "type": "dark",
+    "primary_colors": ["red"],
+    "repo_url": "https://github.com/bjarneo/omarchy-nes-theme",
+    "preview_url": ""
+  },
+  {
+    "name": "Omacarchy",
+    "author": "RiO7MAKK3R",
+    "type": "dark",
+    "primary_colors": ["neutral"],
+    "repo_url": "https://github.com/RiO7MAKK3R/omarchy-omacarchy-theme",
+    "preview_url": ""
+  },
+  {
+    "name": "One Dark Pro",
+    "author": "sc0ttman",
+    "type": "dark",
+    "primary_colors": ["blue", "green"],
+    "repo_url": "https://github.com/sc0ttman/omarchy-one-dark-pro-theme",
+    "preview_url": ""
+  },
+  {
+    "name": "Pandora",
+    "author": "imbypass",
+    "type": "dark",
+    "primary_colors": ["blue", "purple", "green"],
+    "repo_url": "https://github.com/imbypass/omarchy-pandora-theme",
+    "preview_url": ""
+  },
+  {
+    "name": "Pina",
+    "author": "bjarneo",
+    "type": "dark",
+    "primary_colors": ["green", "yellow"],
+    "repo_url": "https://github.com/bjarneo/omarchy-pina-theme",
+    "preview_url": ""
+  },
+  {
+    "name": "Pink Blood",
+    "author": "ITSZXY",
+    "type": "dark",
+    "primary_colors": ["red"],
+    "repo_url": "https://github.com/ITSZXY/pink-blood-omarchy-theme",
+    "preview_url": ""
+  },
+  {
+    "name": "Pulsar",
+    "author": "bjarneo",
+    "type": "dark",
+    "primary_colors": ["blue", "purple", "green"],
+    "repo_url": "https://github.com/bjarneo/omarchy-pulsar-theme",
+    "preview_url": ""
+  },
+  {
+    "name": "Purple Moon",
+    "author": "Grey-007",
+    "type": "dark",
+    "primary_colors": ["purple"],
+    "repo_url": "https://github.com/Grey-007/purple-moon",
+    "preview_url": ""
+  },
+  {
+    "name": "Purple Wave",
+    "author": "dotsilva",
+    "type": "dark",
+    "primary_colors": ["purple", "blue"],
+    "repo_url": "https://github.com/dotsilva/omarchy-purplewave-theme",
+    "preview_url": ""
+  },
+  {
+    "name": "Retro PC",
+    "author": "rondilley",
+    "type": "dark",
+    "primary_colors": ["yellow"],
+    "repo_url": "https://github.com/rondilley/omarchy-retropc-theme",
+    "preview_url": ""
+  },
+  {
+    "name": "Rose Pine Dark",
+    "author": "guilhermetk",
+    "type": "dark",
+    "primary_colors": ["red", "cyan", "blue"],
+    "repo_url": "https://github.com/guilhermetk/omarchy-rose-pine-dark",
+    "preview_url": ""
+  },
+  {
+    "name": "Rose of Dune",
+    "author": "HANCORE-linux",
+    "type": "light",
+    "primary_colors": ["red"],
+    "repo_url": "https://github.com/HANCORE-linux/omarchy-roseofdune-theme",
+    "preview_url": ""
+  },
+  {
+    "name": "Sakura",
+    "author": "bjarneo",
+    "type": "dark",
+    "primary_colors": ["red"],
+    "repo_url": "https://github.com/bjarneo/omarchy-sakura-theme",
+    "preview_url": ""
+  },
+  {
+    "name": "Sapphire",
+    "author": "HANCORE-linux",
+    "type": "dark",
+    "primary_colors": ["blue"],
+    "repo_url": "https://github.com/HANCORE-linux/omarchy-sapphire-theme",
+    "preview_url": ""
+  },
+  {
+    "name": "Shades of Jade",
+    "author": "HANCORE-linux",
+    "type": "dark",
+    "primary_colors": ["green"],
+    "repo_url": "https://github.com/HANCORE-linux/omarchy-shadesofjade-theme",
+    "preview_url": ""
+  },
+  {
+    "name": "Space Monkey",
+    "author": "TyRichards",
+    "type": "dark",
+    "primary_colors": ["yellow", "orange"],
+    "repo_url": "https://github.com/TyRichards/omarchy-space-monkey-theme",
+    "preview_url": ""
+  },
+  {
+    "name": "Snow",
+    "author": "bjarneo",
+    "type": "light",
+    "primary_colors": ["neutral"],
+    "repo_url": "https://github.com/bjarneo/omarchy-snow-theme",
+    "preview_url": ""
+  },
+  {
+    "name": "Solarized",
+    "author": "Gazler",
+    "type": "dark",
+    "primary_colors": ["blue", "green"],
+    "repo_url": "https://github.com/Gazler/omarchy-solarized-theme",
+    "preview_url": ""
+  },
+  {
+    "name": "Solarized Light",
+    "author": "dfrico",
+    "type": "light",
+    "primary_colors": ["blue", "green"],
+    "repo_url": "https://github.com/dfrico/omarchy-solarized-light-theme",
+    "preview_url": ""
+  },
+  {
+    "name": "Solarized Osaka",
+    "author": "motorsss",
+    "type": "dark",
+    "primary_colors": ["blue", "cyan"],
+    "repo_url": "https://github.com/motorsss/omarchy-solarizedosaka-theme",
+    "preview_url": ""
+  },
+  {
+    "name": "Sunset",
+    "author": "rondilley",
+    "type": "dark",
+    "primary_colors": ["orange", "yellow"],
+    "repo_url": "https://github.com/rondilley/omarchy-sunset-theme",
+    "preview_url": ""
+  },
+  {
+    "name": "Super Game Bro",
+    "author": "TyRichards",
+    "type": "dark",
+    "primary_colors": ["green"],
+    "repo_url": "https://github.com/TyRichards/omarchy-super-game-bro-theme",
+    "preview_url": ""
+  },
+  {
+    "name": "Synthwave '84",
+    "author": "omacom-io",
+    "type": "dark",
+    "primary_colors": ["purple", "red", "blue"],
+    "repo_url": "https://github.com/omacom-io/omarchy-synthwave84-theme",
+    "preview_url": ""
+  },
+  {
+    "name": "Temerald",
+    "author": "Ahmad-Mtr",
+    "type": "dark",
+    "primary_colors": ["green"],
+    "repo_url": "https://github.com/Ahmad-Mtr/omarchy-temerald-theme",
+    "preview_url": ""
+  },
+  {
+    "name": "Tycho",
+    "author": "leonardobetti",
+    "type": "dark",
+    "primary_colors": ["red"],
+    "repo_url": "https://github.com/leonardobetti/omarchy-tycho",
+    "preview_url": ""
+  },
+  {
+    "name": "Waveform Dark",
+    "author": "hipsterusername",
+    "type": "dark",
+    "primary_colors": ["red", "purple"],
+    "repo_url": "https://github.com/hipsterusername/omarchy-waveform-dark-theme",
+    "preview_url": ""
+  },
+  {
+    "name": "Vague",
+    "author": "Rnedlose",
+    "type": "dark",
+    "primary_colors": ["blue"],
+    "repo_url": "https://github.com/Rnedlose/omarchy-vague-theme",
+    "preview_url": ""
+  },
+  {
+    "name": "Vesper",
+    "author": "thmoee",
+    "type": "dark",
+    "primary_colors": ["orange"],
+    "repo_url": "https://github.com/thmoee/omarchy-vesper-theme",
+    "preview_url": ""
   },
   {
     "name": "VHS 80",
@@ -22,5 +534,13 @@
     "primary_colors": ["red", "yellow", "green"],
     "repo_url": "https://github.com/tahayvr/omarchy-vhs80-theme",
     "preview_url": "https://raw.githubusercontent.com/tahayvr/omarchy-vhs80-theme/main/vhs80.png"
+  },
+  {
+    "name": "Void",
+    "author": "vyrx-dev",
+    "type": "dark",
+    "primary_colors": ["purple"],
+    "repo_url": "https://github.com/vyrx-dev/omarchy-void-theme",
+    "preview_url": ""
   }
 ]
