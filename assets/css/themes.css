@@ -152,6 +152,19 @@
   width: 100%;
 }
 
+.theme-preview-placeholder {
+  align-items: center;
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  width: 100%;
+}
+
+.theme-preview-placeholder svg {
+  color: var(--color-terminal-white);
+  opacity: 0.3;
+}
+
 .theme-info {
   display: grid;
   gap: var(--space-small);
