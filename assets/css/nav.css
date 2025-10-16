@@ -1,9 +1,12 @@
 .nav {
   display: grid;
   gap: var(--space-medium);
+  margin-left: auto;
+  margin-right: auto;
   margin-top: var(--space-large);
   padding-left: var(--space-large);
   padding-right: var(--space-large);
+  width: min(100%, 90em);
 }
 
 .nav__buttons {
@@ -13,11 +16,9 @@
   justify-content: center;
 }
 
-@media(min-width: 64em) {
-
+@media (min-width: 64em) {
   .nav {
     padding-left: var(--space-xx-large);
     padding-right: var(--space-xx-large);
   }
-
 }
