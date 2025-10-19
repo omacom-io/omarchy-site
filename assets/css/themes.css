@@ -196,9 +196,15 @@
 }
 
 .theme-meta {
+  display: flex;
   align-items: center;
+  gap: var(--space-medium);
+}
+
+.theme-info {
   display: flex;
   gap: var(--space-small);
+  justify-content: space-between;
 }
 
 .theme-type {
@@ -226,9 +232,4 @@
   font-size: var(--font-size-medium);
   padding: var(--space-xx-large);
   text-align: center;
-}
-
-/* Hidden */
-.theme-card.hidden {
-  display: none;
 }
