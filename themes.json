@@ -8,6 +8,14 @@
     "preview_url": "https://raw.githubusercontent.com/JJDizz1L/aetheria/refs/heads/omarchy-aetheria-theme/preview.png"
   },
   {
+    "name": "Amberbyte",
+    "author": "tahfizhabib",
+    "type": "dark",
+    "primary_colors": ["red"],
+    "repo_url": "https://github.com/tahfizhabib/omarchy-amberbyte-theme",
+    "preview_url": "https://raw.githubusercontent.com/tahfizhabib/omarchy-amberbyte-theme/main/media/Preview.png"
+  },
+  {
     "name": "Arc Blueberry",
     "author": "vale-c",
     "type": "dark",
@@ -22,6 +30,14 @@
     "primary_colors": ["purple", "cyan"],
     "repo_url": "https://github.com/davidguttman/archwave",
     "preview_url": "https://raw.githubusercontent.com/davidguttman/archwave/main/preview/preview-1.png"
+  },
+  {
+    "name": "Artzen",
+    "author": "tahfizhabib",
+    "type": "dark",
+    "primary_colors": ["red", "green"],
+    "repo_url": "https://github.com/tahfizhabib/omarchy-artzen-theme",
+    "preview_url": "https://raw.githubusercontent.com/tahfizhabib/omarchy-artzen-theme/4be3b5671b629bd9f6a132238d8631658bd35f7b/media/preview.png"
   },
   {
     "name": "Ash",
@@ -142,6 +158,14 @@
     "primary_colors": ["red"],
     "repo_url": "https://github.com/dotsilva/omarchy-dotrb-theme",
     "preview_url": "https://raw.githubusercontent.com/dotsilva/omarchy-dotrb-theme/8fbdc273b1ca2773422b84dca588a540b7863d2f/preview.png"
+  },
+  {
+    "name": "Drac",
+    "author": "ShehabShaef",
+    "type": "dark",
+    "primary_colors": ["blue"],
+    "repo_url": "https://github.com/ShehabShaef/omarchy-drac-theme",
+    "preview_url": "https://raw.githubusercontent.com/ShehabShaef/omarchy-drac-theme/main/theme-preview.png"
   },
   {
     "name": "Dracula",
@@ -494,6 +518,14 @@
     "primary_colors": ["green"],
     "repo_url": "https://github.com/Ahmad-Mtr/omarchy-temerald-theme",
     "preview_url": "https://raw.githubusercontent.com/Ahmad-Mtr/omarchy-temerald-theme/main/preview.png"
+  },
+  {
+    "name": "Tokyo Night OLED",
+    "author": "Justin-De-Sio",
+    "type": "dark",
+    "primary_colors": ["blue", "green"],
+    "repo_url": "https://github.com/Justin-De-Sio/omarchy-tokyoled-theme",
+    "preview_url": "https://raw.githubusercontent.com/Justin-De-Sio/omarchy-tokyoled-theme/main/preview.png"
   },
   {
     "name": "Tycho",
