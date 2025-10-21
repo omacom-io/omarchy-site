@@ -1,0 +1,25 @@
+{{ define "main" }}
+
+<header class="header">
+  <h1><a href="{{ .Site.Params.workstations.discordUrl }}">{{ .Site.Params.workstations.hashtag }}</a></h1>
+</header>
+
+<main class="main">
+  <div class="workstations">
+    <div class="workstations__images">
+      {{ range resources.Match "workstations/*" }}
+      <button class="workstations__image">
+        <figure>
+          <img src="{{ .RelPermalink }}" alt="" loading="lazy" decoding="async">
+        </figure>
+      </button>
+      {{ end }}
+    </div>
+
+    <dialog class="workstations__modal">
+      <div class="workstations__backdrop"></div>
+      <div class="workstations__container"></div>
+    </dialog>
+  </div>
+</main>
+{{ end }}

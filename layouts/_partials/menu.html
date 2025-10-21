@@ -1,0 +1,23 @@
+<nav class="nav">
+  <div class="nav__buttons">
+    {{ range first 3 .Site.Menus.main }}
+    <a class="button" href="{{ .PageRef }}" aria-label="{{ .Params.ariaLabel }}">
+      {{ with resources.Get (printf "icons/%s.svg" .Params.icon) }}
+      {{ .Content | safeHTML }}
+      {{ end }}
+      <span>{{ .Name }}</span>
+    </a>
+    {{ end }}
+  </div>
+
+  <div class="nav__buttons">
+    {{ range after 3 .Site.Menus.main }}
+    <a class="button" href="{{ .PageRef }}" aria-label="{{ .Params.ariaLabel }}">
+      {{ with resources.Get (printf "icons/%s.svg" .Params.icon) }}
+      {{ .Content | safeHTML }}
+      {{ end }}
+      <span>{{ .Name }}</span>
+    </a>
+    {{ end }}
+  </div>
+</nav>
