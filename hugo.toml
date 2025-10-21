@@ -62,7 +62,8 @@ title = "Omarchy — Beautiful, Modern & Opinionated Linux by DHH"
   [params.release]
     url = "https://github.com/basecamp/omarchy/releases/tag/v3.1.0"
     version = "3.1"
-    isoUrl = ""
+    isoUrl = "https://iso.omarchy.org/omarchy-3.1.1.iso"
 
   [params.workstations]
     discordUrl = "https://discord.com/channels/1390012484194275541/1399365919293051010"
+    hashtag = "#omarchy-workstations"
