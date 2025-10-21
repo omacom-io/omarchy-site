@@ -1,0 +1,3 @@
+{{ range resources.Match "css/*" }}
+<link rel="stylesheet" type="text/css" href="{{ .RelPermalink }}">
+{{ end }}

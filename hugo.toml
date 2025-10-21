@@ -1,0 +1,68 @@
+baseURL = "https://omarchy.org/"
+languageCode = "en"
+title = "Omarchy — Beautiful, Modern & Opinionated Linux by DHH"
+
+[menus]
+  [[menus.main]]
+    name = "Manual"
+    pageRef = "https://learn.omacom.io/2/the-omarchy-manual"
+    weight = 10
+
+    [menus.main.params]
+      icon = "manual"
+      ariaLabel = "The Manual"
+  [[menus.main]]
+    name = "ISO"
+    pageRef = "https://iso.omarchy.org/omarchy-3.1.1.iso"
+    weight = 20
+    
+    [menus.main.params]
+      icon = "iso"
+      ariaLabel = "The ISO"
+  [[menus.main]]
+    name = "Github"
+    pageRef = "https://github.com/basecamp/omarchy"
+    weight = 30
+    
+    [menus.main.params]
+      icon = "github"
+      ariaLabel = "The Code"
+  [[menus.main]]
+    name = "Discord"
+    pageRef = "https://discord.gg/tXFUdasqhY"
+    weight = 40
+    
+    [menus.main.params]
+      icon = "discord"
+      ariaLabel = "The Discord"
+  [[menus.main]]
+    name = "Workstations"
+    pageRef = "/workstations"
+    weight = 50
+    
+    [menus.main.params]
+      icon = "workstations"
+      ariaLabel = "The Workstations"
+  [[menus.main]]
+    name = "Merch"
+    pageRef = "https://supply.37signals.com/collections/omarchy"
+    weight = 60
+    
+    [menus.main.params]
+      icon = "merch"
+      ariaLabel = "The Merch"
+    
+
+[params]
+  siteTitle = "Omarchy"
+  header = 'Beautiful, Modern &amp; Opinionated Linux by [DHH](https://dhh.dk/)'
+  description = "Beautiful, Modern & Opinionated Linux by DHH"
+  youtubeUrl = "https://www.youtube-nocookie.com/embed/TcHY0AEd2Uw"
+  
+  [params.release]
+    url = "https://github.com/basecamp/omarchy/releases/tag/v3.1.0"
+    version = "3.1"
+    isoUrl = ""
+
+  [params.workstations]
+    discordUrl = "https://discord.com/channels/1390012484194275541/1399365919293051010"

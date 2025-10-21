@@ -1,0 +1,18 @@
+<!doctype html>
+
+<html lang="{{ site.Language.LanguageCode }}" dir="{{ or site.Language.LanguageDirection `ltr` }}">
+
+<head>
+  {{ partial "head.html" . }}
+</head>
+
+<body>
+  {{ partial "version-release.html" . }}
+  {{ partial "omarchy-ascii.html" . }}
+
+  {{ block "main" . }}{{ end }}
+
+  {{ partial "footer.html" . }}
+</body>
+
+</html>
