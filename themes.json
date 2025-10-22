@@ -80,14 +80,6 @@
     "preview_url": "https://raw.githubusercontent.com/Hydradevx/omarchy-azure-glow-theme/main/preview.png"
   },
   {
-    "name": "Bauhaus",
-    "author": "somerocketeer",
-    "type": "dark",
-    "primary_colors": ["orange", "cyan"],
-    "repo_url": "https://github.com/somerocketeer/omarchy-bauhaus-theme",
-    "preview_url": ""
-  },
-  {
     "name": "Black Gold",
     "author": "HANCORE-linux",
     "type": "dark",
@@ -96,28 +88,12 @@
     "preview_url": "https://raw.githubusercontent.com/HANCORE-linux/omarchy-blackgold-theme/refs/heads/V2-Blackgold/screenshot-2025-09-25_14-39-22.png"
   },
   {
-    "name": "Black Turq",
-    "author": "HANCORE-linux",
-    "type": "dark",
-    "primary_colors": ["cyan"],
-    "repo_url": "https://github.com/HANCORE-linux/omarchy-blackturq-theme",
-    "preview_url": ""
-  },
-  {
     "name": "Bluedotrb",
     "author": "dotsilva",
     "type": "dark",
     "primary_colors": ["blue", "green"],
     "repo_url": "https://github.com/dotsilva/omarchy-bluedotrb-theme",
     "preview_url": "https://raw.githubusercontent.com/dotsilva/omarchy-bluedotrb-theme/66fa0674392bc572cf484be01f92939da923079c/preview.png"
-  },
-  {
-    "name": "Blue Ridge Dark",
-    "author": "hipsterusername",
-    "type": "dark",
-    "primary_colors": ["cyan", "green"],
-    "repo_url": "https://github.com/hipsterusername/omarchy-blueridge-dark-theme",
-    "preview_url": ""
   },
   {
     "name": "Citrus Cynapse",
@@ -288,36 +264,12 @@
     "preview_url": "https://camo.githubusercontent.com/9b000dfcfc27ac81396919217aa80daa14c3ff54fa761806a2594e939b52fd60/68747470733a2f2f692e696d6775722e636f6d2f547431794d35692e706e67"
   },
   {
-    "name": "Milk Matcha",
-    "author": "hipsterusername",
-    "type": "light",
-    "primary_colors": ["green"],
-    "repo_url": "https://github.com/hipsterusername/omarchy-milkmatcha-light-theme",
-    "preview_url": ""
-  },
-  {
-    "name": "Monochrome",
-    "author": "Swarnim114",
-    "type": "dark",
-    "primary_colors": ["neutral"],
-    "repo_url": "https://github.com/Swarnim114/omarchy-monochrome-theme",
-    "preview_url": ""
-  },
-  {
     "name": "Monokai",
     "author": "bjarneo",
     "type": "dark",
     "primary_colors": ["blue", "green"],
     "repo_url": "https://github.com/bjarneo/omarchy-monokai-theme",
     "preview_url": "https://raw.githubusercontent.com/bjarneo/omarchy-monokai-theme/main/theme.png"
-  },
-  {
-    "name": "Nagai Poolside",
-    "author": "somerocketeer",
-    "type": "dark",
-    "primary_colors": ["blue", "green"],
-    "repo_url": "https://github.com/somerocketeer/omarchy-nagai-poolside-theme",
-    "preview_url": ""
   },
   {
     "name": "Neovoid",
@@ -366,14 +318,6 @@
     "primary_colors": ["green", "yellow"],
     "repo_url": "https://github.com/bjarneo/omarchy-pina-theme",
     "preview_url": "https://raw.githubusercontent.com/bjarneo/omarchy-pina-theme/main/theme.png"
-  },
-  {
-    "name": "Pink Blood",
-    "author": "ITSZXY",
-    "type": "dark",
-    "primary_colors": ["red"],
-    "repo_url": "https://github.com/ITSZXY/pink-blood-omarchy-theme",
-    "preview_url": ""
   },
   {
     "name": "Pulsar",
@@ -472,14 +416,6 @@
     "preview_url": "https://raw.githubusercontent.com/Gazler/omarchy-solarized-theme/master/images/solarized.png"
   },
   {
-    "name": "Solarized Light",
-    "author": "dfrico",
-    "type": "light",
-    "primary_colors": ["blue", "green"],
-    "repo_url": "https://github.com/dfrico/omarchy-solarized-light-theme",
-    "preview_url": ""
-  },
-  {
     "name": "Solarized Osaka",
     "author": "motorsss",
     "type": "dark",
@@ -534,14 +470,6 @@
     "primary_colors": ["red"],
     "repo_url": "https://github.com/leonardobetti/omarchy-tycho",
     "preview_url": "https://raw.githubusercontent.com/leonardobetti/omarchy-tycho/main/screenshot.png"
-  },
-  {
-    "name": "Waveform Dark",
-    "author": "hipsterusername",
-    "type": "dark",
-    "primary_colors": ["red", "purple"],
-    "repo_url": "https://github.com/hipsterusername/omarchy-waveform-dark-theme",
-    "preview_url": ""
   },
   {
     "name": "Vesper",
