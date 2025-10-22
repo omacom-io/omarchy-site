@@ -165,11 +165,6 @@
   opacity: 0.3;
 }
 
-.theme-info {
-  display: grid;
-  gap: var(--space-small);
-}
-
 .theme-name {
   color: var(--color-terminal-cyan);
   font-size: var(--font-size-medium);
