@@ -188,37 +188,13 @@
 .theme-author-inline {
   color: var(--color-terminal-white);
   font-weight: 300;
-}
-
-.theme-meta {
-  display: flex;
-  align-items: center;
-  gap: var(--space-medium);
+  font-size: (--font-size-small);
 }
 
 .theme-info {
   display: flex;
   gap: var(--space-small);
   justify-content: space-between;
-}
-
-.theme-type {
-  background: var(--color-terminal-black);
-  border-radius: 0.3em;
-  color: var(--color-terminal-white);
-  font-size: var(--font-size-small);
-  font-weight: 700;
-  padding: 0.3em 0.6em;
-  text-transform: uppercase;
-}
-
-.theme-type.dark {
-  background: var(--color-terminal-black);
-}
-
-.theme-type.light {
-  background: var(--color-terminal-white);
-  color: var(--color-background-night);
 }
 
 /* No Results */

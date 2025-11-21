@@ -96,16 +96,7 @@ function createThemeCard(theme) {
   nameContainer.appendChild(nameLink);
   nameContainer.appendChild(authorSpan);
 
-  const meta = document.createElement("div");
-  meta.className = "theme-meta";
-
-  const type = document.createElement("span");
-  type.className = `theme-type ${theme.type}`;
-  type.textContent = theme.type;
-  meta.appendChild(type);
-
   info.appendChild(nameContainer);
-  info.appendChild(meta);
 
   card.appendChild(previewLink);
   card.appendChild(info);
