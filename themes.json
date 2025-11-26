@@ -88,6 +88,14 @@
     "preview_url": "https://raw.githubusercontent.com/HANCORE-linux/omarchy-blackgold-theme/refs/heads/V2-Blackgold/screenshot-2025-09-25_14-39-22.png"
   },
   {
+    "name": "Bliss",
+    "author": "mishonki3",
+    "type": "light",
+    "primary_colors": ["neutral"],
+    "repo_url": "https://github.com/mishonki3/omarchy-bliss-theme",
+    "preview_url": "https://raw.githubusercontent.com/mishonki3/omarchy-bliss-theme/main/preview/preview1.png"
+  },
+  {
     "name": "Bluedotrb",
     "author": "dotsilva",
     "type": "dark",
@@ -150,6 +158,14 @@
     "primary_colors": ["blue", "green"],
     "repo_url": "https://github.com/catlee/omarchy-dracula-theme",
     "preview_url": "https://raw.githubusercontent.com/catlee/omarchy-dracula-theme/main/theme.png"
+  },
+  {
+    "name": "Eldritch",
+    "author": "neonvoidx",
+    "type": "dark",
+    "primary_colors": ["green", "blue"],
+    "repo_url": "https://github.com/eldritch-theme/omarchy",
+    "preview_url": "https://raw.githubusercontent.com/eldritch-theme/omarchy/refs/heads/master/preview.png"
   },
   {
     "name": "Evergarden",
@@ -224,6 +240,14 @@
     "preview_url": "https://raw.githubusercontent.com/tahayvr/omarchy-gold-rush-theme/refs/heads/main/goldrush.png"
   },
   {
+    "name": "The Greek",
+    "author": "HANCORE-linux",
+    "type": "light",
+    "primary_colors": ["neutral"],
+    "repo_url": "https://github.com/HANCORE-linux/omarchy-thegreek-theme",
+    "preview_url": "https://raw.githubusercontent.com/HANCORE-linux/omarchy-thegreek-theme/refs/heads/main/preview.png"
+  },
+  {
     "name": "Green Garden",
     "author": "kalk-ak",
     "type": "dark",
@@ -254,6 +278,14 @@
     "primary_colors": ["red", "orange"],
     "repo_url": "https://github.com/steve-lohmeyer/omarchy-mars-theme",
     "preview_url": "https://raw.githubusercontent.com/steve-lohmeyer/omarchy-mars-theme/master/theme.png"
+  },
+  {
+    "name": "Mechanoonna",
+    "author": "HANCORE-linux",
+    "type": "dark",
+    "primary_colors": ["yellow"],
+    "repo_url": "https://github.com/HANCORE-linux/omarchy-mechanoonna-theme",
+    "preview_url": "https://raw.githubusercontent.com/HANCORE-linux/omarchy-mechanoonna-theme/refs/heads/main/preview.png"
   },
   {
     "name": "Midnight",
@@ -432,6 +464,14 @@
     "preview_url": "https://raw.githubusercontent.com/rondilley/omarchy-sunset-theme/main/theme.png"
   },
   {
+    "name": "Sunset Drive",
+    "author": "tahayvr",
+    "type": "dark",
+    "primary_colors": ["blue", "yellow", "green"],
+    "repo_url": "https://github.com/tahayvr/omarchy-sunset-drive-theme",
+    "preview_url": "https://raw.githubusercontent.com/tahayvr/omarchy-sunset-drive-theme/main/preview.png"
+  },
+  {
     "name": "Super Game Bro",
     "author": "TyRichards",
     "type": "dark",
@@ -470,6 +510,14 @@
     "primary_colors": ["red"],
     "repo_url": "https://github.com/leonardobetti/omarchy-tycho",
     "preview_url": "https://raw.githubusercontent.com/leonardobetti/omarchy-tycho/main/screenshot.png"
+  },
+  {
+    "name": "White Gold",
+    "author": "HANCORE-linux",
+    "type": "light",
+    "primary_colors": ["orange", "yellow"],
+    "repo_url": "https://github.com/HANCORE-linux/omarchy-whitegold-theme",
+    "preview_url": "https://raw.githubusercontent.com/HANCORE-linux/omarchy-whitegold-theme/refs/heads/main/preview.png"
   },
   {
     "name": "Vesper",
