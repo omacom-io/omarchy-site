@@ -18,8 +18,7 @@
   gap: 1ch;
   height: 2.9em;
   line-height: 1;
-  padding-left: 1em;
-  padding-right: 1em;
+  padding-inline: var(--space-medium);
   text-decoration: none;
   text-transform: uppercase;
   transition:
@@ -33,6 +32,8 @@
   overflow: visible;
   width: 1.4em;
 }
+
+
 
 @media(hover: hover) {
 

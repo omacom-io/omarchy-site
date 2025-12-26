@@ -1,8 +1,7 @@
 .pre {
   display: grid;
   margin-top: var(--space-xx-large);
-  padding-left: var(--space-large);
-  padding-right: var(--space-large);
+  padding-inline: var(--space-large);
 }
 
 .pre a {
@@ -22,6 +21,8 @@
   transition: color var(--transition);
 }
 
+
+
 @media(hover: hover) {
 
   .pre a:hover pre {
@@ -30,12 +31,13 @@
 
 }
 
+
+
 @media(min-width: 64em) {
 
   .pre {
     margin-top: var(--space-xxxx-large);
-    padding-left: var(--space-xx-large);
-    padding-right: var(--space-xx-large);
+    padding-inline: var(--space-xx-large);
   }
 
 }

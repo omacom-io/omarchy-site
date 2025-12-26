@@ -1,8 +1,7 @@
 .workstations {
   display: grid;
   margin-inline: auto;
-  padding-left: var(--space-large);
-  padding-right: var(--space-large);
+  padding-inline: var(--space-large);
   position: relative;
   width: min(100%, 90em);
 }
@@ -110,6 +109,8 @@ button.workstations__image {
   background: none;
 }
 
+
+
 @media(hover: hover) {
 
   button.workstations__image figure {
@@ -125,6 +126,8 @@ button.workstations__image {
 
 }
 
+
+
 @supports(font: -apple-system-body) {
 
   .workstations__images {
@@ -132,6 +135,8 @@ button.workstations__image {
   }
 
 }
+
+
 
 @media(min-width: 48em) {
 
@@ -141,11 +146,12 @@ button.workstations__image {
 
 }
 
+
+
 @media(min-width: 64em) {
 
   .workstations {
-    padding-left: var(--space-xx-large);
-    padding-right: var(--space-xx-large);
+    padding-inline: var(--space-xx-large);
   }
 
   .workstations__modal {

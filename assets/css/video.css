@@ -1,8 +1,7 @@
 .video {
   display: grid;
   margin-inline: auto;
-  padding-left: var(--space-large);
-  padding-right: var(--space-large);
+  padding-inline: var(--space-large);
   width: min(100%, 90em);
 }
 
@@ -25,11 +24,12 @@
   width: 100%;
 }
 
+
+
 @media(min-width: 64em) {
 
   .video {
-    padding-left: var(--space-xx-large);
-    padding-right: var(--space-xx-large);
+    padding-inline: var(--space-xx-large);
   }
 
 }
