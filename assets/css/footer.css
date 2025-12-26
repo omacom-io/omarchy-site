@@ -2,8 +2,7 @@
   display: grid;
   gap: 1.25em;
   margin-bottom: var(--space-xx-large);
-  padding-left: var(--space-large);
-  padding-right: var(--space-large);
+  padding-inline: var(--space-large);
 }
 
 .footer__subhead {
@@ -22,12 +21,13 @@
   width: auto;
 }
 
+
+
 @media(min-width: 64em) {
 
   .footer {
     margin-bottom: var(--space-xxxx-large);
-    padding-left: var(--space-xx-large);
-    padding-right: var(--space-xx-large);
+    padding-inline: var(--space-xx-large);
   }
 
 }

@@ -1,8 +1,7 @@
 .header {
   display: grid;
   margin-top: var(--space-medium);
-  padding-left: var(--space-large);
-  padding-right: var(--space-large);
+  padding-inline: var(--space-large);
 }
 
 .header h1 {
@@ -10,11 +9,12 @@
   text-align: center;
 }
 
+
+
 @media(min-width: 64em) {
 
   .header {
-    padding-left: var(--space-xx-large);
-    padding-right: var(--space-xx-large);
+    padding-inline: var(--space-xx-large);
   }
 
 }
