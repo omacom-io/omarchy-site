@@ -19,6 +19,7 @@ body {
   font-weight: 300;
   line-height: var(--line-height);
   min-height: 100vh;
+  min-height: 100dvh;
 }
 
 a {
