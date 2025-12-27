@@ -6,6 +6,13 @@
 
 
 
+.main--error {
+  flex: 1;
+  place-content: center;
+}
+
+
+
 @media(min-width: 64em) {
 
   .main {
