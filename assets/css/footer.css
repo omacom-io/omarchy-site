@@ -21,7 +21,25 @@
   width: auto;
 }
 
+.footer__sponsor {
+  align-items: end;
+  display: flex;
+  gap: 0.6375em;
+  justify-content: center;
+  margin-top: 1.5em;
+}
 
+.footer__sponsor span {
+  font-size: 92.5%;
+  margin-bottom: -0.35em;
+}
+
+.footer__sponsor img {
+  display: block;
+  height: 1.5em;
+  margin-bottom: -0.075em;
+  width: auto;
+}
 
 @media(min-width: 64em) {
 
