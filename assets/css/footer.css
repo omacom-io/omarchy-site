@@ -18,6 +18,7 @@
 .footer__buttons img {
   display: block;
   height: 2em;
+  pointer-events: none;
   width: auto;
 }
 
@@ -38,6 +39,7 @@
   display: block;
   height: 1.5em;
   margin-bottom: -0.075em;
+  pointer-events: none;
   width: auto;
 }
 
