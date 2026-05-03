@@ -33,6 +33,11 @@
   width: 1.4em;
 }
 
+.button span {
+  margin-bottom: -0.1875em;
+  margin-top: -0.125em;
+}
+
 
 
 @media(hover: hover) {

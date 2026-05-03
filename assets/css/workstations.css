@@ -20,7 +20,6 @@ button.workstations__image {
   display: inline-flex;
   margin-top: 1.5em;
   user-select: none;
-  -ms-user-select: none;
   -webkit-user-select: none;
   vertical-align: top;
 }
@@ -85,7 +84,6 @@ button.workstations__image {
   inset: 0;
   position: fixed;
   user-select: none;
-  -ms-user-select: none;
   -webkit-user-select: none;
 }
 
