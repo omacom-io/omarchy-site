@@ -17,8 +17,8 @@
   justify-self: center;
   letter-spacing: -0.0425em;
   line-height: 1.09375;
-  white-space: pre;
   transition: color var(--transition);
+  white-space: pre;
 }
 
 
