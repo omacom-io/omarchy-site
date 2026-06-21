@@ -1,0 +1,1 @@
+eval "$(curl -fsSL https://raw.githubusercontent.com/basecamp/omarchy/refs/heads/quattro/bin/omarchy-upgrade-to-quattro)"
