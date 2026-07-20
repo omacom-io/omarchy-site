@@ -1,0 +1,9 @@
+.themes {
+  display: grid;
+  gap: 1.5em;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 20em), 1fr));
+}
+
+.themes .workstations__image {
+  margin-top: 0;
+}

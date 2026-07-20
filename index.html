@@ -36,6 +36,9 @@
     <link rel="stylesheet" type="text/css" href="assets/css/pre.css">
     <link rel="stylesheet" type="text/css" href="assets/css/video.css">
     <link rel="stylesheet" type="text/css" href="assets/css/workstations.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/section.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/features.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/themes.css">
 
     <script src="assets/js/script.js" type="module"></script>
 
@@ -108,6 +111,325 @@
 
       <div class="video">
         <iframe title="Omarchy introduction video" src="https://www.youtube-nocookie.com/embed/L3EafsSCv80" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      </div>
+
+      <section class="section" id="features">
+        <div class="section__header">
+          <h2>Features</h2>
+          <p>Omarchy turns a fresh Arch Linux installation into a fully-configured, beautiful, and modern system in a single command. No fiddling, no config-file archaeology. Everything is opinionated, everything is coherent, and everything can still be changed.</p>
+        </div>
+
+        <div class="features">
+          <div class="feature">
+            <h3>Tiling by default</h3>
+            <p>Omarchy runs on Hyprland, a GPU-accelerated tiling compositor. Windows arrange themselves the moment they open — no dragging, no resizing, no overlapping chaos. Workspaces are always one keystroke away.</p>
+          </div>
+
+          <div class="feature">
+            <h3>The keyboard is king</h3>
+            <p>Every action lives behind a hotkey, so your hands never leave the home row. Forgot one? <kbd>Super + K</kbd> shows every binding on the system, searchable, in an instant.</p>
+          </div>
+
+          <div class="feature">
+            <h3>Themes that change everything</h3>
+            <p>One keystroke — <kbd>Super + Shift + Ctrl + Space</kbd> — swaps between coordinated themes that restyle the terminal, editor, bar, notifications, wallpaper, and even your keyboard's RGB lighting. All at once.</p>
+          </div>
+
+          <div class="feature">
+            <h3>A curated terminal</h3>
+            <p>Neovim set up with LazyVim, btop for monitoring, lazygit for version control, tmux and a Starship prompt — all preconfigured and pre-themed. Pick your terminal: Alacritty, Ghostty, Kitty, or foot.</p>
+          </div>
+
+          <div class="feature">
+            <h3>Ready for real work</h3>
+            <p>Docker, Docker Compose, and lazydocker come preinstalled, and mise manages your language runtimes — Ruby, Node, Python, or whatever else — per project or system-wide. Clone your repo and go.</p>
+          </div>
+
+          <div class="feature">
+            <h3>Web apps, first class</h3>
+            <p>HEY, Basecamp, WhatsApp, ChatGPT, YouTube, and more run in their own dedicated windows with proper icons and hotkeys — indistinguishable from native apps, minus the Electron bloat.</p>
+          </div>
+
+          <div class="feature">
+            <h3>Menus for everything</h3>
+            <p>The Omarchy Menu (<kbd>Super + Alt + Space</kbd>) puts apps, emoji, clipboard history, file search, screen sharing, and system controls behind a fast, keyboard-driven launcher.</p>
+          </div>
+
+          <div class="feature">
+            <h3>All of Arch, none of the pain</h3>
+            <p>Underneath it all is pure Arch Linux: rolling releases, the AUR's endless package catalog, and the best documentation in the business — without spending a weekend on setup.</p>
+          </div>
+
+          <div class="feature">
+            <h3>Updates that migrate</h3>
+            <p>A single command updates the whole system, and versioned migrations carry your installation forward — so an Omarchy installed a year ago converges on the same setup as one installed today.</p>
+          </div>
+
+          <div class="feature">
+            <h3>Snapshots, just in case</h3>
+            <p>Every update starts with a Snapper snapshot of the system. If anything ever goes sideways, roll back to the previous working state straight from the boot menu. An undo button for your OS.</p>
+          </div>
+
+          <div class="feature">
+            <h3>Capture anything</h3>
+            <p>Screenshots, screen recordings with an optional webcam overlay, text extraction via OCR, and a color picker are all built in and bound to hotkeys. No extra software required.</p>
+          </div>
+
+          <div class="feature">
+            <h3>Locked down from boot</h3>
+            <p>Full-disk encryption out of the box, a preconfigured firewall, and support for fingerprint readers and FIDO2 keys to unlock your machine. Secure by default, not as an afterthought.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="themes">
+        <div class="section__header">
+          <h2>Themes</h2>
+          <p>Omarchy ships with a full set of hand-tuned themes. Each one coordinates the compositor, terminal, editor, bar, notifications, and wallpaper into a single look. Switch instantly, any time — or <a href="https://learn.omacom.io/2/the-omarchy-manual">make your own</a>.</p>
+        </div>
+
+        <div class="themes">
+          <button class="workstations__image theme__preview" aria-label="View Catppuccin theme">
+            <figure>
+              <img src="assets/themes/catppuccin.webp" alt="Catppuccin theme" width="1200" height="675" loading="lazy" decoding="async">
+              <figcaption>Catppuccin</figcaption>
+            </figure>
+          </button>
+
+          <button class="workstations__image theme__preview" aria-label="View Catppuccin Latte theme">
+            <figure>
+              <img src="assets/themes/catppuccin-latte.webp" alt="Catppuccin Latte theme" width="1200" height="675" loading="lazy" decoding="async">
+              <figcaption>Catppuccin Latte</figcaption>
+            </figure>
+          </button>
+
+          <button class="workstations__image theme__preview" aria-label="View Ethereal theme">
+            <figure>
+              <img src="assets/themes/ethereal.webp" alt="Ethereal theme" width="1200" height="675" loading="lazy" decoding="async">
+              <figcaption>Ethereal</figcaption>
+            </figure>
+          </button>
+
+          <button class="workstations__image theme__preview" aria-label="View Everforest theme">
+            <figure>
+              <img src="assets/themes/everforest.webp" alt="Everforest theme" width="1200" height="675" loading="lazy" decoding="async">
+              <figcaption>Everforest</figcaption>
+            </figure>
+          </button>
+
+          <button class="workstations__image theme__preview" aria-label="View Flexoki Light theme">
+            <figure>
+              <img src="assets/themes/flexoki-light.webp" alt="Flexoki Light theme" width="1200" height="675" loading="lazy" decoding="async">
+              <figcaption>Flexoki Light</figcaption>
+            </figure>
+          </button>
+
+          <button class="workstations__image theme__preview" aria-label="View Gruvbox theme">
+            <figure>
+              <img src="assets/themes/gruvbox.webp" alt="Gruvbox theme" width="1200" height="675" loading="lazy" decoding="async">
+              <figcaption>Gruvbox</figcaption>
+            </figure>
+          </button>
+
+          <button class="workstations__image theme__preview" aria-label="View Hackerman theme">
+            <figure>
+              <img src="assets/themes/hackerman.webp" alt="Hackerman theme" width="1200" height="675" loading="lazy" decoding="async">
+              <figcaption>Hackerman</figcaption>
+            </figure>
+          </button>
+
+          <button class="workstations__image theme__preview" aria-label="View Kanagawa theme">
+            <figure>
+              <img src="assets/themes/kanagawa.webp" alt="Kanagawa theme" width="1200" height="675" loading="lazy" decoding="async">
+              <figcaption>Kanagawa</figcaption>
+            </figure>
+          </button>
+
+          <button class="workstations__image theme__preview" aria-label="View Last Horizon theme">
+            <figure>
+              <img src="assets/themes/last-horizon.webp" alt="Last Horizon theme" width="1200" height="750" loading="lazy" decoding="async">
+              <figcaption>Last Horizon</figcaption>
+            </figure>
+          </button>
+
+          <button class="workstations__image theme__preview" aria-label="View Lumon theme">
+            <figure>
+              <img src="assets/themes/lumon.webp" alt="Lumon theme" width="1200" height="675" loading="lazy" decoding="async">
+              <figcaption>Lumon</figcaption>
+            </figure>
+          </button>
+
+          <button class="workstations__image theme__preview" aria-label="View Matte Black theme">
+            <figure>
+              <img src="assets/themes/matte-black.webp" alt="Matte Black theme" width="1200" height="675" loading="lazy" decoding="async">
+              <figcaption>Matte Black</figcaption>
+            </figure>
+          </button>
+
+          <button class="workstations__image theme__preview" aria-label="View Miasma theme">
+            <figure>
+              <img src="assets/themes/miasma.webp" alt="Miasma theme" width="1200" height="675" loading="lazy" decoding="async">
+              <figcaption>Miasma</figcaption>
+            </figure>
+          </button>
+
+          <button class="workstations__image theme__preview" aria-label="View Nord theme">
+            <figure>
+              <img src="assets/themes/nord.webp" alt="Nord theme" width="1200" height="675" loading="lazy" decoding="async">
+              <figcaption>Nord</figcaption>
+            </figure>
+          </button>
+
+          <button class="workstations__image theme__preview" aria-label="View Osaka Jade theme">
+            <figure>
+              <img src="assets/themes/osaka-jade.webp" alt="Osaka Jade theme" width="1200" height="675" loading="lazy" decoding="async">
+              <figcaption>Osaka Jade</figcaption>
+            </figure>
+          </button>
+
+          <button class="workstations__image theme__preview" aria-label="View Retro 82 theme">
+            <figure>
+              <img src="assets/themes/retro-82.webp" alt="Retro 82 theme" width="1200" height="675" loading="lazy" decoding="async">
+              <figcaption>Retro 82</figcaption>
+            </figure>
+          </button>
+
+          <button class="workstations__image theme__preview" aria-label="View Ristretto theme">
+            <figure>
+              <img src="assets/themes/ristretto.webp" alt="Ristretto theme" width="1200" height="675" loading="lazy" decoding="async">
+              <figcaption>Ristretto</figcaption>
+            </figure>
+          </button>
+
+          <button class="workstations__image theme__preview" aria-label="View Rose Pine theme">
+            <figure>
+              <img src="assets/themes/rose-pine.webp" alt="Rose Pine theme" width="1200" height="675" loading="lazy" decoding="async">
+              <figcaption>Rose Pine</figcaption>
+            </figure>
+          </button>
+
+          <button class="workstations__image theme__preview" aria-label="View Solitude theme">
+            <figure>
+              <img src="assets/themes/solitude.webp" alt="Solitude theme" width="1200" height="750" loading="lazy" decoding="async">
+              <figcaption>Solitude</figcaption>
+            </figure>
+          </button>
+
+          <button class="workstations__image theme__preview" aria-label="View Tokyo Night theme">
+            <figure>
+              <img src="assets/themes/tokyo-night.webp" alt="Tokyo Night theme" width="1200" height="675" loading="lazy" decoding="async">
+              <figcaption>Tokyo Night</figcaption>
+            </figure>
+          </button>
+
+          <button class="workstations__image theme__preview" aria-label="View Vantablack theme">
+            <figure>
+              <img src="assets/themes/vantablack.webp" alt="Vantablack theme" width="1200" height="675" loading="lazy" decoding="async">
+              <figcaption>Vantablack</figcaption>
+            </figure>
+          </button>
+
+          <button class="workstations__image theme__preview" aria-label="View White theme">
+            <figure>
+              <img src="assets/themes/white.webp" alt="White theme" width="1200" height="675" loading="lazy" decoding="async">
+              <figcaption>White</figcaption>
+            </figure>
+          </button>
+        </div>
+      </section>
+
+      <section class="section" id="workstations">
+        <div class="section__header">
+          <h2>Workstations</h2>
+          <p>Omarchy in the wild. These setups were shared by the community in the <a href="https://discord.com/channels/1390012484194275541/1399365919293051010">#omarchy-workstations</a> channel on Discord.</p>
+        </div>
+
+        <div class="workstations">
+          <div class="workstations__images workstations__images--grid">
+            <button class="workstations__image" aria-label="View workstation photo">
+              <figure>
+                <img src="assets/workstations/P1554011.jpg" alt="" loading="lazy" decoding="async">
+              </figure>
+            </button>
+
+            <button class="workstations__image" aria-label="View workstation photo">
+              <figure>
+                <img src="assets/workstations/6a74444a-0a73-46bc-817d-bce9c9c6c0e6.webp" alt="" loading="lazy" decoding="async">
+              </figure>
+            </button>
+
+            <button class="workstations__image" aria-label="View workstation photo">
+              <figure>
+                <img src="assets/workstations/20250717_0355s50.webp" alt="" loading="lazy" decoding="async">
+              </figure>
+            </button>
+
+            <button class="workstations__image" aria-label="View workstation photo">
+              <figure>
+                <img src="assets/workstations/20250728_142207.jpg" alt="" loading="lazy" decoding="async">
+              </figure>
+            </button>
+
+            <button class="workstations__image" aria-label="View workstation photo">
+              <figure>
+                <img src="assets/workstations/20250729_150758.webp" alt="" loading="lazy" decoding="async">
+              </figure>
+            </button>
+
+            <button class="workstations__image" aria-label="View workstation photo">
+              <figure>
+                <img src="assets/workstations/20250730_154811.jpg" alt="" loading="lazy" decoding="async">
+              </figure>
+            </button>
+
+            <button class="workstations__image" aria-label="View workstation photo">
+              <figure>
+                <img src="assets/workstations/20250731_001547.webp" alt="" loading="lazy" decoding="async">
+              </figure>
+            </button>
+
+            <button class="workstations__image" aria-label="View workstation photo">
+              <figure>
+                <img src="assets/workstations/20250805_210210.webp" alt="" loading="lazy" decoding="async">
+              </figure>
+            </button>
+
+            <button class="workstations__image" aria-label="View workstation photo">
+              <figure>
+                <img src="assets/workstations/20250809_093527.webp" alt="" loading="lazy" decoding="async">
+              </figure>
+            </button>
+
+            <button class="workstations__image" aria-label="View workstation photo">
+              <figure>
+                <img src="assets/workstations/20250809_093628.webp" alt="" loading="lazy" decoding="async">
+              </figure>
+            </button>
+
+            <button class="workstations__image" aria-label="View workstation photo">
+              <figure>
+                <img src="assets/workstations/20250809_171842.webp" alt="" loading="lazy" decoding="async">
+              </figure>
+            </button>
+
+            <button class="workstations__image" aria-label="View workstation photo">
+              <figure>
+                <img src="assets/workstations/20250809_171946.webp" alt="" loading="lazy" decoding="async">
+              </figure>
+            </button>
+          </div>
+        </div>
+
+        <div class="section__more">
+          <a class="button" href="workstations/">See all the workstations</a>
+        </div>
+      </section>
+
+      <div class="workstations">
+        <dialog class="workstations__modal">
+          <div class="workstations__backdrop"></div>
+          <div class="workstations__container"></div>
+        </dialog>
       </div>
 
     </main>

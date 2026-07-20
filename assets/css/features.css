@@ -1,0 +1,33 @@
+.features {
+  display: grid;
+  gap: 1.5em;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 20em), 1fr));
+}
+
+.feature {
+  background: rgba(var(--rgb-background-storm), 0.6);
+  border-radius: 0.4em;
+  box-shadow: 0 0 0 1px rgba(var(--rgb-terminal-black), 0.4);
+  display: grid;
+  align-content: start;
+  gap: var(--space-small);
+  padding: var(--space-large);
+}
+
+.feature h3 {
+  color: var(--color-terminal-white);
+  font-weight: 700;
+}
+
+.feature h3::before {
+  content: '❯ ';
+  color: var(--color-green);
+}
+
+.feature kbd {
+  background: rgba(var(--rgb-terminal-black), 0.5);
+  border-radius: 0.2em;
+  color: var(--color-terminal-white);
+  padding: 0.1em 0.4em;
+  white-space: nowrap;
+}

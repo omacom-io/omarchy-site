@@ -157,3 +157,27 @@ button.workstations__image {
   }
 
 }
+
+
+
+.workstations__images--grid {
+  column-width: auto;
+  display: grid;
+  gap: 1.5em;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 20em), 1fr));
+  margin-bottom: 0;
+  margin-top: 0;
+}
+
+.workstations__images--grid .workstations__image {
+  margin-top: 0;
+}
+
+.workstations__images--grid .workstations__image figure {
+  width: 100%;
+}
+
+.workstations__images--grid .workstations__image img {
+  aspect-ratio: 3/2;
+  object-fit: cover;
+}

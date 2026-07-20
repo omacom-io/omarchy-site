@@ -1,0 +1,50 @@
+.section {
+  display: grid;
+  gap: var(--space-large);
+  margin-inline: auto;
+  margin-top: var(--space-xxx-large);
+  padding-inline: var(--space-large);
+  width: min(100%, 90em);
+}
+
+.section__header {
+  display: grid;
+  gap: var(--space-small);
+  justify-items: center;
+  text-align: center;
+}
+
+.section__header h2 {
+  color: var(--color-green);
+  font-size: var(--font-size-large);
+  font-weight: 700;
+}
+
+.section__header h2::before {
+  content: '# ';
+  color: var(--color-terminal-black);
+}
+
+.section__header p {
+  max-width: 44em;
+}
+
+.section__more {
+  display: flex;
+  justify-content: center;
+}
+
+.section .workstations {
+  padding-inline: 0;
+}
+
+
+
+@media(min-width: 64em) {
+
+  .section {
+    margin-top: var(--space-xxxx-large);
+    padding-inline: var(--space-xx-large);
+  }
+
+}
