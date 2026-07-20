@@ -47,3 +47,12 @@
 .pre--error {
   margin-top: 0;
 }
+
+
+
+.pre pre {
+  text-shadow:
+    0 0 1em rgba(var(--rgb-green), 0.45),
+    0 0 3em rgba(var(--rgb-green), 0.25)
+  ;
+}

@@ -32,13 +32,14 @@
     <link rel="stylesheet" type="text/css" href="assets/css/header.css">
     <link rel="stylesheet" type="text/css" href="assets/css/main.css">
     <link rel="stylesheet" type="text/css" href="assets/css/nav.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/notification.css">
     <link rel="stylesheet" type="text/css" href="assets/css/pre.css">
     <link rel="stylesheet" type="text/css" href="assets/css/video.css">
     <link rel="stylesheet" type="text/css" href="assets/css/workstations.css">
     <link rel="stylesheet" type="text/css" href="assets/css/section.css">
     <link rel="stylesheet" type="text/css" href="assets/css/features.css">
     <link rel="stylesheet" type="text/css" href="assets/css/themes.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/topbar.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/effects.css">
 
     <script src="assets/js/script.js" type="module"></script>
 
@@ -46,11 +47,23 @@
   </head>
 
   <body>
-    <div class="notification">
-      <a href="https://github.com/basecamp/omarchy/releases/tag/v3.8.0">Omarchy 3.8 has been released!</a>
+    <div class="topbar">
+      <div class="topbar__workspaces">
+        <a class="topbar__workspace topbar__workspace--active" href="#home" aria-label="Workspace 1: Home">1</a>
+        <a class="topbar__workspace" href="#features" aria-label="Workspace 2: Features">2</a>
+        <a class="topbar__workspace" href="#themes" aria-label="Workspace 3: Themes">3</a>
+        <a class="topbar__workspace" href="#workstations" aria-label="Workspace 4: Workstations">4</a>
+      </div>
+
+      <div class="topbar__title">omarchy.org</div>
+
+      <div class="topbar__status">
+        <a href="https://github.com/basecamp/omarchy/releases/tag/v3.8.3">v3.8.3</a>
+        <span class="topbar__clock"></span>
+      </div>
     </div>
 
-    <div class="pre">
+    <div class="pre" id="home">
       <a href="/">
 <pre>
                  ▄▄▄
@@ -110,12 +123,14 @@
     <main class="main">
 
       <div class="video">
-        <iframe title="Omarchy introduction video" src="https://www.youtube-nocookie.com/embed/L3EafsSCv80" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <div class="video__frame">
+          <iframe title="Omarchy introduction video" src="https://www.youtube-nocookie.com/embed/L3EafsSCv80" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
       </div>
 
       <section class="section" id="features">
         <div class="section__header">
-          <h2>Features</h2>
+          <h2><span class="section__caret" aria-hidden="true">❯</span> <span class="section__cmd">omarchy</span> features<span class="cursor" aria-hidden="true"></span></h2>
           <p>Omarchy turns a fresh Arch Linux installation into a fully-configured, beautiful, and modern system in a single command. No fiddling, no config-file archaeology. Everything is opinionated, everything is coherent, and everything can still be changed.</p>
         </div>
 
@@ -184,7 +199,7 @@
 
       <section class="section" id="themes">
         <div class="section__header">
-          <h2>Themes</h2>
+          <h2><span class="section__caret" aria-hidden="true">❯</span> <span class="section__cmd">omarchy</span> themes<span class="cursor" aria-hidden="true"></span></h2>
           <p>Omarchy ships with a full set of hand-tuned themes. Each one coordinates the compositor, terminal, editor, bar, notifications, and wallpaper into a single look. Switch instantly, any time — or <a href="https://learn.omacom.io/2/the-omarchy-manual">make your own</a>.</p>
         </div>
 
@@ -340,7 +355,7 @@
 
       <section class="section" id="workstations">
         <div class="section__header">
-          <h2>Workstations</h2>
+          <h2><span class="section__caret" aria-hidden="true">❯</span> <span class="section__cmd">omarchy</span> workstations<span class="cursor" aria-hidden="true"></span></h2>
           <p>Omarchy in the wild. These setups were shared by the community in the <a href="https://discord.com/channels/1390012484194275541/1399365919293051010">#omarchy-workstations</a> channel on Discord.</p>
         </div>
 

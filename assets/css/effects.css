@@ -1,0 +1,76 @@
+::selection {
+  background: rgba(var(--rgb-terminal-blue), 0.45);
+  color: var(--color-white);
+}
+
+html {
+  scrollbar-color: var(--color-terminal-black) var(--color-background-night);
+  scrollbar-width: thin;
+}
+
+body {
+  background-attachment: fixed;
+  background-image:
+    radial-gradient(ellipse 90% 45% at 50% -5%, rgba(var(--rgb-terminal-blue), 0.13), transparent),
+    radial-gradient(rgba(var(--rgb-terminal-white), 0.05) 1px, transparent 1.5px)
+  ;
+  background-size: auto, 2em 2em;
+}
+
+.cursor {
+  animation: cursor-blink 1.1s steps(2, jump-none) infinite;
+  background: var(--color-green);
+  display: inline-block;
+  height: 1em;
+  margin-left: 0.15em;
+  vertical-align: text-bottom;
+  width: 0.55ch;
+}
+
+@keyframes cursor-blink {
+
+  50% {
+    opacity: 0;
+  }
+
+}
+
+
+
+@media(prefers-reduced-motion: reduce) {
+
+  .cursor {
+    animation: none;
+  }
+
+}
+
+
+
+@supports(animation-timeline: view()) {
+
+  @media(prefers-reduced-motion: no-preference) {
+
+    .section {
+      animation: section-reveal both;
+      animation-range: entry 0% entry 40%;
+      animation-timeline: view();
+    }
+
+    @keyframes section-reveal {
+
+      from {
+        opacity: 0;
+        transform: translateY(2em);
+      }
+
+      to {
+        opacity: 1;
+        transform: none;
+      }
+
+    }
+
+  }
+
+}

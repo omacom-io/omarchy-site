@@ -181,3 +181,15 @@ button.workstations__image {
   aspect-ratio: 3/2;
   object-fit: cover;
 }
+
+.workstations__images--grid .workstations__image {
+  transition: transform var(--transition);
+}
+
+@media(hover: hover) {
+
+  .workstations__images--grid .workstations__image:hover {
+    transform: translateY(-0.25em);
+  }
+
+}

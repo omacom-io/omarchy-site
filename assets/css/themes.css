@@ -6,4 +6,15 @@
 
 .themes .workstations__image {
   margin-top: 0;
+  transition: transform var(--transition);
+}
+
+
+
+@media(hover: hover) {
+
+  .themes .workstations__image:hover {
+    transform: translateY(-0.25em);
+  }
+
 }

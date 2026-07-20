@@ -5,13 +5,20 @@
 }
 
 .feature {
-  background: rgba(var(--rgb-background-storm), 0.6);
-  border-radius: 0.4em;
-  box-shadow: 0 0 0 1px rgba(var(--rgb-terminal-black), 0.4);
-  display: grid;
   align-content: start;
+  background:
+    linear-gradient(rgba(var(--rgb-background-storm), 0.55), rgba(var(--rgb-background-storm), 0.55)) padding-box,
+    linear-gradient(135deg, rgba(var(--rgb-terminal-black), 0.7), rgba(var(--rgb-terminal-black), 0.4)) border-box
+  ;
+  border: 1px solid transparent;
+  border-radius: 0.4em;
+  display: grid;
   gap: var(--space-small);
   padding: var(--space-large);
+  transition:
+    box-shadow var(--transition),
+    transform var(--transition)
+  ;
 }
 
 .feature h3 {
@@ -30,4 +37,19 @@
   color: var(--color-terminal-white);
   padding: 0.1em 0.4em;
   white-space: nowrap;
+}
+
+
+
+@media(hover: hover) {
+
+  .feature:hover {
+    background:
+      linear-gradient(var(--color-background-storm), var(--color-background-storm)) padding-box,
+      linear-gradient(135deg, var(--color-terminal-cyan), var(--color-terminal-blue)) border-box
+    ;
+    box-shadow: 0 1em 3em -1.5em rgba(var(--rgb-terminal-cyan), 0.6);
+    transform: translateY(-0.2em);
+  }
+
 }

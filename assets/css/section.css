@@ -4,29 +4,32 @@
   margin-inline: auto;
   margin-top: var(--space-xxx-large);
   padding-inline: var(--space-large);
+  scroll-margin-top: 4em;
   width: min(100%, 90em);
 }
 
 .section__header {
   display: grid;
-  gap: var(--space-small);
-  justify-items: center;
-  text-align: center;
+  gap: var(--space-medium);
+  justify-items: start;
 }
 
 .section__header h2 {
-  color: var(--color-green);
+  color: var(--color-terminal-white);
   font-size: var(--font-size-large);
   font-weight: 700;
 }
 
-.section__header h2::before {
-  content: '# ';
-  color: var(--color-terminal-black);
+.section__caret {
+  color: var(--color-green);
+}
+
+.section__cmd {
+  color: var(--color-terminal-cyan);
 }
 
 .section__header p {
-  max-width: 44em;
+  max-width: 52em;
 }
 
 .section__more {
