@@ -1,0 +1,376 @@
+.chapters {
+  display: grid;
+}
+
+/* Hairlines between chapters keep each visual tied to its text. */
+.chapter {
+  align-items: center;
+  display: grid;
+  gap: var(--space-x-large);
+  padding-block: var(--space-x-large);
+}
+
+.chapter + .chapter {
+  border-top: 1px solid rgba(var(--rgb-terminal-black), 0.4);
+}
+
+.chapter:first-child {
+  padding-top: 0;
+}
+
+.chapter:last-child {
+  padding-bottom: 0;
+}
+
+.chapter__text {
+  display: grid;
+  gap: var(--space-medium);
+  justify-items: start;
+}
+
+.chapter__eyebrow {
+  color: rgba(var(--rgb-terminal-white), 0.6);
+  font-size: var(--font-size-small);
+}
+
+.chapter__eyebrow .section__caret {
+  color: var(--color-green);
+}
+
+.chapter__text h3 {
+  color: var(--color-terminal-white);
+  font-size: 150%;
+  font-weight: 700;
+  line-height: 1.25;
+  text-wrap: balance;
+}
+
+.chapter__text p {
+  max-width: 34em;
+}
+
+.chapter__visual {
+  min-width: 0;
+}
+
+.chapter__visual .terminal {
+  justify-self: stretch;
+  width: 100%;
+}
+
+/* A miniature tiled desktop: one focused window, two stacked beside it. */
+.winmock {
+  aspect-ratio: 16 / 10;
+  background: rgba(var(--rgb-background-night), 0.7);
+  border: 1px solid rgba(var(--rgb-terminal-black), 0.5);
+  border-radius: 0.6em;
+  display: grid;
+  gap: 0.7em;
+  grid-template-columns: 1.6fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  padding: 0.8em;
+}
+
+.winmock__win {
+  background: rgba(var(--rgb-background-storm), 0.75);
+  border: 1px solid rgba(var(--rgb-terminal-black), 0.8);
+  border-radius: 0.4em;
+  overflow: hidden;
+  padding: 0.8em;
+  position: relative;
+}
+
+.winmock__win::before {
+  background: repeating-linear-gradient(
+    rgba(var(--rgb-terminal-white), 0.12) 0,
+    rgba(var(--rgb-terminal-white), 0.12) 0.4em,
+    transparent 0.4em,
+    transparent 1.1em
+  );
+  content: '';
+  display: block;
+  height: 60%;
+  max-width: 9em;
+}
+
+.winmock__win--focus {
+  background:
+    linear-gradient(rgba(var(--rgb-background-storm), 0.9), rgba(var(--rgb-background-storm), 0.9)) padding-box,
+    linear-gradient(135deg, var(--color-terminal-cyan), var(--color-neon-purple)) border-box
+  ;
+  border-color: transparent;
+  grid-row: 1 / 3;
+}
+
+.winmock__win--focus::before {
+  height: 75%;
+  max-width: 13em;
+}
+
+.winmock__prompt {
+  bottom: 0.6em;
+  color: var(--color-green);
+  left: 0.8em;
+  position: absolute;
+}
+
+/* The default bar, as shipped in config/omarchy/shell.json. */
+.barmock {
+  align-items: center;
+  background: rgba(var(--rgb-background-night), 0.9);
+  border: 1px solid rgba(var(--rgb-terminal-black), 0.6);
+  border-radius: 0.5em;
+  display: flex;
+  font-size: var(--font-size-small);
+  gap: 1em;
+  justify-content: space-between;
+  padding: 0.7em 1.1em;
+}
+
+.barmock__group {
+  align-items: center;
+  color: var(--color-terminal-white);
+  display: flex;
+  gap: 1.1em;
+  white-space: nowrap;
+}
+
+.barmock__logo svg {
+  display: block;
+  height: 1.1em;
+  width: 1.1em;
+}
+
+.barmock__blob {
+  background: var(--color-terminal-white);
+  border-radius: 30%;
+  display: inline-block;
+  height: 0.5em;
+  width: 0.5em;
+}
+
+.barmock__ws {
+  align-items: center;
+  display: flex;
+  gap: 0.8em;
+}
+
+.barmock__clock {
+  font-weight: 700;
+}
+
+/* The agents panel: plan hero, allowance meters. */
+.usagemock {
+  background: rgba(var(--rgb-background-storm), 0.6);
+  border: 1px solid rgba(var(--rgb-terminal-black), 0.9);
+  border-radius: 0.6em;
+  display: grid;
+  gap: var(--space-medium);
+  padding: var(--space-large);
+}
+
+.usagemock__hero {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+.usagemock__tool {
+  color: var(--color-terminal-white);
+  font-weight: 700;
+}
+
+.usagemock__plan {
+  background: rgba(var(--rgb-neon-purple), 0.18);
+  border-radius: 0.3em;
+  color: var(--color-neon-purple);
+  font-size: var(--font-size-small);
+  padding: 0.15em 0.6em;
+}
+
+.usagemock__meter {
+  display: grid;
+  gap: 0.35em;
+}
+
+.usagemock__meterhead {
+  color: var(--color-terminal-white);
+  display: flex;
+  font-size: var(--font-size-small);
+  justify-content: space-between;
+}
+
+.usagemock__meterhead span:last-child {
+  color: rgba(var(--rgb-terminal-white), 0.55);
+}
+
+.usagemock__bar {
+  background: rgba(var(--rgb-terminal-black), 0.45);
+  border-radius: 1em;
+  height: 0.45em;
+  overflow: hidden;
+}
+
+.usagemock__fill {
+  background: linear-gradient(90deg, var(--color-terminal-cyan), var(--color-terminal-blue));
+  border-radius: 1em;
+  height: 100%;
+}
+
+/* Tokens by day: one row per day, today bolded at the bottom. */
+.daychart {
+  background: rgba(var(--rgb-background-storm), 0.6);
+  border: 1px solid rgba(var(--rgb-terminal-black), 0.9);
+  border-radius: 0.6em;
+  display: grid;
+  gap: 0.7em;
+  padding: var(--space-large);
+}
+
+.daychart__row {
+  align-items: center;
+  display: grid;
+  font-size: var(--font-size-small);
+  gap: 1em;
+  grid-template-columns: 3.5em 1fr 3.5em;
+}
+
+.daychart__day {
+  color: rgba(var(--rgb-terminal-white), 0.7);
+}
+
+.daychart__bar {
+  background: linear-gradient(90deg, var(--color-terminal-blue), var(--color-neon-purple));
+  border-radius: 1em;
+  height: 0.45em;
+}
+
+.daychart__count {
+  color: rgba(var(--rgb-terminal-white), 0.7);
+  text-align: right;
+}
+
+.daychart__row--today .daychart__day,
+.daychart__row--today .daychart__count {
+  color: var(--color-terminal-white);
+  font-weight: 700;
+}
+
+.daychart__row--today .daychart__bar {
+  background: linear-gradient(90deg, var(--color-terminal-cyan), var(--color-neon-purple));
+}
+
+/* Web apps as tiled first-class windows. */
+.appmock {
+  aspect-ratio: 16 / 10;
+  background: rgba(var(--rgb-background-night), 0.7);
+  border: 1px solid rgba(var(--rgb-terminal-black), 0.5);
+  border-radius: 0.6em;
+  display: grid;
+  gap: 0.7em;
+  grid-template-columns: 1fr 1fr;
+  padding: 0.8em;
+}
+
+.appmock__win {
+  align-content: start;
+  background: rgba(var(--rgb-background-storm), 0.75);
+  border: 1px solid rgba(var(--rgb-terminal-black), 0.8);
+  border-radius: 0.4em;
+  display: grid;
+  gap: 0.7em;
+  overflow: hidden;
+  padding: 0.8em;
+}
+
+.appmock__win::after {
+  background: repeating-linear-gradient(
+    rgba(var(--rgb-terminal-white), 0.12) 0,
+    rgba(var(--rgb-terminal-white), 0.12) 0.4em,
+    transparent 0.4em,
+    transparent 1.1em
+  );
+  content: '';
+  display: block;
+  height: 2.9em;
+  max-width: 8em;
+}
+
+.appmock__title {
+  align-items: center;
+  color: var(--color-terminal-white);
+  display: flex;
+  font-size: var(--font-size-small);
+  font-weight: 700;
+  gap: 0.6em;
+}
+
+.appmock__dot {
+  border-radius: 50%;
+  height: 0.55em;
+  width: 0.55em;
+}
+
+.appmock__dot--cyan { background: var(--color-terminal-cyan); }
+.appmock__dot--green { background: var(--color-green); }
+.appmock__dot--pink { background: var(--color-neon-pink); }
+.appmock__dot--purple { background: var(--color-neon-purple); }
+
+/* A system status readout, every box ticked. */
+.syspanel {
+  background: rgba(var(--rgb-background-storm), 0.6);
+  border: 1px solid rgba(var(--rgb-terminal-black), 0.9);
+  border-radius: 0.6em;
+  display: grid;
+  gap: var(--space-medium);
+  padding: var(--space-large);
+}
+
+.syspanel__row {
+  align-items: baseline;
+  display: flex;
+  gap: 1ch;
+}
+
+.syspanel__ok {
+  color: var(--color-green);
+}
+
+.syspanel__glyph {
+  color: var(--color-terminal-cyan);
+  text-align: center;
+  width: 1.2em;
+}
+
+.syspanel__label {
+  color: var(--color-terminal-white);
+  font-weight: 700;
+}
+
+.syspanel__label--dim {
+  color: rgba(var(--rgb-terminal-white), 0.55);
+  font-weight: 400;
+}
+
+.syspanel__detail {
+  color: rgba(var(--rgb-terminal-white), 0.55);
+  font-size: var(--font-size-small);
+  margin-left: auto;
+  text-align: right;
+}
+
+
+
+@media(min-width: 64em) {
+
+  .chapter {
+    gap: var(--space-xx-large);
+    grid-template-columns: 1fr 1fr;
+    padding-block: var(--space-xx-large);
+  }
+
+  .chapter:nth-child(even) .chapter__visual {
+    order: -1;
+  }
+
+}

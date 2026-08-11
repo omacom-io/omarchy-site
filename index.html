@@ -32,13 +32,14 @@
     <link rel="stylesheet" type="text/css" href="assets/css/header.css">
     <link rel="stylesheet" type="text/css" href="assets/css/main.css">
     <link rel="stylesheet" type="text/css" href="assets/css/pre.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/video.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/workstations.css">
     <link rel="stylesheet" type="text/css" href="assets/css/section.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/features.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/themes.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/chapters.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/terminal.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/launcher.css">
     <link rel="stylesheet" type="text/css" href="assets/css/topbar.css">
     <link rel="stylesheet" type="text/css" href="assets/css/effects.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/hero.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/video.css">
 
     <script src="assets/js/script.js" type="module"></script>
 
@@ -53,18 +54,18 @@
         </a>
 
         <div class="topbar__workspaces">
-          <a class="topbar__workspace topbar__workspace--active" href="#home" aria-label="Workspace 1: Home">1</a>
-          <a class="topbar__workspace" href="#features" aria-label="Workspace 2: Features">2</a>
-          <a class="topbar__workspace" href="#themes" aria-label="Workspace 3: Themes">3</a>
-          <a class="topbar__workspace" href="#workstations" aria-label="Workspace 4: Workstations">4</a>
+          <a class="topbar__workspace topbar__workspace--active" href="/" aria-label="Workspace 1: Home" data-tooltip="Home">1</a>
+          <a class="topbar__workspace" href="/shell/" aria-label="Workspace 2: Shell" data-tooltip="Shell">2</a>
+          <a class="topbar__workspace" href="/plugins/" aria-label="Workspace 3: Plugins" data-tooltip="Plugins">3</a>
+          <a class="topbar__workspace" href="/ai/" aria-label="Workspace 4: AI" data-tooltip="AI">4</a>
+          <a class="topbar__workspace" href="/themes/" aria-label="Workspace 5: Themes" data-tooltip="Themes">5</a>
+          <a class="topbar__workspace" href="/workstations/" aria-label="Workspace 6: Workstations" data-tooltip="Workstations">6</a>
         </div>
       </div>
 
-      <div class="topbar__title"><span class="topbar__clock"></span></div>
+      <div class="topbar__title"><a class="topbar__version" href="https://github.com/basecamp/omarchy/releases">Omarchy v4 Quattro</a></div>
 
       <div class="topbar__status">
-        <a class="topbar__version" href="https://github.com/basecamp/omarchy/releases">Omarchy v4 Quattro</a>
-
         <div class="topbar__icons">
           <a class="topbar__icon" href="https://learn.omacom.io/2/the-omarchy-manual" aria-label="The Manual" data-tooltip="Manual">
             <svg viewBox="0 0 32 32"><path d="m0 4.49992c0-.3978.158025-.77931.439312-1.0606s.662798-.43931 1.060598-.43931h8.50549c2.4538 0 4.6337 1.17992 5.9996 3.00181.6982-.9334 1.6047-1.69085 2.6474-2.212 1.0426-.52115 2.1926-.7916 3.3582-.78981h8.4895c.3978 0 .7793.15802 1.0606.43931s.4393.6628.4393 1.0606v20.99868c0 .3978-.158.7793-.4393 1.0606s-.6628.4393-1.0606.4393h-9.0134c-.591 0-1.1761.1164-1.722.3425-.546.2261-1.042.5576-1.4598.9754l-1.244 1.2419c-.2812.2809-.6624.4387-1.0599.4387s-.7787-.1578-1.0599-.4387l-1.244-1.2419c-.4178-.4178-.9138-.7493-1.4598-.9754-.5459-.2261-1.131-.3425-1.722-.3425h-9.01539c-.3978 0-.779311-.158-1.060598-.4393s-.439312-.6628-.439312-1.0606zm14.5011 20.64668.008-10.1453-.004-4.5058c-.0011-1.19267-.4756-2.33616-1.3194-3.17916-.8437-.84299-1.9876-1.31652-3.1803-1.31652h-7.00559v17.99888h7.51349c1.4108-.0001 2.793.3978 3.9878 1.1479zm3.0078-14.6471-.008 14.6431c1.1942-.7477 2.5748-1.1442 3.9838-1.1439h7.5135v-17.99888h-6.9896c-1.1934 0-2.3379.47408-3.1818 1.31794-.8438.84386-1.3179 1.98838-1.3179 3.18174z" fill="currentColor"/></svg>
@@ -82,7 +83,7 @@
             <svg viewBox="0 0 32 32"><path d="m20.5047 3.87149c-.3126.55521-.5935 1.12957-.8487 1.71668-2.4251-.36375-4.8948-.36375-7.3263 0-.2488-.58711-.536-1.16147-.8488-1.71668-2.2782.38929-4.4991 1.07213-6.60504 2.03577-4.173678 6.18384-5.30323 12.20824-4.741638 18.14964 2.444238 1.8061 5.181988 3.1846 8.098458 4.0652.65728-.8806 1.23806-1.8188 1.73585-2.7952-.94455-.351-1.85714-.7913-2.73143-1.3018.22975-.166.45309-.3383.6701-.5042 5.1246 2.4122 11.0595 2.4122 16.1904 0 .217.1787.4404.351.6701.5042-.8743.5168-1.7869.9508-2.7377 1.3082.4978.9764 1.0785 1.9145 1.7358 2.7952 2.9165-.8807 5.6542-2.2528 8.0985-4.0588.6637-6.8923-1.136-12.8656-4.7545-18.15603-2.0995-.96366-4.3204-1.64651-6.5987-2.02942zm-9.8215 16.52871c-1.57623 0-2.88455-1.4295-2.88455-3.1972 0-1.7678 1.25721-3.2037 2.87815-3.2037 1.621 0 2.9101 1.4423 2.8846 3.2037-.0255 1.7613-1.2699 3.1972-2.8782 3.1972zm10.6321 0c-1.5827 0-2.8782-1.4295-2.8782-3.1972 0-1.7678 1.2572-3.2037 2.8782-3.2037 1.6208 0 2.9036 1.4423 2.878 3.2037-.0254 1.7613-1.2699 3.1972-2.878 3.1972z" fill="currentColor"/></svg>
           </a>
 
-          <a class="topbar__icon" href="workstations/" aria-label="The Workstations" data-tooltip="Workstations">
+          <a class="topbar__icon" href="/workstations/" aria-label="The Workstations" data-tooltip="Workstations">
             <svg viewBox="0 0 32 32"><path d="m28.46 2.00391c1.1044 0 1.9687.31157 2.5918.93457.6324.62296.9481 1.49175.9482 2.60547v15.91605c0 1.1139-.3115 1.9824-.9346 2.6054-.6324.623-1.501.9346-2.6054.9346h-7.837v2.4229h1.0713c.3587 0 .6609.1227.9063.3681.2452.2548.3681.5615.3682.9199 0 .3492-.123.6515-.3682.9063-.2454.2548-.5476.3827-.9063.3828h-11.374c-.35871 0-.666-.1279-.92089-.3828-.24523-.2548-.36816-.5571-.36816-.9063.00009-.3584.12292-.6651.36816-.9199.25489-.2454.56218-.3681.92089-.3681h1.0703v-2.4229h-7.84665c-1.10431 0-1.96783-.3117-2.590825-.9346-.632481-.623-.9492125-1.4915-.94921875-2.6054v-15.91605c.00008533-1.11372.31160875-1.98251.93457075-2.60547.632443-.62293 1.501143-.93454 2.605473-.93457zm-24.7598 2.71875c-.29257 0-.52867.09026-.70801.26953-.17928.16984-.26945.41038-.26953.72168v15.57613c0 .3115.09022.5518.26953.7217.17936.1794.41536.2695.70801.2695h24.6045c.2925 0 .5287-.0902.708-.2695.1791-.1699.2685-.4104.2685-.7217v-15.57613c0-.3112-.0893-.55185-.2685-.72168-.1793-.1793-.4155-.26947-.708-.26953z" fill="currentColor"/></svg>
           </a>
 
@@ -110,341 +111,305 @@
       </a>
     </div>
 
-    <header class="header">
-      <h1>Beautiful, Modern &amp; Opinionated Linux by <a href="https://dhh.dk">DHH</a></h1>
-    </header>
-
-
     <main class="main">
 
-      <div class="video">
-        <div class="video__frame">
-          <iframe title="Omarchy introduction video" src="https://www.youtube-nocookie.com/embed/L3EafsSCv80" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      <div class="hero">
+        <div class="hero__intro">
+          <h1>Beautiful, Modern &amp; Opinionated Linux by <a href="https://dhh.dk">DHH</a></h1>
+          <p>Omarchy turns a fresh Arch Linux installation into a fully-configured, beautiful, and modern system in a single step. No fiddling, no config-file archaeology. Everything is opinionated, everything is coherent, and everything can still be changed.</p>
+          <div class="hero__buttons">
+            <a class="button" href="https://iso.omarchy.org/omarchy-3.8.3.iso">Download the ISO</a>
+            <a class="button button--ghost" href="https://learn.omacom.io/2/the-omarchy-manual">Read the Manual</a>
+          </div>
         </div>
+
+        <div class="video">
+          <div class="video__frame">
+            <iframe title="Omarchy introduction video" src="https://www.youtube-nocookie.com/embed/L3EafsSCv80" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+          </div>
+        </div>
+      </div>
+
+      <div class="band">
+      <section class="section" id="quattro">
+        <div class="section__header section__header--center">
+          <h2><span class="section__caret" aria-hidden="true">❯</span> <span class="section__cmd">omarchy</span> quattro<span class="cursor" aria-hidden="true"></span></h2>
+          <p>Version 4 — Quattro — is the biggest Omarchy release yet: over 1,600 commits that turn a set of configs into a real distribution, with its own desktop shell, plugin system, and package repo.</p>
+        </div>
+
+        <div class="launcher">
+          <div class="launcher__prompt">
+            <span class="launcher__caret" aria-hidden="true">❯</span>
+            <span>quattro</span><span class="cursor" aria-hidden="true"></span>
+            <span class="launcher__count">7 results</span>
+          </div>
+
+          <a class="launcher__row" href="/shell/">
+            <span class="launcher__glyph launcher__glyph--cyan" aria-hidden="true">▤</span>
+            <span class="launcher__text">
+              <span class="launcher__title">The Shell</span>
+              <span>One program now runs the whole desktop: bar, menus, notifications, on-screen display, and lock screen — native, instant, and themed as one. Waybar, Walker, Mako, and five more, replaced by a single warm process.</span>
+            </span>
+            <span class="launcher__hint" aria-hidden="true">↵</span>
+          </a>
+
+          <a class="launcher__row" href="/plugins/">
+            <span class="launcher__glyph launcher__glyph--purple" aria-hidden="true">⧉</span>
+            <span class="launcher__text">
+              <span class="launcher__title">Plugins</span>
+              <span>Extend or replace any part of the bar with plugins that are plain git repos. Install one with a single command, fork a built-in with another, and watch it hot-reload as you edit.</span>
+            </span>
+            <span class="launcher__hint" aria-hidden="true">↵</span>
+          </a>
+
+          <a class="launcher__row" href="/ai/">
+            <span class="launcher__glyph launcher__glyph--pink" aria-hidden="true">✦</span>
+            <span class="launcher__text">
+              <span class="launcher__title">AI agents</span>
+              <span>Pick your coding agent, launch it with a keystroke, and watch usage across every subscription right on the bar — plan tier, resets, tokens by model.</span>
+            </span>
+            <span class="launcher__hint" aria-hidden="true">↵</span>
+          </a>
+
+          <div class="launcher__row">
+            <span class="launcher__glyph launcher__glyph--green" aria-hidden="true">⬢</span>
+            <span class="launcher__text">
+              <span class="launcher__title">A real distro</span>
+              <span>Quattro installs from an ISO with its own package repo, updates through pacman with stable, RC, and edge channels, and can factory-reset a machine to pristine.</span>
+            </span>
+          </div>
+
+          <div class="launcher__row">
+            <span class="launcher__glyph launcher__glyph--blue" aria-hidden="true">☾</span>
+            <span class="launcher__text">
+              <span class="launcher__title">Hyprland in Lua</span>
+              <span>The window manager is configured in a real language: bindings, event hooks, conditional logic — with defaults that keep improving underneath your overrides.</span>
+            </span>
+          </div>
+
+          <a class="launcher__row" href="/themes/">
+            <span class="launcher__glyph launcher__glyph--turquoise" aria-hidden="true">◑</span>
+            <span class="launcher__text">
+              <span class="launcher__title">Themes</span>
+              <span>Twenty-one hand-tuned themes restyle the entire system at once — now driven by one semantic color system that reaches every app, the whole Shell, and even Claude Code.</span>
+            </span>
+            <span class="launcher__hint" aria-hidden="true">↵</span>
+          </a>
+
+          <a class="launcher__row" href="/workstations/">
+            <span class="launcher__glyph launcher__glyph--white" aria-hidden="true">▦</span>
+            <span class="launcher__text">
+              <span class="launcher__title">Workstations</span>
+              <span>Omarchy in the wild: battlestations shared by the community in the Discord.</span>
+            </span>
+            <span class="launcher__hint" aria-hidden="true">↵</span>
+          </a>
+        </div>
+      </section>
       </div>
 
       <section class="section" id="features">
         <div class="section__header">
           <h2><span class="section__caret" aria-hidden="true">❯</span> <span class="section__cmd">omarchy</span> features<span class="cursor" aria-hidden="true"></span></h2>
-          <p>Omarchy turns a fresh Arch Linux installation into a fully-configured, beautiful, and modern system in a single command. No fiddling, no config-file archaeology. Everything is opinionated, everything is coherent, and everything can still be changed.</p>
+          <p>The foundations haven't changed: an opinionated, keyboard-driven, tiling desktop that's ready for real work the moment it boots.</p>
         </div>
 
-        <div class="features">
-          <div class="feature">
-            <h3>Tiling by default</h3>
-            <p>Omarchy runs on Hyprland, a GPU-accelerated tiling compositor. Windows arrange themselves the moment they open — no dragging, no resizing, no overlapping chaos. Workspaces are always one keystroke away.</p>
+        <div class="chapters">
+          <div class="chapter">
+            <div class="chapter__text">
+              <div class="chapter__eyebrow">~/.config/hypr/bindings.lua</div>
+              <h3>Tiling by default</h3>
+              <p>Omarchy runs on Hyprland, a GPU-accelerated tiling compositor. Windows arrange themselves the moment they open — no dragging, no resizing, no overlapping chaos. Workspaces are always one keystroke away.</p>
+            </div>
+            <div class="chapter__visual">
+              <div class="winmock" aria-hidden="true">
+                <div class="winmock__win winmock__win--focus"><span class="winmock__prompt">❯</span></div>
+                <div class="winmock__win"></div>
+                <div class="winmock__win"></div>
+              </div>
+            </div>
           </div>
 
-          <div class="feature">
-            <h3>The keyboard is king</h3>
-            <p>Every action lives behind a hotkey, so your hands never leave the home row. Forgot one? <kbd>Super + K</kbd> shows every binding on the system, searchable, in an instant.</p>
+          <div class="chapter">
+            <div class="chapter__text">
+              <div class="chapter__eyebrow"><span class="section__caret" aria-hidden="true">❯</span> omarchy-menu-keybindings</div>
+              <h3>The keyboard is king</h3>
+              <p>Every action lives behind a hotkey, so your hands never leave the home row. Forgot one? A searchable cheatsheet of every binding on the system is a single keystroke away.</p>
+            </div>
+            <div class="chapter__visual">
+              <div class="syspanel" aria-hidden="true">
+                <div class="syspanel__row"><kbd>Super + K</kbd> <span class="syspanel__detail">every keybinding, searchable</span></div>
+                <div class="syspanel__row"><kbd>Super + Space</kbd> <span class="syspanel__detail">menu + launcher</span></div>
+                <div class="syspanel__row"><kbd>Super + Shift + Ctrl + Space</kbd> <span class="syspanel__detail">next theme</span></div>
+                <div class="syspanel__row"><kbd>Super + 1…9</kbd> <span class="syspanel__detail">switch workspace</span></div>
+              </div>
+            </div>
           </div>
 
-          <div class="feature">
-            <h3>Themes that change everything</h3>
-            <p>One keystroke — <kbd>Super + Shift + Ctrl + Space</kbd> — swaps between coordinated themes that restyle the terminal, editor, bar, notifications, wallpaper, and even your keyboard's RGB lighting. All at once.</p>
+          <div class="chapter">
+            <div class="chapter__text">
+              <div class="chapter__eyebrow">nvim · btop · lazygit · tmux · herdr</div>
+              <h3>A curated terminal</h3>
+              <p>Neovim set up with LazyVim, btop for monitoring, lazygit for version control, and a Starship prompt — all preconfigured, pre-themed, and ready the first time you open a terminal.</p>
+            </div>
+            <div class="chapter__visual">
+              <div class="terminal" aria-hidden="true">
+                <pre><span class="terminal__prompt">❯</span> <span class="terminal__cmd">nvim .</span>
+<span class="terminal__out">LazyVim ready — plugins loaded</span>
+<span class="terminal__prompt">❯</span> <span class="terminal__cmd">lazygit</span>
+<span class="terminal__prompt">❯</span> <span class="terminal__cmd">btop</span></pre>
+              </div>
+            </div>
           </div>
 
-          <div class="feature">
-            <h3>A curated terminal</h3>
-            <p>Neovim set up with LazyVim, btop for monitoring, lazygit for version control, tmux and a Starship prompt — all preconfigured and pre-themed. Pick your terminal: Alacritty, Ghostty, Kitty, or foot.</p>
+          <div class="chapter">
+            <div class="chapter__text">
+              <div class="chapter__eyebrow"><span class="section__caret" aria-hidden="true">❯</span> docker compose up</div>
+              <h3>Ready for real work</h3>
+              <p>Docker, Docker Compose, and lazydocker come preinstalled, and mise manages your language runtimes — Ruby, Node, Python, or whatever else — per project or system-wide. Clone your repo and go.</p>
+            </div>
+            <div class="chapter__visual">
+              <div class="terminal" aria-hidden="true">
+                <pre><span class="terminal__prompt">❯</span> <span class="terminal__cmd">mise use ruby@3.4</span>
+<span class="terminal__out">ruby 3.4.2 installed</span>
+<span class="terminal__prompt">❯</span> <span class="terminal__cmd">docker compose up -d</span>
+<span class="terminal__add">✓ web · db · redis running</span></pre>
+              </div>
+            </div>
           </div>
 
-          <div class="feature">
-            <h3>Ready for real work</h3>
-            <p>Docker, Docker Compose, and lazydocker come preinstalled, and mise manages your language runtimes — Ruby, Node, Python, or whatever else — per project or system-wide. Clone your repo and go.</p>
+          <div class="chapter">
+            <div class="chapter__text">
+              <div class="chapter__eyebrow"><span class="section__caret" aria-hidden="true">❯</span> omarchy webapp install</div>
+              <h3>Web apps, first class</h3>
+              <p>HEY, Basecamp, WhatsApp, ChatGPT, YouTube, and more run in their own dedicated windows with proper icons and hotkeys — indistinguishable from native apps, minus the Electron bloat.</p>
+            </div>
+            <div class="chapter__visual">
+              <div class="appmock" aria-hidden="true">
+                <div class="appmock__win"><div class="appmock__title"><span class="appmock__dot appmock__dot--purple"></span>HEY</div></div>
+                <div class="appmock__win"><div class="appmock__title"><span class="appmock__dot appmock__dot--cyan"></span>WhatsApp</div></div>
+                <div class="appmock__win"><div class="appmock__title"><span class="appmock__dot appmock__dot--green"></span>ChatGPT</div></div>
+                <div class="appmock__win"><div class="appmock__title"><span class="appmock__dot appmock__dot--pink"></span>YouTube</div></div>
+              </div>
+            </div>
           </div>
 
-          <div class="feature">
-            <h3>Web apps, first class</h3>
-            <p>HEY, Basecamp, WhatsApp, ChatGPT, YouTube, and more run in their own dedicated windows with proper icons and hotkeys — indistinguishable from native apps, minus the Electron bloat.</p>
+          <div class="chapter">
+            <div class="chapter__text">
+              <div class="chapter__eyebrow"><span class="section__caret" aria-hidden="true">❯</span> yay -S anything</div>
+              <h3>All of Arch, none of the pain</h3>
+              <p>Underneath it all is pure Arch Linux: rolling releases, the AUR's endless package catalog, and the best documentation in the business — without spending a weekend on setup.</p>
+            </div>
+            <div class="chapter__visual">
+              <div class="terminal" aria-hidden="true">
+                <pre><span class="terminal__prompt">❯</span> <span class="terminal__cmd">yay -S spotify</span>
+<span class="terminal__add">✓ resolved from the AUR</span>
+<span class="terminal__add">✓ installed</span></pre>
+              </div>
+            </div>
           </div>
 
-          <div class="feature">
-            <h3>Menus for everything</h3>
-            <p>The Omarchy Menu (<kbd>Super + Alt + Space</kbd>) puts apps, emoji, clipboard history, file search, screen sharing, and system controls behind a fast, keyboard-driven launcher.</p>
+          <div class="chapter">
+            <div class="chapter__text">
+              <div class="chapter__eyebrow"><span class="section__caret" aria-hidden="true">❯</span> omarchy update</div>
+              <h3>Updates that migrate</h3>
+              <p>A single command updates the whole system, and versioned migrations carry your installation forward — so an Omarchy installed a year ago converges on the same setup as one installed today.</p>
+            </div>
+            <div class="chapter__visual">
+              <div class="terminal" aria-hidden="true">
+                <pre><span class="terminal__prompt">❯</span> <span class="terminal__cmd">omarchy update</span>
+<span class="terminal__add">✓ Snapper snapshot created</span>
+<span class="terminal__add">✓ 214 packages upgraded</span>
+<span class="terminal__add">✓ 3 migrations applied</span>
+<span class="terminal__out">System converged. Carry on.</span></pre>
+              </div>
+            </div>
           </div>
 
-          <div class="feature">
-            <h3>All of Arch, none of the pain</h3>
-            <p>Underneath it all is pure Arch Linux: rolling releases, the AUR's endless package catalog, and the best documentation in the business — without spending a weekend on setup.</p>
+          <div class="chapter">
+            <div class="chapter__text">
+              <div class="chapter__eyebrow"><span class="section__caret" aria-hidden="true">❯</span> snapper rollback</div>
+              <h3>Snapshots, just in case</h3>
+              <p>Every update starts with a Snapper snapshot of the system. If anything ever goes sideways, roll back to the previous working state straight from the boot menu. An undo button for your OS.</p>
+            </div>
+            <div class="chapter__visual">
+              <div class="syspanel" aria-hidden="true">
+                <div class="syspanel__row"><span class="syspanel__ok">❯</span> <span class="syspanel__label">Omarchy</span> <span class="syspanel__detail">linux</span></div>
+                <div class="syspanel__row"><span class="syspanel__glyph"></span> <span class="syspanel__label syspanel__label--dim">Omarchy · snapshot 2026-08-10</span> <span class="syspanel__detail">pre-update</span></div>
+                <div class="syspanel__row"><span class="syspanel__glyph"></span> <span class="syspanel__label syspanel__label--dim">Omarchy · snapshot 2026-08-03</span> <span class="syspanel__detail">pre-update</span></div>
+              </div>
+            </div>
           </div>
 
-          <div class="feature">
-            <h3>Updates that migrate</h3>
-            <p>A single command updates the whole system, and versioned migrations carry your installation forward — so an Omarchy installed a year ago converges on the same setup as one installed today.</p>
+          <div class="chapter">
+            <div class="chapter__text">
+              <div class="chapter__eyebrow">screenshot · record · ocr</div>
+              <h3>Capture anything</h3>
+              <p>Screenshots, screen recordings with a live webcam overlay, text extraction via OCR, QR-code capture, and a color picker — all built in and bound to hotkeys.</p>
+            </div>
+            <div class="chapter__visual">
+              <div class="syspanel" aria-hidden="true">
+                <div class="syspanel__row"><span class="syspanel__glyph">▣</span> <span class="syspanel__label">Screenshot</span> <span class="syspanel__detail">region · window · display</span></div>
+                <div class="syspanel__row"><span class="syspanel__glyph">▶</span> <span class="syspanel__label">Screen record</span> <span class="syspanel__detail">with webcam overlay</span></div>
+                <div class="syspanel__row"><span class="syspanel__glyph">✎</span> <span class="syspanel__label">OCR</span> <span class="syspanel__detail">copy text from anything</span></div>
+                <div class="syspanel__row"><span class="syspanel__glyph">◉</span> <span class="syspanel__label">Color picker</span> <span class="syspanel__detail">straight to clipboard</span></div>
+              </div>
+            </div>
           </div>
 
-          <div class="feature">
-            <h3>Snapshots, just in case</h3>
-            <p>Every update starts with a Snapper snapshot of the system. If anything ever goes sideways, roll back to the previous working state straight from the boot menu. An undo button for your OS.</p>
+          <div class="chapter">
+            <div class="chapter__text">
+              <div class="chapter__eyebrow">luks · ufw · fido2 · fprintd</div>
+              <h3>Locked down from boot</h3>
+              <p>Full-disk encryption out of the box, a preconfigured firewall, and fingerprint or FIDO2 unlock for the lock screen and password prompts. Secure by default, not as an afterthought.</p>
+            </div>
+            <div class="chapter__visual">
+              <div class="syspanel" aria-hidden="true">
+                <div class="syspanel__row"><span class="syspanel__ok">✓</span> <span class="syspanel__label">Disk encrypted</span> <span class="syspanel__detail">luks2</span></div>
+                <div class="syspanel__row"><span class="syspanel__ok">✓</span> <span class="syspanel__label">Firewall active</span> <span class="syspanel__detail">ufw</span></div>
+                <div class="syspanel__row"><span class="syspanel__ok">✓</span> <span class="syspanel__label">Fingerprint enrolled</span> <span class="syspanel__detail">fprintd</span></div>
+                <div class="syspanel__row"><span class="syspanel__ok">✓</span> <span class="syspanel__label">FIDO2 key paired</span> <span class="syspanel__detail">unlock + sudo</span></div>
+              </div>
+            </div>
           </div>
 
-          <div class="feature">
-            <h3>Capture anything</h3>
-            <p>Screenshots, screen recordings with an optional webcam overlay, text extraction via OCR, and a color picker are all built in and bound to hotkeys. No extra software required.</p>
+          <div class="chapter">
+            <div class="chapter__text">
+              <div class="chapter__eyebrow">audio dsp · clamshell · ddc</div>
+              <h3>Tuned for your hardware</h3>
+              <p>Per-model speaker tuning restores the DSP voicing laptops lose on Linux, fingerprint readers and lid-close docking just work, and external monitors get real brightness controls.</p>
+            </div>
+            <div class="chapter__visual">
+              <div class="syspanel" aria-hidden="true">
+                <div class="syspanel__row"><span class="syspanel__ok">✓</span> <span class="syspanel__label">Speakers tuned</span> <span class="syspanel__detail">dell-xps-2026</span></div>
+                <div class="syspanel__row"><span class="syspanel__ok">✓</span> <span class="syspanel__label">External brightness</span> <span class="syspanel__detail">ddc</span></div>
+                <div class="syspanel__row"><span class="syspanel__ok">✓</span> <span class="syspanel__label">Clamshell docking</span> <span class="syspanel__detail">lid-close aware</span></div>
+                <div class="syspanel__row"><span class="syspanel__ok">✓</span> <span class="syspanel__label">Text scaling</span> <span class="syspanel__detail">whole desktop</span></div>
+              </div>
+            </div>
           </div>
 
-          <div class="feature">
-            <h3>Locked down from boot</h3>
-            <p>Full-disk encryption out of the box, a preconfigured firewall, and support for fingerprint readers and FIDO2 keys to unlock your machine. Secure by default, not as an afterthought.</p>
+          <div class="chapter">
+            <div class="chapter__text">
+              <div class="chapter__eyebrow">wifi qr · taildrop · speedtest</div>
+              <h3>The network, handled</h3>
+              <p>Share your Wi-Fi with a QR code, switch DNS in a click, run a speed test from the bar, and beam files between your machines with Tailscale and Taildrop.</p>
+            </div>
+            <div class="chapter__visual">
+              <div class="terminal" aria-hidden="true">
+                <pre><span class="terminal__prompt">❯</span> <span class="terminal__cmd">omarchy-network-speedtest</span>
+<span class="terminal__out">↓ 940 Mbps · ↑ 880 Mbps</span>
+<span class="terminal__prompt">❯</span> <span class="terminal__cmd">omarchy-tailscale-send notes.pdf</span>
+<span class="terminal__add">✓ sent to desktop via taildrop</span></pre>
+              </div>
+            </div>
           </div>
-        </div>
-      </section>
-
-      <section class="section" id="themes">
-        <div class="section__header">
-          <h2><span class="section__caret" aria-hidden="true">❯</span> <span class="section__cmd">omarchy</span> themes<span class="cursor" aria-hidden="true"></span></h2>
-          <p>Omarchy ships with a full set of hand-tuned themes. Each one coordinates the compositor, terminal, editor, bar, notifications, and wallpaper into a single look. Switch instantly, any time — or <a href="https://learn.omacom.io/2/the-omarchy-manual">make your own</a>.</p>
-        </div>
-
-        <div class="themes">
-          <button class="workstations__image theme__preview" aria-label="View Catppuccin theme">
-            <figure>
-              <img src="assets/themes/catppuccin.webp" alt="Catppuccin theme" width="1200" height="675" loading="lazy" decoding="async">
-              <figcaption>Catppuccin</figcaption>
-            </figure>
-          </button>
-
-          <button class="workstations__image theme__preview" aria-label="View Catppuccin Latte theme">
-            <figure>
-              <img src="assets/themes/catppuccin-latte.webp" alt="Catppuccin Latte theme" width="1200" height="675" loading="lazy" decoding="async">
-              <figcaption>Catppuccin Latte</figcaption>
-            </figure>
-          </button>
-
-          <button class="workstations__image theme__preview" aria-label="View Ethereal theme">
-            <figure>
-              <img src="assets/themes/ethereal.webp" alt="Ethereal theme" width="1200" height="675" loading="lazy" decoding="async">
-              <figcaption>Ethereal</figcaption>
-            </figure>
-          </button>
-
-          <button class="workstations__image theme__preview" aria-label="View Everforest theme">
-            <figure>
-              <img src="assets/themes/everforest.webp" alt="Everforest theme" width="1200" height="675" loading="lazy" decoding="async">
-              <figcaption>Everforest</figcaption>
-            </figure>
-          </button>
-
-          <button class="workstations__image theme__preview" aria-label="View Flexoki Light theme">
-            <figure>
-              <img src="assets/themes/flexoki-light.webp" alt="Flexoki Light theme" width="1200" height="675" loading="lazy" decoding="async">
-              <figcaption>Flexoki Light</figcaption>
-            </figure>
-          </button>
-
-          <button class="workstations__image theme__preview" aria-label="View Gruvbox theme">
-            <figure>
-              <img src="assets/themes/gruvbox.webp" alt="Gruvbox theme" width="1200" height="675" loading="lazy" decoding="async">
-              <figcaption>Gruvbox</figcaption>
-            </figure>
-          </button>
-
-          <button class="workstations__image theme__preview" aria-label="View Hackerman theme">
-            <figure>
-              <img src="assets/themes/hackerman.webp" alt="Hackerman theme" width="1200" height="675" loading="lazy" decoding="async">
-              <figcaption>Hackerman</figcaption>
-            </figure>
-          </button>
-
-          <button class="workstations__image theme__preview" aria-label="View Kanagawa theme">
-            <figure>
-              <img src="assets/themes/kanagawa.webp" alt="Kanagawa theme" width="1200" height="675" loading="lazy" decoding="async">
-              <figcaption>Kanagawa</figcaption>
-            </figure>
-          </button>
-
-          <button class="workstations__image theme__preview" aria-label="View Last Horizon theme">
-            <figure>
-              <img src="assets/themes/last-horizon.webp" alt="Last Horizon theme" width="1200" height="750" loading="lazy" decoding="async">
-              <figcaption>Last Horizon</figcaption>
-            </figure>
-          </button>
-
-          <button class="workstations__image theme__preview" aria-label="View Lumon theme">
-            <figure>
-              <img src="assets/themes/lumon.webp" alt="Lumon theme" width="1200" height="675" loading="lazy" decoding="async">
-              <figcaption>Lumon</figcaption>
-            </figure>
-          </button>
-
-          <button class="workstations__image theme__preview" aria-label="View Matte Black theme">
-            <figure>
-              <img src="assets/themes/matte-black.webp" alt="Matte Black theme" width="1200" height="675" loading="lazy" decoding="async">
-              <figcaption>Matte Black</figcaption>
-            </figure>
-          </button>
-
-          <button class="workstations__image theme__preview" aria-label="View Miasma theme">
-            <figure>
-              <img src="assets/themes/miasma.webp" alt="Miasma theme" width="1200" height="675" loading="lazy" decoding="async">
-              <figcaption>Miasma</figcaption>
-            </figure>
-          </button>
-
-          <button class="workstations__image theme__preview" aria-label="View Nord theme">
-            <figure>
-              <img src="assets/themes/nord.webp" alt="Nord theme" width="1200" height="675" loading="lazy" decoding="async">
-              <figcaption>Nord</figcaption>
-            </figure>
-          </button>
-
-          <button class="workstations__image theme__preview" aria-label="View Osaka Jade theme">
-            <figure>
-              <img src="assets/themes/osaka-jade.webp" alt="Osaka Jade theme" width="1200" height="675" loading="lazy" decoding="async">
-              <figcaption>Osaka Jade</figcaption>
-            </figure>
-          </button>
-
-          <button class="workstations__image theme__preview" aria-label="View Retro 82 theme">
-            <figure>
-              <img src="assets/themes/retro-82.webp" alt="Retro 82 theme" width="1200" height="675" loading="lazy" decoding="async">
-              <figcaption>Retro 82</figcaption>
-            </figure>
-          </button>
-
-          <button class="workstations__image theme__preview" aria-label="View Ristretto theme">
-            <figure>
-              <img src="assets/themes/ristretto.webp" alt="Ristretto theme" width="1200" height="675" loading="lazy" decoding="async">
-              <figcaption>Ristretto</figcaption>
-            </figure>
-          </button>
-
-          <button class="workstations__image theme__preview" aria-label="View Rose Pine theme">
-            <figure>
-              <img src="assets/themes/rose-pine.webp" alt="Rose Pine theme" width="1200" height="675" loading="lazy" decoding="async">
-              <figcaption>Rose Pine</figcaption>
-            </figure>
-          </button>
-
-          <button class="workstations__image theme__preview" aria-label="View Solitude theme">
-            <figure>
-              <img src="assets/themes/solitude.webp" alt="Solitude theme" width="1200" height="750" loading="lazy" decoding="async">
-              <figcaption>Solitude</figcaption>
-            </figure>
-          </button>
-
-          <button class="workstations__image theme__preview" aria-label="View Tokyo Night theme">
-            <figure>
-              <img src="assets/themes/tokyo-night.webp" alt="Tokyo Night theme" width="1200" height="675" loading="lazy" decoding="async">
-              <figcaption>Tokyo Night</figcaption>
-            </figure>
-          </button>
-
-          <button class="workstations__image theme__preview" aria-label="View Vantablack theme">
-            <figure>
-              <img src="assets/themes/vantablack.webp" alt="Vantablack theme" width="1200" height="675" loading="lazy" decoding="async">
-              <figcaption>Vantablack</figcaption>
-            </figure>
-          </button>
-
-          <button class="workstations__image theme__preview" aria-label="View White theme">
-            <figure>
-              <img src="assets/themes/white.webp" alt="White theme" width="1200" height="675" loading="lazy" decoding="async">
-              <figcaption>White</figcaption>
-            </figure>
-          </button>
         </div>
       </section>
-
-      <section class="section" id="workstations">
-        <div class="section__header">
-          <h2><span class="section__caret" aria-hidden="true">❯</span> <span class="section__cmd">omarchy</span> workstations<span class="cursor" aria-hidden="true"></span></h2>
-          <p>Omarchy in the wild. These setups were shared by the community in the <a href="https://discord.com/channels/1390012484194275541/1399365919293051010">#omarchy-workstations</a> channel on Discord.</p>
-        </div>
-
-        <div class="workstations">
-          <div class="workstations__images workstations__images--grid">
-            <button class="workstations__image" aria-label="View workstation photo">
-              <figure>
-                <img src="assets/workstations/P1554011.jpg" alt="" loading="lazy" decoding="async">
-              </figure>
-            </button>
-
-            <button class="workstations__image" aria-label="View workstation photo">
-              <figure>
-                <img src="assets/workstations/6a74444a-0a73-46bc-817d-bce9c9c6c0e6.webp" alt="" loading="lazy" decoding="async">
-              </figure>
-            </button>
-
-            <button class="workstations__image" aria-label="View workstation photo">
-              <figure>
-                <img src="assets/workstations/20250717_0355s50.webp" alt="" loading="lazy" decoding="async">
-              </figure>
-            </button>
-
-            <button class="workstations__image" aria-label="View workstation photo">
-              <figure>
-                <img src="assets/workstations/20250728_142207.jpg" alt="" loading="lazy" decoding="async">
-              </figure>
-            </button>
-
-            <button class="workstations__image" aria-label="View workstation photo">
-              <figure>
-                <img src="assets/workstations/20250729_150758.webp" alt="" loading="lazy" decoding="async">
-              </figure>
-            </button>
-
-            <button class="workstations__image" aria-label="View workstation photo">
-              <figure>
-                <img src="assets/workstations/20250730_154811.jpg" alt="" loading="lazy" decoding="async">
-              </figure>
-            </button>
-
-            <button class="workstations__image" aria-label="View workstation photo">
-              <figure>
-                <img src="assets/workstations/20250731_001547.webp" alt="" loading="lazy" decoding="async">
-              </figure>
-            </button>
-
-            <button class="workstations__image" aria-label="View workstation photo">
-              <figure>
-                <img src="assets/workstations/20250805_210210.webp" alt="" loading="lazy" decoding="async">
-              </figure>
-            </button>
-
-            <button class="workstations__image" aria-label="View workstation photo">
-              <figure>
-                <img src="assets/workstations/20250809_093527.webp" alt="" loading="lazy" decoding="async">
-              </figure>
-            </button>
-
-            <button class="workstations__image" aria-label="View workstation photo">
-              <figure>
-                <img src="assets/workstations/20250809_093628.webp" alt="" loading="lazy" decoding="async">
-              </figure>
-            </button>
-
-            <button class="workstations__image" aria-label="View workstation photo">
-              <figure>
-                <img src="assets/workstations/20250809_171842.webp" alt="" loading="lazy" decoding="async">
-              </figure>
-            </button>
-
-            <button class="workstations__image" aria-label="View workstation photo">
-              <figure>
-                <img src="assets/workstations/20250809_171946.webp" alt="" loading="lazy" decoding="async">
-              </figure>
-            </button>
-          </div>
-        </div>
-
-        <div class="section__more">
-          <a class="button" href="workstations/">See all the workstations</a>
-        </div>
-      </section>
-
-      <div class="workstations">
-        <dialog class="workstations__modal">
-          <div class="workstations__backdrop"></div>
-          <div class="workstations__container"></div>
-        </dialog>
-      </div>
 
     </main>
 
-    <footer class="footer">
+    <footer class="footer band">
       <div class="footer__subhead">
         <p>Brought to you by <a href="https://37signals.com">37signals</a></p>
       </div>

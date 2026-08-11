@@ -63,11 +63,14 @@
 }
 
 .topbar__title {
-  color: var(--color-terminal-white);
   left: 50%;
   position: absolute;
   transform: translateX(-50%);
   white-space: nowrap;
+}
+
+.topbar__title a {
+  text-decoration: none;
 }
 
 .topbar__status {
@@ -79,12 +82,6 @@
 
 .topbar__status a {
   text-decoration: none;
-}
-
-.topbar__clock {
-  color: var(--color-terminal-white);
-  font-variant-numeric: tabular-nums;
-  font-weight: 700;
 }
 
 .topbar__icons {
@@ -108,24 +105,32 @@
   width: 1.3em;
 }
 
-.topbar__icon::after {
+.topbar [data-tooltip]::after {
   background: rgba(var(--rgb-background-night), 0.95);
   border: 1px solid rgba(var(--rgb-terminal-black), 0.8);
   border-radius: 0.3em;
   color: var(--color-terminal-white);
   content: attr(data-tooltip);
   font-size: 0.8125em;
+  font-weight: 400;
+  left: 50%;
   opacity: 0;
   padding: 0.4em 0.8em;
   pointer-events: none;
   position: absolute;
-  right: 0;
   top: calc(100% + 1em);
-  transform: translateY(-0.25em);
+  transform: translate(-50%, -0.25em);
   transition:
     opacity var(--transition),
     transform var(--transition)
   ;
+  white-space: nowrap;
+}
+
+.topbar__icon[data-tooltip]::after {
+  left: auto;
+  right: 0;
+  transform: translateY(-0.25em);
 }
 
 
@@ -152,8 +157,12 @@
     color: var(--color-white);
   }
 
-  .topbar__icon:hover::after {
+  .topbar [data-tooltip]:hover::after {
     opacity: 1;
+    transform: translate(-50%, 0);
+  }
+
+  .topbar__icon[data-tooltip]:hover::after {
     transform: none;
   }
 
@@ -163,8 +172,7 @@
 
 @media(max-width: 48em) {
 
-  .topbar__title,
-  .topbar__version {
+  .topbar__title {
     display: none;
   }
 

@@ -11,10 +11,12 @@ html {
 body {
   background-attachment: fixed;
   background-image:
-    radial-gradient(ellipse 90% 45% at 50% -5%, rgba(var(--rgb-terminal-blue), 0.13), transparent),
+    radial-gradient(ellipse 90% 45% at 50% -5%, rgba(var(--rgb-terminal-cyan), 0.12), transparent),
+    radial-gradient(ellipse 70% 40% at 85% 105%, rgba(var(--rgb-neon-pink), 0.08), transparent),
+    radial-gradient(ellipse 60% 35% at 5% 60%, rgba(var(--rgb-neon-purple), 0.06), transparent),
     radial-gradient(rgba(var(--rgb-terminal-white), 0.05) 1px, transparent 1.5px)
   ;
-  background-size: auto, 2em 2em;
+  background-size: auto, auto, auto, 2em 2em;
 }
 
 .cursor {

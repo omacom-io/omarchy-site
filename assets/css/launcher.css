@@ -1,0 +1,102 @@
+.launcher {
+  backdrop-filter: blur(1em);
+  -webkit-backdrop-filter: blur(1em);
+  background: rgba(var(--rgb-background-storm), 0.6);
+  border: 1px solid rgba(var(--rgb-terminal-black), 0.9);
+  border-radius: 0.6em;
+  box-shadow:
+    0 2em 5em -2em rgba(var(--rgb-black), 0.8),
+    0 0 7em -2em rgba(var(--rgb-terminal-blue), 0.5)
+  ;
+  margin-inline: auto;
+  overflow: hidden;
+  width: min(100%, 52em);
+}
+
+.launcher__prompt {
+  align-items: baseline;
+  border-bottom: 1px solid rgba(var(--rgb-terminal-black), 0.7);
+  color: var(--color-white);
+  display: flex;
+  font-weight: 700;
+  gap: 1ch;
+  padding: var(--space-medium) var(--space-large);
+}
+
+.launcher__caret {
+  color: var(--color-green);
+}
+
+.launcher__count {
+  color: rgba(var(--rgb-terminal-white), 0.5);
+  font-size: var(--font-size-small);
+  font-weight: 400;
+  margin-left: auto;
+}
+
+.launcher__row {
+  align-items: start;
+  color: inherit;
+  display: grid;
+  font-weight: inherit;
+  gap: 1em;
+  grid-template-columns: 2em 1fr auto;
+  padding: var(--space-medium) var(--space-large);
+  text-decoration: none;
+  transition: background var(--transition);
+}
+
+.launcher__row + .launcher__row {
+  border-top: 1px solid rgba(var(--rgb-terminal-black), 0.35);
+}
+
+.launcher__glyph {
+  color: var(--color-terminal-cyan);
+  font-size: 150%;
+  line-height: 1.17;
+  text-align: center;
+}
+
+.launcher__glyph--cyan { color: var(--color-terminal-cyan); }
+.launcher__glyph--purple { color: var(--color-neon-purple); }
+.launcher__glyph--pink { color: var(--color-neon-pink); }
+.launcher__glyph--green { color: var(--color-green); }
+.launcher__glyph--blue { color: var(--color-terminal-blue); }
+.launcher__glyph--turquoise { color: var(--color-turquoise); }
+.launcher__glyph--white { color: var(--color-terminal-white); }
+
+.launcher__text {
+  display: grid;
+  gap: 0.2em;
+}
+
+.launcher__title {
+  color: var(--color-terminal-white);
+  font-size: var(--font-size-medium);
+  font-weight: 700;
+  transition: color var(--transition);
+}
+
+.launcher__hint {
+  color: rgba(var(--rgb-terminal-white), 0.35);
+  transition: color var(--transition);
+}
+
+
+
+@media(hover: hover) {
+
+  a.launcher__row:hover {
+    background: rgba(var(--rgb-terminal-blue), 0.12);
+    box-shadow: inset 3px 0 0 var(--color-terminal-cyan);
+  }
+
+  a.launcher__row:hover .launcher__title {
+    color: var(--color-white);
+  }
+
+  a.launcher__row:hover .launcher__hint {
+    color: var(--color-terminal-cyan);
+  }
+
+}

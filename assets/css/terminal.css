@@ -1,0 +1,38 @@
+.terminal {
+  background:
+    linear-gradient(rgba(var(--rgb-background-storm), 0.55), rgba(var(--rgb-background-storm), 0.55)) padding-box,
+    linear-gradient(135deg, rgba(var(--rgb-terminal-black), 0.7), rgba(var(--rgb-terminal-black), 0.4)) border-box
+  ;
+  border: 1px solid transparent;
+  border-radius: 0.4em;
+  justify-self: start;
+  max-width: 100%;
+  overflow-x: auto;
+  padding: var(--space-large);
+}
+
+.terminal pre {
+  line-height: 1.7;
+  white-space: pre;
+}
+
+.terminal__prompt {
+  color: var(--color-green);
+}
+
+.terminal__cmd {
+  color: var(--color-terminal-white);
+  font-weight: 700;
+}
+
+.terminal__out {
+  color: var(--color-terminal-blue);
+}
+
+.terminal__del {
+  color: var(--color-neon-pink);
+}
+
+.terminal__add {
+  color: var(--color-green);
+}

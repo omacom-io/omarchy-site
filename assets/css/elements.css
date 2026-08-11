@@ -39,6 +39,14 @@ em {
   font-style: italic;
 }
 
+kbd {
+  background: rgba(var(--rgb-terminal-black), 0.5);
+  border-radius: 0.2em;
+  color: var(--color-terminal-white);
+  padding: 0.1em 0.4em;
+  white-space: nowrap;
+}
+
 img {
   height: auto;
   max-width: 100%;

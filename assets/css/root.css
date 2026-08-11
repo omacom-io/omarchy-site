@@ -1,10 +1,12 @@
 :root {
 
-  --rgb-background-night: 26, 27, 38;
-  --rgb-background-storm: 36, 40, 59;
+  --rgb-background-night: 19, 17, 32;
+  --rgb-background-storm: 30, 27, 48;
   --rgb-black: 0, 0, 0;
   --rgb-green: 158, 206, 106;
-  --rgb-terminal-black: 65, 72, 104;
+  --rgb-neon-pink: 247, 118, 142;
+  --rgb-neon-purple: 187, 154, 247;
+  --rgb-terminal-black: 68, 66, 110;
   --rgb-terminal-blue: 122, 162, 247;
   --rgb-terminal-cyan: 125, 207, 255;
   --rgb-terminal-white: 192, 202, 245;
@@ -15,6 +17,8 @@
   --color-background-storm: rgb(var(--rgb-background-storm));
   --color-black: rgb(var(--rgb-black));
   --color-green: rgb(var(--rgb-green));
+  --color-neon-pink: rgb(var(--rgb-neon-pink));
+  --color-neon-purple: rgb(var(--rgb-neon-purple));
   --color-terminal-black: rgb(var(--rgb-terminal-black));
   --color-terminal-blue: rgb(var(--rgb-terminal-blue));
   --color-terminal-cyan: rgb(var(--rgb-terminal-cyan));

@@ -14,6 +14,33 @@
   justify-items: start;
 }
 
+/* Full-width stripes: alternating sections sit on a faint storm tint,
+   bounded by hairlines, so each chapter of the page reads at a glance. */
+.band {
+  background: linear-gradient(
+    rgba(var(--rgb-background-storm), 0.45),
+    rgba(var(--rgb-background-storm), 0.2)
+  );
+  border-block: 1px solid rgba(var(--rgb-terminal-black), 0.4);
+  margin-top: var(--space-xxx-large);
+}
+
+.band .section {
+  margin-top: 0;
+  padding-block: var(--space-xxx-large);
+}
+
+.footer.band {
+  margin-bottom: 0;
+  margin-top: 0;
+  padding-block: var(--space-xx-large);
+}
+
+.section__header--center {
+  justify-items: center;
+  text-align: center;
+}
+
 .section__header h2 {
   color: var(--color-terminal-white);
   font-size: var(--font-size-large);
@@ -48,6 +75,15 @@
   .section {
     margin-top: var(--space-xxxx-large);
     padding-inline: var(--space-xx-large);
+  }
+
+  .band {
+    margin-top: var(--space-xxxx-large);
+  }
+
+  .band .section {
+    margin-top: 0;
+    padding-block: var(--space-xxxx-large);
   }
 
 }

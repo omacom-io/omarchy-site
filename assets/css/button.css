@@ -38,6 +38,13 @@
   margin-top: -0.125em;
 }
 
+.button--ghost {
+  background: transparent;
+  border: 1px solid rgba(var(--rgb-terminal-black), 0.9);
+  box-shadow: none;
+  color: var(--color-terminal-white);
+}
+
 
 
 @media(hover: hover) {
@@ -45,6 +52,12 @@
   .button:hover {
     background: var(--color-turquoise);
     color: var(--color-background-night);
+  }
+
+  .button--ghost:hover {
+    background: rgba(var(--rgb-terminal-black), 0.35);
+    border-color: var(--color-terminal-cyan);
+    color: var(--color-white);
   }
 
 }

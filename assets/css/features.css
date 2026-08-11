@@ -31,6 +31,8 @@
   color: var(--color-green);
 }
 
+
+
 .feature kbd {
   background: rgba(var(--rgb-terminal-black), 0.5);
   border-radius: 0.2em;
@@ -38,6 +40,11 @@
   padding: 0.1em 0.4em;
   white-space: nowrap;
 }
+
+
+
+
+
 
 
 
@@ -51,5 +58,6 @@
     box-shadow: 0 1em 3em -1.5em rgba(var(--rgb-terminal-cyan), 0.6);
     transform: translateY(-0.2em);
   }
+
 
 }
