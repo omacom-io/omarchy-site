@@ -13,6 +13,7 @@ function ready() {
         var now = new Date();
 
         clock.textContent =
+          now.toLocaleDateString('en-US', { weekday: 'long' }) + ' ' +
           String(now.getHours()).padStart(2, '0') + ':' +
           String(now.getMinutes()).padStart(2, '0');
 
