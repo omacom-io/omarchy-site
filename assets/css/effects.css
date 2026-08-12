@@ -59,6 +59,13 @@ body {
       animation-timeline: view();
     }
 
+    /* An animated transform makes the section its own backdrop root,
+       which would stop the launcher's backdrop-filter from reaching
+       the band's wallpaper behind it. */
+    .band--quattro .section {
+      animation: none;
+    }
+
     @keyframes section-reveal {
 
       from {

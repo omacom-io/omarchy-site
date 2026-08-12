@@ -30,6 +30,19 @@
   padding-block: var(--space-xxx-large);
 }
 
+/* The Quattro band sits on its wallpaper, launcher floating on top —
+   the same way the real menu floats over the desktop. */
+.band--quattro {
+  background:
+    linear-gradient(
+      rgba(var(--rgb-background-night), 0.88),
+      rgba(var(--rgb-background-night), 0.55) 30%,
+      rgba(var(--rgb-background-night), 0.55) 70%,
+      rgba(var(--rgb-background-night), 0.92)
+    ),
+    url('../images/quattro-bg.webp') center / cover no-repeat;
+}
+
 .footer.band {
   margin-bottom: 0;
   margin-top: 0;
@@ -39,6 +52,10 @@
 .section__header--center {
   justify-items: center;
   text-align: center;
+}
+
+.section__header--center p {
+  text-wrap: balance;
 }
 
 .section__header h2 {

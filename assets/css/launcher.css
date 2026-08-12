@@ -1,7 +1,7 @@
 .launcher {
-  backdrop-filter: blur(1em);
-  -webkit-backdrop-filter: blur(1em);
-  background: rgba(var(--rgb-background-storm), 0.6);
+  backdrop-filter: blur(4em) saturate(140%);
+  -webkit-backdrop-filter: blur(4em) saturate(140%);
+  background: rgba(var(--rgb-background-night), 0.6);
   border: 1px solid rgba(var(--rgb-terminal-black), 0.9);
   border-radius: 0.6em;
   box-shadow:
