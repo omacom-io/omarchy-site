@@ -1,0 +1,51 @@
+.hero {
+  align-items: center;
+  display: grid;
+  gap: var(--space-x-large);
+  margin-inline: auto;
+  margin-top: var(--space-x-large);
+  padding-inline: var(--space-large);
+  width: min(100%, 90em);
+}
+
+.hero__intro {
+  display: grid;
+  gap: var(--space-medium);
+  justify-items: start;
+}
+
+.hero__intro h1 {
+  color: var(--color-terminal-white);
+  font-size: var(--font-size-large);
+  font-weight: 700;
+  line-height: 1.25;
+  text-wrap: balance;
+}
+
+.hero__intro p {
+  max-width: 36em;
+}
+
+.hero__buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-medium);
+  margin-top: var(--space-small);
+}
+
+.hero .video {
+  padding-inline: 0;
+  width: 100%;
+}
+
+
+
+@media(min-width: 64em) {
+
+  .hero {
+    gap: var(--space-xx-large);
+    grid-template-columns: 1fr 1.15fr;
+    padding-inline: var(--space-xx-large);
+  }
+
+}

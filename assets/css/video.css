@@ -33,3 +33,12 @@
   }
 
 }
+
+
+
+.video__frame {
+  background: linear-gradient(135deg, var(--color-terminal-cyan), var(--color-terminal-blue), var(--color-terminal-cyan));
+  border-radius: 0.5em;
+  box-shadow: 0 1em 4em -2em rgba(var(--rgb-terminal-blue), 0.6);
+  padding: 0.15em;
+}
