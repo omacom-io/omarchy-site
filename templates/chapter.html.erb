@@ -1,0 +1,22 @@
+  <div class="manual manual--chapter">
+    <nav class="manual__toc" aria-label="Chapters">
+      <ol>
+<%- chapters.each do |other| -%>
+        <li><a href="<%= other.path %>"<%= %( aria-current="page") if other == chapter %>><%= h other.title %></a></li>
+<%- end -%>
+      </ol>
+    </nav>
+
+    <article class="manual__content">
+      <h1><%= h chapter.title %></h1>
+<%= content %>
+      <nav class="manual__pagination">
+<%- if previous_chapter -%>
+        <a class="manual__pagination-previous" href="<%= previous_chapter.path %>" rel="prev">← <%= h previous_chapter.title %></a>
+<%- end -%>
+<%- if next_chapter -%>
+        <a class="manual__pagination-next" href="<%= next_chapter.path %>" rel="next"><%= h next_chapter.title %> →</a>
+<%- end -%>
+      </nav>
+    </article>
+  </div>
