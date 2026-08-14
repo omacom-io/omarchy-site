@@ -283,16 +283,6 @@
 
 <p><code>Super + Ctrl + 1-9</code> counts panels left to right in the right section, skipping the tray since it has no panel of its own. So the number matches the icon you’d point at.</p>
 
-<h3 id="panels-without-a-bar-icon">Panels without a bar icon</h3>
-
-<p>A few panels live in the shell but never take up bar space. They’re summoned from the <a href="../navigation/">menu</a> instead:</p>
-
-<ul>
-  <li><strong>Trigger → Speed Test → Network Speed Test</strong> runs an internet speed test with download and upload dials.</li>
-  <li><strong>Trigger → Speed Test → Disk Speed Test</strong> does the same for disk read and write.</li>
-  <li><strong>Setup → Network → QR Code</strong> turns your current Wi-Fi network into a QR code someone can scan to join. Lovely for guests.</li>
-</ul>
-
 <h3 id="tailscale-and-dropbox">Tailscale and Dropbox</h3>
 
 <p>Two more widgets appear on the bar only once you install the matching service from <strong>Install → Service</strong>, and both are worth knowing about because they do more than report status.</p>
@@ -315,6 +305,8 @@
 
 <p>Grab an empty patch of the bar around the center and drag it toward another screen edge, and the bar moves there — left, right, top, or bottom all work, and every widget adapts (vertical bars fall back to compact icon-only forms). A click-and-hold starts the same drag. Double-left-click that same empty space to toggle transparency. And drag any widget to reorder it or throw it into another section.</p>
 
+<p>If you’d rather pick from a menu, <strong>Style → Menu Bar</strong> has both position and transparency.</p>
+
 <p>The same things have commands, which is what you want for a <a href="../dotfiles/">dotfiles</a> setup:</p>
 
 <pre><code class="language-bash">omarchy bar position bottom
@@ -329,8 +321,6 @@ omarchy bar defaults          # back to the shipped layout
 <pre><code class="language-bash">omarchy plugin enable omarchy.media --section center
 omarchy plugin disable omarchy.weather
 </code></pre>
-
-<p>There’s also a menu route for the common bits: <strong>Style → Menu Bar</strong> has position and transparency.</p>
 
 <h2 id="hiding-the-bar">Hiding the bar</h2>
 
