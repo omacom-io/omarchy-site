@@ -167,16 +167,23 @@
 /* Prev/next pagination */
 
 .manual__pagination {
+  align-items: baseline;
   border-top: 1px solid rgba(var(--rgb-terminal-black), 0.8);
-  display: flex;
+  display: grid;
   gap: var(--space-large);
-  justify-content: space-between;
+  grid-template-columns: 1fr auto 1fr;
   margin-top: var(--space-x-large);
   padding-top: var(--space-large);
 }
 
+.manual__pagination-contents {
+  color: var(--color-terminal-blue);
+  font-size: var(--font-size-small);
+  font-weight: 300;
+  text-align: center;
+}
+
 .manual__pagination-next {
-  margin-left: auto;
   text-align: right;
 }
 

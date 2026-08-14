@@ -23,7 +23,8 @@ TEMPLATE_DIR = File.join(SITE_ROOT, "templates")
 SOURCE_TARBALL = "https://github.com/basecamp/omarchy/archive/HEAD.tar.gz"
 
 Chapter = Struct.new(:number, :slug, :title, :body, keyword_init: true) do
-  def path = "/manual/#{slug}/"
+  # The first chapter is the manual's front page
+  def path = number == "01" ? "/manual/" : "/manual/#{slug}/"
 
   def description
     text = body.lines.find { |line| line =~ /\S/ && line !~ /^[#!\[<`\|]/ }.to_s
@@ -55,7 +56,7 @@ def render_markdown(chapter)
   # Rewrite inter-chapter links like 07-hotkeys.md#anchor to ../hotkeys/#anchor,
   # and repo-relative image refs to the copy hosted under /manual/images/
   markdown = chapter.body
-    .gsub(/\]\((\d\d-[\w-]+)\.md(#[^)]*)?\)/) { "](../#{$1.split("-", 2).last}/#{$2})" }
+    .gsub(/\]\((\d\d)-([\w-]+)\.md(#[^)]*)?\)/) { $1 == "01" ? "](../#{$3})" : "](../#{$2}/#{$3})" }
     .gsub("](images/", "](/manual/images/")
     .gsub(THEME_PREVIEW_REF) { "](/manual/images/#{$1}-#{$2}.webp)" }
   Kramdown::Document.new(markdown, input: "GFM", hard_wrap: false, syntax_highlighter: nil).to_html
@@ -81,14 +82,14 @@ def build(source_dir)
   manual_dir = File.join(SITE_ROOT, "manual")
   FileUtils.rm_rf manual_dir
 
-  write_page File.join(manual_dir, "index.html"), "index",
+  write_page File.join(manual_dir, "toc/index.html"), "toc",
     title: "Table of Contents",
     description: "The complete manual for Omarchy — Beautiful, Modern & Opinionated Linux by DHH.",
-    path: "/manual/",
+    path: "/manual/toc/",
     chapters: chapters
 
   chapters.each_with_index do |chapter, index|
-    write_page File.join(manual_dir, chapter.slug, "index.html"), "chapter",
+    write_page File.join(SITE_ROOT, chapter.path, "index.html"), "chapter",
       title: chapter.title,
       description: chapter.description,
       path: chapter.path,

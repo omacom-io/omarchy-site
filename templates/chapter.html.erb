@@ -13,9 +13,14 @@
       <nav class="manual__pagination">
 <%- if previous_chapter -%>
         <a class="manual__pagination-previous" href="<%= previous_chapter.path %>" rel="prev">← <%= h previous_chapter.title %></a>
+<%- else -%>
+        <span></span>
 <%- end -%>
+        <a class="manual__pagination-contents" href="/manual/toc/">Table of Contents</a>
 <%- if next_chapter -%>
         <a class="manual__pagination-next" href="<%= next_chapter.path %>" rel="next"><%= h next_chapter.title %> →</a>
+<%- else -%>
+        <span></span>
 <%- end -%>
       </nav>
     </article>
