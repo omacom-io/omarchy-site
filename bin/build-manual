@@ -43,16 +43,19 @@ def load_chapters(dir)
   end
 end
 
-def fetch_chapters
+def fetch_source
   Dir.mktmpdir do |tmp|
     system "curl -fsSL #{SOURCE_TARBALL} | tar xz -C #{tmp} --strip-components=1 --wildcards '*/manual'", exception: true
-    load_chapters File.join(tmp, "manual")
+    yield File.join(tmp, "manual")
   end
 end
 
 def render_markdown(chapter)
-  # Rewrite inter-chapter links like 07-hotkeys.md#anchor to ../hotkeys/#anchor
-  markdown = chapter.body.gsub(/\]\((\d\d-[\w-]+)\.md(#[^)]*)?\)/) { "](../#{$1.split("-", 2).last}/#{$2})" }
+  # Rewrite inter-chapter links like 07-hotkeys.md#anchor to ../hotkeys/#anchor,
+  # and repo-relative image refs to the copy hosted under /manual/images/
+  markdown = chapter.body
+    .gsub(/\]\((\d\d-[\w-]+)\.md(#[^)]*)?\)/) { "](../#{$1.split("-", 2).last}/#{$2})" }
+    .gsub("](images/", "](/manual/images/")
   Kramdown::Document.new(markdown, input: "GFM", hard_wrap: false, syntax_highlighter: nil).to_html
 end
 
@@ -70,27 +73,34 @@ def write_page(file, template, title:, description:, path:, **locals)
   File.write file, render("layout", title: title, description: description, url: "https://omarchy.org#{path}", main: main)
 end
 
-chapters = ARGV[0] ? load_chapters(ARGV[0]) : fetch_chapters
+def build(source_dir)
+  chapters = load_chapters(source_dir)
 
-manual_dir = File.join(SITE_ROOT, "manual")
-FileUtils.rm_rf manual_dir
+  manual_dir = File.join(SITE_ROOT, "manual")
+  FileUtils.rm_rf manual_dir
 
-write_page File.join(manual_dir, "index.html"), "index",
-  title: "Table of Contents",
-  description: "The complete manual for Omarchy — Beautiful, Modern & Opinionated Linux by DHH.",
-  path: "/manual/",
-  chapters: chapters
+  write_page File.join(manual_dir, "index.html"), "index",
+    title: "Table of Contents",
+    description: "The complete manual for Omarchy — Beautiful, Modern & Opinionated Linux by DHH.",
+    path: "/manual/",
+    chapters: chapters
 
-chapters.each_with_index do |chapter, index|
-  write_page File.join(manual_dir, chapter.slug, "index.html"), "chapter",
-    title: chapter.title,
-    description: chapter.description,
-    path: chapter.path,
-    chapters: chapters,
-    chapter: chapter,
-    content: render_markdown(chapter),
-    previous_chapter: index > 0 ? chapters[index - 1] : nil,
-    next_chapter: chapters[index + 1]
+  chapters.each_with_index do |chapter, index|
+    write_page File.join(manual_dir, chapter.slug, "index.html"), "chapter",
+      title: chapter.title,
+      description: chapter.description,
+      path: chapter.path,
+      chapters: chapters,
+      chapter: chapter,
+      content: render_markdown(chapter),
+      previous_chapter: index > 0 ? chapters[index - 1] : nil,
+      next_chapter: chapters[index + 1]
+  end
+
+  images_dir = File.join(source_dir, "images")
+  FileUtils.cp_r images_dir, File.join(manual_dir, "images") if Dir.exist?(images_dir)
+
+  puts "Built #{chapters.size} chapters into manual/"
 end
 
-puts "Built #{chapters.size} chapters into manual/"
+ARGV[0] ? build(ARGV[0]) : fetch_source { |dir| build(dir) }
