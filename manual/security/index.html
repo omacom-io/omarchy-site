@@ -126,6 +126,12 @@
 
 <p>You have two passwords on an encrypted install: the one that unlocks the drive at boot, and the one you log in and <code>sudo</code> with. Both can be changed under <em>Update &gt; Password</em> in the Omarchy menu — <em>Drive Encryption</em> for the first, <em>User</em> for the second. Changing the drive password asks for the current one first, so have it handy.</p>
 
+<h2 id="passing-on-a-machine-youve-already-used">Passing on a machine you’ve already used</h2>
+
+<p>If you’re handing your machine over to someone else, you don’t have to reinstall it. Run <em>Setup &gt; Reset Computer</em> in the Omarchy menu, type <code>reset</code> to confirm, and reboot. That wipes every user account and everything in <code>/home</code>, throws away all the packages and system changes you made since installation, and clears the machine’s identity — network connections, host keys, and all. What comes back up is the setup wizard from the first boot, ready for its new owner to enter their own name, password, and encryption password.</p>
+
+<p>It works by restoring the baseline snapshot the installer takes, so it’s only available on machines installed from the Omarchy ISO. And on a drive without encryption, a reset is deletion rather than a secure erase, so if the data was sensitive, do a fresh install instead.</p>
+
 <h2 id="passwordless-sudo">Passwordless sudo</h2>
 
 <p>Sometimes you want <code>sudo</code> to stop asking, most often when an AI agent is doing a long stretch of system work for you. <em>Setup &gt; Security &gt; Passwordless Sudo</em> turns that off for 15 minutes and then puts it back automatically. Run it again before the timer runs out to end it early, and pass your own number of minutes with <code>omarchy-sudo-passwordless 30</code> if 15 isn’t enough.</p>
