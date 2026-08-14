@@ -1,0 +1,180 @@
+<!doctype html>
+
+<html lang="en">
+  <head>
+    <title>Terminal — The Omarchy Manual</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, width=device-width">
+    <meta name="description" content="If you use Tmux, you may not mind, but if not, we fully support Alacritty, Ghostty, and Kitty as options as well. Pick your preference under Install &gt;...">
+
+    <meta property="og:site_name" content="Omarchy">
+    <meta property="og:title" content="Terminal">
+    <meta property="og:description" content="If you use Tmux, you may not mind, but if not, we fully support Alacritty, Ghostty, and Kitty as options as well. Pick your preference under Install &gt;...">
+    <meta property="og:image" content="https://omarchy.org/assets/images/opengraph.png">
+    <meta property="og:url" content="https://omarchy.org/manual/terminal/">
+    <meta property="og:type" content="article">
+
+    <link rel="icon" href="/assets/images/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/assets/css/reset.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/root.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/fonts.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/elements.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/footer.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/header.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/main.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/pre.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/manual.css">
+
+    <script defer data-domain="omarchy.org" src="https://plausible.io/js/script.js"></script>
+  </head>
+
+  <body>
+    <div class="pre">
+      <a href="/">
+<pre>
+                 ▄▄▄
+ ▄█████▄    ▄███████████▄    ▄███████   ▄███████   ▄███████   ▄█   █▄    ▄█   █▄
+███   ███  ███   ███   ███  ███   ███  ███   ███  ███   ███  ███   ███  ███   ███
+███   ███  ███   ███   ███  ███   ███  ███   ███  ███   █▀   ███   ███  ███   ███
+███   ███  ███   ███   ███ ▄███▄▄▄███ ▄███▄▄▄██▀  ███       ▄███▄▄▄███▄ ███▄▄▄███
+███   ███  ███   ███   ███ ▀███▀▀▀███ ▀███▀▀▀▀    ███      ▀▀███▀▀▀███  ▀▀▀▀▀▀███
+███   ███  ███   ███   ███  ███   ███ ██████████  ███   █▄   ███   ███  ▄██   ███
+███   ███  ███   ███   ███  ███   ███  ███   ███  ███   ███  ███   ███  ███   ███
+ ▀█████▀    ▀█   ███   █▀   ███   █▀   ███   ███  ███████▀   ███   █▀    ▀█████▀
+                                       ███   █▀
+</pre>
+      </a>
+    </div>
+
+    <header class="header">
+      <h1><a href="/manual/">The Omarchy Manual</a></h1>
+    </header>
+
+    <main class="main">
+  <div class="manual manual--chapter">
+    <nav class="manual__toc" aria-label="Chapters">
+      <ol>
+        <li><a href="/manual/welcome-to-omarchy/">Welcome to Omarchy!</a></li>
+        <li><a href="/manual/getting-started/">Getting Started</a></li>
+        <li><a href="/manual/coming-from-mac-or-windows/">Coming From Mac or Windows</a></li>
+        <li><a href="/manual/navigation/">Navigation</a></li>
+        <li><a href="/manual/the-top-bar/">The Top Bar</a></li>
+        <li><a href="/manual/themes/">Themes</a></li>
+        <li><a href="/manual/hotkeys/">Hotkeys</a></li>
+        <li><a href="/manual/unified-clipboard-history/">Unified Clipboard &amp; History</a></li>
+        <li><a href="/manual/reminders/">Reminders</a></li>
+        <li><a href="/manual/notices/">Notices</a></li>
+        <li><a href="/manual/text-extraction-dictation/">Text Extraction &amp; Dictation</a></li>
+        <li><a href="/manual/screenshots-recording/">Screenshots &amp; Recording</a></li>
+        <li><a href="/manual/toggles-idle-screensaver/">Toggles, Idle &amp; the Screensaver</a></li>
+        <li><a href="/manual/omarchy-cli/">Omarchy CLI</a></li>
+        <li><a href="/manual/terminal/" aria-current="page">Terminal</a></li>
+        <li><a href="/manual/neovim/">Neovim</a></li>
+        <li><a href="/manual/ai/">AI</a></li>
+        <li><a href="/manual/development-tools/">Development Tools</a></li>
+        <li><a href="/manual/shell-tools/">Shell Tools</a></li>
+        <li><a href="/manual/shell-functions/">Shell Functions</a></li>
+        <li><a href="/manual/tuis/">TUIs</a></li>
+        <li><a href="/manual/guis/">GUIs</a></li>
+        <li><a href="/manual/browsers/">Browsers</a></li>
+        <li><a href="/manual/commercial-apps-services/">Commercial apps/services</a></li>
+        <li><a href="/manual/web-apps/">Web Apps</a></li>
+        <li><a href="/manual/gaming/">Gaming</a></li>
+        <li><a href="/manual/filling-out-pdfs/">Filling out PDFs</a></li>
+        <li><a href="/manual/windows-vm/">Windows VM</a></li>
+        <li><a href="/manual/other-packages/">Other Packages</a></li>
+        <li><a href="/manual/updates/">Updates</a></li>
+        <li><a href="/manual/dotfiles/">Dotfiles</a></li>
+        <li><a href="/manual/shell-plugins/">Shell Plugins</a></li>
+        <li><a href="/manual/monitors/">Monitors</a></li>
+        <li><a href="/manual/keyboard-mouse-trackpad/">Keyboard, Mouse, Trackpad</a></li>
+        <li><a href="/manual/networking/">Networking</a></li>
+        <li><a href="/manual/system-sleep/">System sleep</a></li>
+        <li><a href="/manual/hardware-authentication/">Hardware authentication</a></li>
+        <li><a href="/manual/fonts/">Fonts</a></li>
+        <li><a href="/manual/backgrounds/">Backgrounds</a></li>
+        <li><a href="/manual/prompt/">Prompt</a></li>
+        <li><a href="/manual/branding/">Branding</a></li>
+        <li><a href="/manual/common-tweaks/">Common tweaks</a></li>
+        <li><a href="/manual/extra-themes/">Extra themes</a></li>
+        <li><a href="/manual/making-your-own-theme/">Making your own theme</a></li>
+        <li><a href="/manual/mac-support/">Mac support</a></li>
+        <li><a href="/manual/troubleshooting/">Troubleshooting</a></li>
+        <li><a href="/manual/faq/">FAQ</a></li>
+        <li><a href="/manual/system-snapshots/">System snapshots</a></li>
+        <li><a href="/manual/security/">Security</a></li>
+        <li><a href="/manual/omarchy-on/">Omarchy on...</a></li>
+        <li><a href="/manual/dual-boot-install/">Dual Boot Install</a></li>
+        <li><a href="/manual/unattended-installs/">Unattended Installs</a></li>
+      </ol>
+    </nav>
+
+    <article class="manual__content">
+      <h1>Terminal</h1>
+<p><a href="https://codeberg.org/dnkl/foot">Foot</a> is the default terminal for Omarchy. It’s fast, lightweight, and compatible with even old computers. It does not, however, support native tabs or splits.</p>
+
+<p>If you use Tmux, you may not mind, but if not, we fully support <em>Alacritty</em>, <em>Ghostty</em>, and <em>Kitty</em> as options as well. Pick your preference under <em>Install &gt; Terminal</em> in the Omarchy menu.</p>
+
+<p>You start a new terminal using <code>Super + Return</code>. (This binding will automatically point to whichever Terminal you’ve installed via <em>Install &gt; Terminal</em>, and you can switch between installed terminals under <em>Setup &gt; Defaults &gt; Terminal</em>.)</p>
+
+<h2 id="tmux">Tmux</h2>
+
+<p>Tmux provides a consistent, programmable interface for panes, windows (aka tabs), and resumable sessions regardless of your terminal. It even works on remote hosts, so when you’re SSH’ing into a server, you can use the same approach.</p>
+
+<p>You start a new Tmux session in a fresh terminal using <code>Super + Alt + Return</code>, and because Tmux is a persistent process, you can resume your session even if you close that terminal. Just hit <code>Ctrl + Space</code> (called the prefix key) then <code>s</code> to see all your active sessions.</p>
+
+<p>Omarchy ships with an ergonomically-optimized Tmux configuration, which has a lot of keybindings to learn, so keep <a href="../hotkeys/#tmux">the cheatsheet handy</a>.</p>
+
+<h2 id="tmux-layout-functions">Tmux layout functions</h2>
+
+<p>Because Tmux is programmable, we can use functions to create layouts. Omarchy ships with four different functions for common developer layouts.</p>
+
+<p><code>tdl [agent]</code> starts a three-way split IDE-like interface with the <code>$EDITOR</code> on the left, your chosen AI agent on the right (like <code>c</code> for opencode or <code>cx</code> for Claude or <code>codex</code> for OpenAI), and then a terminal at the bottom.</p>
+
+<p>So <code>tdl c</code> would start this (or just <code>ic</code>):</p>
+
+<p><img src="https://learn.omacom.io/u/tmux-tdl-x-dxhZe9.png" alt="tmux-tdl-x.png" /></p>
+
+<p>You can also start a second agent with <code>tdl c cx</code> (opencode + claude) (or just <code>icx</code>):</p>
+
+<p><img src="https://learn.omacom.io/u/tmux-tdl2-x-5FoPqh.png" alt="tmux-tdl2-x.png" /></p>
+
+<p>There’s also <code>tds</code>, which starts a four-way square with the editor top left, a live diff watcher top right, a terminal bottom left, and opencode bottom right.</p>
+
+<p>You can also start this layout configuration for every subdirectory in the current directory using <code>tdlm [agent]</code>, then navigate using <code>alt + 1/2/3/4/5/...</code>:</p>
+
+<p><img src="https://learn.omacom.io/u/tdlm-x-RPg6sr.png" alt="tdlm-x.png" /></p>
+
+<p>Finally, you can start a swarm of agents using <code>tsl [panes] [command]</code>. So <code>tsl 4 c</code> will give you a four-way grid of opencode agents:</p>
+
+<p><img src="https://learn.omacom.io/u/tsl-x-SFzDeo.png" alt="tsl-x.png" /></p>
+
+      <nav class="manual__pagination">
+        <a class="manual__pagination-previous" href="/manual/omarchy-cli/" rel="prev">← Omarchy CLI</a>
+        <a class="manual__pagination-next" href="/manual/neovim/" rel="next">Neovim →</a>
+      </nav>
+    </article>
+  </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer__subhead">
+        <p>Brought to you by <a href="https://37signals.com">37signals</a></p>
+      </div>
+
+      <div class="footer__buttons">
+        <a href="https://basecamp.com"><img src="/assets/images/logo-basecamp.svg" width="145" height="32" alt="Basecamp"></a>
+        <a href="https://hey.com"><img src="/assets/images/logo-hey.svg" width="123" height="57" alt="HEY"></a>
+        <a href="https://fizzy.do"><img src="/assets/images/logo-fizzy.svg" width="56" height="56" alt="Fizzy"></a>
+        <a href="https://once.com"><img src="/assets/images/logo-once.svg" width="72" height="72" alt="ONCE"></a>
+      </div>
+
+      <div class="footer__sponsor">
+        <span>Sponsored hosting by</span>
+        <a href="https://cloudflare.com"><img src="/assets/images/logo-cloudflare.svg" width="213" height="32" alt="Cloudflare"></a>
+      </div>
+    </footer>
+  </body>
+</html>

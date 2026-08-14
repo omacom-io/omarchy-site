@@ -1,0 +1,236 @@
+<!doctype html>
+
+<html lang="en">
+  <head>
+    <title>Unattended Installs — The Omarchy Manual</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, width=device-width">
+    <meta name="description" content="The Omarchy ISO can install itself with nobody at the keyboard. If the installer finds a second drive labeled cidata carrying its configuration files, it...">
+
+    <meta property="og:site_name" content="Omarchy">
+    <meta property="og:title" content="Unattended Installs">
+    <meta property="og:description" content="The Omarchy ISO can install itself with nobody at the keyboard. If the installer finds a second drive labeled cidata carrying its configuration files, it...">
+    <meta property="og:image" content="https://omarchy.org/assets/images/opengraph.png">
+    <meta property="og:url" content="https://omarchy.org/manual/unattended-installs/">
+    <meta property="og:type" content="article">
+
+    <link rel="icon" href="/assets/images/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/assets/css/reset.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/root.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/fonts.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/elements.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/footer.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/header.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/main.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/pre.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/manual.css">
+
+    <script defer data-domain="omarchy.org" src="https://plausible.io/js/script.js"></script>
+  </head>
+
+  <body>
+    <div class="pre">
+      <a href="/">
+<pre>
+                 ▄▄▄
+ ▄█████▄    ▄███████████▄    ▄███████   ▄███████   ▄███████   ▄█   █▄    ▄█   █▄
+███   ███  ███   ███   ███  ███   ███  ███   ███  ███   ███  ███   ███  ███   ███
+███   ███  ███   ███   ███  ███   ███  ███   ███  ███   █▀   ███   ███  ███   ███
+███   ███  ███   ███   ███ ▄███▄▄▄███ ▄███▄▄▄██▀  ███       ▄███▄▄▄███▄ ███▄▄▄███
+███   ███  ███   ███   ███ ▀███▀▀▀███ ▀███▀▀▀▀    ███      ▀▀███▀▀▀███  ▀▀▀▀▀▀███
+███   ███  ███   ███   ███  ███   ███ ██████████  ███   █▄   ███   ███  ▄██   ███
+███   ███  ███   ███   ███  ███   ███  ███   ███  ███   ███  ███   ███  ███   ███
+ ▀█████▀    ▀█   ███   █▀   ███   █▀   ███   ███  ███████▀   ███   █▀    ▀█████▀
+                                       ███   █▀
+</pre>
+      </a>
+    </div>
+
+    <header class="header">
+      <h1><a href="/manual/">The Omarchy Manual</a></h1>
+    </header>
+
+    <main class="main">
+  <div class="manual manual--chapter">
+    <nav class="manual__toc" aria-label="Chapters">
+      <ol>
+        <li><a href="/manual/welcome-to-omarchy/">Welcome to Omarchy!</a></li>
+        <li><a href="/manual/getting-started/">Getting Started</a></li>
+        <li><a href="/manual/coming-from-mac-or-windows/">Coming From Mac or Windows</a></li>
+        <li><a href="/manual/navigation/">Navigation</a></li>
+        <li><a href="/manual/the-top-bar/">The Top Bar</a></li>
+        <li><a href="/manual/themes/">Themes</a></li>
+        <li><a href="/manual/hotkeys/">Hotkeys</a></li>
+        <li><a href="/manual/unified-clipboard-history/">Unified Clipboard &amp; History</a></li>
+        <li><a href="/manual/reminders/">Reminders</a></li>
+        <li><a href="/manual/notices/">Notices</a></li>
+        <li><a href="/manual/text-extraction-dictation/">Text Extraction &amp; Dictation</a></li>
+        <li><a href="/manual/screenshots-recording/">Screenshots &amp; Recording</a></li>
+        <li><a href="/manual/toggles-idle-screensaver/">Toggles, Idle &amp; the Screensaver</a></li>
+        <li><a href="/manual/omarchy-cli/">Omarchy CLI</a></li>
+        <li><a href="/manual/terminal/">Terminal</a></li>
+        <li><a href="/manual/neovim/">Neovim</a></li>
+        <li><a href="/manual/ai/">AI</a></li>
+        <li><a href="/manual/development-tools/">Development Tools</a></li>
+        <li><a href="/manual/shell-tools/">Shell Tools</a></li>
+        <li><a href="/manual/shell-functions/">Shell Functions</a></li>
+        <li><a href="/manual/tuis/">TUIs</a></li>
+        <li><a href="/manual/guis/">GUIs</a></li>
+        <li><a href="/manual/browsers/">Browsers</a></li>
+        <li><a href="/manual/commercial-apps-services/">Commercial apps/services</a></li>
+        <li><a href="/manual/web-apps/">Web Apps</a></li>
+        <li><a href="/manual/gaming/">Gaming</a></li>
+        <li><a href="/manual/filling-out-pdfs/">Filling out PDFs</a></li>
+        <li><a href="/manual/windows-vm/">Windows VM</a></li>
+        <li><a href="/manual/other-packages/">Other Packages</a></li>
+        <li><a href="/manual/updates/">Updates</a></li>
+        <li><a href="/manual/dotfiles/">Dotfiles</a></li>
+        <li><a href="/manual/shell-plugins/">Shell Plugins</a></li>
+        <li><a href="/manual/monitors/">Monitors</a></li>
+        <li><a href="/manual/keyboard-mouse-trackpad/">Keyboard, Mouse, Trackpad</a></li>
+        <li><a href="/manual/networking/">Networking</a></li>
+        <li><a href="/manual/system-sleep/">System sleep</a></li>
+        <li><a href="/manual/hardware-authentication/">Hardware authentication</a></li>
+        <li><a href="/manual/fonts/">Fonts</a></li>
+        <li><a href="/manual/backgrounds/">Backgrounds</a></li>
+        <li><a href="/manual/prompt/">Prompt</a></li>
+        <li><a href="/manual/branding/">Branding</a></li>
+        <li><a href="/manual/common-tweaks/">Common tweaks</a></li>
+        <li><a href="/manual/extra-themes/">Extra themes</a></li>
+        <li><a href="/manual/making-your-own-theme/">Making your own theme</a></li>
+        <li><a href="/manual/mac-support/">Mac support</a></li>
+        <li><a href="/manual/troubleshooting/">Troubleshooting</a></li>
+        <li><a href="/manual/faq/">FAQ</a></li>
+        <li><a href="/manual/system-snapshots/">System snapshots</a></li>
+        <li><a href="/manual/security/">Security</a></li>
+        <li><a href="/manual/omarchy-on/">Omarchy on...</a></li>
+        <li><a href="/manual/dual-boot-install/">Dual Boot Install</a></li>
+        <li><a href="/manual/unattended-installs/" aria-current="page">Unattended Installs</a></li>
+      </ol>
+    </nav>
+
+    <article class="manual__content">
+      <h1>Unattended Installs</h1>
+<p>The Omarchy ISO can install itself with nobody at the keyboard. If the installer finds a second drive labeled <code>cidata</code> carrying its configuration files, it copies them off, skips the setup wizard entirely, and reboots into the finished system on its own. No special ISO build, no extra boot menu entry — with no such drive attached, nothing changes and you get the normal wizard.</p>
+
+<p>This makes Omarchy great as a base image for disposable dev environments: create a VM in Proxmox or with Packer, boot it, walk away, SSH in. <code>cidata</code> is the cloud-init <code>NoCloud</code> label, so all the common virtualization tooling already knows how to attach such a drive.</p>
+
+<h2 id="the-configuration-files">The configuration files</h2>
+
+<p>The files are exactly what the installer’s own wizard writes, so the easiest way to get a starting set is to run one interactive install (in a VM, say) and copy what it wrote into <code>/root</code>:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>File</th>
+      <th>Required</th>
+      <th>Purpose</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>user_configuration.json</code></td>
+      <td>Yes</td>
+      <td>Disk, hostname, timezone, keyboard</td>
+    </tr>
+    <tr>
+      <td><code>user_credentials.json</code></td>
+      <td>Yes</td>
+      <td>Username and password hash</td>
+    </tr>
+    <tr>
+      <td><code>user_full_name.txt</code></td>
+      <td>No</td>
+      <td>Git full name</td>
+    </tr>
+    <tr>
+      <td><code>user_email_address.txt</code></td>
+      <td>No</td>
+      <td>Git email</td>
+    </tr>
+    <tr>
+      <td><code>user_encrypt_installation.txt</code></td>
+      <td>No</td>
+      <td><code>true</code> when the configuration carries a <code>disk_encryption</code> block</td>
+    </tr>
+    <tr>
+      <td><code>authorized_keys</code></td>
+      <td>No</td>
+      <td>SSH public keys, one per line</td>
+    </tr>
+    <tr>
+      <td><code>tailscale_authkey</code></td>
+      <td>No</td>
+      <td>Tailscale auth key for joining your tailnet on first boot</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Generate the password hash for <code>user_credentials.json</code> with <code>openssl passwd -6 "yourpassword"</code>.</p>
+
+<p>You can also drop in an empty file named <code>defer-provisioning</code> in place of <code>user_credentials.json</code>. That runs the same <a href="../getting-started/">prepare-for-another-owner install</a> you can trigger interactively: the machine installs with no personal details, and whoever boots it first picks their keyboard and creates their user. That’s the mode for imaging rigs, where the drive shouldn’t carry anyone’s credentials at all.</p>
+
+<h2 id="ssh-access">SSH access</h2>
+
+<p>When <code>authorized_keys</code> is present, the install sets the keys up as the user’s <code>~/.ssh/authorized_keys</code>, enables <code>sshd</code>, and opens the firewall for it. (A stock Omarchy install ships openssh with the service disabled and the port closed, so an unattended machine would otherwise be unreachable.) The install only adds your keys — it doesn’t loosen any of the SSH daemon’s other authentication settings.</p>
+
+<p>When <code>tailscale_authkey</code> is present, the machine joins your tailnet on first boot instead: Tailscale is installed from the ISO’s bundled packages, the firewall allows the tailnet interface, and a background job runs the join as soon as the machine actually has network, retrying until it succeeds. Use a reusable, pre-authorized key so one drive image can serve many machines.</p>
+
+<h2 id="building-the-cidata-drive">Building the cidata drive</h2>
+
+<p>Any filesystem with the right label works. A tiny ISO is the easy way:</p>
+
+<pre><code class="language-bash">mkdir cidata
+cp user_configuration.json user_credentials.json authorized_keys cidata/
+genisoimage -output cidata.iso -volid cidata -joliet -rock cidata/
+</code></pre>
+
+<p>Then attach it to the VM alongside the Omarchy ISO. Here’s a full Proxmox example:</p>
+
+<pre><code class="language-bash">qm create 101 --name my-omarchy \
+  --bios ovmf --machine q35 --cpu host --cores 4 --memory 8192 \
+  --ostype l26 --scsihw virtio-scsi-single \
+  --efidisk0 local-lvm:0,efitype=4m,pre-enrolled-keys=0 \
+  --scsi0 local-lvm:40,discard=on,iothread=1 \
+  --net0 virtio,bridge=vmbr0 --vga virtio --serial0 socket \
+  --ide2 local:iso/omarchy.iso,media=cdrom \
+  --ide3 local:iso/cidata.iso,media=cdrom \
+  --boot order='scsi0;ide2'
+
+qm start 101
+</code></pre>
+
+<p>The boot order lists the disk first on purpose: the empty disk falls through to the ISO on the first boot, and the installed system boots from disk ever after.</p>
+
+<h2 id="two-caveats">Two caveats</h2>
+
+<p>Encrypted unattended installs aren’t fully unattended — someone still has to type the LUKS passphrase at the first boot. And the <code>disk_encryption</code> block in <code>user_configuration.json</code> carries that passphrase in plaintext, so treat a cidata drive built from an encrypted install as the secret it is.</p>
+
+      <nav class="manual__pagination">
+        <a class="manual__pagination-previous" href="/manual/dual-boot-install/" rel="prev">← Dual Boot Install</a>
+      </nav>
+    </article>
+  </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer__subhead">
+        <p>Brought to you by <a href="https://37signals.com">37signals</a></p>
+      </div>
+
+      <div class="footer__buttons">
+        <a href="https://basecamp.com"><img src="/assets/images/logo-basecamp.svg" width="145" height="32" alt="Basecamp"></a>
+        <a href="https://hey.com"><img src="/assets/images/logo-hey.svg" width="123" height="57" alt="HEY"></a>
+        <a href="https://fizzy.do"><img src="/assets/images/logo-fizzy.svg" width="56" height="56" alt="Fizzy"></a>
+        <a href="https://once.com"><img src="/assets/images/logo-once.svg" width="72" height="72" alt="ONCE"></a>
+      </div>
+
+      <div class="footer__sponsor">
+        <span>Sponsored hosting by</span>
+        <a href="https://cloudflare.com"><img src="/assets/images/logo-cloudflare.svg" width="213" height="32" alt="Cloudflare"></a>
+      </div>
+    </footer>
+  </body>
+</html>

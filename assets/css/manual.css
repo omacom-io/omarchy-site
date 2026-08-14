@@ -1,0 +1,249 @@
+.manual {
+  display: grid;
+  font-size: clamp(0.8125rem, 1.25vw, 1rem);
+  gap: var(--space-x-large);
+  margin-inline: auto;
+  max-width: 50em;
+  padding-inline: var(--space-large);
+  width: 100%;
+}
+
+
+
+/* Chapter index */
+
+.manual__index ol {
+  counter-reset: chapter;
+  display: grid;
+  gap: 0.6em;
+}
+
+.manual__index li {
+  counter-increment: chapter;
+  display: flex;
+  gap: 1.25ch;
+}
+
+.manual__index li::before {
+  color: var(--color-green);
+  content: counter(chapter, decimal-leading-zero);
+}
+
+
+
+/* Chapter sidebar */
+
+.manual__toc {
+  display: none;
+}
+
+
+
+/* Chapter content */
+
+.manual__content {
+  color: var(--color-terminal-white);
+  min-width: 0;
+}
+
+.manual__content h1 {
+  color: var(--color-white);
+  font-size: 175%;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 1em;
+}
+
+.manual__content h2,
+.manual__content h3,
+.manual__content h4 {
+  color: var(--color-white);
+  font-weight: 700;
+  line-height: 1.3;
+  margin-block: 1.75em 0.75em;
+}
+
+.manual__content h2 {
+  font-size: 130%;
+}
+
+.manual__content h3 {
+  font-size: 110%;
+}
+
+.manual__content p,
+.manual__content ul,
+.manual__content ol,
+.manual__content pre,
+.manual__content table,
+.manual__content blockquote {
+  margin-block: 1em;
+}
+
+.manual__content ul,
+.manual__content ol {
+  padding-left: 1.5em;
+}
+
+.manual__content ul {
+  list-style: disc;
+}
+
+.manual__content ol {
+  list-style: decimal;
+}
+
+.manual__content li {
+  margin-block: 0.375em;
+}
+
+.manual__content li::marker {
+  color: var(--color-green);
+}
+
+.manual__content pre {
+  background: var(--color-background-storm);
+  border-radius: 0.5em;
+  font-size: 92.5%;
+  line-height: 1.5;
+  overflow-x: auto;
+  padding: 1em 1.25em;
+}
+
+.manual__content code {
+  background: rgba(var(--rgb-terminal-black), 0.5);
+  border-radius: 0.3em;
+  color: var(--color-turquoise);
+  font-size: 92.5%;
+  padding: 0.125em 0.4em;
+  white-space: nowrap;
+}
+
+.manual__content pre code {
+  background: none;
+  border-radius: 0;
+  color: var(--color-terminal-white);
+  font-size: 100%;
+  padding: 0;
+  white-space: pre;
+}
+
+.manual__content table {
+  display: block;
+  overflow-x: auto;
+}
+
+.manual__content th,
+.manual__content td {
+  border: 1px solid rgba(var(--rgb-terminal-black), 0.8);
+  padding: 0.5em 0.8em;
+  text-align: left;
+  vertical-align: top;
+}
+
+.manual__content th {
+  color: var(--color-white);
+  font-weight: 700;
+}
+
+.manual__content blockquote {
+  border-left: 0.25em solid var(--color-terminal-black);
+  color: var(--color-terminal-blue);
+  padding-left: 1em;
+}
+
+.manual__content img {
+  border-radius: 0.5em;
+  margin-block: 1.5em;
+}
+
+.manual__content hr {
+  border-top: 1px solid var(--color-terminal-black);
+  margin-block: 2em;
+}
+
+
+
+/* Prev/next pagination */
+
+.manual__pagination {
+  border-top: 1px solid rgba(var(--rgb-terminal-black), 0.8);
+  display: flex;
+  gap: var(--space-large);
+  justify-content: space-between;
+  margin-top: var(--space-x-large);
+  padding-top: var(--space-large);
+}
+
+.manual__pagination-next {
+  margin-left: auto;
+  text-align: right;
+}
+
+
+
+@media(min-width: 64em) {
+
+  .manual--chapter {
+    gap: var(--space-xx-large);
+    grid-template-columns: 17em minmax(0, 44em);
+    justify-content: center;
+    max-width: none;
+  }
+
+  .manual__index ol {
+    column-gap: var(--space-xx-large);
+    grid-auto-flow: column;
+    grid-template-columns: repeat(2, minmax(0, 24em));
+    grid-template-rows: repeat(var(--chapter-rows, 26), auto);
+    justify-content: center;
+  }
+
+  .manual--index {
+    max-width: none;
+  }
+
+  .manual__toc {
+    align-self: start;
+    display: block;
+    font-size: 77.5%;
+    max-height: calc(100dvh - 2 * var(--space-large));
+    overflow-y: auto;
+    position: sticky;
+    scrollbar-width: thin;
+    top: var(--space-large);
+  }
+
+  .manual__toc ol {
+    counter-reset: chapter;
+    display: grid;
+    gap: 0.4em;
+  }
+
+  .manual__toc li {
+    counter-increment: chapter;
+    display: flex;
+    gap: 1ch;
+  }
+
+  .manual__toc li::before {
+    color: var(--color-green);
+    content: counter(chapter, decimal-leading-zero);
+  }
+
+  .manual__toc a {
+    color: var(--color-terminal-blue);
+    font-weight: 300;
+    text-decoration: none;
+  }
+
+  .manual__toc a:hover {
+    color: var(--color-white);
+  }
+
+  .manual__toc a[aria-current="page"] {
+    color: var(--color-white);
+    font-weight: 700;
+  }
+
+}

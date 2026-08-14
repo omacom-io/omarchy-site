@@ -1,0 +1,216 @@
+<!doctype html>
+
+<html lang="en">
+  <head>
+    <title>Web Apps — The Omarchy Manual</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, width=device-width">
+    <meta name="description" content="You can add your own web apps using Install &gt; Web App in the Omarchy menu (Super + Space). It&#39;ll ask you for the app name, app URL, and the icon URL, if it...">
+
+    <meta property="og:site_name" content="Omarchy">
+    <meta property="og:title" content="Web Apps">
+    <meta property="og:description" content="You can add your own web apps using Install &gt; Web App in the Omarchy menu (Super + Space). It&#39;ll ask you for the app name, app URL, and the icon URL, if it...">
+    <meta property="og:image" content="https://omarchy.org/assets/images/opengraph.png">
+    <meta property="og:url" content="https://omarchy.org/manual/web-apps/">
+    <meta property="og:type" content="article">
+
+    <link rel="icon" href="/assets/images/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/assets/css/reset.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/root.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/fonts.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/elements.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/footer.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/header.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/main.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/pre.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/manual.css">
+
+    <script defer data-domain="omarchy.org" src="https://plausible.io/js/script.js"></script>
+  </head>
+
+  <body>
+    <div class="pre">
+      <a href="/">
+<pre>
+                 ▄▄▄
+ ▄█████▄    ▄███████████▄    ▄███████   ▄███████   ▄███████   ▄█   █▄    ▄█   █▄
+███   ███  ███   ███   ███  ███   ███  ███   ███  ███   ███  ███   ███  ███   ███
+███   ███  ███   ███   ███  ███   ███  ███   ███  ███   █▀   ███   ███  ███   ███
+███   ███  ███   ███   ███ ▄███▄▄▄███ ▄███▄▄▄██▀  ███       ▄███▄▄▄███▄ ███▄▄▄███
+███   ███  ███   ███   ███ ▀███▀▀▀███ ▀███▀▀▀▀    ███      ▀▀███▀▀▀███  ▀▀▀▀▀▀███
+███   ███  ███   ███   ███  ███   ███ ██████████  ███   █▄   ███   ███  ▄██   ███
+███   ███  ███   ███   ███  ███   ███  ███   ███  ███   ███  ███   ███  ███   ███
+ ▀█████▀    ▀█   ███   █▀   ███   █▀   ███   ███  ███████▀   ███   █▀    ▀█████▀
+                                       ███   █▀
+</pre>
+      </a>
+    </div>
+
+    <header class="header">
+      <h1><a href="/manual/">The Omarchy Manual</a></h1>
+    </header>
+
+    <main class="main">
+  <div class="manual manual--chapter">
+    <nav class="manual__toc" aria-label="Chapters">
+      <ol>
+        <li><a href="/manual/welcome-to-omarchy/">Welcome to Omarchy!</a></li>
+        <li><a href="/manual/getting-started/">Getting Started</a></li>
+        <li><a href="/manual/coming-from-mac-or-windows/">Coming From Mac or Windows</a></li>
+        <li><a href="/manual/navigation/">Navigation</a></li>
+        <li><a href="/manual/the-top-bar/">The Top Bar</a></li>
+        <li><a href="/manual/themes/">Themes</a></li>
+        <li><a href="/manual/hotkeys/">Hotkeys</a></li>
+        <li><a href="/manual/unified-clipboard-history/">Unified Clipboard &amp; History</a></li>
+        <li><a href="/manual/reminders/">Reminders</a></li>
+        <li><a href="/manual/notices/">Notices</a></li>
+        <li><a href="/manual/text-extraction-dictation/">Text Extraction &amp; Dictation</a></li>
+        <li><a href="/manual/screenshots-recording/">Screenshots &amp; Recording</a></li>
+        <li><a href="/manual/toggles-idle-screensaver/">Toggles, Idle &amp; the Screensaver</a></li>
+        <li><a href="/manual/omarchy-cli/">Omarchy CLI</a></li>
+        <li><a href="/manual/terminal/">Terminal</a></li>
+        <li><a href="/manual/neovim/">Neovim</a></li>
+        <li><a href="/manual/ai/">AI</a></li>
+        <li><a href="/manual/development-tools/">Development Tools</a></li>
+        <li><a href="/manual/shell-tools/">Shell Tools</a></li>
+        <li><a href="/manual/shell-functions/">Shell Functions</a></li>
+        <li><a href="/manual/tuis/">TUIs</a></li>
+        <li><a href="/manual/guis/">GUIs</a></li>
+        <li><a href="/manual/browsers/">Browsers</a></li>
+        <li><a href="/manual/commercial-apps-services/">Commercial apps/services</a></li>
+        <li><a href="/manual/web-apps/" aria-current="page">Web Apps</a></li>
+        <li><a href="/manual/gaming/">Gaming</a></li>
+        <li><a href="/manual/filling-out-pdfs/">Filling out PDFs</a></li>
+        <li><a href="/manual/windows-vm/">Windows VM</a></li>
+        <li><a href="/manual/other-packages/">Other Packages</a></li>
+        <li><a href="/manual/updates/">Updates</a></li>
+        <li><a href="/manual/dotfiles/">Dotfiles</a></li>
+        <li><a href="/manual/shell-plugins/">Shell Plugins</a></li>
+        <li><a href="/manual/monitors/">Monitors</a></li>
+        <li><a href="/manual/keyboard-mouse-trackpad/">Keyboard, Mouse, Trackpad</a></li>
+        <li><a href="/manual/networking/">Networking</a></li>
+        <li><a href="/manual/system-sleep/">System sleep</a></li>
+        <li><a href="/manual/hardware-authentication/">Hardware authentication</a></li>
+        <li><a href="/manual/fonts/">Fonts</a></li>
+        <li><a href="/manual/backgrounds/">Backgrounds</a></li>
+        <li><a href="/manual/prompt/">Prompt</a></li>
+        <li><a href="/manual/branding/">Branding</a></li>
+        <li><a href="/manual/common-tweaks/">Common tweaks</a></li>
+        <li><a href="/manual/extra-themes/">Extra themes</a></li>
+        <li><a href="/manual/making-your-own-theme/">Making your own theme</a></li>
+        <li><a href="/manual/mac-support/">Mac support</a></li>
+        <li><a href="/manual/troubleshooting/">Troubleshooting</a></li>
+        <li><a href="/manual/faq/">FAQ</a></li>
+        <li><a href="/manual/system-snapshots/">System snapshots</a></li>
+        <li><a href="/manual/security/">Security</a></li>
+        <li><a href="/manual/omarchy-on/">Omarchy on...</a></li>
+        <li><a href="/manual/dual-boot-install/">Dual Boot Install</a></li>
+        <li><a href="/manual/unattended-installs/">Unattended Installs</a></li>
+      </ol>
+    </nav>
+
+    <article class="manual__content">
+      <h1>Web Apps</h1>
+<p>You can add your own web apps using <em>Install &gt; Web App</em> in the Omarchy menu (<code>Super + Space</code>). It’ll ask you for the app name, app URL, and the icon URL, if it can’t retrieve it via favicon. You can get great PNG icons for many popular web apps on <a href="https://dashboardicons.com">Dashboard Icons</a>.</p>
+
+<p>They’ll then be accessible through the app launcher (<code>Super + Space</code>), and use the beautiful frameless web-app window.</p>
+
+<p>If you wish to remove a web app, just go to <em>Remove &gt; Web App</em> in the Omarchy menu.</p>
+
+<p>It’s best if you log into all your accounts using a regular browser before using the web app shortcuts. The thin wrapper frame doesn’t work well with 1password, so just easier to be logged in directly first.</p>
+
+<p>All the keyboard hotkeys for these web apps can be changed in <code>~/.config/hypr/bindings.lua</code>.</p>
+
+<p>When you’re in a web app, you can copy the current URL to the clipboard using <code>Shift + Alt + L</code>.</p>
+
+<p>By default, Omarchy already ships with an assortment of default apps:</p>
+
+<h2 id="hey">HEY</h2>
+
+<p><a href="https://www.hey.com/">HEY</a> is an email and calendar service that serves as a great alternative to people tired of Gmail, Outlook, or Apple Mail. It’s made by <a href="https://37signals.com/">37signals</a> where Omarchy originated.</p>
+
+<p>You can start HEY Email using <code>Super + Shift + E</code>, jump straight to composing a new email using <code>Super + Shift + Alt + E</code>, and start HEY Calendar using <code>Super + Shift + C</code>.</p>
+
+<h2 id="basecamp">Basecamp</h2>
+
+<p><a href="https://basecamp.com/">Basecamp</a> is a project management service that helps small teams move faster and make more progress. Instead of patching together a mishmash of Trello, Slack, Asana, Notion, or whatever, you can have it all in one place with Basecamp. It’s made by <a href="https://37signals.com/">37signals</a> where Omarchy originated.</p>
+
+<p>You can start Basecamp using the application launcher (<code>Super + Space</code>)</p>
+
+<h2 id="chatgpt">ChatGPT</h2>
+
+<p><a href="https://chatgpt.com">ChatGPT</a> is the most popular AI chat bot in the world.</p>
+
+<p>You can start ChatGPT using <code>Super + Shift + A</code>.</p>
+
+<h2 id="grok">Grok</h2>
+
+<p><a href="https://grok.com">Grok</a> is xAI’s chat bot.</p>
+
+<p>You can start Grok using <code>Super + Shift + Alt + A</code>.</p>
+
+<h2 id="whatsapp">WhatsApp</h2>
+
+<p><a href="https://www.whatsapp.com/">WhatsApp</a> is one of the most popular messaging services in the world, and the web version is a great option for Linux.</p>
+
+<p>You can start WhatsApp using <code>Super + Shift + Alt + G</code>.</p>
+
+<h2 id="google-apps">Google apps</h2>
+
+<p>Google Messages, Google Photos, Google Maps, and Google Contacts are all included as web apps too.</p>
+
+<p>You can start Google Messages using <code>Super + Shift + Ctrl + G</code>, Google Photos using <code>Super + Shift + P</code>, and Google Maps using <code>Super + Shift + S</code>. Google Contacts is available through the app launcher (<code>Super + Space</code>).</p>
+
+<h2 id="x">X</h2>
+
+<p>X is where news break.</p>
+
+<p>You can start X using <code>Super + Shift + X</code> and go straight to writing a new post with <code>Super + Shift + Alt + X</code>.</p>
+
+<h2 id="youtube">YouTube</h2>
+
+<p><a href="https://youtube.com/">YouTube</a> is the most popular video platform in the world.</p>
+
+<p>You can start YouTube using <code>Super + Shift + Y</code>.</p>
+
+<h2 id="zoom">Zoom</h2>
+
+<p><a href="https://zoom.us/">Zoom</a> is the most popular video chat system used in the US. Great connections across the world. And 40-minute meetings can be held without a paying account. Omarchy wraps Zoom’s web client, and zoom meeting links will open straight into it.</p>
+
+<p>You start Zoom using the application launcher (<code>Super + Space</code>).</p>
+
+<h2 id="discord">Discord</h2>
+
+<p><a href="https://discord.com/">Discord</a> is where most gaming and open source communities hang out, including <a href="https://discord.gg/tXFUdasqhY">Omarchy’s own</a>.</p>
+
+<p>You start Discord using the application launcher (<code>Super + Space</code>).</p>
+
+      <nav class="manual__pagination">
+        <a class="manual__pagination-previous" href="/manual/commercial-apps-services/" rel="prev">← Commercial apps/services</a>
+        <a class="manual__pagination-next" href="/manual/gaming/" rel="next">Gaming →</a>
+      </nav>
+    </article>
+  </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer__subhead">
+        <p>Brought to you by <a href="https://37signals.com">37signals</a></p>
+      </div>
+
+      <div class="footer__buttons">
+        <a href="https://basecamp.com"><img src="/assets/images/logo-basecamp.svg" width="145" height="32" alt="Basecamp"></a>
+        <a href="https://hey.com"><img src="/assets/images/logo-hey.svg" width="123" height="57" alt="HEY"></a>
+        <a href="https://fizzy.do"><img src="/assets/images/logo-fizzy.svg" width="56" height="56" alt="Fizzy"></a>
+        <a href="https://once.com"><img src="/assets/images/logo-once.svg" width="72" height="72" alt="ONCE"></a>
+      </div>
+
+      <div class="footer__sponsor">
+        <span>Sponsored hosting by</span>
+        <a href="https://cloudflare.com"><img src="/assets/images/logo-cloudflare.svg" width="213" height="32" alt="Cloudflare"></a>
+      </div>
+    </footer>
+  </body>
+</html>

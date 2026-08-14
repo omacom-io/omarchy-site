@@ -1,0 +1,172 @@
+<!doctype html>
+
+<html lang="en">
+  <head>
+    <title>Making your own theme — The Omarchy Manual</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, width=device-width">
+    <meta name="description" content="You can add your own themes to ~/.config/omarchy/themes. Just copy one of the existing ones as a base (look in /usr/share/omarchy/themes), then tweak to...">
+
+    <meta property="og:site_name" content="Omarchy">
+    <meta property="og:title" content="Making your own theme">
+    <meta property="og:description" content="You can add your own themes to ~/.config/omarchy/themes. Just copy one of the existing ones as a base (look in /usr/share/omarchy/themes), then tweak to...">
+    <meta property="og:image" content="https://omarchy.org/assets/images/opengraph.png">
+    <meta property="og:url" content="https://omarchy.org/manual/making-your-own-theme/">
+    <meta property="og:type" content="article">
+
+    <link rel="icon" href="/assets/images/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/assets/css/reset.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/root.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/fonts.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/elements.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/footer.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/header.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/main.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/pre.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/manual.css">
+
+    <script defer data-domain="omarchy.org" src="https://plausible.io/js/script.js"></script>
+  </head>
+
+  <body>
+    <div class="pre">
+      <a href="/">
+<pre>
+                 ▄▄▄
+ ▄█████▄    ▄███████████▄    ▄███████   ▄███████   ▄███████   ▄█   █▄    ▄█   █▄
+███   ███  ███   ███   ███  ███   ███  ███   ███  ███   ███  ███   ███  ███   ███
+███   ███  ███   ███   ███  ███   ███  ███   ███  ███   █▀   ███   ███  ███   ███
+███   ███  ███   ███   ███ ▄███▄▄▄███ ▄███▄▄▄██▀  ███       ▄███▄▄▄███▄ ███▄▄▄███
+███   ███  ███   ███   ███ ▀███▀▀▀███ ▀███▀▀▀▀    ███      ▀▀███▀▀▀███  ▀▀▀▀▀▀███
+███   ███  ███   ███   ███  ███   ███ ██████████  ███   █▄   ███   ███  ▄██   ███
+███   ███  ███   ███   ███  ███   ███  ███   ███  ███   ███  ███   ███  ███   ███
+ ▀█████▀    ▀█   ███   █▀   ███   █▀   ███   ███  ███████▀   ███   █▀    ▀█████▀
+                                       ███   █▀
+</pre>
+      </a>
+    </div>
+
+    <header class="header">
+      <h1><a href="/manual/">The Omarchy Manual</a></h1>
+    </header>
+
+    <main class="main">
+  <div class="manual manual--chapter">
+    <nav class="manual__toc" aria-label="Chapters">
+      <ol>
+        <li><a href="/manual/welcome-to-omarchy/">Welcome to Omarchy!</a></li>
+        <li><a href="/manual/getting-started/">Getting Started</a></li>
+        <li><a href="/manual/coming-from-mac-or-windows/">Coming From Mac or Windows</a></li>
+        <li><a href="/manual/navigation/">Navigation</a></li>
+        <li><a href="/manual/the-top-bar/">The Top Bar</a></li>
+        <li><a href="/manual/themes/">Themes</a></li>
+        <li><a href="/manual/hotkeys/">Hotkeys</a></li>
+        <li><a href="/manual/unified-clipboard-history/">Unified Clipboard &amp; History</a></li>
+        <li><a href="/manual/reminders/">Reminders</a></li>
+        <li><a href="/manual/notices/">Notices</a></li>
+        <li><a href="/manual/text-extraction-dictation/">Text Extraction &amp; Dictation</a></li>
+        <li><a href="/manual/screenshots-recording/">Screenshots &amp; Recording</a></li>
+        <li><a href="/manual/toggles-idle-screensaver/">Toggles, Idle &amp; the Screensaver</a></li>
+        <li><a href="/manual/omarchy-cli/">Omarchy CLI</a></li>
+        <li><a href="/manual/terminal/">Terminal</a></li>
+        <li><a href="/manual/neovim/">Neovim</a></li>
+        <li><a href="/manual/ai/">AI</a></li>
+        <li><a href="/manual/development-tools/">Development Tools</a></li>
+        <li><a href="/manual/shell-tools/">Shell Tools</a></li>
+        <li><a href="/manual/shell-functions/">Shell Functions</a></li>
+        <li><a href="/manual/tuis/">TUIs</a></li>
+        <li><a href="/manual/guis/">GUIs</a></li>
+        <li><a href="/manual/browsers/">Browsers</a></li>
+        <li><a href="/manual/commercial-apps-services/">Commercial apps/services</a></li>
+        <li><a href="/manual/web-apps/">Web Apps</a></li>
+        <li><a href="/manual/gaming/">Gaming</a></li>
+        <li><a href="/manual/filling-out-pdfs/">Filling out PDFs</a></li>
+        <li><a href="/manual/windows-vm/">Windows VM</a></li>
+        <li><a href="/manual/other-packages/">Other Packages</a></li>
+        <li><a href="/manual/updates/">Updates</a></li>
+        <li><a href="/manual/dotfiles/">Dotfiles</a></li>
+        <li><a href="/manual/shell-plugins/">Shell Plugins</a></li>
+        <li><a href="/manual/monitors/">Monitors</a></li>
+        <li><a href="/manual/keyboard-mouse-trackpad/">Keyboard, Mouse, Trackpad</a></li>
+        <li><a href="/manual/networking/">Networking</a></li>
+        <li><a href="/manual/system-sleep/">System sleep</a></li>
+        <li><a href="/manual/hardware-authentication/">Hardware authentication</a></li>
+        <li><a href="/manual/fonts/">Fonts</a></li>
+        <li><a href="/manual/backgrounds/">Backgrounds</a></li>
+        <li><a href="/manual/prompt/">Prompt</a></li>
+        <li><a href="/manual/branding/">Branding</a></li>
+        <li><a href="/manual/common-tweaks/">Common tweaks</a></li>
+        <li><a href="/manual/extra-themes/">Extra themes</a></li>
+        <li><a href="/manual/making-your-own-theme/" aria-current="page">Making your own theme</a></li>
+        <li><a href="/manual/mac-support/">Mac support</a></li>
+        <li><a href="/manual/troubleshooting/">Troubleshooting</a></li>
+        <li><a href="/manual/faq/">FAQ</a></li>
+        <li><a href="/manual/system-snapshots/">System snapshots</a></li>
+        <li><a href="/manual/security/">Security</a></li>
+        <li><a href="/manual/omarchy-on/">Omarchy on...</a></li>
+        <li><a href="/manual/dual-boot-install/">Dual Boot Install</a></li>
+        <li><a href="/manual/unattended-installs/">Unattended Installs</a></li>
+      </ol>
+    </nav>
+
+    <article class="manual__content">
+      <h1>Making your own theme</h1>
+<p>You can add your own themes to <code>~/.config/omarchy/themes</code>. Just copy one of the existing ones as a base (look in <code>/usr/share/omarchy/themes</code>), then tweak to your delight. As long as your theme is inside that folder, it’ll be included in the theme selection menu.</p>
+
+<p>The main file you have to tweak is <code>colors.toml</code>. That defines the color set that’s then used to generate configurations for the terminal (Foot/Alacritty/Ghostty/Kitty), btop, Chromium, Hyprland, Neovim, Helix, VSCode, Obsidian, and the entire Omarchy shell (top bar, menu, notifications, OSD, and lock screen).</p>
+
+<p>You can also use the included Aether application to create a new theme using a lovely GUI interface to play with colors and search for backgrounds. Just start it via the apps menu on <code>Super + Alt + Space</code>.</p>
+
+<h3 id="light-mode">Light mode</h3>
+
+<p>If you’re making a light mode theme, set <code>mode = "light"</code> at the top of your <code>colors.toml</code>. Then it’ll automatically be paired with light mode for all the apps. (The old way of dropping an empty file called <code>light.mode</code> in the root of your theme still works too.)</p>
+
+<h3 id="icon-colors">Icon colors</h3>
+
+<p>If you’d like to color-match the file manager icons to your theme, add a file called <code>icons.theme</code> with the name of the icon set you want to use. By default, the options are: <code>Yaru Yaru-blue Yaru-dark Yaru-magenta Yaru-olive Yaru-prussiangreen Yaru-purple Yaru-red Yaru-sage Yaru-wartybrown Yaru-yellow</code>.</p>
+
+<h3 id="unlock-image">Unlock image</h3>
+
+<p>Themes supplied with <code>unlock.png</code> and <code>preview-unlock.png</code> images will be listed under <em>Style &gt; Unlock</em>. Your <code>unlock.png</code> should preferably be a transparent png. And you can create the preview image using <code>omarchy plymouth preview</code>.</p>
+
+<h3 id="theming-apps-omarchy-doesnt-cover">Theming apps Omarchy doesn’t cover</h3>
+
+<p>If you use an app that isn’t in that list, you can teach Omarchy to theme it yourself with a template. Drop a file in <code>~/.config/omarchy/themed/</code> named after the config it generates plus a <code>.tpl</code> extension, and write the config with <code>{{ background }}</code>, <code>{{ foreground }}</code>, <code>{{ accent }}</code>, <code>{{ red }}</code>, <code>{{ color0 }}</code> through <code>{{ color15 }}</code>, and the rest of the palette as placeholders. Every time you switch themes, the file is regenerated with that theme’s colors.</p>
+
+<p>There’s a fully commented <code>alacritty.toml.tpl.sample</code> in that folder to copy from — it lists every variable you can use, plus the <code>_strip</code> and <code>_rgb</code> modifiers for apps that want their colors without the <code>#</code> or as decimal RGB. Your templates take priority over Omarchy’s own, so you can also use this to override how a built-in app gets themed.</p>
+
+<h3 id="distributing-your-theme">Distributing your theme</h3>
+
+<p>If you want to distribute your theme so others can use it, you need to put it on a public git server, like GitHub. Then people can install it using <em>Install &gt; Style &gt; Theme</em> in the Omarchy menu using that URL. It’s recommended that you follow the naming convention of <code>omarchy-[themename]-theme</code>, as the theme will show correctly as just <code>[themename]</code> in the theme selection menu after installation.</p>
+
+<p>You can have your theme added to <a href="../extra-themes/">the extra themes page</a> by pinging @tahayvr on <a href="https://discord.gg/tXFUdasqhY">the #omarchy Discord</a>.</p>
+
+      <nav class="manual__pagination">
+        <a class="manual__pagination-previous" href="/manual/extra-themes/" rel="prev">← Extra themes</a>
+        <a class="manual__pagination-next" href="/manual/mac-support/" rel="next">Mac support →</a>
+      </nav>
+    </article>
+  </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer__subhead">
+        <p>Brought to you by <a href="https://37signals.com">37signals</a></p>
+      </div>
+
+      <div class="footer__buttons">
+        <a href="https://basecamp.com"><img src="/assets/images/logo-basecamp.svg" width="145" height="32" alt="Basecamp"></a>
+        <a href="https://hey.com"><img src="/assets/images/logo-hey.svg" width="123" height="57" alt="HEY"></a>
+        <a href="https://fizzy.do"><img src="/assets/images/logo-fizzy.svg" width="56" height="56" alt="Fizzy"></a>
+        <a href="https://once.com"><img src="/assets/images/logo-once.svg" width="72" height="72" alt="ONCE"></a>
+      </div>
+
+      <div class="footer__sponsor">
+        <span>Sponsored hosting by</span>
+        <a href="https://cloudflare.com"><img src="/assets/images/logo-cloudflare.svg" width="213" height="32" alt="Cloudflare"></a>
+      </div>
+    </footer>
+  </body>
+</html>
