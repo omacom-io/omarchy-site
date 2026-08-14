@@ -1,0 +1,262 @@
+<!doctype html>
+
+<html lang="en">
+  <head>
+    <title>Shell Plugins — The Omarchy Manual</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, width=device-width">
+    <meta name="description" content="The Omarchy desktop runs as a single long-lived Quickshell process called omarchy-shell, and almost everything you see on screen is a plugin inside it. The...">
+
+    <meta property="og:site_name" content="Omarchy">
+    <meta property="og:title" content="Shell Plugins">
+    <meta property="og:description" content="The Omarchy desktop runs as a single long-lived Quickshell process called omarchy-shell, and almost everything you see on screen is a plugin inside it. The...">
+    <meta property="og:image" content="https://omarchy.org/assets/images/opengraph.png">
+    <meta property="og:url" content="https://omarchy.org/manual/shell-plugins/">
+    <meta property="og:type" content="article">
+
+    <link rel="icon" href="/assets/images/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/assets/css/reset.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/root.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/fonts.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/elements.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/footer.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/header.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/main.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/pre.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/manual.css">
+
+    <script defer data-domain="omarchy.org" src="https://plausible.io/js/script.js"></script>
+  </head>
+
+  <body>
+    <div class="pre">
+      <a href="/">
+<pre>
+                 ▄▄▄
+ ▄█████▄    ▄███████████▄    ▄███████   ▄███████   ▄███████   ▄█   █▄    ▄█   █▄
+███   ███  ███   ███   ███  ███   ███  ███   ███  ███   ███  ███   ███  ███   ███
+███   ███  ███   ███   ███  ███   ███  ███   ███  ███   █▀   ███   ███  ███   ███
+███   ███  ███   ███   ███ ▄███▄▄▄███ ▄███▄▄▄██▀  ███       ▄███▄▄▄███▄ ███▄▄▄███
+███   ███  ███   ███   ███ ▀███▀▀▀███ ▀███▀▀▀▀    ███      ▀▀███▀▀▀███  ▀▀▀▀▀▀███
+███   ███  ███   ███   ███  ███   ███ ██████████  ███   █▄   ███   ███  ▄██   ███
+███   ███  ███   ███   ███  ███   ███  ███   ███  ███   ███  ███   ███  ███   ███
+ ▀█████▀    ▀█   ███   █▀   ███   █▀   ███   ███  ███████▀   ███   █▀    ▀█████▀
+                                       ███   █▀
+</pre>
+      </a>
+    </div>
+
+    <header class="header">
+      <h1><a href="/manual/">The Omarchy Manual</a></h1>
+    </header>
+
+    <main class="main">
+  <div class="manual manual--chapter">
+    <nav class="manual__toc" aria-label="Chapters">
+      <ol>
+        <li><a href="/manual/welcome-to-omarchy/">Welcome to Omarchy!</a></li>
+        <li><a href="/manual/getting-started/">Getting Started</a></li>
+        <li><a href="/manual/coming-from-mac-or-windows/">Coming From Mac or Windows</a></li>
+        <li><a href="/manual/navigation/">Navigation</a></li>
+        <li><a href="/manual/the-top-bar/">The Top Bar</a></li>
+        <li><a href="/manual/themes/">Themes</a></li>
+        <li><a href="/manual/hotkeys/">Hotkeys</a></li>
+        <li><a href="/manual/unified-clipboard-history/">Unified Clipboard &amp; History</a></li>
+        <li><a href="/manual/reminders/">Reminders</a></li>
+        <li><a href="/manual/notices/">Notices</a></li>
+        <li><a href="/manual/text-extraction-dictation/">Text Extraction &amp; Dictation</a></li>
+        <li><a href="/manual/screenshots-recording/">Screenshots &amp; Recording</a></li>
+        <li><a href="/manual/toggles-idle-screensaver/">Toggles, Idle &amp; the Screensaver</a></li>
+        <li><a href="/manual/omarchy-cli/">Omarchy CLI</a></li>
+        <li><a href="/manual/terminal/">Terminal</a></li>
+        <li><a href="/manual/neovim/">Neovim</a></li>
+        <li><a href="/manual/ai/">AI</a></li>
+        <li><a href="/manual/development-tools/">Development Tools</a></li>
+        <li><a href="/manual/shell-tools/">Shell Tools</a></li>
+        <li><a href="/manual/shell-functions/">Shell Functions</a></li>
+        <li><a href="/manual/tuis/">TUIs</a></li>
+        <li><a href="/manual/guis/">GUIs</a></li>
+        <li><a href="/manual/browsers/">Browsers</a></li>
+        <li><a href="/manual/commercial-apps-services/">Commercial apps/services</a></li>
+        <li><a href="/manual/web-apps/">Web Apps</a></li>
+        <li><a href="/manual/gaming/">Gaming</a></li>
+        <li><a href="/manual/filling-out-pdfs/">Filling out PDFs</a></li>
+        <li><a href="/manual/windows-vm/">Windows VM</a></li>
+        <li><a href="/manual/other-packages/">Other Packages</a></li>
+        <li><a href="/manual/updates/">Updates</a></li>
+        <li><a href="/manual/dotfiles/">Dotfiles</a></li>
+        <li><a href="/manual/shell-plugins/" aria-current="page">Shell Plugins</a></li>
+        <li><a href="/manual/monitors/">Monitors</a></li>
+        <li><a href="/manual/keyboard-mouse-trackpad/">Keyboard, Mouse, Trackpad</a></li>
+        <li><a href="/manual/networking/">Networking</a></li>
+        <li><a href="/manual/system-sleep/">System sleep</a></li>
+        <li><a href="/manual/hardware-authentication/">Hardware authentication</a></li>
+        <li><a href="/manual/fonts/">Fonts</a></li>
+        <li><a href="/manual/backgrounds/">Backgrounds</a></li>
+        <li><a href="/manual/prompt/">Prompt</a></li>
+        <li><a href="/manual/branding/">Branding</a></li>
+        <li><a href="/manual/common-tweaks/">Common tweaks</a></li>
+        <li><a href="/manual/extra-themes/">Extra themes</a></li>
+        <li><a href="/manual/making-your-own-theme/">Making your own theme</a></li>
+        <li><a href="/manual/mac-support/">Mac support</a></li>
+        <li><a href="/manual/troubleshooting/">Troubleshooting</a></li>
+        <li><a href="/manual/faq/">FAQ</a></li>
+        <li><a href="/manual/system-snapshots/">System snapshots</a></li>
+        <li><a href="/manual/security/">Security</a></li>
+        <li><a href="/manual/omarchy-on/">Omarchy on...</a></li>
+        <li><a href="/manual/dual-boot-install/">Dual Boot Install</a></li>
+        <li><a href="/manual/unattended-installs/">Unattended Installs</a></li>
+      </ol>
+    </nav>
+
+    <article class="manual__content">
+      <h1>Shell Plugins</h1>
+<p>The Omarchy desktop runs as a single long-lived Quickshell process called <code>omarchy-shell</code>, and almost everything you see on screen is a plugin inside it. The bar is a plugin. So are the panels that drop down from it, the fullscreen overlays like the emoji picker and the clipboard manager, the Omarchy menu itself, the lock screen, the polkit dialog, and the headless services that watch your battery and warm your screen up at night.</p>
+
+<p>That’s not just an implementation detail. It means you can turn pieces of the desktop off, swap them out, or write your own without touching a line of Omarchy’s source.</p>
+
+<p>The first-party plugins ship with Omarchy and live in <code>$OMARCHY_PATH/shell/plugins/</code>. Anything you add yourself — your own experiments, or something you found on GitHub — lives in <code>~/.config/omarchy/plugins/</code>. Both are discovered the same way at startup; the only difference is where they sit on disk.</p>
+
+<h2 id="seeing-what-you-have">Seeing what you have</h2>
+
+<pre><code>omarchy plugin list
+</code></pre>
+
+<p>That prints every discovered plugin with its id, whether it’s enabled, whether it’s first-party or third-party, its kinds, and its display name. Add <code>--json</code> if you’re feeding it to something else.</p>
+
+<p>Plugin ids are namespaced. The built-ins all start with <code>omarchy.</code> — <code>omarchy.clock</code>, <code>omarchy.network</code>, <code>omarchy.notifications</code> — and that namespace is reserved, so a third-party plugin can never claim it.</p>
+
+<h2 id="turning-them-on-and-off">Turning them on and off</h2>
+
+<pre><code>omarchy plugin enable omarchy.tailscale
+omarchy plugin disable omarchy.weather
+</code></pre>
+
+<p>Or use the menu: <em>Setup &gt; Plugins</em> has Enable, Disable, Add, Clone, and Remove, each with a picker that only offers the plugins that make sense for that action.</p>
+
+<p>Enabled state is stored in <code>~/.config/omarchy/shell.json</code>, and the rule differs slightly for the two kinds of plugin. A third-party plugin is enabled exactly when its id appears somewhere in that file — as a bar layout entry, as an entry in <code>plugins[]</code>, or as <code>bar.id</code>. First-party plugins that aren’t bar widgets are the other way around: they’re on by default and only turn off by being listed in <code>disabledPlugins[]</code>.</p>
+
+<p>A full bar plugin has no off state at all. There’s always exactly one bar, so you replace it by enabling another one. Bar widget placement is covered in <a href="../the-top-bar/">the top bar</a>.</p>
+
+<h2 id="adding-a-plugin-from-git">Adding a plugin from git</h2>
+
+<p>A third-party plugin is just a git repo with a <code>manifest.json</code> at its root.</p>
+
+<pre><code>omarchy plugin add https://github.com/acme/omarchy-weather.git --enable
+</code></pre>
+
+<p>Before it does anything, it tells you plainly that plugins run as arbitrary, unsandboxed code inside your long-lived shell process, shows you the URL, and asks you to confirm. Take that seriously. A plugin isn’t a config file — it’s code that runs for as long as your session does, with everything your user account can reach. Only add repos you’re willing to run, and read them before you enable them.</p>
+
+<p>Then it clones the repo into a staging directory, validates the manifest, refuses the install if another plugin already claims that id, and moves it into <code>~/.config/omarchy/plugins/&lt;id&gt;/</code>. Without <code>--enable</code> it asks whether you want it on now, and you can say no and go read the code first. It never runs anything from the plugin, never executes an install hook, and never asks for sudo — it clones files, checks the manifest, and flips a bit over IPC.</p>
+
+<p>Updating is a fast-forward pull of that same checkout:</p>
+
+<pre><code>omarchy plugin update acme.weather
+omarchy plugin update
+</code></pre>
+
+<p>With no id it updates every git-managed plugin you have. It shows you the diff before applying it, refuses to update if you’ve got local changes it can’t fast-forward past, and rolls back if the new revision fails validation.</p>
+
+<pre><code>omarchy plugin remove acme.weather
+</code></pre>
+
+<p>Removal disables the plugin first, then deletes it if it’s a git checkout (the repo is still upstream) or unlinks it if it’s a symlink. A hand-made plugin folder with no git repo gets moved to a timestamped backup inside the plugins directory instead of being deleted outright.</p>
+
+<h2 id="cloning-a-built-in-to-modify-it">Cloning a built-in to modify it</h2>
+
+<p>This is my favorite part. If you want to change how a built-in widget behaves, don’t edit the files under <code>$OMARCHY_PATH</code> — those belong to the package and the next update will overwrite them. Clone it instead:</p>
+
+<pre><code>omarchy plugin clone omarchy.clock
+</code></pre>
+
+<p>That copies the whole plugin into <code>~/.config/omarchy/plugins/dhh.clock</code> (your username, not mine), renames it to “My Clock”, enables it, and switches the shell over from the built-in to your copy — keeping an existing bar widget’s position and settings. Add <code>--edit</code> to open the new directory in your <code>$EDITOR</code> right away, which is what the menu’s <em>Setup &gt; Plugins &gt; Clone Plugin</em> does for you.</p>
+
+<p>The username prefix keeps your clone’s id yours, so sharing it doesn’t collide with anyone else’s. Calls made to the original built-in id get routed to your clone, so nothing that referred to <code>omarchy.clock</code> needs updating. And if you make a mess of it, <code>omarchy plugin remove dhh.clock</code> puts the built-in back.</p>
+
+<p>Saving a file anywhere under <code>~/.config/omarchy/plugins/</code> reloads the plugin code automatically, so you can leave the editor open and watch your changes land.</p>
+
+<h2 id="writing-your-own">Writing your own</h2>
+
+<p>A plugin is a directory with a <code>manifest.json</code> and some QML. The manifest declares <code>schemaVersion: 1</code>, an <code>id</code>, <code>name</code>, <code>version</code>, one or more <code>kinds</code>, and an <code>entryPoints</code> object pointing at the QML file for each kind:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Kind</th>
+      <th>What it is</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>bar-widget</code></td>
+      <td>A component the active bar can drop into a section</td>
+    </tr>
+    <tr>
+      <td><code>panel</code></td>
+      <td>A persistent or summoned floating window</td>
+    </tr>
+    <tr>
+      <td><code>overlay</code></td>
+      <td>A fullscreen overlay</td>
+    </tr>
+    <tr>
+      <td><code>menu</code></td>
+      <td>A summoned menu surface</td>
+    </tr>
+    <tr>
+      <td><code>service</code></td>
+      <td>A headless singleton with no UI</td>
+    </tr>
+    <tr>
+      <td><code>bar</code></td>
+      <td>A full bar that replaces the built-in one</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>A plugin can declare several kinds at once — the media plugin is both a <code>service</code> and a <code>bar-widget</code>. Bar widgets get an extra <code>barWidget</code> block with a display name, a category, an optional <code>defaultSection</code>, and <code>allowMultiple</code>, which says whether it makes sense to have more than one on the bar. Most widgets set it to <code>false</code>; spacers and indicators set it to <code>true</code>.</p>
+
+<p>Before you publish anything, check it:</p>
+
+<pre><code>omarchy plugin validate ./my-plugin
+</code></pre>
+
+<p>That runs the same checks the shell does at load time: the schema version, the required fields, an id that isn’t reserved, entry points that are safe relative paths and actually exist, an entry point for every kind you claimed, and no symlinks anywhere inside the folder.</p>
+
+<p>For the full picture, the source is the documentation: <code>shell/README.md</code> in the Omarchy repo covers the manifest schema, the shell’s IPC contract, and the exact shape of <code>shell.json</code>, and <code>shell/plugins/README.md</code> lists every first-party plugin with its id, kinds, and entry points.</p>
+
+<h2 id="sharing-yours-with-the-world">Sharing yours with the world</h2>
+
+<p>Once you’ve made something you like, put it in a public git repo. That’s the whole distribution mechanism — anyone can then run <code>omarchy plugin add</code> against your URL and have it running in seconds.</p>
+
+<p>To help people actually find it, list it at <a href="https://omarchyplugins.com">omarchyplugins.com</a>. That’s the community directory of Omarchy shell plugins, and it’s the first place to look when you’re wondering whether someone has already built the widget you’re about to write. Browse it before you start!</p>
+
+      <nav class="manual__pagination">
+        <a class="manual__pagination-previous" href="/manual/dotfiles/" rel="prev">← Dotfiles</a>
+        <a class="manual__pagination-next" href="/manual/monitors/" rel="next">Monitors →</a>
+      </nav>
+    </article>
+  </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer__subhead">
+        <p>Brought to you by <a href="https://37signals.com">37signals</a></p>
+      </div>
+
+      <div class="footer__buttons">
+        <a href="https://basecamp.com"><img src="/assets/images/logo-basecamp.svg" width="145" height="32" alt="Basecamp"></a>
+        <a href="https://hey.com"><img src="/assets/images/logo-hey.svg" width="123" height="57" alt="HEY"></a>
+        <a href="https://fizzy.do"><img src="/assets/images/logo-fizzy.svg" width="56" height="56" alt="Fizzy"></a>
+        <a href="https://once.com"><img src="/assets/images/logo-once.svg" width="72" height="72" alt="ONCE"></a>
+      </div>
+
+      <div class="footer__sponsor">
+        <span>Sponsored hosting by</span>
+        <a href="https://cloudflare.com"><img src="/assets/images/logo-cloudflare.svg" width="213" height="32" alt="Cloudflare"></a>
+      </div>
+    </footer>
+  </body>
+</html>

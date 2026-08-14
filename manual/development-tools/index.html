@@ -1,0 +1,174 @@
+<!doctype html>
+
+<html lang="en">
+  <head>
+    <title>Development Tools — The Omarchy Manual</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, width=device-width">
+    <meta name="description" content="Omarchy ships with Neovim by default, but if you&#39;d like something a bit more mainstream and familiar, you can run the Omarchy Menu (Super + Space) and see...">
+
+    <meta property="og:site_name" content="Omarchy">
+    <meta property="og:title" content="Development Tools">
+    <meta property="og:description" content="Omarchy ships with Neovim by default, but if you&#39;d like something a bit more mainstream and familiar, you can run the Omarchy Menu (Super + Space) and see...">
+    <meta property="og:image" content="https://omarchy.org/assets/images/opengraph.png">
+    <meta property="og:url" content="https://omarchy.org/manual/development-tools/">
+    <meta property="og:type" content="article">
+
+    <link rel="icon" href="/assets/images/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/assets/css/reset.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/root.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/fonts.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/elements.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/footer.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/header.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/main.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/pre.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/manual.css">
+
+    <script defer data-domain="omarchy.org" src="https://plausible.io/js/script.js"></script>
+  </head>
+
+  <body>
+    <div class="pre">
+      <a href="/">
+<pre>
+                 ▄▄▄
+ ▄█████▄    ▄███████████▄    ▄███████   ▄███████   ▄███████   ▄█   █▄    ▄█   █▄
+███   ███  ███   ███   ███  ███   ███  ███   ███  ███   ███  ███   ███  ███   ███
+███   ███  ███   ███   ███  ███   ███  ███   ███  ███   █▀   ███   ███  ███   ███
+███   ███  ███   ███   ███ ▄███▄▄▄███ ▄███▄▄▄██▀  ███       ▄███▄▄▄███▄ ███▄▄▄███
+███   ███  ███   ███   ███ ▀███▀▀▀███ ▀███▀▀▀▀    ███      ▀▀███▀▀▀███  ▀▀▀▀▀▀███
+███   ███  ███   ███   ███  ███   ███ ██████████  ███   █▄   ███   ███  ▄██   ███
+███   ███  ███   ███   ███  ███   ███  ███   ███  ███   ███  ███   ███  ███   ███
+ ▀█████▀    ▀█   ███   █▀   ███   █▀   ███   ███  ███████▀   ███   █▀    ▀█████▀
+                                       ███   █▀
+</pre>
+      </a>
+    </div>
+
+    <header class="header">
+      <h1><a href="/manual/">The Omarchy Manual</a></h1>
+    </header>
+
+    <main class="main">
+  <div class="manual manual--chapter">
+    <nav class="manual__toc" aria-label="Chapters">
+      <ol>
+        <li><a href="/manual/welcome-to-omarchy/">Welcome to Omarchy!</a></li>
+        <li><a href="/manual/getting-started/">Getting Started</a></li>
+        <li><a href="/manual/coming-from-mac-or-windows/">Coming From Mac or Windows</a></li>
+        <li><a href="/manual/navigation/">Navigation</a></li>
+        <li><a href="/manual/the-top-bar/">The Top Bar</a></li>
+        <li><a href="/manual/themes/">Themes</a></li>
+        <li><a href="/manual/hotkeys/">Hotkeys</a></li>
+        <li><a href="/manual/unified-clipboard-history/">Unified Clipboard &amp; History</a></li>
+        <li><a href="/manual/reminders/">Reminders</a></li>
+        <li><a href="/manual/notices/">Notices</a></li>
+        <li><a href="/manual/text-extraction-dictation/">Text Extraction &amp; Dictation</a></li>
+        <li><a href="/manual/screenshots-recording/">Screenshots &amp; Recording</a></li>
+        <li><a href="/manual/toggles-idle-screensaver/">Toggles, Idle &amp; the Screensaver</a></li>
+        <li><a href="/manual/omarchy-cli/">Omarchy CLI</a></li>
+        <li><a href="/manual/terminal/">Terminal</a></li>
+        <li><a href="/manual/neovim/">Neovim</a></li>
+        <li><a href="/manual/ai/">AI</a></li>
+        <li><a href="/manual/development-tools/" aria-current="page">Development Tools</a></li>
+        <li><a href="/manual/shell-tools/">Shell Tools</a></li>
+        <li><a href="/manual/shell-functions/">Shell Functions</a></li>
+        <li><a href="/manual/tuis/">TUIs</a></li>
+        <li><a href="/manual/guis/">GUIs</a></li>
+        <li><a href="/manual/browsers/">Browsers</a></li>
+        <li><a href="/manual/commercial-apps-services/">Commercial apps/services</a></li>
+        <li><a href="/manual/web-apps/">Web Apps</a></li>
+        <li><a href="/manual/gaming/">Gaming</a></li>
+        <li><a href="/manual/filling-out-pdfs/">Filling out PDFs</a></li>
+        <li><a href="/manual/windows-vm/">Windows VM</a></li>
+        <li><a href="/manual/other-packages/">Other Packages</a></li>
+        <li><a href="/manual/updates/">Updates</a></li>
+        <li><a href="/manual/dotfiles/">Dotfiles</a></li>
+        <li><a href="/manual/shell-plugins/">Shell Plugins</a></li>
+        <li><a href="/manual/monitors/">Monitors</a></li>
+        <li><a href="/manual/keyboard-mouse-trackpad/">Keyboard, Mouse, Trackpad</a></li>
+        <li><a href="/manual/networking/">Networking</a></li>
+        <li><a href="/manual/system-sleep/">System sleep</a></li>
+        <li><a href="/manual/hardware-authentication/">Hardware authentication</a></li>
+        <li><a href="/manual/fonts/">Fonts</a></li>
+        <li><a href="/manual/backgrounds/">Backgrounds</a></li>
+        <li><a href="/manual/prompt/">Prompt</a></li>
+        <li><a href="/manual/branding/">Branding</a></li>
+        <li><a href="/manual/common-tweaks/">Common tweaks</a></li>
+        <li><a href="/manual/extra-themes/">Extra themes</a></li>
+        <li><a href="/manual/making-your-own-theme/">Making your own theme</a></li>
+        <li><a href="/manual/mac-support/">Mac support</a></li>
+        <li><a href="/manual/troubleshooting/">Troubleshooting</a></li>
+        <li><a href="/manual/faq/">FAQ</a></li>
+        <li><a href="/manual/system-snapshots/">System snapshots</a></li>
+        <li><a href="/manual/security/">Security</a></li>
+        <li><a href="/manual/omarchy-on/">Omarchy on...</a></li>
+        <li><a href="/manual/dual-boot-install/">Dual Boot Install</a></li>
+        <li><a href="/manual/unattended-installs/">Unattended Installs</a></li>
+      </ol>
+    </nav>
+
+    <article class="manual__content">
+      <h1>Development Tools</h1>
+<h2 id="alternative-editors">Alternative Editors</h2>
+
+<p>Omarchy ships with <a href="https://neovim.io/">Neovim</a> by default, but if you’d like something a bit more mainstream and familiar, you can run the Omarchy Menu (<code>Super + Space</code>) and see the options under <em>Install &gt; Editor</em>. We have VSCode, Cursor, Zed, Sublime Text, Helix, Vim, and Emacs listed there. If you don’t find what you’re looking for, checkout <em>Install &gt; Package</em>, and see if it isn’t in an Arch package (and if not, try <em>Install &gt; AUR</em> to check the AUR).</p>
+
+<p>Theme matching is offered for <code>VSCode</code>, <code>Cursor</code>, <code>VSCodium</code>, and <code>Helix</code>.</p>
+
+<p>You can set the system-wide default editor under <code>Setup &gt; Defaults &gt; Editor</code>.</p>
+
+<h2 id="environment">Environment</h2>
+
+<p>Omarchy supports setting up a whole host of development environments through the <em>Install &gt; Development</em> section of the Omarchy Menu (<code>Super + Space</code>). You’ll of course find <em>Ruby on Rails</em>, but also all three major runtimes for JavaScript (Node.js, Bun, Deno), as well as popular PHP frameworks like Laravel and Symfony. Oh, and there’s Go, Rust, Python, Java, Elixir (with Phoenix), .NET, OCaml, Zig, Clojure, and Scala too. It’s a very broad selection!</p>
+
+<p>The majority of these environments are managed by <a href="https://mise.jdx.dev/">Mise</a>. It’s a tool that lets you install and run multiple versions of a programming language on the same machine. It’s like rbenv or rvm for Ruby or virtualenv for Python, but it works for a bunch of different environments.</p>
+
+<p>To install, say, Ruby, you’d run <code>mise use -g ruby</code>, which will both install Ruby and set it as the global default. Or, if your project has a .ruby-version file, you can just run <code>mise i</code> in the root of that project.</p>
+
+<h2 id="docker">Docker</h2>
+
+<p><a href="https://www.docker.com/">Docker</a> hardly needs any introduction. It allows you to run isolated containers, and Omarchy installs everything needed to run it well. This includes Docker itself, <a href="https://docs.docker.com/compose/">Docker Compose</a>, and the user group changes needed for you to run Docker as the normal user and not as root.</p>
+
+<p>Remember to checkout the Lazydocker command to manage your containers in a cool TUI using <code>Super + Shift + D</code>.</p>
+
+<p>You can setup the common databases for local development in Docker using <em>Install &gt; Development &gt; Docker DB</em> in the Omarchy menu.</p>
+
+<h2 id="github-cli">GitHub CLI</h2>
+
+<p><a href="https://cli.github.com/">The GitHub CLI</a> let’s you authenticate with your GitHub account and clone private repositories using it. It’s wired up as one of the lazy-loading mise stubs, so the first time you run <code>gh</code>, it installs itself. To authenticate, run <code>gh auth login</code>. Then you can checkout private repositories using <code>gh repo clone org/repo</code>.</p>
+
+<p>You can also perform a bunch of other GitHub operations using this command. Just run <code>gh</code> to see everything that’s possible.</p>
+
+<p>There’s a lazy-installing stub for <code>ghui</code> for managing your pull requests in a TUI too. And <a href="https://github.com/jesseduffield/lazygit">lazygit</a> is preinstalled, if you’d like to drive git itself from a TUI as well.</p>
+
+      <nav class="manual__pagination">
+        <a class="manual__pagination-previous" href="/manual/ai/" rel="prev">← AI</a>
+        <a class="manual__pagination-next" href="/manual/shell-tools/" rel="next">Shell Tools →</a>
+      </nav>
+    </article>
+  </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer__subhead">
+        <p>Brought to you by <a href="https://37signals.com">37signals</a></p>
+      </div>
+
+      <div class="footer__buttons">
+        <a href="https://basecamp.com"><img src="/assets/images/logo-basecamp.svg" width="145" height="32" alt="Basecamp"></a>
+        <a href="https://hey.com"><img src="/assets/images/logo-hey.svg" width="123" height="57" alt="HEY"></a>
+        <a href="https://fizzy.do"><img src="/assets/images/logo-fizzy.svg" width="56" height="56" alt="Fizzy"></a>
+        <a href="https://once.com"><img src="/assets/images/logo-once.svg" width="72" height="72" alt="ONCE"></a>
+      </div>
+
+      <div class="footer__sponsor">
+        <span>Sponsored hosting by</span>
+        <a href="https://cloudflare.com"><img src="/assets/images/logo-cloudflare.svg" width="213" height="32" alt="Cloudflare"></a>
+      </div>
+    </footer>
+  </body>
+</html>

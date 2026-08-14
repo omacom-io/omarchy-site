@@ -1,0 +1,277 @@
+<!doctype html>
+
+<html lang="en">
+  <head>
+    <title>Dotfiles — The Omarchy Manual</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, width=device-width">
+    <meta name="description" content="Omarchy is primarily configured through the so-called dotfiles that live in ~/.config. Those are considered your files for your changes. The files that live...">
+
+    <meta property="og:site_name" content="Omarchy">
+    <meta property="og:title" content="Dotfiles">
+    <meta property="og:description" content="Omarchy is primarily configured through the so-called dotfiles that live in ~/.config. Those are considered your files for your changes. The files that live...">
+    <meta property="og:image" content="https://omarchy.org/assets/images/opengraph.png">
+    <meta property="og:url" content="https://omarchy.org/manual/dotfiles/">
+    <meta property="og:type" content="article">
+
+    <link rel="icon" href="/assets/images/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/assets/css/reset.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/root.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/fonts.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/elements.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/footer.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/header.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/main.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/pre.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/manual.css">
+
+    <script defer data-domain="omarchy.org" src="https://plausible.io/js/script.js"></script>
+  </head>
+
+  <body>
+    <div class="pre">
+      <a href="/">
+<pre>
+                 ▄▄▄
+ ▄█████▄    ▄███████████▄    ▄███████   ▄███████   ▄███████   ▄█   █▄    ▄█   █▄
+███   ███  ███   ███   ███  ███   ███  ███   ███  ███   ███  ███   ███  ███   ███
+███   ███  ███   ███   ███  ███   ███  ███   ███  ███   █▀   ███   ███  ███   ███
+███   ███  ███   ███   ███ ▄███▄▄▄███ ▄███▄▄▄██▀  ███       ▄███▄▄▄███▄ ███▄▄▄███
+███   ███  ███   ███   ███ ▀███▀▀▀███ ▀███▀▀▀▀    ███      ▀▀███▀▀▀███  ▀▀▀▀▀▀███
+███   ███  ███   ███   ███  ███   ███ ██████████  ███   █▄   ███   ███  ▄██   ███
+███   ███  ███   ███   ███  ███   ███  ███   ███  ███   ███  ███   ███  ███   ███
+ ▀█████▀    ▀█   ███   █▀   ███   █▀   ███   ███  ███████▀   ███   █▀    ▀█████▀
+                                       ███   █▀
+</pre>
+      </a>
+    </div>
+
+    <header class="header">
+      <h1><a href="/manual/">The Omarchy Manual</a></h1>
+    </header>
+
+    <main class="main">
+  <div class="manual manual--chapter">
+    <nav class="manual__toc" aria-label="Chapters">
+      <ol>
+        <li><a href="/manual/welcome-to-omarchy/">Welcome to Omarchy!</a></li>
+        <li><a href="/manual/getting-started/">Getting Started</a></li>
+        <li><a href="/manual/coming-from-mac-or-windows/">Coming From Mac or Windows</a></li>
+        <li><a href="/manual/navigation/">Navigation</a></li>
+        <li><a href="/manual/the-top-bar/">The Top Bar</a></li>
+        <li><a href="/manual/themes/">Themes</a></li>
+        <li><a href="/manual/hotkeys/">Hotkeys</a></li>
+        <li><a href="/manual/unified-clipboard-history/">Unified Clipboard &amp; History</a></li>
+        <li><a href="/manual/reminders/">Reminders</a></li>
+        <li><a href="/manual/notices/">Notices</a></li>
+        <li><a href="/manual/text-extraction-dictation/">Text Extraction &amp; Dictation</a></li>
+        <li><a href="/manual/screenshots-recording/">Screenshots &amp; Recording</a></li>
+        <li><a href="/manual/toggles-idle-screensaver/">Toggles, Idle &amp; the Screensaver</a></li>
+        <li><a href="/manual/omarchy-cli/">Omarchy CLI</a></li>
+        <li><a href="/manual/terminal/">Terminal</a></li>
+        <li><a href="/manual/neovim/">Neovim</a></li>
+        <li><a href="/manual/ai/">AI</a></li>
+        <li><a href="/manual/development-tools/">Development Tools</a></li>
+        <li><a href="/manual/shell-tools/">Shell Tools</a></li>
+        <li><a href="/manual/shell-functions/">Shell Functions</a></li>
+        <li><a href="/manual/tuis/">TUIs</a></li>
+        <li><a href="/manual/guis/">GUIs</a></li>
+        <li><a href="/manual/browsers/">Browsers</a></li>
+        <li><a href="/manual/commercial-apps-services/">Commercial apps/services</a></li>
+        <li><a href="/manual/web-apps/">Web Apps</a></li>
+        <li><a href="/manual/gaming/">Gaming</a></li>
+        <li><a href="/manual/filling-out-pdfs/">Filling out PDFs</a></li>
+        <li><a href="/manual/windows-vm/">Windows VM</a></li>
+        <li><a href="/manual/other-packages/">Other Packages</a></li>
+        <li><a href="/manual/updates/">Updates</a></li>
+        <li><a href="/manual/dotfiles/" aria-current="page">Dotfiles</a></li>
+        <li><a href="/manual/shell-plugins/">Shell Plugins</a></li>
+        <li><a href="/manual/monitors/">Monitors</a></li>
+        <li><a href="/manual/keyboard-mouse-trackpad/">Keyboard, Mouse, Trackpad</a></li>
+        <li><a href="/manual/networking/">Networking</a></li>
+        <li><a href="/manual/system-sleep/">System sleep</a></li>
+        <li><a href="/manual/hardware-authentication/">Hardware authentication</a></li>
+        <li><a href="/manual/fonts/">Fonts</a></li>
+        <li><a href="/manual/backgrounds/">Backgrounds</a></li>
+        <li><a href="/manual/prompt/">Prompt</a></li>
+        <li><a href="/manual/branding/">Branding</a></li>
+        <li><a href="/manual/common-tweaks/">Common tweaks</a></li>
+        <li><a href="/manual/extra-themes/">Extra themes</a></li>
+        <li><a href="/manual/making-your-own-theme/">Making your own theme</a></li>
+        <li><a href="/manual/mac-support/">Mac support</a></li>
+        <li><a href="/manual/troubleshooting/">Troubleshooting</a></li>
+        <li><a href="/manual/faq/">FAQ</a></li>
+        <li><a href="/manual/system-snapshots/">System snapshots</a></li>
+        <li><a href="/manual/security/">Security</a></li>
+        <li><a href="/manual/omarchy-on/">Omarchy on...</a></li>
+        <li><a href="/manual/dual-boot-install/">Dual Boot Install</a></li>
+        <li><a href="/manual/unattended-installs/">Unattended Installs</a></li>
+      </ol>
+    </nav>
+
+    <article class="manual__content">
+      <h1>Dotfiles</h1>
+<p>Omarchy is primarily configured through the so-called dotfiles that live in <code>~/.config</code>. Those are considered your files for your changes. The files that live in <code>/usr/share/omarchy</code> belong to Omarchy itself, and you shouldn’t be messing with those. If you need to change anything in <code>/usr/share/omarchy</code>, you should be overwriting the value in <code>~/.config</code> instead.</p>
+
+<p>The key configs can be edited straight from the Omarchy menu (<code>Super + Space</code>), like <em>Setup &gt; Monitors</em>, <em>Setup &gt; Keybindings</em>, <em>Setup &gt; Input</em>, and <em>Setup &gt; Config &gt; [file]</em>. When you do it this way, any process that needs restarting after config edits automatically will be after you quit the editor (Neovim by default — <code>:wq</code>, remember! — but you can change that via <em>Setup &gt; Defaults &gt; Editor</em>).</p>
+
+<p>Here’s a list of the key files in <code>~/.config</code> and what they control:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>File</th>
+      <th>Purpose</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>~/.config/hypr/hyprland.lua</code></td>
+      <td>The main Hyprland config. Loads the Omarchy defaults plus your override files below. <a href="https://wiki.hypr.land/Configuring/">Learn more about Hyprland configs</a>.</td>
+    </tr>
+    <tr>
+      <td><code>~/.config/hypr/bindings.lua</code></td>
+      <td>Your own keybindings and overrides of the defaults.</td>
+    </tr>
+    <tr>
+      <td><code>~/.config/hypr/monitors.lua</code></td>
+      <td>Controls your monitors, resolution, and position.</td>
+    </tr>
+    <tr>
+      <td><code>~/.config/hypr/input.lua</code></td>
+      <td>Controls your keyboard layout, mouse, and trackpad settings.</td>
+    </tr>
+    <tr>
+      <td><code>~/.config/hypr/looknfeel.lua</code></td>
+      <td>Controls gaps, borders, animations, and the rest of the look.</td>
+    </tr>
+    <tr>
+      <td><code>~/.config/hypr/autostart.lua</code></td>
+      <td>Controls extra processes started with the session.</td>
+    </tr>
+    <tr>
+      <td><code>~/.config/omarchy/shell.json</code></td>
+      <td>Controls the Omarchy shell: bar position, layout, and widgets, plus screensaver, lock, and idle timings.</td>
+    </tr>
+    <tr>
+      <td><code>~/.config/foot/foot.ini</code></td>
+      <td>Controls your terminal (foot is the default).</td>
+    </tr>
+    <tr>
+      <td><code>~/.XCompose</code></td>
+      <td>Defines your quick-access emoji and name/email autocomplete. Make sure to run <code>omarchy-restart-xcompose</code> after making changes.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>If you end up making a lot of changes to tweak your own setup, it’s a good idea to backup all these dotfiles. <a href="https://www.youtube.com/watch?v=NoFiYOqnC4o">Stow is a great way to do that</a>.</p>
+
+<h3 id="starting-your-own-apps-with-the-session">Starting your own apps with the session</h3>
+
+<p>If you want something to run every time you log in — a sync daemon, a chat app, your own script — put it in <code>~/.config/hypr/autostart.lua</code>:</p>
+
+<pre><code class="language-lua">o.launch_on_start("my-service")
+</code></pre>
+
+<p>That starts the command as part of the session, so it’s properly cleaned up when you log out again.</p>
+
+<h3 id="running-scripts-on-system-events">Running scripts on system events</h3>
+
+<p>Omarchy fires hooks at a handful of moments, and you can hang your own scripts off them. They live in <code>~/.config/omarchy/hooks/&lt;event&gt;.d/</code>, one directory per event, and every executable file in there runs when the event happens:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Event</th>
+      <th>When it runs</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>post-boot</code></td>
+      <td>Right after the desktop has started</td>
+    </tr>
+    <tr>
+      <td><code>post-update</code></td>
+      <td>During <code>omarchy update</code>, after packages and migrations</td>
+    </tr>
+    <tr>
+      <td><code>pre-refresh-pacman</code></td>
+      <td>Before <code>omarchy refresh pacman</code> re-syncs the package config</td>
+    </tr>
+    <tr>
+      <td><code>theme-set</code></td>
+      <td>After a theme change (theme name in <code>$1</code>)</td>
+    </tr>
+    <tr>
+      <td><code>font-set</code></td>
+      <td>After a font change (font name in <code>$1</code>)</td>
+    </tr>
+    <tr>
+      <td><code>battery-low</code></td>
+      <td>When the battery gets low (percentage in <code>$1</code>)</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Each of those directories already holds a <code>.sample</code> file showing the shape of a hook — drop the <code>.sample</code> from the name to put it to work. To install a script you’ve written elsewhere, use <code>omarchy hook install post-boot ~/my-hook</code>, which copies it in and makes it executable.</p>
+
+<h3 id="adding-your-own-menu-entries">Adding your own menu entries</h3>
+
+<p>The Omarchy menu (<code>Super + Space</code>) can be extended with your own rows by editing <code>~/.config/omarchy/extensions/omarchy-menu.jsonc</code>. Entries are keyed by a dotted id, and the id is what places them in the tree, so <code>personal</code> shows up on the root menu and <code>personal.notes</code> shows up inside it:</p>
+
+<pre><code class="language-jsonc">"personal": {"icon":"","label":"Personal"},
+"personal.notes": {"icon":"󰎞","label":"Notes","action":"omarchy-launch-editor ~/notes"},
+</code></pre>
+
+<p>Reuse an existing id and you override that row instead of adding a new one. The file ships with all the available fields documented as comments.</p>
+
+<h3 id="adding-your-own-shell-exports-functions-and-aliases">Adding your own shell exports, functions, and aliases</h3>
+
+<p>Omarchy ships with a bunch of ergonomic aliases and helpful functions, but it’s very common to want to add your own. You should add both aliases, functions, and exports in <code>~/.bashrc</code>. This file will not be overwritten on updates. If you want to change any of the Omarchy defaults, you can also safely add them here.</p>
+
+<h3 id="changing-internal-omarchy-files">Changing internal Omarchy files</h3>
+
+<p>Look, this is your computer. You can do whatever you want with it, but I would advise against making changes to the files in <code>/usr/share/omarchy</code> directly. They belong to the Omarchy pacman package, so your changes will simply be overwritten on the next update. You’re better off just overwriting any default values you don’t like in the <code>~/.config/*</code> folder instead.</p>
+
+<p>You can change just about everything that way, like the default keybindings. Just edit <code>~/.config/hypr/bindings.lua</code> to, say, replace <a href="https://obsidian.md/">Obsidian</a> with <a href="https://joplinapp.org/">Joplin</a> (install with <code>omarchy-pkg-add joplin-bin</code>):</p>
+
+<pre><code>hl.unbind("SUPER + SHIFT + O")
+o.bind("SUPER + SHIFT + O", "Joplin", "joplin-desktop")
+</code></pre>
+
+<p>If you insist on hacking on the internal Omarchy files, switch to the dev channel via <em>Update &gt; Channel &gt; Dev</em>. That links Omarchy to a git checkout of the source code in <code>~/omarchy</code>, which you’re free to change to your heart’s content. Ain’t nobody here to tell you what to do!</p>
+
+<h3 id="resetting-any-changes">Resetting any changes</h3>
+
+<p>If you end up making a mess of the configurations, you can always revert them to the defaults via <em>Update &gt; Config</em> in the Omarchy menu. Or by running <code>omarchy reinstall configs</code> to reset everything.</p>
+
+      <nav class="manual__pagination">
+        <a class="manual__pagination-previous" href="/manual/updates/" rel="prev">← Updates</a>
+        <a class="manual__pagination-next" href="/manual/shell-plugins/" rel="next">Shell Plugins →</a>
+      </nav>
+    </article>
+  </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer__subhead">
+        <p>Brought to you by <a href="https://37signals.com">37signals</a></p>
+      </div>
+
+      <div class="footer__buttons">
+        <a href="https://basecamp.com"><img src="/assets/images/logo-basecamp.svg" width="145" height="32" alt="Basecamp"></a>
+        <a href="https://hey.com"><img src="/assets/images/logo-hey.svg" width="123" height="57" alt="HEY"></a>
+        <a href="https://fizzy.do"><img src="/assets/images/logo-fizzy.svg" width="56" height="56" alt="Fizzy"></a>
+        <a href="https://once.com"><img src="/assets/images/logo-once.svg" width="72" height="72" alt="ONCE"></a>
+      </div>
+
+      <div class="footer__sponsor">
+        <span>Sponsored hosting by</span>
+        <a href="https://cloudflare.com"><img src="/assets/images/logo-cloudflare.svg" width="213" height="32" alt="Cloudflare"></a>
+      </div>
+    </footer>
+  </body>
+</html>

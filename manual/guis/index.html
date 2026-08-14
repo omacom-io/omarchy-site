@@ -1,0 +1,239 @@
+<!doctype html>
+
+<html lang="en">
+  <head>
+    <title>GUIs — The Omarchy Manual</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, width=device-width">
+    <meta name="description" content="Files (Nautilus) is the graphical file manager. Super + Shift + F opens it, and Super + Shift + Alt + F opens it in the directory your terminal is sitting...">
+
+    <meta property="og:site_name" content="Omarchy">
+    <meta property="og:title" content="GUIs">
+    <meta property="og:description" content="Files (Nautilus) is the graphical file manager. Super + Shift + F opens it, and Super + Shift + Alt + F opens it in the directory your terminal is sitting...">
+    <meta property="og:image" content="https://omarchy.org/assets/images/opengraph.png">
+    <meta property="og:url" content="https://omarchy.org/manual/guis/">
+    <meta property="og:type" content="article">
+
+    <link rel="icon" href="/assets/images/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/assets/css/reset.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/root.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/fonts.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/elements.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/footer.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/header.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/main.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/pre.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/manual.css">
+
+    <script defer data-domain="omarchy.org" src="https://plausible.io/js/script.js"></script>
+  </head>
+
+  <body>
+    <div class="pre">
+      <a href="/">
+<pre>
+                 ▄▄▄
+ ▄█████▄    ▄███████████▄    ▄███████   ▄███████   ▄███████   ▄█   █▄    ▄█   █▄
+███   ███  ███   ███   ███  ███   ███  ███   ███  ███   ███  ███   ███  ███   ███
+███   ███  ███   ███   ███  ███   ███  ███   ███  ███   █▀   ███   ███  ███   ███
+███   ███  ███   ███   ███ ▄███▄▄▄███ ▄███▄▄▄██▀  ███       ▄███▄▄▄███▄ ███▄▄▄███
+███   ███  ███   ███   ███ ▀███▀▀▀███ ▀███▀▀▀▀    ███      ▀▀███▀▀▀███  ▀▀▀▀▀▀███
+███   ███  ███   ███   ███  ███   ███ ██████████  ███   █▄   ███   ███  ▄██   ███
+███   ███  ███   ███   ███  ███   ███  ███   ███  ███   ███  ███   ███  ███   ███
+ ▀█████▀    ▀█   ███   █▀   ███   █▀   ███   ███  ███████▀   ███   █▀    ▀█████▀
+                                       ███   █▀
+</pre>
+      </a>
+    </div>
+
+    <header class="header">
+      <h1><a href="/manual/">The Omarchy Manual</a></h1>
+    </header>
+
+    <main class="main">
+  <div class="manual manual--chapter">
+    <nav class="manual__toc" aria-label="Chapters">
+      <ol>
+        <li><a href="/manual/welcome-to-omarchy/">Welcome to Omarchy!</a></li>
+        <li><a href="/manual/getting-started/">Getting Started</a></li>
+        <li><a href="/manual/coming-from-mac-or-windows/">Coming From Mac or Windows</a></li>
+        <li><a href="/manual/navigation/">Navigation</a></li>
+        <li><a href="/manual/the-top-bar/">The Top Bar</a></li>
+        <li><a href="/manual/themes/">Themes</a></li>
+        <li><a href="/manual/hotkeys/">Hotkeys</a></li>
+        <li><a href="/manual/unified-clipboard-history/">Unified Clipboard &amp; History</a></li>
+        <li><a href="/manual/reminders/">Reminders</a></li>
+        <li><a href="/manual/notices/">Notices</a></li>
+        <li><a href="/manual/text-extraction-dictation/">Text Extraction &amp; Dictation</a></li>
+        <li><a href="/manual/screenshots-recording/">Screenshots &amp; Recording</a></li>
+        <li><a href="/manual/toggles-idle-screensaver/">Toggles, Idle &amp; the Screensaver</a></li>
+        <li><a href="/manual/omarchy-cli/">Omarchy CLI</a></li>
+        <li><a href="/manual/terminal/">Terminal</a></li>
+        <li><a href="/manual/neovim/">Neovim</a></li>
+        <li><a href="/manual/ai/">AI</a></li>
+        <li><a href="/manual/development-tools/">Development Tools</a></li>
+        <li><a href="/manual/shell-tools/">Shell Tools</a></li>
+        <li><a href="/manual/shell-functions/">Shell Functions</a></li>
+        <li><a href="/manual/tuis/">TUIs</a></li>
+        <li><a href="/manual/guis/" aria-current="page">GUIs</a></li>
+        <li><a href="/manual/browsers/">Browsers</a></li>
+        <li><a href="/manual/commercial-apps-services/">Commercial apps/services</a></li>
+        <li><a href="/manual/web-apps/">Web Apps</a></li>
+        <li><a href="/manual/gaming/">Gaming</a></li>
+        <li><a href="/manual/filling-out-pdfs/">Filling out PDFs</a></li>
+        <li><a href="/manual/windows-vm/">Windows VM</a></li>
+        <li><a href="/manual/other-packages/">Other Packages</a></li>
+        <li><a href="/manual/updates/">Updates</a></li>
+        <li><a href="/manual/dotfiles/">Dotfiles</a></li>
+        <li><a href="/manual/shell-plugins/">Shell Plugins</a></li>
+        <li><a href="/manual/monitors/">Monitors</a></li>
+        <li><a href="/manual/keyboard-mouse-trackpad/">Keyboard, Mouse, Trackpad</a></li>
+        <li><a href="/manual/networking/">Networking</a></li>
+        <li><a href="/manual/system-sleep/">System sleep</a></li>
+        <li><a href="/manual/hardware-authentication/">Hardware authentication</a></li>
+        <li><a href="/manual/fonts/">Fonts</a></li>
+        <li><a href="/manual/backgrounds/">Backgrounds</a></li>
+        <li><a href="/manual/prompt/">Prompt</a></li>
+        <li><a href="/manual/branding/">Branding</a></li>
+        <li><a href="/manual/common-tweaks/">Common tweaks</a></li>
+        <li><a href="/manual/extra-themes/">Extra themes</a></li>
+        <li><a href="/manual/making-your-own-theme/">Making your own theme</a></li>
+        <li><a href="/manual/mac-support/">Mac support</a></li>
+        <li><a href="/manual/troubleshooting/">Troubleshooting</a></li>
+        <li><a href="/manual/faq/">FAQ</a></li>
+        <li><a href="/manual/system-snapshots/">System snapshots</a></li>
+        <li><a href="/manual/security/">Security</a></li>
+        <li><a href="/manual/omarchy-on/">Omarchy on...</a></li>
+        <li><a href="/manual/dual-boot-install/">Dual Boot Install</a></li>
+        <li><a href="/manual/unattended-installs/">Unattended Installs</a></li>
+      </ol>
+    </nav>
+
+    <article class="manual__content">
+      <h1>GUIs</h1>
+<h2 id="files">Files</h2>
+
+<p>Files (Nautilus) is the graphical file manager. <code>Super + Shift + F</code> opens it, and <code>Super + Shift + Alt + F</code> opens it in the directory your terminal is sitting in, which saves a lot of clicking. <code>Ctrl + L</code> lets you type a path, and hitting <code>Space</code> on any file gives you a quick preview without opening anything.</p>
+
+<p>Plug in a USB stick or an SD card and it’s mounted automatically, so it just shows up in the sidebar. For anything more involved — formatting a drive, checking SMART health, creating partitions — launch <em>Disks</em> from the app launcher (<code>Super + Space</code>).</p>
+
+<p>Double-clicking follows sensible defaults: images open in imv, video in mpv, PDFs in Document Viewer, and plain text in Neovim.</p>
+
+<h2 id="obsidian">Obsidian</h2>
+
+<p><a href="https://obsidian.md/">Obsidian</a> is a free and highly extensible note taking application that uses simple Markdown files for storage.</p>
+
+<p>Obsidian is free for all purposes, including personal, commercial, and non-profit use.</p>
+
+<p>Obsidian also offers a <a href="https://obsidian.md/sync">commercial add-on for syncing</a> with mobile apps on iOS and Android. (https://obsidian.md/pricing).</p>
+
+<p>You start Obsidian with <code>Super + Shift + O</code>. To use theme syncing, you must select the <code>Omarchy</code> theme under settings.</p>
+
+<h2 id="omawrite">Omawrite</h2>
+
+<p><a href="https://github.com/omacom-io/omawrite">Omawrite</a> is Omarchy’s own dead-simple Markdown writing app. No vaults, no plugins, just you and the words.</p>
+
+<p>You start Omawrite with <code>Super + Shift + W</code>.</p>
+
+<h2 id="pinta">Pinta</h2>
+
+<p><a href="https://www.pinta-project.com/">Pinta</a> is a basic image editing tool that’s great for cropping, resizing, and other basic manipulations. Just don’t expect a Photoshop alternative. But it’s still got a Magic Wand and layers!</p>
+
+<p>You start Pinta via the application launcher (<code>Super + Space</code>).</p>
+
+<h2 id="aether">Aether</h2>
+
+<p><a href="https://github.com/bjarneo/aether">Aether</a> is a theming application that can extract colors from a background image and turn them into a complete, cohesive theme. It’s the easiest way to <a href="../making-your-own-theme/">make your own theme</a>.</p>
+
+<p>You start Aether via the application launcher (<code>Super + Space</code>).</p>
+
+<h2 id="localsend">LocalSend</h2>
+
+<p><a href="https://localsend.org/">LocalSend</a> lets you send files to other devices on the same network running the app, like Apple’s AirDrop. It’s cross-platform, though, so you can send files to and from Windows, macOS, Android, iOS, and of course Linux.</p>
+
+<p>You can open the Share menu on <code>Super + Ctrl + S</code> or under <em>Trigger &gt; Share</em> in the Omarchy menu. It gives you four options:</p>
+
+<ul>
+  <li><strong>Clipboard</strong> sends whatever you’ve copied as a text file. Great for getting a link or a snippet onto your phone without emailing yourself.</li>
+  <li><strong>File</strong> opens a file picker where you can select several at once.</li>
+  <li><strong>Folder</strong> sends an entire directory.</li>
+  <li><strong>Receive</strong> opens LocalSend proper so another device can send something to you.</li>
+</ul>
+
+<p>The same thing works from the terminal with <code>omarchy share clipboard</code>, <code>omarchy share file [path]</code>, and <code>omarchy share folder [path]</code>. Leave the path off and you get the picker.</p>
+
+<p>You can also send straight from the file manager: right-click any selection in Nautilus and pick <em>Send via LocalSend</em>.</p>
+
+<p>Omarchy’s firewall is closed by default except for LocalSend’s port, so this works out of the box on a fresh install. See <a href="../security/">security</a>.</p>
+
+<h2 id="libreoffice">LibreOffice</h2>
+
+<p><a href="https://www.libreoffice.org/">LibreOffice</a> is a complete office package with word processor, spreadsheet, presentations, drawing application, and more. It’s compatible with files from Microsoft Office, so this is a great way to be able to open those Word documents.</p>
+
+<p>You start LibreOffice via the application launcher (<code>Super + Space</code>).</p>
+
+<h2 id="omacalc">Omacalc</h2>
+
+<p><a href="https://github.com/omacom-io/omacalc">Omacalc</a> is Omarchy’s own dead-simple calculator, which opens in a floating window.</p>
+
+<p>You start Omacalc with <code>Super + Ctrl + Q</code> (or the calculator key, if your keyboard has one).</p>
+
+<h2 id="signal">Signal</h2>
+
+<p><a href="https://signal.org/">Signal</a> is the pioneer of E2E encrypted messaging, and a great communication option for anyone who’d prefer not to go through one of the big tech conglomerates.</p>
+
+<p>You start Signal with <code>Super + Shift + G</code>. It’s not part of the base install, so the first time you hit that, Omarchy will offer to install it for you (it’s also under <em>Install &gt; Service</em> in the Omarchy menu).</p>
+
+<h2 id="mpv">mpv</h2>
+
+<p><a href="https://mpv.io/">mpv</a> is a simple, fast media player that’ll play almost anything from any source. Great for watching videos.</p>
+
+<p>You start mpv via the application launcher (<code>Super + Space</code>) or just double-click on a video in the file manager.</p>
+
+<h2 id="obs-studio">OBS Studio</h2>
+
+<p><a href="https://obsproject.com/">OBS Studio</a> lets you record or stream video from multiple inputs. You can mix a screencast with a webcam with a microphone input. It’s what was used to record the Omarchy screencasts.</p>
+
+<p>You start OBS Studio via the application launcher (<code>Super + Space</code>).</p>
+
+<h2 id="kdenlive">Kdenlive</h2>
+
+<p><a href="https://kdenlive.org/">Kdenlive</a> is an excellent video editor. Perfect for working on video that comes out of OBS Studio before sharing it.</p>
+
+<p>You start Kdenlive via the application launcher (<code>Super + Space</code>).</p>
+
+<h2 id="omacut">Omacut</h2>
+
+<p><a href="https://github.com/omacom-io/omacut">Omacut</a> is Omarchy’s own dead-simple video trimmer. When all you need is to cut the start and end off a clip, it beats firing up a full video editor.</p>
+
+<p>You start Omacut via the application launcher (<code>Super + Space</code>).</p>
+
+      <nav class="manual__pagination">
+        <a class="manual__pagination-previous" href="/manual/tuis/" rel="prev">← TUIs</a>
+        <a class="manual__pagination-next" href="/manual/browsers/" rel="next">Browsers →</a>
+      </nav>
+    </article>
+  </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer__subhead">
+        <p>Brought to you by <a href="https://37signals.com">37signals</a></p>
+      </div>
+
+      <div class="footer__buttons">
+        <a href="https://basecamp.com"><img src="/assets/images/logo-basecamp.svg" width="145" height="32" alt="Basecamp"></a>
+        <a href="https://hey.com"><img src="/assets/images/logo-hey.svg" width="123" height="57" alt="HEY"></a>
+        <a href="https://fizzy.do"><img src="/assets/images/logo-fizzy.svg" width="56" height="56" alt="Fizzy"></a>
+        <a href="https://once.com"><img src="/assets/images/logo-once.svg" width="72" height="72" alt="ONCE"></a>
+      </div>
+
+      <div class="footer__sponsor">
+        <span>Sponsored hosting by</span>
+        <a href="https://cloudflare.com"><img src="/assets/images/logo-cloudflare.svg" width="213" height="32" alt="Cloudflare"></a>
+      </div>
+    </footer>
+  </body>
+</html>

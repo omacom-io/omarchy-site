@@ -1,0 +1,209 @@
+#!/usr/bin/env ruby
+# Regenerates manual/ from the authoritative markdown chapters in the omarchy repo.
+#
+#   bin/build-manual                     # fetch manual/*.md from basecamp/omarchy (default branch)
+#   bin/build-manual ../omarchy/manual   # build from a local checkout
+
+begin
+  require "kramdown"
+  require "kramdown-parser-gfm"
+rescue LoadError
+  abort "Missing gems. Run: gem install kramdown kramdown-parser-gfm"
+end
+
+require "cgi"
+require "fileutils"
+require "tmpdir"
+
+SITE_ROOT = File.expand_path("..", __dir__)
+SOURCE_TARBALL = "https://github.com/basecamp/omarchy/archive/HEAD.tar.gz"
+
+Chapter = Struct.new(:number, :slug, :title, :body, keyword_init: true) do
+  def path = "/manual/#{slug}/"
+
+  def description
+    text = body.lines.find { |line| line =~ /\S/ && line !~ /^[#!\[<`\|]/ }.to_s
+    text = text.gsub(/!\[[^\]]*\]\([^)]*\)/, "").gsub(/\[([^\]]*)\]\([^)]*\)/, '\1').gsub(/[*_`]/, "").strip
+    text.length > 160 ? "#{text[0, 157].sub(/\s+\S*\z/, "")}..." : text
+  end
+end
+
+def load_chapters(dir)
+  files = Dir[File.join(dir, "[0-9][0-9]-*.md")].sort
+  abort "No chapters found in #{dir}" if files.empty?
+
+  files.map do |file|
+    number, slug = File.basename(file, ".md").split("-", 2)
+    text = File.read(file)
+    title = text[/^#\s+(.+?)\s*$/, 1] or abort "No title heading in #{file}"
+    Chapter.new(number: number, slug: slug, title: title, body: text.sub(/^#\s.+\n+/, ""))
+  end
+end
+
+def fetch_chapters
+  Dir.mktmpdir do |tmp|
+    system "curl -fsSL #{SOURCE_TARBALL} | tar xz -C #{tmp} --strip-components=1 --wildcards '*/manual'", exception: true
+    load_chapters File.join(tmp, "manual")
+  end
+end
+
+def render_markdown(chapter)
+  # Rewrite inter-chapter links like 07-hotkeys.md#anchor to ../hotkeys/#anchor
+  markdown = chapter.body.gsub(/\]\((\d\d-[\w-]+)\.md(#[^)]*)?\)/) { "](../#{$1.split("-", 2).last}/#{$2})" }
+  Kramdown::Document.new(markdown, input: "GFM", hard_wrap: false, syntax_highlighter: nil).to_html
+end
+
+def h(text) = CGI.escapeHTML(text)
+
+def page(title:, description:, url:, main:)
+  <<~HTML
+    <!doctype html>
+
+    <html lang="en">
+      <head>
+        <title>#{h title} — The Omarchy Manual</title>
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="initial-scale=1, width=device-width">
+        <meta name="description" content="#{h description}">
+
+        <meta property="og:site_name" content="Omarchy">
+        <meta property="og:title" content="#{h title}">
+        <meta property="og:description" content="#{h description}">
+        <meta property="og:image" content="https://omarchy.org/assets/images/opengraph.png">
+        <meta property="og:url" content="#{h url}">
+        <meta property="og:type" content="article">
+
+        <link rel="icon" href="/assets/images/favicon.png">
+
+        <link rel="stylesheet" type="text/css" href="/assets/css/reset.css">
+        <link rel="stylesheet" type="text/css" href="/assets/css/root.css">
+        <link rel="stylesheet" type="text/css" href="/assets/css/fonts.css">
+        <link rel="stylesheet" type="text/css" href="/assets/css/elements.css">
+        <link rel="stylesheet" type="text/css" href="/assets/css/footer.css">
+        <link rel="stylesheet" type="text/css" href="/assets/css/header.css">
+        <link rel="stylesheet" type="text/css" href="/assets/css/main.css">
+        <link rel="stylesheet" type="text/css" href="/assets/css/pre.css">
+        <link rel="stylesheet" type="text/css" href="/assets/css/manual.css">
+
+        <script defer data-domain="omarchy.org" src="https://plausible.io/js/script.js"></script>
+      </head>
+
+      <body>
+        <div class="pre">
+          <a href="/">
+    <pre>
+                     ▄▄▄
+     ▄█████▄    ▄███████████▄    ▄███████   ▄███████   ▄███████   ▄█   █▄    ▄█   █▄
+    ███   ███  ███   ███   ███  ███   ███  ███   ███  ███   ███  ███   ███  ███   ███
+    ███   ███  ███   ███   ███  ███   ███  ███   ███  ███   █▀   ███   ███  ███   ███
+    ███   ███  ███   ███   ███ ▄███▄▄▄███ ▄███▄▄▄██▀  ███       ▄███▄▄▄███▄ ███▄▄▄███
+    ███   ███  ███   ███   ███ ▀███▀▀▀███ ▀███▀▀▀▀    ███      ▀▀███▀▀▀███  ▀▀▀▀▀▀███
+    ███   ███  ███   ███   ███  ███   ███ ██████████  ███   █▄   ███   ███  ▄██   ███
+    ███   ███  ███   ███   ███  ███   ███  ███   ███  ███   ███  ███   ███  ███   ███
+     ▀█████▀    ▀█   ███   █▀   ███   █▀   ███   ███  ███████▀   ███   █▀    ▀█████▀
+                                           ███   █▀
+    </pre>
+          </a>
+        </div>
+
+        <header class="header">
+          <h1><a href="/manual/">The Omarchy Manual</a></h1>
+        </header>
+
+        <main class="main">
+    #{main}
+        </main>
+
+        <footer class="footer">
+          <div class="footer__subhead">
+            <p>Brought to you by <a href="https://37signals.com">37signals</a></p>
+          </div>
+
+          <div class="footer__buttons">
+            <a href="https://basecamp.com"><img src="/assets/images/logo-basecamp.svg" width="145" height="32" alt="Basecamp"></a>
+            <a href="https://hey.com"><img src="/assets/images/logo-hey.svg" width="123" height="57" alt="HEY"></a>
+            <a href="https://fizzy.do"><img src="/assets/images/logo-fizzy.svg" width="56" height="56" alt="Fizzy"></a>
+            <a href="https://once.com"><img src="/assets/images/logo-once.svg" width="72" height="72" alt="ONCE"></a>
+          </div>
+
+          <div class="footer__sponsor">
+            <span>Sponsored hosting by</span>
+            <a href="https://cloudflare.com"><img src="/assets/images/logo-cloudflare.svg" width="213" height="32" alt="Cloudflare"></a>
+          </div>
+        </footer>
+      </body>
+    </html>
+  HTML
+end
+
+def chapter_list(chapters, current: nil)
+  items = chapters.map do |chapter|
+    current_attr = chapter == current ? ' aria-current="page"' : ""
+    %(        <li><a href="#{chapter.path}"#{current_attr}>#{h chapter.title}</a></li>)
+  end
+
+  ["      <ol>", *items, "      </ol>"].join("\n")
+end
+
+def index_page(chapters)
+  main = <<~HTML.chomp
+      <div class="manual manual--index">
+        <nav class="manual__index" style="--chapter-rows: #{(chapters.size + 1) / 2}" aria-label="Chapters">
+    #{chapter_list(chapters)}
+        </nav>
+      </div>
+  HTML
+
+  page title: "Table of Contents",
+    description: "The complete manual for Omarchy — Beautiful, Modern & Opinionated Linux by DHH.",
+    url: "https://omarchy.org/manual/",
+    main: main
+end
+
+def chapter_page(chapter, chapters)
+  index = chapters.index(chapter)
+  previous_chapter = index > 0 ? chapters[index - 1] : nil
+  next_chapter = chapters[index + 1]
+
+  pagination = [
+    previous_chapter && %(        <a class="manual__pagination-previous" href="#{previous_chapter.path}" rel="prev">← #{h previous_chapter.title}</a>),
+    next_chapter && %(        <a class="manual__pagination-next" href="#{next_chapter.path}" rel="next">#{h next_chapter.title} →</a>)
+  ].compact.join("\n")
+
+  main = <<~HTML.chomp
+      <div class="manual manual--chapter">
+        <nav class="manual__toc" aria-label="Chapters">
+    #{chapter_list(chapters, current: chapter)}
+        </nav>
+
+        <article class="manual__content">
+          <h1>#{h chapter.title}</h1>
+    #{render_markdown(chapter)}
+          <nav class="manual__pagination">
+    #{pagination}
+          </nav>
+        </article>
+      </div>
+  HTML
+
+  page title: chapter.title,
+    description: chapter.description,
+    url: "https://omarchy.org#{chapter.path}",
+    main: main
+end
+
+chapters = ARGV[0] ? load_chapters(ARGV[0]) : fetch_chapters
+
+manual_dir = File.join(SITE_ROOT, "manual")
+FileUtils.rm_rf manual_dir
+FileUtils.mkdir_p manual_dir
+
+File.write File.join(manual_dir, "index.html"), index_page(chapters)
+
+chapters.each do |chapter|
+  FileUtils.mkdir_p File.join(manual_dir, chapter.slug)
+  File.write File.join(manual_dir, chapter.slug, "index.html"), chapter_page(chapter, chapters)
+end
+
+puts "Built #{chapters.size} chapters into manual/"
