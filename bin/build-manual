@@ -18,6 +18,7 @@ require "fileutils"
 require "tmpdir"
 
 SITE_ROOT = File.expand_path("..", __dir__)
+THEME_PREVIEW_REF = %r{\]\(\.\./themes/([\w-]+)/(preview(?:-unlock)?)\.png\)}
 TEMPLATE_DIR = File.join(SITE_ROOT, "templates")
 SOURCE_TARBALL = "https://github.com/basecamp/omarchy/archive/HEAD.tar.gz"
 
@@ -45,7 +46,7 @@ end
 
 def fetch_source
   Dir.mktmpdir do |tmp|
-    system "curl -fsSL #{SOURCE_TARBALL} | tar xz -C #{tmp} --strip-components=1 --wildcards '*/manual'", exception: true
+    system "curl -fsSL #{SOURCE_TARBALL} | tar xz -C #{tmp} --strip-components=1 --wildcards '*/manual' '*/themes/*/preview*.png'", exception: true
     yield File.join(tmp, "manual")
   end
 end
@@ -56,6 +57,7 @@ def render_markdown(chapter)
   markdown = chapter.body
     .gsub(/\]\((\d\d-[\w-]+)\.md(#[^)]*)?\)/) { "](../#{$1.split("-", 2).last}/#{$2})" }
     .gsub("](images/", "](/manual/images/")
+    .gsub(THEME_PREVIEW_REF) { "](/manual/images/#{$1}-#{$2}.webp)" }
   Kramdown::Document.new(markdown, input: "GFM", hard_wrap: false, syntax_highlighter: nil).to_html
 end
 
@@ -99,8 +101,24 @@ def build(source_dir)
 
   images_dir = File.join(source_dir, "images")
   FileUtils.cp_r images_dir, File.join(manual_dir, "images") if Dir.exist?(images_dir)
+  convert_theme_previews source_dir, chapters, File.join(manual_dir, "images")
 
   puts "Built #{chapters.size} chapters into manual/"
+end
+
+# The themes chapter references themes/*/preview*.png straight from the omarchy
+# repo; convert those to webp alongside the manual's own images.
+def convert_theme_previews(source_dir, chapters, images_dir)
+  previews = chapters.flat_map { |chapter| chapter.body.scan(THEME_PREVIEW_REF) }.uniq
+  return if previews.empty?
+
+  abort "imagemagick is required to convert theme previews" unless system("command -v magick >/dev/null")
+  FileUtils.mkdir_p images_dir
+
+  previews.each do |slug, kind|
+    source = File.join(source_dir, "..", "themes", slug, "#{kind}.png")
+    system "magick #{source} -strip -resize '1600>' -quality 82 #{File.join(images_dir, "#{slug}-#{kind}.webp")}", exception: true
+  end
 end
 
 ARGV[0] ? build(ARGV[0]) : fetch_source { |dir| build(dir) }
