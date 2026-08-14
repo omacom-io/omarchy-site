@@ -12,5 +12,5 @@ Regenerate them (then commit the result) with:
 
     bin/build-manual
 
-It needs `gem install kramdown kramdown-parser-gfm` on first run. Pass a local
+It needs `gem install kramdown kramdown-parser-gfm` and imagemagick on first run. Pass a local
 checkout to build without hitting GitHub: `bin/build-manual ../omarchy/manual`.
