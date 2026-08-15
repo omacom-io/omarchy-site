@@ -1,11 +1,14 @@
   <div class="manual manual--chapter">
-    <nav class="manual__toc" aria-label="Chapters">
-      <ol>
+    <div class="manual__sidebar">
+<%= render "search", {} -%>
+      <nav class="manual__toc" aria-label="Chapters">
+        <ol>
 <%- chapters.each do |other| -%>
-        <li><a href="<%= other.path %>"<%= %( aria-current="page") if other == chapter %>><%= h other.title %></a></li>
+          <li><a href="<%= other.path %>"<%= %( aria-current="page") if other == chapter %>><%= h other.title %></a></li>
 <%- end -%>
-      </ol>
-    </nav>
+        </ol>
+      </nav>
+    </div>
 
     <article class="manual__content">
       <h1><%= h chapter.title %></h1>

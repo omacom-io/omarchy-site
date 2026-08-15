@@ -210,15 +210,23 @@
     max-width: none;
   }
 
-  .manual__toc {
+  /* The sidebar sticks as a whole, but only the chapter list scrolls — the search
+     box has to sit outside the scroller so its results aren't clipped by it. */
+  .manual__sidebar {
     align-self: start;
-    display: block;
-    font-size: 77.5%;
+    display: grid;
+    gap: var(--space-large);
+    grid-template-rows: auto minmax(0, 1fr);
     max-height: calc(100dvh - 2 * var(--space-large));
-    overflow-y: auto;
     position: sticky;
-    scrollbar-width: thin;
     top: var(--space-large);
+  }
+
+  .manual__toc {
+    display: block;
+    min-height: 0;
+    overflow-y: auto;
+    scrollbar-width: thin;
   }
 
   .manual__toc ol {

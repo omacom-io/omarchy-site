@@ -1,4 +1,5 @@
   <div class="manual manual--index">
+<%= render "search", {} -%>
     <nav class="manual__index" style="--chapter-rows: <%= (chapters.size + 1) / 2 %>" aria-label="Chapters">
       <ol>
 <%- chapters.each do |chapter| -%>
