@@ -112,17 +112,17 @@
 
     <article class="manual__content">
       <h1>Troubleshooting</h1>
-<h3 id="i-broke-my-system-with-an-update">I broke my system with an update!</h3>
+<h3 id="i-broke-my-system-with-an-update">I broke my system with an update! <a class="manual__heading-link" href="#i-broke-my-system-with-an-update" aria-label="Link to this section">#</a></h3>
 
 <p>First try to <a href="../system-snapshots/">rollback your system</a> the version before your recent update. If that doesn’t work, use <code>omarchy-debug</code> to share with your problem on #omarchy-help in the Discord. And if all that fails, you can reinstall the defaults configs and packages using <code>omarchy-reinstall</code>.</p>
 
-<h3 id="why-are-some-apps-so-large-on-my-display">Why are some apps so large on my display?</h3>
+<h3 id="why-are-some-apps-so-large-on-my-display">Why are some apps so large on my display? <a class="manual__heading-link" href="#why-are-some-apps-so-large-on-my-display" aria-label="Link to this section">#</a></h3>
 
 <p>Omarchy assumes a 2x high-resolution display, which requires setting <code>GDK_SCALE</code> to 2 in <code>~/.config/hypr/monitors.lua</code>. But if you’re on a 1x display, you can change <code>local omarchy_gdk_scale = 2</code> to 1 (and then restart any app that’s oversized). See <a href="../monitors/">the manual on monitors</a>.</p>
 
 <p>For Spotify, you can use <code>Ctrl + Minus</code> to shrink the UI (and <code>Ctrl + Plus</code> to make it bigger).</p>
 
-<h3 id="why-isnt-caps-lock-working">Why isn’t Caps Lock working?</h3>
+<h3 id="why-isnt-caps-lock-working">Why isn’t Caps Lock working? <a class="manual__heading-link" href="#why-isnt-caps-lock-working" aria-label="Link to this section">#</a></h3>
 
 <p>In Omarchy, Caps Lock has been designated to be the xcompose key. That’s how you get <a href="../hotkeys/#quick-emojis">quick emojis</a> and <a href="../hotkeys/#quick-completions">other autocompletions</a> done. If you really miss using Caps Lock, you can remap the xcompose key to something else by editing <code>~/.config/hypr/input.lua</code>, like setting it to the right alt key:</p>
 
@@ -133,23 +133,23 @@
 })
 </code></pre>
 
-<h3 id="my-wi-fi-bluetooth-audio-or-trackpad-just-stopped-working">My Wi-Fi, Bluetooth, audio, or trackpad just stopped working</h3>
+<h3 id="my-wi-fi-bluetooth-audio-or-trackpad-just-stopped-working">My Wi-Fi, Bluetooth, audio, or trackpad just stopped working <a class="manual__heading-link" href="#my-wi-fi-bluetooth-audio-or-trackpad-just-stopped-working" aria-label="Link to this section">#</a></h3>
 
 <p>Before you reboot, try restarting the offending subsystem on its own. <em>Update &gt; Hardware</em> in the Omarchy menu has Wi-Fi, Bluetooth, Audio, and Trackpad, and reloading one of those clears up the majority of “it worked five minutes ago” situations — a Bluetooth headset that won’t reconnect, a trackpad that went dead after a suspend, sound that vanished when you unplugged a monitor.</p>
 
-<h3 id="why-are-my-external-speakers-not-playing">Why are my external speakers not playing?</h3>
+<h3 id="why-are-my-external-speakers-not-playing">Why are my external speakers not playing? <a class="manual__heading-link" href="#why-are-my-external-speakers-not-playing" aria-label="Link to this section">#</a></h3>
 
 <p>Probably because they’re not set as the primary output. Click on the speaker icon on the right side of the bar, and it’ll open the volume popup where you can pick the output device (and mix per-app volumes too).</p>
 
-<h3 id="my-laptop-speakers-sound-off">My laptop speakers sound off</h3>
+<h3 id="my-laptop-speakers-sound-off">My laptop speakers sound off <a class="manual__heading-link" href="#my-laptop-speakers-sound-off" aria-label="Link to this section">#</a></h3>
 
 <p>On some laptops, Omarchy automatically applies a speaker tuning that corrects the built-in speakers’ frequency response. <code>omarchy audio tuning status</code> tells you whether one is active on your machine, and <code>omarchy audio tuning off</code> turns it off if you’d rather hear the speakers raw.</p>
 
-<h3 id="why-cant-i-login-or-sudo-with-my-password">Why can’t I login or sudo with my password?</h3>
+<h3 id="why-cant-i-login-or-sudo-with-my-password">Why can’t I login or sudo with my password? <a class="manual__heading-link" href="#why-cant-i-login-or-sudo-with-my-password" aria-label="Link to this section">#</a></h3>
 
 <p>You probably typed it wrong too many times and got locked out. If this is happening on the lock screen, you can hit <code>CTRL + ALT + F2</code> to start a new TTY where you can login as root, then run <code>faillock --reset --user [your-username]</code>. That’ll reset the lockout, and you’re good to go.</p>
 
-<h3 id="why-isnt-my-1password-authorization-prompts-for-1password-ssh-agent--cli-appearing">Why isn’t my 1Password authorization prompts for 1Password SSH Agent / CLI appearing?</h3>
+<h3 id="why-isnt-my-1password-authorization-prompts-for-1password-ssh-agent--cli-appearing">Why isn’t my 1Password authorization prompts for 1Password SSH Agent / CLI appearing? <a class="manual__heading-link" href="#why-isnt-my-1password-authorization-prompts-for-1password-ssh-agent--cli-appearing" aria-label="Link to this section">#</a></h3>
 
 <p>This can happen for 2 reasons:</p>
 

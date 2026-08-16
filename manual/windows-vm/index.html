@@ -120,7 +120,7 @@
 
 <p><img src="/manual/images/windows-vm.webp" alt="windows-vm" /></p>
 
-<h2 id="using-it">Using it</h2>
+<h2 id="using-it">Using it <a class="manual__heading-link" href="#using-it" aria-label="Link to this section">#</a></h2>
 
 <p>Once it’s installed, launch <em>Windows</em> from the app launcher. That starts the VM if it isn’t already running and connects you over RDP, full screen. Give it 15-30 seconds on a cold start.</p>
 
@@ -135,13 +135,13 @@ omarchy windows vm stop      # shut it down
 omarchy windows vm launch    # start and connect
 </code></pre>
 
-<h2 id="sharing-files">Sharing files</h2>
+<h2 id="sharing-files">Sharing files <a class="manual__heading-link" href="#sharing-files" aria-label="Link to this section">#</a></h2>
 
 <p>The directory <code>~/Windows</code> in your home directory is automatically shared with the VM. Put files there if you want them accessible to Windows. The VM has no access to any other part of your file system, so you’re safe from anything nasty on the Windows side. Its own virtual disk lives in <code>~/.windows</code>.</p>
 
 <p>The VM’s ports are bound to localhost only, so nothing on your network can reach the Windows machine.</p>
 
-<h2 id="limits-and-licensing">Limits and licensing</h2>
+<h2 id="limits-and-licensing">Limits and licensing <a class="manual__heading-link" href="#limits-and-licensing" aria-label="Link to this section">#</a></h2>
 
 <p>There’s no GPU passthrough with this setup, so it’s not suitable for gaming or video editing. It’s a great way to run Microsoft Office or whatever else you absolutely must have.</p>
 

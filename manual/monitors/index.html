@@ -130,7 +130,7 @@ local omarchy_monitor_scale = 1
 
 <p>You can also quickly step through the major monitor scaling ratios (1x, 1.25x, 1.6x, 2x, 3x, 4x) using <code>Super + /</code> to go higher and <code>Super + Alt + /</code> to go lower. If you have the default configuration, these changes will also persist past reboot.</p>
 
-<h3 id="making-text-bigger-or-smaller">Making text bigger or smaller</h3>
+<h3 id="making-text-bigger-or-smaller">Making text bigger or smaller <a class="manual__heading-link" href="#making-text-bigger-or-smaller" aria-label="Link to this section">#</a></h3>
 
 <p>Monitor scaling changes the size of everything. If all you want is bigger or smaller <em>text</em>, there’s a single knob for that:</p>
 
@@ -139,23 +139,23 @@ local omarchy_monitor_scale = 1
 
 <p>That takes a pixel size between 9 and 20, and moves the Omarchy shell, GTK applications, and your terminal together, so the whole desktop stays in proportion. Run it without an argument to see where you’re at, and <code>omarchy display text size reset</code> to go back to the default. Foot is the one straggler: it has no way to reload its config, so running terminals keep their old size until you open a new one.</p>
 
-<h3 id="extending-and-mirroring-laptop-displays">Extending and mirroring laptop displays</h3>
+<h3 id="extending-and-mirroring-laptop-displays">Extending and mirroring laptop displays <a class="manual__heading-link" href="#extending-and-mirroring-laptop-displays" aria-label="Link to this section">#</a></h3>
 
 <p>When you connect an external screen to your laptop, the display is automatically extended. But you can change that to mirroring instead using <em>Trigger &gt; Hardware</em> in the Omarchy menu or <code>Super + Ctrl + Alt + Delete</code>. This is especially helpful if that external screen is a projector, and you want to show something while working.</p>
 
 <p>When you’re extending, closing the lid on the laptop will automatically turn off the internal screen. Opening the lid will turn it back on. You can also control this manually using <em>Trigger &gt; Hardware</em> in the Omarchy menu or <code>Super + Ctrl + Delete</code>.</p>
 
-<h3 id="arranging-multiple-screens">Arranging multiple screens</h3>
+<h3 id="arranging-multiple-screens">Arranging multiple screens <a class="manual__heading-link" href="#arranging-multiple-screens" aria-label="Link to this section">#</a></h3>
 
 <p>Hyprland works great with multiple screens. Read more about how to lay them out in <a href="https://wiki.hypr.land/Configuring/Basics/Monitors/">the Hyprland monitor documentation</a>. You can <a href="https://wiki.hypr.land/Configuring/Basics/Workspace-Rules/">bind specific workspaces to specific monitors</a> as well. In Omarchy, these rules go in <code>~/.config/hypr/monitors.lua</code> as <code>hl.monitor</code> entries — the file ships with commented examples for pinning a specific monitor to a resolution, position, and rotation.</p>
 
 <p>You can also checkout <a href="https://github.com/erans/hyprmon/">Hyprmon</a>, if you’d like a TUI to help you with the positioning of multiple screens.</p>
 
-<h3 id="controlling-brightness">Controlling brightness</h3>
+<h3 id="controlling-brightness">Controlling brightness <a class="manual__heading-link" href="#controlling-brightness" aria-label="Link to this section">#</a></h3>
 
 <p>Monitor brightness is controlled by the dedicated function keys for brightness up/down. If you hold down shift while pressing these, you’ll go to maximum or minimum brightness. The keys control the display you’re focused on, so external monitors that speak DDC/CI are adjusted the same way as the laptop screen.</p>
 
-<h3 id="apple-displays">Apple Displays</h3>
+<h3 id="apple-displays">Apple Displays <a class="manual__heading-link" href="#apple-displays" aria-label="Link to this section">#</a></h3>
 
 <p>If you’re using an Apple display, the regular keyboard brightness keys will also automatically work, if you’re focused on the Apple display. This is done through the <code>asdcontrol</code> command.</p>
 
