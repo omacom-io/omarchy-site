@@ -149,7 +149,7 @@
   </tbody>
 </table>
 
-<h2 id="screenshots">Screenshots</h2>
+<h2 id="screenshots">Screenshots <a class="manual__heading-link" href="#screenshots" aria-label="Link to this section">#</a></h2>
 
 <p>Hit <code>Print Screen</code> and the screen freezes so nothing shifts under you while you aim. Drag a box for a freeform region, or just click once and the shot snaps to whatever rectangle you clicked in — a window if you landed on one, the whole monitor if you landed on the bar or in a gap. Changed your mind? Hit <code>Print Screen</code> again to dismiss the picker.</p>
 
@@ -159,7 +159,7 @@
 
 <p>From the terminal, <code>omarchy screenshot</code> takes the same shot, and you can be explicit about it: <code>omarchy capture screenshot region</code> for freeform only, <code>windows</code> to snap to window and monitor rectangles, or <code>fullscreen</code> to skip the picker entirely and grab the focused monitor. A second argument of <code>copy</code> puts the shot only on the clipboard, and <code>save</code> only on disk.</p>
 
-<h3 id="driving-the-picker-from-the-keyboard">Driving the picker from the keyboard</h3>
+<h3 id="driving-the-picker-from-the-keyboard">Driving the picker from the keyboard <a class="manual__heading-link" href="#driving-the-picker-from-the-keyboard" aria-label="Link to this section">#</a></h3>
 
 <p>While the selection is up, you don’t have to use the mouse at all:</p>
 
@@ -192,7 +192,7 @@
 
 <p>The arrows and Tab move the cursor to the window they pick, so the highlight follows along and you can see what you’re about to capture. These bindings only exist while a selection is on screen, so they can’t collide with anything in your own config.</p>
 
-<h2 id="screen-recording">Screen recording</h2>
+<h2 id="screen-recording">Screen recording <a class="manual__heading-link" href="#screen-recording" aria-label="Link to this section">#</a></h2>
 
 <p><code>Alt + Print Screen</code> opens <em>Trigger &gt; Capture &gt; Screenrecord</em>, which asks what you want on the soundtrack: no audio, desktop audio, desktop plus microphone, or desktop plus microphone plus webcam. That last one only shows up if you actually have a camera plugged in. Pick one and you get the same picker as a screenshot: drag a region, or click a window or monitor.</p>
 
@@ -202,7 +202,7 @@
 
 <p>Stopping does a bit of tidying before it hands you the file: the first frame gets trimmed, and if there’s audio it’s normalized to -14 LUFS with the PipeWire capture pop at the very start muted out. Then a notification appears with a thumbnail from the recording. Click it to play the file in mpv.</p>
 
-<h3 id="the-webcam-overlay">The webcam overlay</h3>
+<h3 id="the-webcam-overlay">The webcam overlay <a class="manual__heading-link" href="#the-webcam-overlay" aria-label="Link to this section">#</a></h3>
 
 <p>When you record with a webcam, the camera appears as a pinned, cropped portrait window in the bottom-right corner of whatever you’re recording. If it’s sitting on top of something you need, resize it on the fly:</p>
 
@@ -229,7 +229,7 @@
 
 <p>You can also call it directly with <code>omarchy-capture-webcam-resize small</code>, or <code>reset</code> to go back to medium.</p>
 
-<h2 id="text-qr-codes-and-colours">Text, QR codes, and colours</h2>
+<h2 id="text-qr-codes-and-colours">Text, QR codes, and colours <a class="manual__heading-link" href="#text-qr-codes-and-colours" aria-label="Link to this section">#</a></h2>
 
 <p><code>Super + Ctrl + Print Screen</code> selects a region and OCRs it to the clipboard. That’s covered properly in <a href="../text-extraction-dictation/">Text Extraction &amp; Dictation</a>.</p>
 
@@ -237,7 +237,7 @@
 
 <p><code>Super + Print Screen</code> (or <em>Trigger &gt; Capture &gt; Color</em>) turns the cursor into an eyedropper. Click anything on screen and the colour lands on the clipboard. Press the hotkey again to back out without picking.</p>
 
-<h2 id="transcoding-before-you-share">Transcoding before you share</h2>
+<h2 id="transcoding-before-you-share">Transcoding before you share <a class="manual__heading-link" href="#transcoding-before-you-share" aria-label="Link to this section">#</a></h2>
 
 <p>A 4K screen recording or a raw HEIC off your phone is often too big to just send. <code>Super + Ctrl + .</code> (or <em>Trigger &gt; Transcode</em>) fixes that. It offers you a fuzzy file picker over <code>~/Pictures</code> and <code>~/Videos</code>, then asks for a format and a size.</p>
 
@@ -245,7 +245,7 @@
 
 <p>It works from the terminal too, if you already know what you want: <code>omarchy transcode ~/Videos/demo.mov mp4 1080p</code>. There’s also <code>omarchy transcode ascii</code>, which turns an image into ASCII art — that one’s mostly for <a href="../branding/">branding</a>.</p>
 
-<h2 id="sending-it-somewhere">Sending it somewhere</h2>
+<h2 id="sending-it-somewhere">Sending it somewhere <a class="manual__heading-link" href="#sending-it-somewhere" aria-label="Link to this section">#</a></h2>
 
 <p>Once you’ve got the file, <code>Super + Ctrl + S</code> opens the Share menu and sends it to another device on your network via LocalSend. See <a href="../guis/">GUIs</a> for that.</p>
 

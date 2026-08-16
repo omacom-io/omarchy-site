@@ -114,17 +114,17 @@
       <h1>System sleep</h1>
 <p>Omarchy enables suspend and hibernation by default, but if you’re having issues with either on your machine, you can toggle them off.</p>
 
-<h3 id="power-profiles">Power profiles</h3>
+<h3 id="power-profiles">Power profiles <a class="manual__heading-link" href="#power-profiles" aria-label="Link to this section">#</a></h3>
 
 <p>On a laptop, Omarchy remembers your power profile separately for plugged in and running on battery, and switches between the two as you plug and unplug. Out of the box that means performance on AC and balanced on battery.</p>
 
 <p>You can see what your machine offers with <code>omarchy powerprofiles list</code>, and set the one you want for the state you’re currently in with <code>omarchy powerprofiles set autodetect power-saver</code>. To set the other state without unplugging anything, name it directly: <code>omarchy powerprofiles set battery power-saver</code>. Whatever you pick is what you’ll get back the next time you’re in that state.</p>
 
-<h3 id="toggle-suspend">Toggle suspend</h3>
+<h3 id="toggle-suspend">Toggle suspend <a class="manual__heading-link" href="#toggle-suspend" aria-label="Link to this section">#</a></h3>
 
 <p>You toggle suspend by running <code>omarchy toggle suspend</code> from the terminal. That just reveals/hides the option under <em>System</em> (or <code>Super + Esc</code>), and then you can see if it works consistently on your system. If not, you can hide it again with the same command.</p>
 
-<h3 id="toggle-hibernation">Toggle hibernation</h3>
+<h3 id="toggle-hibernation">Toggle hibernation <a class="manual__heading-link" href="#toggle-hibernation" aria-label="Link to this section">#</a></h3>
 
 <p>You set up hibernation by running <code>omarchy hibernation setup</code> from the terminal. Hibernation creates a /swap subvolume on your boot drive the size of your physical RAM allocation, so make sure you have plenty of room to spare. On a 32GB machine, you’ll always need 32GB+ free for this volume. Hibernation also requires the default Limine bootloader.</p>
 

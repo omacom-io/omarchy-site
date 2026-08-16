@@ -71,6 +71,26 @@
   font-size: 110%;
 }
 
+.manual__heading-link {
+  color: var(--color-terminal-cyan);
+  font-size: 0.75em;
+  margin-left: 0.15em;
+  opacity: 0.5;
+  text-decoration: none;
+  transition: opacity var(--transition);
+}
+
+@media(hover: hover) {
+  .manual__heading-link {
+    opacity: 0;
+  }
+
+  .manual__content :is(h2, h3, h4, h5, h6):hover .manual__heading-link,
+  .manual__heading-link:focus-visible {
+    opacity: 0.5;
+  }
+}
+
 .manual__content p,
 .manual__content ul,
 .manual__content ol,

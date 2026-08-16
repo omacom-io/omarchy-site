@@ -116,7 +116,7 @@
 
 <p>This makes Omarchy great as a base image for disposable dev environments: create a VM in Proxmox or with Packer, boot it, walk away, SSH in. <code>cidata</code> is the cloud-init <code>NoCloud</code> label, so all the common virtualization tooling already knows how to attach such a drive.</p>
 
-<h2 id="the-configuration-files">The configuration files</h2>
+<h2 id="the-configuration-files">The configuration files <a class="manual__heading-link" href="#the-configuration-files" aria-label="Link to this section">#</a></h2>
 
 <p>The files are exactly what the installer’s own wizard writes, so the easiest way to get a starting set is to run one interactive install (in a VM, say) and copy what it wrote into <code>/root</code>:</p>
 
@@ -171,13 +171,13 @@
 
 <p>You can also drop in an empty file named <code>defer-provisioning</code> in place of <code>user_credentials.json</code>. That runs the same <a href="../getting-started/">prepare-for-another-owner install</a> you can trigger interactively: the machine installs with no personal details, and whoever boots it first picks their keyboard and creates their user. That’s the mode for imaging rigs, where the drive shouldn’t carry anyone’s credentials at all.</p>
 
-<h2 id="ssh-access">SSH access</h2>
+<h2 id="ssh-access">SSH access <a class="manual__heading-link" href="#ssh-access" aria-label="Link to this section">#</a></h2>
 
 <p>When <code>authorized_keys</code> is present, the install sets the keys up as the user’s <code>~/.ssh/authorized_keys</code>, enables <code>sshd</code>, and opens the firewall for it. (A stock Omarchy install ships openssh with the service disabled and the port closed, so an unattended machine would otherwise be unreachable.) The install only adds your keys — it doesn’t loosen any of the SSH daemon’s other authentication settings.</p>
 
 <p>When <code>tailscale_authkey</code> is present, the machine joins your tailnet on first boot instead: Tailscale is installed from the ISO’s bundled packages, the firewall allows the tailnet interface, and a background job runs the join as soon as the machine actually has network, retrying until it succeeds. Use a reusable, pre-authorized key so one drive image can serve many machines.</p>
 
-<h2 id="building-the-cidata-drive">Building the cidata drive</h2>
+<h2 id="building-the-cidata-drive">Building the cidata drive <a class="manual__heading-link" href="#building-the-cidata-drive" aria-label="Link to this section">#</a></h2>
 
 <p>Any filesystem with the right label works. A tiny ISO is the easy way:</p>
 
@@ -203,7 +203,7 @@ qm start 101
 
 <p>The boot order lists the disk first on purpose: the empty disk falls through to the ISO on the first boot, and the installed system boots from disk ever after.</p>
 
-<h2 id="two-caveats">Two caveats</h2>
+<h2 id="two-caveats">Two caveats <a class="manual__heading-link" href="#two-caveats" aria-label="Link to this section">#</a></h2>
 
 <p>Encrypted unattended installs aren’t fully unattended — someone still has to type the LUKS passphrase at the first boot. And the <code>disk_encryption</code> block in <code>user_configuration.json</code> carries that passphrase in plaintext, so treat a cidata drive built from an encrypted install as the secret it is.</p>
 
