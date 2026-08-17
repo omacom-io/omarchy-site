@@ -46,7 +46,7 @@ function ready() {
       modalContainer.innerHTML = `
         <div class="workstations__image workstations__image--modal">
           <figure>
-            <img src="${figureImgSrc}" alt="${figureImgAlt}" loading="lazy" decoding="async">
+            <img src="${figureImgSrc}" alt="${figureImgAlt}" loading="lazy">
             ${figureFigcaption ? `<figcaption>${figureFigcaption}</figcaption>` : ''}
           </figure>
         </div>
