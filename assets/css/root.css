@@ -1,43 +1,58 @@
 :root {
 
-  --rgb-background-night: 26, 27, 38;
-  --rgb-background-storm: 36, 40, 59;
-  --rgb-black: 0, 0, 0;
-  --rgb-green: 158, 206, 106;
-  --rgb-terminal-black: 65, 72, 104;
-  --rgb-terminal-blue: 122, 162, 247;
-  --rgb-terminal-cyan: 125, 207, 255;
-  --rgb-terminal-white: 192, 202, 245;
-  --rgb-turquoise: 180, 249, 248;
-  --rgb-white: 255, 255, 255;
+  --oklch-background-night: 0.2263 0.0214 280.49;
+  --oklch-background-storm: 0.2819 0.0355 274.75;
+  --oklch-black: 0 0 0;
+  --oklch-green: 0.7953 0.1395 130.14;
+  --oklch-terminal-black: 0.4094 0.0546 274.27;
+  --oklch-terminal-blue: 0.719 0.1322 264.2;
+  --oklch-terminal-cyan: 0.82 0.1051 235.72;
+  --oklch-terminal-white: 0.8456 0.0611 274.76;
+  --oklch-turquoise: 0.9363 0.0684 194.91;
+  --oklch-white: 1 0 0;
 
-  --color-background-night: rgb(var(--rgb-background-night));
-  --color-background-storm: rgb(var(--rgb-background-storm));
-  --color-black: rgb(var(--rgb-black));
-  --color-green: rgb(var(--rgb-green));
-  --color-terminal-black: rgb(var(--rgb-terminal-black));
-  --color-terminal-blue: rgb(var(--rgb-terminal-blue));
-  --color-terminal-cyan: rgb(var(--rgb-terminal-cyan));
-  --color-terminal-white: rgb(var(--rgb-terminal-white));
-  --color-turquoise: rgb(var(--rgb-turquoise));
-  --color-white: rgb(var(--rgb-white));
+  --color-background-night: oklch(var(--oklch-background-night));
+  --color-background-storm: oklch(var(--oklch-background-storm));
+  --color-black: oklch(var(--oklch-black));
+  --color-green: oklch(var(--oklch-green));
+  --color-terminal-black: oklch(var(--oklch-terminal-black));
+  --color-terminal-blue: oklch(var(--oklch-terminal-blue));
+  --color-terminal-cyan: oklch(var(--oklch-terminal-cyan));
+  --color-terminal-white: oklch(var(--oklch-terminal-white));
+  --color-turquoise: oklch(var(--oklch-turquoise));
+  --color-white: oklch(var(--oklch-white));
 
-  --font-family: 'Cascadia Code', Menlo, Monaco, Consolas, 'Courier New', monospace;
-  --font-size: clamp(0.625rem, 1.25vw, 1rem);
+  --font-family-cascadia: 'Cascadia Code', Menlo, Monaco, Consolas, 'Courier New', monospace;
+  --font-family-jetbrains: 'JetBrains Mono', monospace;
+  --font-size: max(0.8125rem, 1.1875vw);
   --font-size-small: 80%;
   --font-size-medium: 125%;
-  --font-size-large: 200%;
+  --font-size-large: 150%;
+  --font-size-x-large: 175%;
+  --font-size-xx-large: 200%;
 
-  --line-height: 1.4;
+  --letter-spacing: normal;
 
-  --space-small: 0.5em;
+  --line-height-tight: 1.3;
+  --line-height: 1.6;
+
+  --border-color: oklch(var(--oklch-terminal-black) / 0.8);
+  --border-width: max(1px, 0.0625em);
+
+  --space-xxx-small: 0.2em;
+  --space-xx-small: 0.4em;
+  --space-x-small: 0.6em;
+  --space-small: 0.8em;
   --space-medium: 1em;
+  --space-neutral: 1.5em;
   --space-large: 2em;
   --space-x-large: 3em;
   --space-xx-large: 4em;
   --space-xxx-large: 5em;
   --space-xxxx-large: 6em;
 
-  --transition: 0.15s cubic-bezier(0.33, 1, 0.68, 1);
+  --transition: 0.15s ease;
+
+  --nav-height: calc(var(--space-xxx-large) + var(--border-width));
 
 }
