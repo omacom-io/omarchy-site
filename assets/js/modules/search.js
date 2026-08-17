@@ -21,7 +21,7 @@ function ready() {
 
   function snippet(content, regexp) {
 
-    var length = 250;
+    var length = 220;
     var match = regexp ? content.match(regexp) : null;
     var start = 0;
 
@@ -38,7 +38,7 @@ function ready() {
 
     if(regexp) excerpt = excerpt.replace(regexp, '<mark>$1</mark>');
 
-    return (clippedStart ? '&hellip;' : '') + excerpt + (clippedEnd ? '&hellip;' : '');
+    return (clippedStart ? '...' : '') + excerpt + (clippedEnd ? '...' : '');
 
   }
 

@@ -83,7 +83,15 @@ def h(text) = CGI.escapeHTML(text)
 
 # Rendered chapter HTML reduced to indexable plain text for the search store.
 def plain_text(html)
-  CGI.unescapeHTML(html.gsub(/<[^>]+>/, " ")).gsub(/\s+/, " ").strip
+  CGI.unescapeHTML(html.gsub(/<[^>]+>/, " "))
+    .gsub(/\s+/, " ")
+    # Replacing inline tags with a space leaves a stray space hugging punctuation
+    # (e.g. "Hyprland</a>," -> "Hyprland ,"), which shows up in search excerpts.
+    # Tidy sentence punctuation and parens; leave { } alone since those spaces come
+    # from flattened code blocks, where the spacing is real.
+    .gsub(/\s+([.,;:!?)])/, '\1')
+    .gsub(/\(\s+/, "(")
+    .strip
 end
 
 def render(template, locals = {})
