@@ -104,15 +104,6 @@
   padding-top: 1.25em;
 }
 
-.manual__heading-link {
-  color: var(--color-terminal-cyan);
-  font-size: 0.75em;
-  margin-left: 0.15em;
-  opacity: 0.5;
-  text-decoration: none;
-  transition: opacity var(--transition);
-}
-
 .manual__article h1 a,
 .manual__article h2 a,
 .manual__article h3 a,
@@ -238,6 +229,14 @@
   font-weight: 700;
 }
 
+.manual__heading-link {
+  color: var(--color-white);
+  font-size: var(--font-size-small);
+  font-weight: inherit;
+  opacity: 0;
+  text-decoration: none;
+}
+
 .manual__pagination {
   display: grid;
 }
@@ -299,12 +298,20 @@
   }
 
   .manual__heading-link {
-    opacity: 0;
+    transition:
+      color var(--transition),
+      opacity var(--transition)
+    ;
   }
 
-  .manual__content :is(h2, h3, h4, h5, h6):hover .manual__heading-link,
+  .manual__article :is(h2, h3, h4, h5, h6):hover .manual__heading-link,
   .manual__heading-link:focus-visible {
     opacity: 0.5;
+  }
+
+  .manual__article :is(h2, h3, h4, h5, h6) .manual__heading-link:hover {
+    color: var(--color-white);
+    opacity: 1;
   }
 
   .manual__pagination-button {
