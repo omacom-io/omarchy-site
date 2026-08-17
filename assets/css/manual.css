@@ -104,6 +104,14 @@
   padding-top: 1.25em;
 }
 
+.manual__article h1 + h2,
+.manual__article h1 + h3,
+.manual__article h1 + h4,
+.manual__article h1 + h5,
+.manual__article h1 + h6 {
+  padding-top: 0;
+}
+
 .manual__article h1 a,
 .manual__article h2 a,
 .manual__article h3 a,
