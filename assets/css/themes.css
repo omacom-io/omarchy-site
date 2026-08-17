@@ -37,7 +37,7 @@
 
 .themes__grid {
   display: grid;
-  gap: var(--space-large);
+  gap: var(--space-neutral);
   grid-template-columns: repeat(auto-fit, minmax(20em, 1fr));
 }
 
