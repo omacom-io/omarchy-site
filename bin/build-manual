@@ -15,6 +15,7 @@ end
 require "cgi"
 require "erb"
 require "fileutils"
+require "json"
 require "tmpdir"
 
 SITE_ROOT = File.expand_path("..", __dir__)
@@ -47,7 +48,10 @@ end
 
 def fetch_source
   Dir.mktmpdir do |tmp|
-    system "curl -fsSL #{SOURCE_TARBALL} | tar xz -C #{tmp} --strip-components=1 --wildcards '*/manual' '*/themes/*/preview*.png'", exception: true
+    # GNU tar needs --wildcards to glob member patterns; BSD tar (macOS) globs by
+    # default and rejects the flag.
+    wildcards = `tar --version 2>/dev/null`.include?("GNU") ? "--wildcards " : ""
+    system "curl -fsSL #{SOURCE_TARBALL} | tar xz -C #{tmp} --strip-components=1 #{wildcards}'*/manual' '*/themes/*/preview*.png'", exception: true
     yield File.join(tmp, "manual")
   end
 end
@@ -64,6 +68,11 @@ end
 
 def h(text) = CGI.escapeHTML(text)
 
+# Rendered chapter HTML reduced to indexable plain text for the search store.
+def plain_text(html)
+  CGI.unescapeHTML(html.gsub(/<[^>]+>/, " ")).gsub(/\s+/, " ").strip
+end
+
 def render(template, locals)
   scope = binding
   locals.each { |name, value| scope.local_variable_set(name, value) }
@@ -73,7 +82,10 @@ end
 def write_page(file, template, title:, description:, path:, **locals)
   main = render(template, locals)
   FileUtils.mkdir_p File.dirname(file)
-  File.write file, render("layout", title: title, description: description, url: "https://omarchy.org#{path}", main: main)
+  File.write file, render("layout",
+    title: title, description: description,
+    url: "https://omarchy.org#{path}", path: path,
+    chapters: locals[:chapters], main: main)
 end
 
 def build(source_dir)
@@ -81,12 +93,6 @@ def build(source_dir)
 
   manual_dir = File.join(SITE_ROOT, "manual")
   FileUtils.rm_rf manual_dir
-
-  write_page File.join(manual_dir, "toc/index.html"), "toc",
-    title: "Table of Contents",
-    description: "The complete manual for Omarchy — Beautiful, Modern & Opinionated Linux by DHH.",
-    path: "/manual/toc/",
-    chapters: chapters
 
   chapters.each_with_index do |chapter, index|
     write_page File.join(SITE_ROOT, chapter.path, "index.html"), "chapter",
@@ -96,9 +102,24 @@ def build(source_dir)
       chapters: chapters,
       chapter: chapter,
       content: render_markdown(chapter),
-      previous_chapter: index > 0 ? chapters[index - 1] : nil,
-      next_chapter: chapters[index + 1]
+      previous_chapter: chapters[index - 1],
+      next_chapter: chapters[(index + 1) % chapters.size]
   end
+
+  store = chapters.each_with_object({}) do |chapter, acc|
+    acc[chapter.path] = {
+      title: chapter.title,
+      content: plain_text(render_markdown(chapter)),
+      url: chapter.path
+    }
+  end
+
+  write_page File.join(manual_dir, "search/index.html"), "search",
+    title: "Search",
+    description: "Search the Omarchy manual — Beautiful, Modern & Opinionated Linux by DHH.",
+    path: "/manual/search/",
+    chapters: chapters,
+    store_json: JSON.generate(store).gsub("<", "\\u003c")
 
   images_dir = File.join(source_dir, "images")
   FileUtils.cp_r images_dir, File.join(manual_dir, "images") if Dir.exist?(images_dir)
