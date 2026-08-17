@@ -299,7 +299,7 @@
 
 <p>If you end up making a lot of changes to tweak your own setup, it’s a good idea to backup all these dotfiles. <a href="https://www.youtube.com/watch?v=NoFiYOqnC4o">Stow is a great way to do that</a>.</p>
 
-<h3 id="starting-your-own-apps-with-the-session">Starting your own apps with the session</h3>
+<h3 id="starting-your-own-apps-with-the-session">Starting your own apps with the session <a class="manual__heading-link" href="#starting-your-own-apps-with-the-session" aria-label="Link to this section">#</a></h3>
 
 <p>If you want something to run every time you log in — a sync daemon, a chat app, your own script — put it in <code>~/.config/hypr/autostart.lua</code>:</p>
 
@@ -308,7 +308,7 @@
 
 <p>That starts the command as part of the session, so it’s properly cleaned up when you log out again.</p>
 
-<h3 id="running-scripts-on-system-events">Running scripts on system events</h3>
+<h3 id="running-scripts-on-system-events">Running scripts on system events <a class="manual__heading-link" href="#running-scripts-on-system-events" aria-label="Link to this section">#</a></h3>
 
 <p>Omarchy fires hooks at a handful of moments, and you can hang your own scripts off them. They live in <code>~/.config/omarchy/hooks/&lt;event&gt;.d/</code>, one directory per event, and every executable file in there runs when the event happens:</p>
 
@@ -349,7 +349,7 @@
 
 <p>Each of those directories already holds a <code>.sample</code> file showing the shape of a hook — drop the <code>.sample</code> from the name to put it to work. To install a script you’ve written elsewhere, use <code>omarchy hook install post-boot ~/my-hook</code>, which copies it in and makes it executable.</p>
 
-<h3 id="adding-your-own-menu-entries">Adding your own menu entries</h3>
+<h3 id="adding-your-own-menu-entries">Adding your own menu entries <a class="manual__heading-link" href="#adding-your-own-menu-entries" aria-label="Link to this section">#</a></h3>
 
 <p>The Omarchy menu (<code>Super + Space</code>) can be extended with your own rows by editing <code>~/.config/omarchy/extensions/omarchy-menu.jsonc</code>. Entries are keyed by a dotted id, and the id is what places them in the tree, so <code>personal</code> shows up on the root menu and <code>personal.notes</code> shows up inside it:</p>
 
@@ -359,11 +359,11 @@
 
 <p>Reuse an existing id and you override that row instead of adding a new one. The file ships with all the available fields documented as comments.</p>
 
-<h3 id="adding-your-own-shell-exports-functions-and-aliases">Adding your own shell exports, functions, and aliases</h3>
+<h3 id="adding-your-own-shell-exports-functions-and-aliases">Adding your own shell exports, functions, and aliases <a class="manual__heading-link" href="#adding-your-own-shell-exports-functions-and-aliases" aria-label="Link to this section">#</a></h3>
 
 <p>Omarchy ships with a bunch of ergonomic aliases and helpful functions, but it’s very common to want to add your own. You should add both aliases, functions, and exports in <code>~/.bashrc</code>. This file will not be overwritten on updates. If you want to change any of the Omarchy defaults, you can also safely add them here.</p>
 
-<h3 id="changing-internal-omarchy-files">Changing internal Omarchy files</h3>
+<h3 id="changing-internal-omarchy-files">Changing internal Omarchy files <a class="manual__heading-link" href="#changing-internal-omarchy-files" aria-label="Link to this section">#</a></h3>
 
 <p>Look, this is your computer. You can do whatever you want with it, but I would advise against making changes to the files in <code>/usr/share/omarchy</code> directly. They belong to the Omarchy pacman package, so your changes will simply be overwritten on the next update. You’re better off just overwriting any default values you don’t like in the <code>~/.config/*</code> folder instead.</p>
 
@@ -375,7 +375,7 @@ o.bind("SUPER + SHIFT + O", "Joplin", "joplin-desktop")
 
 <p>If you insist on hacking on the internal Omarchy files, switch to the dev channel via <em>Update &gt; Channel &gt; Dev</em>. That links Omarchy to a git checkout of the source code in <code>~/omarchy</code>, which you’re free to change to your heart’s content. Ain’t nobody here to tell you what to do!</p>
 
-<h3 id="resetting-any-changes">Resetting any changes</h3>
+<h3 id="resetting-any-changes">Resetting any changes <a class="manual__heading-link" href="#resetting-any-changes" aria-label="Link to this section">#</a></h3>
 
 <p>If you end up making a mess of the configurations, you can always revert them to the defaults via <em>Update &gt; Config</em> in the Omarchy menu. Or by running <code>omarchy reinstall configs</code> to reset everything.</p>
 

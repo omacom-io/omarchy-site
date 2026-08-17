@@ -246,7 +246,7 @@
         <h1>Toggles, Idle &amp; the Screensaver</h1>
 <p>A lot of what you change day to day isn’t really a setting. It’s a mode you flip on for an hour and off again: night light while you’re working late, do not disturb while you’re presenting, stay awake while you’re watching something. Omarchy calls those toggles, and they all work the same way — a hotkey, a menu entry, and a command, all hitting the same switch.</p>
 
-<h3 id="the-toggle-menu">The toggle menu</h3>
+<h3 id="the-toggle-menu">The toggle menu <a class="manual__heading-link" href="#the-toggle-menu" aria-label="Link to this section">#</a></h3>
 
 <p><code>Super + Ctrl + O</code> opens <em>Trigger &gt; Toggle</em> directly, or you can walk there from the Omarchy menu (<code>Super + Space</code>). Everything in that list is a switch you can flip without thinking about where the state lives.</p>
 
@@ -325,13 +325,13 @@
 
 <p>The flags are named for the off state — <code>screensaver-off</code>, <code>suspend-off</code>, <code>bar-off</code> — so their presence means the feature is disabled.</p>
 
-<h3 id="indicators-in-the-bar">Indicators in the bar</h3>
+<h3 id="indicators-in-the-bar">Indicators in the bar <a class="manual__heading-link" href="#indicators-in-the-bar" aria-label="Link to this section">#</a></h3>
 
 <p>When a mode is on, you get a small glyph in the middle of the top bar next to the clock. That’s the indicators widget, and it carries dictation, screen recording, pending reminders, night light, do not disturb, and stay awake.</p>
 
 <p>Inactive indicators are hidden. Hover the area around them and they fade in dimmed, so you can click one to turn it on without knowing its hotkey. Clicking an active one turns it back off. If you’d rather see all of them all the time, set <code>alwaysShow</code> to <code>true</code> on the <code>omarchy.indicators</code> entry in <code>~/.config/omarchy/shell.json</code> — see <a href="../the-top-bar/">the top bar</a> for how bar widgets are configured.</p>
 
-<h3 id="night-light">Night light</h3>
+<h3 id="night-light">Night light <a class="manual__heading-link" href="#night-light" aria-label="Link to this section">#</a></h3>
 
 <p><code>Super + Ctrl + N</code> warms the screen to 4000K, and hitting it again puts it back to 6500K. It’s driven by hyprsunset, which the toggle starts for you if it isn’t already running.</p>
 
@@ -345,7 +345,7 @@
 
 <p>Then start hyprsunset at login by adding <code>o.launch_on_start("hyprsunset")</code> to <code>~/.config/hypr/autostart.lua</code>. The 4000K/6500K pair used by the toggle is fixed, so the config file is where you go if you want a different temperature.</p>
 
-<h3 id="do-not-disturb">Do not disturb</h3>
+<h3 id="do-not-disturb">Do not disturb <a class="manual__heading-link" href="#do-not-disturb" aria-label="Link to this section">#</a></h3>
 
 <p><code>Super + Ctrl + ,</code> silences notifications. No toasts pop up while it’s on, and the crossed-out bell indicator sits in the bar to remind you why the desktop has gone quiet.</p>
 
@@ -353,7 +353,7 @@
 
 <p>Two kinds of message still get through: Omarchy’s own confirmation toasts for something you just did (“Theme changed”, “Screenshot saved”), and critical alerts sent from the command line. Chat apps that mark everything critical to force their way in front of you don’t qualify.</p>
 
-<h3 id="idle">Idle</h3>
+<h3 id="idle">Idle <a class="manual__heading-link" href="#idle" aria-label="Link to this section">#</a></h3>
 
 <p>The Omarchy shell owns idle behavior, and the timings are a top-level <code>idle</code> block in <code>~/.config/omarchy/shell.json</code>:</p>
 
@@ -374,7 +374,7 @@
 
 <p>This is about locking and the screensaver, not power. Suspend and hibernation have their own setup in <a href="../system-sleep/">system sleep</a>.</p>
 
-<h3 id="the-screensaver">The screensaver</h3>
+<h3 id="the-screensaver">The screensaver <a class="manual__heading-link" href="#the-screensaver" aria-label="Link to this section">#</a></h3>
 
 <p>Omarchy’s screensaver is ASCII art running through random text effects, one instance per monitor. Any key or mouse movement exits it.</p>
 
@@ -384,7 +384,7 @@
 
 <p>The logo it draws is yours to change, under <em>Style &gt; Screensaver</em>. Upload a png or svg and Omarchy converts it to ASCII. See <a href="../branding/">branding</a>.</p>
 
-<h3 id="the-lock-screen">The lock screen</h3>
+<h3 id="the-lock-screen">The lock screen <a class="manual__heading-link" href="#the-lock-screen" aria-label="Link to this section">#</a></h3>
 
 <p><code>Super + Ctrl + L</code> locks the machine. That runs the lock screen from the Omarchy shell, blanks the display, resets your keyboard layout to the first one so you’re not typing your password in the wrong alphabet, and — if you have it running — locks 1Password on the way out.</p>
 

@@ -63,7 +63,11 @@ def render_markdown(chapter)
     .gsub(/\]\((\d\d)-([\w-]+)\.md(#[^)]*)?\)/) { $1 == "01" ? "](../#{$3})" : "](../#{$2}/#{$3})" }
     .gsub("](images/", "](/manual/images/")
     .gsub(THEME_PREVIEW_REF) { "](/manual/images/#{$1}-#{$2}.webp)" }
-  Kramdown::Document.new(markdown, input: "GFM", hard_wrap: false, syntax_highlighter: nil).to_html
+  html = Kramdown::Document.new(markdown, input: "GFM", hard_wrap: false, syntax_highlighter: nil).to_html
+  html.gsub(/<h([2-6]) id="([^"]+)">(.*?)<\/h\1>/m) do
+    level, id, content = $1, $2, $3
+    %(<h#{level} id="#{id}">#{content} <a class="manual__heading-link" href="##{id}" aria-label="Link to this section">#</a></h#{level}>)
+  end
 end
 
 def h(text) = CGI.escapeHTML(text)

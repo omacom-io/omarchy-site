@@ -104,6 +104,15 @@
   padding-top: 1.25em;
 }
 
+.manual__heading-link {
+  color: var(--color-terminal-cyan);
+  font-size: 0.75em;
+  margin-left: 0.15em;
+  opacity: 0.5;
+  text-decoration: none;
+  transition: opacity var(--transition);
+}
+
 .manual__article h1 a,
 .manual__article h2 a,
 .manual__article h3 a,
@@ -287,6 +296,15 @@
   .manual__article a:focus,
   .manual__article a:hover {
     color: var(--color-green);
+  }
+
+  .manual__heading-link {
+    opacity: 0;
+  }
+
+  .manual__content :is(h2, h3, h4, h5, h6):hover .manual__heading-link,
+  .manual__heading-link:focus-visible {
+    opacity: 0.5;
   }
 
   .manual__pagination-button {
