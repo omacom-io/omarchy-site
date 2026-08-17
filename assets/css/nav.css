@@ -70,7 +70,7 @@
 
 .nav-mobile__links a {
   align-items: center;
-  color: oklch(var(--oklch-terminal-white) / 0.5);
+  color: oklch(var(--oklch-terminal-white) / 0.6);
   display: flex;
   font-size: var(--font-size-small);
   font-weight: 500;
@@ -135,7 +135,7 @@
 
 .nav__links a {
   align-items: center;
-  color: oklch(var(--oklch-terminal-white) / 0.5);
+  color: oklch(var(--oklch-terminal-white) / 0.6);
   display: flex;
   font-size: var(--font-size-small);
   font-weight: 500;
@@ -160,7 +160,7 @@
 }
 
 .nav__toggle {
-  color: oklch(var(--oklch-terminal-white) / 0.5);
+  color: oklch(var(--oklch-terminal-white) / 0.6);
   cursor: pointer;
   display: grid;
   height: 2em;

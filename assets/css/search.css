@@ -31,7 +31,7 @@
 }
 
 .search input::placeholder {
-  color: oklch(var(--oklch-terminal-white) / 0.5);
+  color: oklch(var(--oklch-terminal-white) / 0.6);
   transition: color var(--transition);
 }
 
@@ -111,7 +111,7 @@
 }
 
 .search-results__entry a dl dd {
-  color: oklch(var(--oklch-terminal-white) / 0.5);
+  color: oklch(var(--oklch-terminal-white) / 0.6);
   font-size: var(--font-size-small);
   font-weight: 500;
   letter-spacing: 0.1em;
