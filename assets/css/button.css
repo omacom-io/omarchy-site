@@ -2,7 +2,6 @@
   align-items: center;
   background: var(--color-terminal-blue);
   border: none;
-  border-radius: 0.4em;
   box-shadow:
     0 0.2em 1.2em -0.4em oklch(var(--oklch-black) / 0.2),
     0 0.4em 2.0em -0.8em oklch(var(--oklch-black) / 0.3),
