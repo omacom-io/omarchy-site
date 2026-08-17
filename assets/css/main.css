@@ -5,17 +5,21 @@
 
 
 
-.main--error {
-  flex: 1;
-  place-content: center;
-}
-
-
-
 @media(min-width: 64em) {
 
   .main {
     margin-block: var(--space-xxxx-large);
   }
 
+}
+
+
+
+.main--error {
+  flex: 1;
+  place-content: center;
+}
+
+.main--manual {
+  margin-block: 0;
 }
