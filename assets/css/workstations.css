@@ -7,9 +7,9 @@
 }
 
 .workstations__images {
-  column-gap: 1.5em;
+  column-gap: var(--space-neutral);
   column-width: 16em;
-  margin-top: calc(-1 * 1.5em);
+  margin-top: calc(-1 * var(--space-neutral));
 }
 
 button.workstations__image {
@@ -18,7 +18,7 @@ button.workstations__image {
 
 .workstations__image {
   display: inline-flex;
-  margin-top: 1.5em;
+  margin-top: var(--space-neutral);
   user-select: none;
   -webkit-user-select: none;
   vertical-align: top;
