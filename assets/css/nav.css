@@ -33,7 +33,7 @@
   padding: var(--space-x-large) var(--space-large);
 }
 
-.nav-mobile__manual {
+.nav-mobile__chapters {
   counter-reset: chapter;
   display: grid;
   gap: var(--space-xxx-small);
@@ -42,11 +42,11 @@
   margin-top: -0.3875em;
 }
 
-.nav-mobile__manual li {
+.nav-mobile__chapters li {
   counter-increment: chapter;
 }
 
-.nav-mobile__manual li a {
+.nav-mobile__chapters li a {
   color: var(--color-terminal-blue);
   display: flex;
   font-weight: 400;
@@ -54,12 +54,12 @@
   text-decoration: none;
 }
 
-.nav-mobile__manual li a:before {
+.nav-mobile__chapters li a:before {
   color: var(--color-green);
   content: counter(chapter, decimal-leading-zero);
 }
 
-.nav-mobile__manual li a[aria-current="page"] {
+.nav-mobile__chapters li a[aria-current="page"] {
   color: var(--color-white);
 }
 
@@ -180,13 +180,13 @@
 
 @media(hover: hover) {
 
-  .nav-mobile__manual a,
+  .nav-mobile__chapters a,
   .nav-mobile__links a {
     transition: color var(--transition);
   }
 
-  .nav-mobile__manual a:focus,
-  .nav-mobile__manual a:hover,
+  .nav-mobile__chapters a:focus,
+  .nav-mobile__chapters a:hover,
   .nav-mobile__links a:focus,
   .nav-mobile__links a:hover {
     color: var(--color-white);
