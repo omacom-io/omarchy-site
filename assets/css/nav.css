@@ -1,23 +1,232 @@
-.nav {
-  display: grid;
-  gap: var(--space-medium);
-  margin-top: var(--space-large);
-  padding-inline: var(--space-large);
+#nav-active {
+  display: none;
 }
 
-.nav__buttons {
+#nav-active:checked ~ .nav-mobile {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+
+
+.nav-mobile {
+  background: var(--color-background-night);
+  display: grid;
+  inset: 0;
+  opacity: 0;
+  overflow: hidden auto;
+  pointer-events: none;
+  position: fixed;
+  scrollbar-gutter: stable;
+  scrollbar-width: thin;
+  transition: opacity var(--transition);
+  user-select: none;
+  -webkit-user-select: none;
+  z-index: 102;
+}
+
+.nav-mobile__container {
+  align-content: start;
+  display: grid;
+  gap: var(--space-x-large);
+  margin-top: var(--nav-height);
+  padding: var(--space-x-large) var(--space-large);
+}
+
+.nav-mobile__chapters {
+  counter-reset: chapter;
+  display: grid;
+  gap: var(--space-xxx-small);
+  list-style: none;
+  margin-bottom: -0.4375em;
+  margin-top: -0.3875em;
+}
+
+.nav-mobile__chapters li {
+  counter-increment: chapter;
+}
+
+.nav-mobile__chapters li a {
+  color: var(--color-terminal-blue);
   display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-medium);
-  justify-content: center;
+  font-weight: 400;
+  gap: var(--space-small);
+  text-decoration: none;
+}
+
+.nav-mobile__chapters li a:before {
+  color: var(--color-green);
+  content: counter(chapter, decimal-leading-zero);
+}
+
+.nav-mobile__chapters li a[aria-current="page"] {
+  color: var(--color-white);
+}
+
+.nav-mobile__links {
+  display: grid;
+  gap: var(--space-neutral);
+}
+
+.nav-mobile__links a {
+  align-items: center;
+  color: oklch(var(--oklch-terminal-white) / 0.6);
+  display: flex;
+  font-size: var(--font-size-small);
+  font-weight: 500;
+  gap: 2ch;
+  letter-spacing: 0.1em;
+  line-height: 2em;
+  margin-bottom: -1.1375em;
+  margin-left: -1em;
+  margin-top: -1.0875em;
+  padding: 0.5em 1em;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.nav-mobile__links a svg {
+  height: 1.4em;
+  overflow: visible;
+  width: 1.4em;
+}
+
+
+
+.nav {
+  align-items: center;
+  backdrop-filter: blur(0.5em);
+  -webkit-backdrop-filter: blur(0.5em);
+  background: oklch(var(--oklch-background-night) / 0.9);
+  border-bottom: var(--border-width) solid var(--border-color);
+  display: flex;
+  gap: var(--space-neutral);
+  height: var(--nav-height);
+  justify-content: space-between;
+  padding-inline: var(--space-large);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.nav__logo {
+  display: flex;
+  flex: 1;
+}
+
+.nav__logo a {
+  align-items: center;
+  color: var(--color-green);
+  display: flex;
+  height: 2em;
+}
+
+.nav__logo a svg {
+  height: 2em;
+  margin-bottom: -0.225em;
+  margin-top: -0.1825em;
+  overflow: visible;
+  width: auto;
+}
+
+.nav__links {
+  display: none;
+}
+
+.nav__links a {
+  align-items: center;
+  color: oklch(var(--oklch-terminal-white) / 0.6);
+  display: flex;
+  font-size: var(--font-size-small);
+  font-weight: 500;
+  gap: 1ch;
+  letter-spacing: 0.1em;
+  line-height: 2em;
+  margin-bottom: -1.1375em;
+  margin-top: -1.0875em;
+  padding: 0.5em 1em;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.nav__links a:last-child {
+  margin-right: -1em;
+}
+
+.nav__links a svg {
+  height: 1.3em;
+  overflow: visible;
+  width: 1.3em;
+}
+
+.nav__toggle {
+  color: oklch(var(--oklch-terminal-white) / 0.6);
+  cursor: pointer;
+  display: grid;
+  height: 2em;
+  margin-left: auto;
+  padding-inline: 0.6em;
+  place-items: center;
+  width: 2em;
+}
+
+.nav__toggle svg {
+  height: 100%;
+  overflow: visible;
+  width: 100%;
+}
+
+
+
+@media(hover: hover) {
+
+  .nav-mobile__chapters a,
+  .nav-mobile__links a {
+    transition: color var(--transition);
+  }
+
+  .nav-mobile__chapters a:focus,
+  .nav-mobile__chapters a:hover,
+  .nav-mobile__links a:focus,
+  .nav-mobile__links a:hover {
+    color: var(--color-white);
+  }
+
+  .nav__logo a,
+  .nav__links a,
+  .nav__toggle {
+    transition: color var(--transition);
+  }
+
+  .nav__logo a:focus,
+  .nav__logo a:hover,
+  .nav__links a:focus,
+  .nav__links a:hover,
+  .nav__toggle:focus,
+  .nav__toggle:hover {
+    color: var(--color-white);
+  }
+
 }
 
 
 
 @media(min-width: 64em) {
 
+  #nav-active:checked ~ .nav-mobile {
+    display: none;
+  }
+
   .nav {
     padding-inline: var(--space-xx-large);
+  }
+
+  .nav__links {
+    display: flex;
+  }
+
+  .nav__toggle {
+    display: none;
   }
 
 }

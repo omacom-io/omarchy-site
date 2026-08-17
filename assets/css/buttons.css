@@ -1,0 +1,23 @@
+.buttons {
+  display: grid;
+  gap: var(--space-medium);
+  margin-top: var(--space-large);
+  padding-inline: var(--space-large);
+}
+
+.buttons section {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-medium);
+  justify-content: center;
+}
+
+
+
+@media(min-width: 64em) {
+
+  .buttons {
+    padding-inline: var(--space-xx-large);
+  }
+
+}

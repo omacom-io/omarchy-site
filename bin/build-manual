@@ -14,13 +14,15 @@ end
 
 require "cgi"
 require "erb"
+require "etc"
 require "fileutils"
+require "json"
 require "tmpdir"
 
 SITE_ROOT = File.expand_path("..", __dir__)
 THEME_PREVIEW_REF = %r{\]\(\.\./themes/([\w-]+)/(preview(?:-unlock)?)\.png\)}
 TEMPLATE_DIR = File.join(SITE_ROOT, "templates")
-SOURCE_TARBALL = "https://github.com/basecamp/omarchy/archive/HEAD.tar.gz"
+SOURCE_REPO = "https://github.com/basecamp/omarchy.git"
 
 Chapter = Struct.new(:number, :slug, :title, :body, keyword_init: true) do
   # The first chapter is the manual's front page
@@ -46,8 +48,19 @@ def load_chapters(dir)
 end
 
 def fetch_source
+  abort "git is required to fetch the omarchy source" unless system("command -v git >/dev/null")
   Dir.mktmpdir do |tmp|
-    system "curl -fsSL #{SOURCE_TARBALL} | tar xz -C #{tmp} --strip-components=1 --wildcards '*/manual' '*/themes/*/preview*.png'", exception: true
+    # Shallow, partial, sparse clone: fetch only manual/ and the theme preview
+    # PNGs instead of the full repo tarball. git prints transfer progress
+    # so a slow or stalled fetch is never silent.
+    warn "Fetching omarchy source (manual + theme previews)…"
+    system "git", "clone", "--depth", "1", "--filter=blob:none",
+           "--sparse", "--no-checkout", SOURCE_REPO, tmp, exception: true
+    system "git", "-C", tmp, "sparse-checkout", "set", "--no-cone",
+           "/manual/**", "/themes/*/preview.png", "/themes/*/preview-unlock.png",
+           exception: true
+    system "git", "-C", tmp, "checkout", exception: true
+    warn "Building…"
     yield File.join(tmp, "manual")
   end
 end
@@ -68,7 +81,20 @@ end
 
 def h(text) = CGI.escapeHTML(text)
 
-def render(template, locals)
+# Rendered chapter HTML reduced to indexable plain text for the search store.
+def plain_text(html)
+  CGI.unescapeHTML(html.gsub(/<[^>]+>/, " "))
+    .gsub(/\s+/, " ")
+    # Replacing inline tags with a space leaves a stray space hugging punctuation
+    # (e.g. "Hyprland</a>," -> "Hyprland ,"), which shows up in search excerpts.
+    # Tidy sentence punctuation and parens; leave { } alone since those spaces come
+    # from flattened code blocks, where the spacing is real.
+    .gsub(/\s+([.,;:!?)])/, '\1')
+    .gsub(/\(\s+/, "(")
+    .strip
+end
+
+def render(template, locals = {})
   scope = binding
   locals.each { |name, value| scope.local_variable_set(name, value) }
   ERB.new(File.read(File.join(TEMPLATE_DIR, "#{template}.html.erb")), trim_mode: "-").result(scope)
@@ -77,7 +103,10 @@ end
 def write_page(file, template, title:, description:, path:, **locals)
   main = render(template, locals)
   FileUtils.mkdir_p File.dirname(file)
-  File.write file, render("layout", title: title, description: description, url: "https://omarchy.org#{path}", main: main)
+  File.write file, render("layout",
+    title: title, description: description,
+    url: "https://omarchy.org#{path}", path: path,
+    chapters: locals[:chapters], main: main)
 end
 
 def build(source_dir)
@@ -86,23 +115,35 @@ def build(source_dir)
   manual_dir = File.join(SITE_ROOT, "manual")
   FileUtils.rm_rf manual_dir
 
-  write_page File.join(manual_dir, "toc/index.html"), "toc",
-    title: "Table of Contents",
-    description: "The complete manual for Omarchy — Beautiful, Modern & Opinionated Linux by DHH.",
-    path: "/manual/toc/",
-    chapters: chapters
-
+  store = {}
   chapters.each_with_index do |chapter, index|
+    # Render each chapter's markdown once, then reuse it for both the page and the
+    # search index.
+    content = render_markdown(chapter)
+
     write_page File.join(SITE_ROOT, chapter.path, "index.html"), "chapter",
       title: chapter.title,
       description: chapter.description,
       path: chapter.path,
       chapters: chapters,
       chapter: chapter,
-      content: render_markdown(chapter),
-      previous_chapter: index > 0 ? chapters[index - 1] : nil,
-      next_chapter: chapters[index + 1]
+      content: content,
+      previous_chapter: chapters[index - 1],
+      next_chapter: chapters[(index + 1) % chapters.size]
+
+    store[chapter.path] = {
+      title: chapter.title,
+      content: plain_text(content),
+      url: chapter.path
+    }
   end
+
+  write_page File.join(manual_dir, "search/index.html"), "search",
+    title: "Search",
+    description: "Search the Omarchy manual — Beautiful, Modern & Opinionated Linux by DHH.",
+    path: "/manual/search/",
+    chapters: chapters,
+    store_json: JSON.generate(store).gsub("<", "\\u003c")
 
   images_dir = File.join(source_dir, "images")
   FileUtils.cp_r images_dir, File.join(manual_dir, "images") if Dir.exist?(images_dir)
@@ -120,10 +161,21 @@ def convert_theme_previews(source_dir, chapters, images_dir)
   abort "imagemagick is required to convert theme previews" unless system("command -v magick >/dev/null")
   FileUtils.mkdir_p images_dir
 
-  previews.each do |slug, kind|
-    source = File.join(source_dir, "..", "themes", slug, "#{kind}.png")
-    system "magick #{source} -strip -resize '1600>' -quality 82 #{File.join(images_dir, "#{slug}-#{kind}.webp")}", exception: true
-  end
+  # Each conversion is a separate magick process, so run them across a pool of
+  # worker threads (they release the GVL while the subprocess runs). join re-raises
+  # any worker's exception on the main thread, keeping the fail-fast behaviour.
+  queue = Queue.new
+  previews.each { |preview| queue << preview }
+  [previews.size, Etc.nprocessors].min.times.map do
+    Thread.new do
+      loop do
+        slug, kind = queue.pop(true) rescue break
+        source = File.join(source_dir, "..", "themes", slug, "#{kind}.png")
+        out = File.join(images_dir, "#{slug}-#{kind}.webp")
+        system "magick", source, "-strip", "-resize", "1600>", "-quality", "82", out, exception: true
+      end
+    end
+  end.each(&:join)
 end
 
 ARGV[0] ? build(ARGV[0]) : fetch_source { |dir| build(dir) }

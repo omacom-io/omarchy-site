@@ -1,0 +1,20 @@
+  <div class="manual">
+    <nav class="manual__chapters">
+      <div class="manual__container">
+<%= render "_search" -%>
+
+        <ol>
+<%= render "_chapters", chapters: chapters, current_path: nil -%>
+        </ol>
+      </div>
+    </nav>
+
+    <div class="manual__content">
+      <div class="search-results">
+        <h1 class="search-results__query">Search results for “<mark></mark>”</h1>
+        <div class="search-results__entries"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>window.store = <%= store_json %>;</script>

@@ -1,27 +1,34 @@
-  <div class="manual manual--chapter">
-    <nav class="manual__toc" aria-label="Chapters">
-      <ol>
-<%- chapters.each do |other| -%>
-        <li><a href="<%= other.path %>"<%= %( aria-current="page") if other == chapter %>><%= h other.title %></a></li>
-<%- end -%>
-      </ol>
+  <div class="manual">
+    <nav class="manual__chapters">
+      <div class="manual__container">
+<%= render "_search" -%>
+
+        <ol>
+<%= render "_chapters", chapters: chapters, current_path: chapter.path -%>
+        </ol>
+      </div>
     </nav>
 
-    <article class="manual__content">
-      <h1><%= h chapter.title %></h1>
+    <div class="manual__content">
+      <article class="manual__article">
+        <h1><%= h chapter.title %></h1>
 <%= content %>
+      </article>
+
       <nav class="manual__pagination">
-<%- if previous_chapter -%>
-        <a class="manual__pagination-previous" href="<%= previous_chapter.path %>" rel="prev">← <%= h previous_chapter.title %></a>
-<%- else -%>
-        <span></span>
-<%- end -%>
-        <a class="manual__pagination-contents" href="/manual/toc/">Table of Contents</a>
-<%- if next_chapter -%>
-        <a class="manual__pagination-next" href="<%= next_chapter.path %>" rel="next"><%= h next_chapter.title %> →</a>
-<%- else -%>
-        <span></span>
-<%- end -%>
+        <a class="manual__pagination-button manual__pagination-button--previous" href="<%= previous_chapter.path %>" rel="prev">
+          <dl>
+            <dt><- Previous</dt>
+            <dd><%= h previous_chapter.title %></dd>
+          </dl>
+        </a>
+
+        <a class="manual__pagination-button manual__pagination-button--next" href="<%= next_chapter.path %>" rel="next">
+          <dl>
+            <dt>Next -></dt>
+            <dd><%= h next_chapter.title %></dd>
+          </dl>
+        </a>
       </nav>
-    </article>
+    </div>
   </div>

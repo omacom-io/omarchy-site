@@ -1,5 +1,6 @@
 .pre {
   display: grid;
+  font-family: var(--font-family-cascadia);
   margin-top: var(--space-xx-large);
   padding-inline: var(--space-large);
 }
