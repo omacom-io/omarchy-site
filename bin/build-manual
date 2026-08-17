@@ -14,6 +14,7 @@ end
 
 require "cgi"
 require "erb"
+require "etc"
 require "fileutils"
 require "json"
 require "tmpdir"
@@ -21,7 +22,7 @@ require "tmpdir"
 SITE_ROOT = File.expand_path("..", __dir__)
 THEME_PREVIEW_REF = %r{\]\(\.\./themes/([\w-]+)/(preview(?:-unlock)?)\.png\)}
 TEMPLATE_DIR = File.join(SITE_ROOT, "templates")
-SOURCE_TARBALL = "https://github.com/basecamp/omarchy/archive/HEAD.tar.gz"
+SOURCE_REPO = "https://github.com/basecamp/omarchy.git"
 
 Chapter = Struct.new(:number, :slug, :title, :body, keyword_init: true) do
   # The first chapter is the manual's front page
@@ -47,11 +48,19 @@ def load_chapters(dir)
 end
 
 def fetch_source
+  abort "git is required to fetch the omarchy source" unless system("command -v git >/dev/null")
   Dir.mktmpdir do |tmp|
-    # GNU tar needs --wildcards to glob member patterns; BSD tar (macOS) globs by
-    # default and rejects the flag.
-    wildcards = `tar --version 2>/dev/null`.include?("GNU") ? "--wildcards " : ""
-    system "curl -fsSL #{SOURCE_TARBALL} | tar xz -C #{tmp} --strip-components=1 #{wildcards}'*/manual' '*/themes/*/preview*.png'", exception: true
+    # Shallow, partial, sparse clone: fetch only manual/ and the theme preview
+    # PNGs instead of the full repo tarball. git prints transfer progress
+    # so a slow or stalled fetch is never silent.
+    warn "Fetching omarchy source (manual + theme previews)…"
+    system "git", "clone", "--depth", "1", "--filter=blob:none",
+           "--sparse", "--no-checkout", SOURCE_REPO, tmp, exception: true
+    system "git", "-C", tmp, "sparse-checkout", "set", "--no-cone",
+           "/manual/**", "/themes/*/preview.png", "/themes/*/preview-unlock.png",
+           exception: true
+    system "git", "-C", tmp, "checkout", exception: true
+    warn "Building…"
     yield File.join(tmp, "manual")
   end
 end
@@ -98,22 +107,25 @@ def build(source_dir)
   manual_dir = File.join(SITE_ROOT, "manual")
   FileUtils.rm_rf manual_dir
 
+  store = {}
   chapters.each_with_index do |chapter, index|
+    # Render each chapter's markdown once, then reuse it for both the page and the
+    # search index.
+    content = render_markdown(chapter)
+
     write_page File.join(SITE_ROOT, chapter.path, "index.html"), "chapter",
       title: chapter.title,
       description: chapter.description,
       path: chapter.path,
       chapters: chapters,
       chapter: chapter,
-      content: render_markdown(chapter),
+      content: content,
       previous_chapter: chapters[index - 1],
       next_chapter: chapters[(index + 1) % chapters.size]
-  end
 
-  store = chapters.each_with_object({}) do |chapter, acc|
-    acc[chapter.path] = {
+    store[chapter.path] = {
       title: chapter.title,
-      content: plain_text(render_markdown(chapter)),
+      content: plain_text(content),
       url: chapter.path
     }
   end
@@ -141,10 +153,21 @@ def convert_theme_previews(source_dir, chapters, images_dir)
   abort "imagemagick is required to convert theme previews" unless system("command -v magick >/dev/null")
   FileUtils.mkdir_p images_dir
 
-  previews.each do |slug, kind|
-    source = File.join(source_dir, "..", "themes", slug, "#{kind}.png")
-    system "magick #{source} -strip -resize '1600>' -quality 82 #{File.join(images_dir, "#{slug}-#{kind}.webp")}", exception: true
-  end
+  # Each conversion is a separate magick process, so run them across a pool of
+  # worker threads (they release the GVL while the subprocess runs). join re-raises
+  # any worker's exception on the main thread, keeping the fail-fast behaviour.
+  queue = Queue.new
+  previews.each { |preview| queue << preview }
+  [previews.size, Etc.nprocessors].min.times.map do
+    Thread.new do
+      loop do
+        slug, kind = queue.pop(true) rescue break
+        source = File.join(source_dir, "..", "themes", slug, "#{kind}.png")
+        out = File.join(images_dir, "#{slug}-#{kind}.webp")
+        system "magick", source, "-strip", "-resize", "1600>", "-quality", "82", out, exception: true
+      end
+    end
+  end.each(&:join)
 end
 
 ARGV[0] ? build(ARGV[0]) : fetch_source { |dir| build(dir) }
