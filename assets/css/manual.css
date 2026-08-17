@@ -6,7 +6,7 @@
   width: min(100%, 90em);
 }
 
-.manual__navigation {
+.manual__chapters {
   border-right: var(--border-width) solid var(--border-color);
   display: none;
   max-height: calc(100vh - var(--nav-height));
@@ -18,14 +18,7 @@
   top: var(--nav-height);
 }
 
-.manual__navigation div {
-  align-content: start;
-  display: grid;
-  gap: var(--space-xx-large);
-  padding: var(--space-xx-large);
-}
-
-.manual__navigation ol {
+.manual__chapters ol {
   counter-reset: chapter;
   display: grid;
   gap: var(--space-xxx-small);
@@ -34,11 +27,11 @@
   margin-top: -0.3875em;
 }
 
-.manual__navigation ol li {
+.manual__chapters ol li {
   counter-increment: chapter;
 }
 
-.manual__navigation ol li a {
+.manual__chapters ol li a {
   color: var(--color-terminal-blue);
   display: flex;
   font-weight: 400;
@@ -46,13 +39,20 @@
   text-decoration: none;
 }
 
-.manual__navigation ol li a:before {
+.manual__chapters ol li a:before {
   color: var(--color-green);
   content: counter(chapter, decimal-leading-zero);
 }
 
-.manual__navigation ol li a[aria-current="page"] {
+.manual__chapters ol li a[aria-current="page"] {
   color: var(--color-white);
+}
+
+.manual__container {
+  align-content: start;
+  display: grid;
+  gap: var(--space-xx-large);
+  padding: var(--space-xx-large);
 }
 
 .manual__content {
@@ -279,8 +279,8 @@
 
 @media(hover: hover) {
 
-  .manual__navigation ol li a:focus,
-  .manual__navigation ol li a:hover {
+  .manual__chapters ol li a:focus,
+  .manual__chapters ol li a:hover {
     color: var(--color-white);
   }
 
@@ -357,7 +357,7 @@
     grid-template-columns: 30em auto;
   }
 
-  .manual__navigation {
+  .manual__chapters {
     display: grid;
   }
 
