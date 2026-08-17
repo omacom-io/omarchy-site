@@ -21,7 +21,7 @@ function ready() {
 
   function snippet(content, regexp) {
 
-    var length = 220;
+    var length = 280;
     var match = regexp ? content.match(regexp) : null;
     var start = 0;
 
