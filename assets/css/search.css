@@ -125,7 +125,7 @@
 }
 
 .search-results__entry p mark {
-  background: oklch(var(--oklch-green) / 0.2);
+  background: oklch(var(--oklch-green) / 0.3);
   border-radius: 0.2em;
   box-decoration-break: clone;
   -webkit-box-decoration-break: clone;
