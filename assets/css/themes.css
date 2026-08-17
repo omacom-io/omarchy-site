@@ -15,7 +15,7 @@
 }
 
 .themes__intro code {
-  background: rgba(var(--rgb-terminal-black), 0.5);
+  background: oklch(var(--oklch-terminal-black) / 0.5);
   border-radius: 0.3em;
   color: var(--color-turquoise);
   padding: 0.125em 0.4em;
