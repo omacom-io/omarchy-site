@@ -1,69 +1,94 @@
 .themes {
   display: grid;
-  gap: var(--space-x-large);
+  gap: var(--space-xx-large);
   margin-inline: auto;
-  max-width: 90em;
   padding-inline: var(--space-large);
-  width: 100%;
+  position: relative;
+  width: min(100%, 90em);
 }
 
 .themes__intro {
-  font-size: clamp(0.8125rem, 1.25vw, 1rem);
+  display: grid;
+  gap: var(--space-large);
   margin-inline: auto;
-  max-width: 50em;
   text-align: center;
+  text-wrap: pretty;
+  width: min(100%, 56em);
 }
 
-.themes__intro code {
-  background: oklch(var(--oklch-terminal-black) / 0.5);
+.themes__intro p {
+  margin-bottom: -0.4375em;
+  margin-top: -0.3875em;
+}
+
+.themes__intro p code {
+  background: oklch(var(--oklch-terminal-black) / 0.1);
+  border: var(--border-width) solid var(--border-color);
+  border-radius: 0.2em;
   color: var(--color-turquoise);
-  padding: 0.125em 0.4em;
+  padding-inline: 0.225em;
   white-space: nowrap;
+}
+
+.themes__intro p em {
+  color: var(--color-turquoise);
+  display: inline-block;
 }
 
 .themes__grid {
   display: grid;
   gap: var(--space-large);
+  grid-template-columns: repeat(auto-fit, minmax(20em, 1fr));
 }
 
-.themes__theme img {
-  aspect-ratio: 16 / 9;
-  object-fit: cover;
-  transition: transform var(--transition);
+.themes__theme {
+  display: grid;
+  font-weight: 400;
+  text-decoration: none;
 }
 
-.themes__theme figcaption {
-  font-size: var(--font-size-small);
-  margin-top: var(--space-small);
+.themes__theme figure {
+  display: grid;
+  gap: var(--space-medium);
   text-align: center;
+}
+
+.themes__theme figure img {
+  aspect-ratio: 16 / 9;
+  background: var(--color-background-storm);
+  box-shadow:
+    0 0.3em 2.0em -1.2em oklch(var(--oklch-black) / 0.1),
+    0 0.6em 2.4em -1.6em oklch(var(--oklch-black) / 0.2),
+    0 0.9em 2.8em -2.0em oklch(var(--oklch-black) / 0.3),
+    0 1.2em 3.2em -2.4em oklch(var(--oklch-black) / 0.4),
+    0 1.5em 3.6em -2.8em oklch(var(--oklch-black) / 0.5)
+  ;
+  object-fit: cover;
 }
 
 
 
 @media(hover: hover) {
 
-  .themes__theme a:hover img {
-    transform: scale(1.02);
+  .themes__theme figure img {
+    outline: 0.1em solid transparent;
+    outline-offset: 0.2em;
+    transition: outline-color var(--transition);
+  }
+
+  .themes__theme:focus figure img,
+  .themes__theme:hover figure img {
+    outline-color: var(--color-turquoise);
   }
 
 }
 
 
 
-@media(min-width: 48em) {
+@media(min-width: 64em) {
 
-  .themes__grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-}
-
-
-
-@media(min-width: 90em) {
-
-  .themes__grid {
-    grid-template-columns: repeat(3, 1fr);
+  .themes {
+    padding-inline: var(--space-xx-large);
   }
 
 }
