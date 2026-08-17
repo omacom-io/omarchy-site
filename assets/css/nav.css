@@ -78,9 +78,9 @@
   letter-spacing: 0.1em;
   line-height: 2em;
   margin-bottom: -1.1375em;
-  margin-left: -0.9em;
+  margin-left: -1em;
   margin-top: -1.0875em;
-  padding: 0.5em 0.9em;
+  padding: 0.5em 1em;
   text-decoration: none;
   text-transform: uppercase;
 }
@@ -144,13 +144,13 @@
   line-height: 2em;
   margin-bottom: -1.1375em;
   margin-top: -1.0875em;
-  padding: 0.5em 0.9em;
+  padding: 0.5em 1em;
   text-decoration: none;
   text-transform: uppercase;
 }
 
 .nav__links a:last-child {
-  margin-right: -0.9em;
+  margin-right: -1em;
 }
 
 .nav__links a svg {
