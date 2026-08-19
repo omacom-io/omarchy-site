@@ -194,8 +194,8 @@ function ready() {
 
 function shortcut(e) {
 
-  if(e.metaKey || e.ctrlKey) return e.key == 'k';
-  if(e.altKey || e.target.closest('input, textarea, select, [contenteditable]')) return false;
+  if(e.metaKey || e.ctrlKey || e.altKey) return false;
+  if(e.target.closest('input, textarea, select, [contenteditable]')) return false;
 
   return e.key == '/';
 
