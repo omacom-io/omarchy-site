@@ -82,6 +82,10 @@ function ready() {
 
     document.querySelectorAll('.search-box').forEach(box => box.value = searchTerm);
 
+  }
+
+  if(searchTerm && window.store) {
+
     var idx = lunr(function() {
 
       this.field('title', {
