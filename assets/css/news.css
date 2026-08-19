@@ -1,0 +1,280 @@
+/* News follows HEY World's type scale, restated against this site's 16px root. */
+
+.news-body {
+  --news-font-family: -apple-system, BlinkMacSystemFont, Aptos, Roboto, 'Segoe UI', Helvetica, Arial, sans-serif;
+  --news-font-size: 1.1rem;
+  --news-font-size-small: 0.825rem;
+  --news-font-size-title: 2.3375rem;
+  --news-font-size-heading: 1.65rem;
+  --news-measure: 51.5rem;
+  --news-space: 2.75rem;
+  --news-space-tight: 0.5rem;
+  --news-border-color: rgb(var(--rgb-terminal-black) / 0.8);
+  --news-border-width: max(1px, 0.0625em);
+
+  background: var(--color-background-night);
+  color: var(--color-terminal-white);
+  font-family: var(--news-font-family);
+  font-size: var(--news-font-size);
+  line-height: 1.4;
+  min-height: 100vh;
+  min-height: 100dvh;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+.news-body a {
+  color: var(--color-terminal-cyan);
+  text-decoration-thickness: from-font;
+  text-underline-offset: 0.14em;
+  transition: color var(--transition);
+}
+
+.news-page {
+  margin-inline: auto;
+  max-width: var(--news-measure);
+  padding-block: var(--news-space);
+  padding-inline: 1.1rem;
+}
+
+/* header.css sizes itself in em; match the cover's basis so its spacing resolves
+   identically here, where the body font-size is larger. */
+.news-body .header {
+  font-size: var(--font-size);
+}
+
+.news-body .header h1 {
+  color: var(--color-terminal-blue);
+  font-family: var(--font-family);
+  font-weight: 400;
+  line-height: var(--line-height);
+}
+
+
+
+/* Centred masthead block, left-aligned reading column — as on HEY World. */
+
+.news-post__header {
+  margin-bottom: var(--news-space);
+  text-align: center;
+}
+
+.news-meta {
+  color: var(--color-terminal-blue);
+  font-size: var(--news-font-size-small);
+}
+
+.news-meta a {
+  color: inherit;
+}
+
+.news-post__title {
+  color: var(--color-terminal-white);
+  font-size: var(--news-font-size-title);
+  font-weight: 700;
+  line-height: 1;
+  margin-top: var(--news-space-tight);
+  text-wrap: balance;
+}
+
+
+
+/* Post list — HEY World's cards: centred dateline and title, left-aligned excerpt. */
+
+.news-list {
+  display: grid;
+  gap: 1.25em;
+}
+
+.news-card {
+  border: var(--news-border-width) solid var(--news-border-color);
+  border-radius: 0.2em;
+  box-shadow: 0.3em 0.3em 0.45em rgb(0 0 0 / 0.2);
+  padding: 1.5em;
+  position: relative;
+}
+
+.news-card header {
+  text-align: center;
+}
+
+.news-card__title {
+  font-size: var(--news-font-size-heading);
+  font-weight: 700;
+  line-height: 1;
+  margin-block: var(--news-space-tight) 1.3rem;
+  text-wrap: balance;
+}
+
+.news-card__excerpt {
+  text-wrap: pretty;
+}
+
+/* Stretched so the whole card is the click target; the visible pill is decorative. */
+.news-card__link {
+  inset: 0;
+  overflow: hidden;
+  position: absolute;
+  text-indent: -100vw;
+  z-index: 1;
+}
+
+/* Keep the byline clickable through the overlay. */
+.news-card .news-meta a {
+  position: relative;
+  z-index: 2;
+}
+
+.news-card__more {
+  margin-top: 1.5em;
+  text-align: center;
+}
+
+.news-card__button {
+  border: var(--news-border-width) solid var(--news-border-color);
+  border-radius: 3rem;
+  color: var(--color-terminal-blue);
+  display: inline-block;
+  font-size: var(--news-font-size-small);
+  padding: 0.3em 0.8em;
+  transition: color var(--transition);
+  white-space: nowrap;
+}
+
+
+
+/* Post body */
+
+.news-prose > * + * {
+  margin-top: 1.4em;
+}
+
+.news-prose h2,
+.news-prose h3,
+.news-prose h4 {
+  color: var(--color-terminal-white);
+  font-weight: 700;
+  line-height: 1.2;
+  margin-top: 2em;
+}
+
+.news-prose h2 {
+  font-size: 1.4em;
+}
+
+.news-prose h3 {
+  font-size: 1.2em;
+}
+
+.news-prose strong {
+  color: var(--color-white);
+  font-weight: 700;
+}
+
+.news-prose em {
+  font-style: italic;
+}
+
+.news-prose ul,
+.news-prose ol {
+  padding-left: 1.6em;
+}
+
+.news-prose ul {
+  list-style: disc;
+}
+
+.news-prose ol {
+  list-style: decimal;
+}
+
+.news-prose li + li {
+  margin-top: 0.35em;
+}
+
+.news-prose blockquote {
+  border-left: 0.25rem solid var(--news-border-color);
+  color: var(--color-terminal-cyan);
+  margin-inline-start: 1.4em;
+  padding-left: 1.25rem;
+}
+
+.news-prose code,
+.news-prose pre {
+  font-family: var(--font-family);
+}
+
+.news-prose code {
+  background: var(--color-background-storm);
+  color: var(--color-turquoise);
+  font-size: 0.9em;
+  padding: 0.12em 0.3em;
+}
+
+.news-prose pre {
+  background: var(--color-background-storm);
+  color: var(--color-turquoise);
+  overflow-x: auto;
+  padding: 1.2rem;
+}
+
+.news-prose pre code {
+  background: transparent;
+  padding: 0;
+}
+
+.news-prose img {
+  height: auto;
+  width: 100%;
+}
+
+
+
+.news-back {
+  border-top: var(--news-border-width) solid var(--news-border-color);
+  margin-top: var(--news-space);
+  padding-top: var(--news-space);
+  text-align: center;
+}
+
+
+
+@media(hover: hover) {
+
+  .news-body a:hover {
+    color: var(--color-white);
+  }
+
+  .news-card:hover .news-card__button {
+    color: var(--color-white);
+  }
+
+}
+
+
+
+@media(min-width: 40em) {
+
+  .news-card {
+    padding: 2em;
+  }
+
+  .news-card__more {
+    margin-top: 2em;
+  }
+
+}
+
+
+
+@media(min-width: 60em) {
+
+  .news-body {
+    --news-font-size: 1.2375rem;
+    --news-font-size-small: 0.9625rem;
+    --news-font-size-title: 2.75rem;
+    --news-font-size-heading: 1.925rem;
+    --news-space: 3.09rem;
+  }
+
+}
