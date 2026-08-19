@@ -18,8 +18,9 @@ SITE_ROOT = File.expand_path("..", __dir__)
 CONTENT_DIR = File.join(SITE_ROOT, "content", "news")
 NEWS_DIR = File.join(SITE_ROOT, "news")
 TEMPLATE_DIR = File.join(SITE_ROOT, "templates", "news")
+RELATIVE_ASSET = %r{\]\((?!\w+:|[/#])([^)]+)\)}
 
-Post = Struct.new(:source, :title, :date, :author, :author_url, :description, :html, :path, keyword_init: true)
+Post = Struct.new(:source, :title, :date, :author, :author_url, :description, :html, :path, :assets, keyword_init: true)
 
 def h(text) = CGI.escapeHTML(text.to_s)
 
@@ -63,6 +64,9 @@ def load_post(file)
   date = Date.parse(date.to_s) if date
   date ||= Date.new(Integer(year), Integer(month), 1)
 
+  assets = markdown.scan(RELATIVE_ASSET).flatten.uniq
+  markdown = markdown.gsub(RELATIVE_ASSET) { "](/news/#{relative}/#{$1})" }
+
   html = Kramdown::Document.new(markdown, input: "GFM", hard_wrap: false, syntax_highlighter: nil).to_html
   description = metadata["description"] || excerpt(plain_text(html))
 
@@ -74,7 +78,8 @@ def load_post(file)
     author_url: metadata["author_url"],
     description: description,
     html: html,
-    path: "/news/#{relative}"
+    path: "/news/#{relative}",
+    assets: assets
   )
 end
 
@@ -105,6 +110,11 @@ def build
   posts.each do |post|
     canonical_url = "https://omarchy.org#{post.path}"
     output = File.join(SITE_ROOT, post.path.delete_prefix("/"), "index.html")
+
+    FileUtils.mkdir_p File.dirname(output)
+    post.assets.each do |asset|
+      FileUtils.cp File.join(File.dirname(post.source), asset), File.join(File.dirname(output), asset)
+    end
     write_page output, "post",
       locals: { post: post },
       page_title: "#{post.title} — Omarchy News",
