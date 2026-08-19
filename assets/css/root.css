@@ -22,7 +22,6 @@
   --color-turquoise: oklch(var(--oklch-turquoise));
   --color-white: oklch(var(--oklch-white));
 
-  --font-family-cascadia: 'Cascadia Code', Menlo, Monaco, Consolas, 'Courier New', monospace;
   --font-family-jetbrains: 'JetBrains Mono', monospace;
   --font-size: max(0.8125rem, 1.1875vw);
   --font-size-small: 80%;
