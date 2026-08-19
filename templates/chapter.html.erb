@@ -1,6 +1,6 @@
   <div class="manual">
     <nav class="manual__chapters">
-      <div class="manual__container">
+      <div class="manual__container manual__container--chapters">
 <%= render "_search" -%>
 
         <ol>
@@ -9,9 +9,16 @@
       </div>
     </nav>
 
-    <div class="manual__content">
-      <article class="manual__article">
+    <div class="manual__container">
+<%= render "_location", title: chapter.title -%>
+
+      <header class="manual__header">
         <h1><%= h chapter.title %></h1>
+
+<%= render "_actions", chapter: chapter -%>
+      </header>
+      <article class="manual__article">
+
 <%= content %>
       </article>
 
@@ -31,4 +38,6 @@
         </a>
       </nav>
     </div>
+
+<%= render "_toc", headings: headings -%>
   </div>
