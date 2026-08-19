@@ -5,7 +5,8 @@ html {
   scrollbar-width: thin;
 }
 
-html:has(dialog[open]) {
+html:has(dialog[open]),
+html:has(#nav-active:checked) {
   overflow: hidden;
 }
 
