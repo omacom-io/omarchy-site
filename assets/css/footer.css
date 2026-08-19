@@ -124,7 +124,6 @@
   .footer {
     display: flex;
     gap: var(--space-neutral);
-    padding-inline: var(--space-xx-large);
   }
 
   .footer--center {
