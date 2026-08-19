@@ -1,0 +1,63 @@
+#!/usr/bin/env ruby
+
+# Serves the site with clean URLs, the way omarchy.org does, so /news/2026/09/a-post
+# resolves without the /index.html suffix you'd need when opening files off disk.
+
+require "socket"
+require "uri"
+
+ROOT = File.expand_path("..", __dir__)
+PORT = Integer(ARGV[0] || ENV.fetch("PORT", "3000"))
+
+CONTENT_TYPES = {
+  ".css" => "text/css", ".gif" => "image/gif", ".html" => "text/html", ".ico" => "image/x-icon",
+  ".jpeg" => "image/jpeg", ".jpg" => "image/jpeg", ".js" => "text/javascript", ".json" => "application/json",
+  ".mp4" => "video/mp4", ".png" => "image/png", ".svg" => "image/svg+xml", ".txt" => "text/plain",
+  ".webm" => "video/webm", ".webp" => "image/webp", ".woff2" => "font/woff2", ".xml" => "application/xml"
+}
+
+def content_type(file)
+  type = CONTENT_TYPES.fetch(File.extname(file).downcase, "application/octet-stream")
+  type.start_with?("text/") || type.match?(%r{\A(application/(json|xml)|image/svg)}) ? "#{type}; charset=utf-8" : type
+end
+
+def resolve(path)
+  target = File.expand_path(File.join(ROOT, URI::DEFAULT_PARSER.unescape(path)))
+  return unless target == ROOT || target.start_with?("#{ROOT}/")
+
+  [target, "#{target}.html", File.join(target, "index.html")].find { |file| File.file?(file) }
+end
+
+def respond(client, status, body, type: "text/plain; charset=utf-8", head: false)
+  client.print "HTTP/1.1 #{status}\r\nContent-Type: #{type}\r\nContent-Length: #{body.bytesize}\r\n" \
+               "Cache-Control: no-store\r\nConnection: close\r\n\r\n"
+  client.print body unless head
+end
+
+server = TCPServer.new("127.0.0.1", PORT)
+puts "Serving #{ROOT} on http://localhost:#{PORT} — Ctrl-C to stop"
+
+trap("INT") { puts; exit }
+
+loop do
+  Thread.new(server.accept) do |client|
+    method, path, = client.gets&.split
+    nil while (line = client.gets) && line != "\r\n"
+
+    if !%w[GET HEAD].include?(method)
+      respond client, "405 Method Not Allowed", "Method not allowed\n"
+    elsif (file = resolve(path.split("?").first))
+      respond client, "200 OK", File.binread(file), type: content_type(file), head: method == "HEAD"
+    else
+      missing = File.join(ROOT, "404.html")
+      body = File.file?(missing) ? File.binread(missing) : "Not found\n"
+      respond client, "404 Not Found", body, type: "text/html; charset=utf-8", head: method == "HEAD"
+    end
+  rescue Errno::ECONNRESET, Errno::EPIPE
+    # Browser hung up mid-response (aborted image loads, navigation away).
+  rescue StandardError => e
+    warn "#{path}: #{e.class}: #{e.message}"
+  ensure
+    client.close
+  end
+end
