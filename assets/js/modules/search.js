@@ -21,7 +21,7 @@ function ready() {
 
   function snippet(content, regexp) {
 
-    var length = 280;
+    var length = 240;
     var match = regexp ? content.match(regexp) : null;
     var start = 0;
 
@@ -44,7 +44,7 @@ function ready() {
 
   function showResults(results, store, searchTerm) {
 
-    document.querySelector('.search-results__query mark').textContent = searchTerm;
+    document.querySelector('.search-query mark').textContent = searchTerm;
 
     var entries = document.querySelector('.search-results__entries');
     var regexp = termsRegExp(searchTerm);
