@@ -51,7 +51,7 @@ body:has(#nav-active:checked) .nav-mobile {
   content: counter(chapter, decimal-leading-zero);
 }
 
-.nav-mobile__chapters li a[aria-current="true"] {
+.nav-mobile__chapters li a[aria-current="page"] {
   color: var(--color-white);
 }
 

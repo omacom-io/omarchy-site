@@ -36,8 +36,8 @@
   text-wrap: pretty;
 }
 
-.manual__chapters ol li a[aria-current="true"],
-.manual__toc ol li a[aria-current="true"] {
+.manual__chapters ol li a[aria-current="page"],
+.manual__toc ol li a[aria-current="location"] {
   color: var(--color-white);
 }
 

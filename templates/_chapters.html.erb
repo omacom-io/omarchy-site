@@ -1,3 +1,3 @@
 <%- chapters.each do |chapter| -%>
-          <li><a href="<%= chapter.path %>"<%= %( aria-current="true") if chapter.path == current_path %>><%= h chapter.title %></a></li>
+          <li><a href="<%= chapter.path %>"<%= %( aria-current="page") if chapter.path == current_path %>><%= h chapter.title %></a></li>
 <%- end -%>

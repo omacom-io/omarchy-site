@@ -74,7 +74,7 @@ function ready() {
 
     current = links[id];
 
-    if(current) current.setAttribute('aria-current', 'true');
+    if(current) current.setAttribute('aria-current', 'location');
 
   }
 
