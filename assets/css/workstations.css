@@ -74,9 +74,9 @@ button.workstations__image {
 }
 
 .workstations__backdrop {
-  backdrop-filter: blur(0.7em);
-  -webkit-backdrop-filter: blur(0.7em);
-  background: oklch(var(--oklch-background-night) / 0.9);
+  backdrop-filter: blur(1em);
+  -webkit-backdrop-filter: blur(1em);
+  background: oklch(var(--oklch-background-night) / 0.95);
   inset: 0;
   position: fixed;
   user-select: none;
