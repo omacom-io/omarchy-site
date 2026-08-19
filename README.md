@@ -24,3 +24,10 @@ Regenerate them (then commit the result) with:
 
 It needs `gem install kramdown kramdown-parser-gfm` and imagemagick on first run. Pass a local
 checkout to build without hitting GitHub: `bin/build-manual ../omarchy/manual`.
+
+## Search
+
+The same build writes `manual/search-index.json` — one entry per heading, so results link
+straight to the section that matched. `assets/js/modules/search.js` fetches it the first
+time someone reaches for the box in the header and matches in the browser; there is no
+search service and nothing to run. Press `/` anywhere in the manual to search.

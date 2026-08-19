@@ -26,7 +26,9 @@
     <link rel="stylesheet" type="text/css" href="/assets/css/main.css">
     <link rel="stylesheet" type="text/css" href="/assets/css/pre.css">
     <link rel="stylesheet" type="text/css" href="/assets/css/manual.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/search.css">
 
+    <script src="/assets/js/manual.js" type="module"></script>
     <script defer data-domain="omarchy.org" src="https://plausible.io/js/script.js"></script>
   </head>
 
@@ -54,6 +56,17 @@
 
     <main class="main">
   <div class="manual manual--index">
+      <search class="search" hidden>
+        <div class="search__field">
+          <input class="search__input" id="search" type="search" role="combobox"
+                 placeholder="Search" aria-label="Search the manual"
+                 aria-controls="search-results" aria-expanded="false" aria-autocomplete="list"
+                 autocomplete="off" autocapitalize="off" spellcheck="false">
+          <kbd class="search__shortcut">/</kbd>
+        </div>
+
+        <div class="search__results" id="search-results" role="listbox" aria-label="Search results" hidden></div>
+      </search>
     <nav class="manual__index" style="--chapter-rows: 26" aria-label="Chapters">
       <ol>
         <li><a href="/manual/">Welcome to Omarchy!</a></li>
