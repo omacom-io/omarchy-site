@@ -53,6 +53,6 @@
 
   --transition: 0.15s ease;
 
-  --nav-height: calc(var(--space-xxx-large) + var(--border-width));
+  --nav-height: calc(4.5 * var(--font-size) + var(--border-width));
 
 }
