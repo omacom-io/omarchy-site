@@ -65,18 +65,31 @@ def fetch_source
   end
 end
 
-def render_markdown(chapter)
-  # Rewrite inter-chapter links like 07-hotkeys.md#anchor to ../hotkeys/#anchor,
-  # and repo-relative image refs to the copy hosted under /manual/images/
-  markdown = chapter.body
+# Rewrite inter-chapter links like 07-hotkeys.md#anchor to ../hotkeys/#anchor, and
+# repo-relative image refs to the copy hosted under /manual/images/. Shared by the rendered
+# page and the index.md served alongside it, so both resolve links the same way.
+def rewrite_markdown(chapter)
+  chapter.body
     .gsub(/\]\((\d\d)-([\w-]+)\.md(#[^)]*)?\)/) { $1 == "01" ? "](../#{$3})" : "](../#{$2}/#{$3})" }
     .gsub("](images/", "](/manual/images/")
     .gsub(THEME_PREVIEW_REF) { "](/manual/images/#{$1}-#{$2}.webp)" }
-  html = Kramdown::Document.new(markdown, input: "GFM", hard_wrap: false, syntax_highlighter: nil).to_html
-  html.gsub(/<h([2-6]) id="([^"]+)">(.*?)<\/h\1>/m) do
-    level, id, content = $1, $2, $3
-    %(<h#{level} id="#{id}">#{content} <a class="manual__heading-link" href="##{id}" aria-label="Link to this section">#</a></h#{level}>)
+end
+
+def render_markdown(chapter)
+  html = Kramdown::Document.new(rewrite_markdown(chapter), input: "GFM", hard_wrap: false, syntax_highlighter: nil).to_html
+
+  # Collect h2/h3 for the on-this-page nav, and link each heading to itself.
+  # Heading content is HTML (inline code, links), so reduce it to plain text for the label.
+  headings = []
+  html = html.gsub(/<h([2-6]) id="([^"]+)">(.*?)<\/h\1>/m) do
+    level, id, content = $1.to_i, $2, $3
+    headings << { level: level, id: id, text: plain_text(content) } if level <= 3
+    # A heading that already contains a link is left alone; nesting anchors is invalid.
+    inner = content.include?("<a ") ? content : %(<a href="##{id}">#{content}</a>)
+    %(<h#{level} id="#{id}">#{inner}</h#{level}>)
   end
+
+  [html, headings]
 end
 
 def h(text) = CGI.escapeHTML(text)
@@ -119,7 +132,7 @@ def build(source_dir)
   chapters.each_with_index do |chapter, index|
     # Render each chapter's markdown once, then reuse it for both the page and the
     # search index.
-    content = render_markdown(chapter)
+    content, headings = render_markdown(chapter)
 
     write_page File.join(SITE_ROOT, chapter.path, "index.html"), "chapter",
       title: chapter.title,
@@ -128,8 +141,14 @@ def build(source_dir)
       chapters: chapters,
       chapter: chapter,
       content: content,
+      headings: headings,
       previous_chapter: chapters[index - 1],
       next_chapter: chapters[(index + 1) % chapters.size]
+
+    # The source markdown, served raw for "View Markdown" and "Copy Markdown".
+    # load_chapters strips the title heading, so put it back.
+    File.write File.join(SITE_ROOT, chapter.path, "index.md"),
+      "# #{chapter.title}\n\n#{rewrite_markdown(chapter)}"
 
     store[chapter.path] = {
       title: chapter.title,
