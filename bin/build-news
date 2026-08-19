@@ -65,6 +65,10 @@ def load_post(file)
   date ||= Date.new(Integer(year), Integer(month), 1)
 
   assets = markdown.scan(RELATIVE_ASSET).flatten.uniq
+  assets.each do |asset|
+    next if File.file?(File.join(File.dirname(file), asset))
+    abort "#{file.delete_prefix("#{SITE_ROOT}/")} links to #{asset}, but no such file sits next to it"
+  end
   markdown = markdown.gsub(RELATIVE_ASSET) { "](/news/#{relative}/#{$1})" }
 
   html = Kramdown::Document.new(markdown, input: "GFM", hard_wrap: false, syntax_highlighter: nil).to_html
