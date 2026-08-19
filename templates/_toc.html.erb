@@ -1,0 +1,15 @@
+<%- if headings.any? -%>
+    <nav class="manual__toc">
+      <div class="manual__container manual__container--toc">
+        <div class="manual__location">
+          <p>On this page</p>
+        </div>
+
+        <ol>
+<%- headings.each do |heading| -%>
+          <li><a href="#<%= heading[:id] %>"><%= h heading[:text] %></a></li>
+<%- end -%>
+        </ol>
+      </div>
+    </nav>
+<%- end -%>
