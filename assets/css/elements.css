@@ -1,6 +1,5 @@
 html {
   font-size: 16px;
-  scroll-behavior: smooth;
   scroll-padding-top: calc(var(--nav-height) + var(--space-large));
   scrollbar-width: thin;
 }
@@ -52,6 +51,16 @@ img {
   height: auto;
   max-width: 100%;
   width: 100%;
+}
+
+
+
+@media(prefers-reduced-motion: no-preference) {
+
+  html {
+    scroll-behavior: smooth;
+  }
+
 }
 
 
