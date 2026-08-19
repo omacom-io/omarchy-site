@@ -15,7 +15,29 @@ function ready() {
 
     var terms = searchTerm.trim().split(/\s+/).filter(Boolean).map(term => term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'));
 
-    return terms.length ? new RegExp('(' + terms.join('|') + ')', 'gi') : null;
+    return terms.length ? new RegExp(terms.join('|'), 'gi') : null;
+
+  }
+
+  function highlightHTML(str, regexp) {
+
+    var cursor = 0;
+    var html = '';
+
+    if(regexp) {
+
+      str.replace(regexp, (match, offset) => {
+
+        html += escapeHTML(str.substring(cursor, offset));
+        html += '<mark>' + escapeHTML(match) + '</mark>';
+
+        cursor = offset + match.length;
+
+      });
+
+    }
+
+    return html + escapeHTML(str.substring(cursor));
 
   }
 
@@ -34,9 +56,7 @@ function ready() {
     if(clippedStart) excerpt = excerpt.replace(/^\S*\s+/, '');
     if(clippedEnd) excerpt = excerpt.replace(/\s+\S*$/, '');
 
-    excerpt = escapeHTML(excerpt);
-
-    if(regexp) excerpt = excerpt.replace(regexp, '<mark>$1</mark>');
+    excerpt = highlightHTML(excerpt, regexp);
 
     return (clippedStart ? '...' : '') + excerpt + (clippedEnd ? '...' : '');
 

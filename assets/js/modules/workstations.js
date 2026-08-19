@@ -28,31 +28,26 @@ function ready() {
 
     });
 
-    document.addEventListener('keydown', (e) => {
+    modal.addEventListener('close', () => {
 
-      if(e.keyCode == 27) close();
+      modalContainer.replaceChildren();
+
+      modal.scrollTo(0, 0);
 
     });
 
     function open(element) {
 
-      var elementImg = element.querySelector('img');
-      var elementFigcaption = element.querySelector('figcaption');
+      var modalImage = document.createElement('div');
+      var modalFigure = element.cloneNode(true);
 
-      var figureImgSrc = elementImg.src;
-      var figureImgAlt = elementImg.alt;
-      var figureFigcaption = elementFigcaption ? elementFigcaption.textContent : '';
+      modalImage.classList.add('workstations__image', 'workstations__image--modal');
 
-      modalContainer.innerHTML = `
-        <div class="workstations__image workstations__image--modal">
-          <figure>
-            <img src="${figureImgSrc}" alt="${figureImgAlt}" loading="lazy">
-            ${figureFigcaption ? `<figcaption>${figureFigcaption}</figcaption>` : ''}
-          </figure>
-        </div>
-      `;
+      modalFigure.querySelector('img').removeAttribute('loading');
 
-      var modalImage = modalContainer.querySelector('.workstations__image');
+      modalImage.append(modalFigure);
+
+      modalContainer.replaceChildren(modalImage);
 
       modalImage.addEventListener('click', () => {
 
@@ -66,9 +61,6 @@ function ready() {
 
     function close() {
 
-      modalContainer.innerHTML = '';
-
-      modal.scrollTo(0, 0);
       modal.close();
 
     }
