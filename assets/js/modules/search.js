@@ -1,3 +1,5 @@
+window.search = (() => {
+
 function ready() {
 
   function escapeHTML(str) {
@@ -82,7 +84,7 @@ function ready() {
 
     document.querySelectorAll('.search-box').forEach(box => box.value = searchTerm);
 
-    var idx = lunr(function() {
+    var idx = window.lunr(function() {
 
       this.field('title', {
         boost: 10
@@ -129,4 +131,6 @@ function ready() {
 
 }
 
-export { ready };
+return { ready };
+
+})();

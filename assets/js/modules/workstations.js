@@ -1,3 +1,5 @@
+window.workstations = (() => {
+
 function ready() {
 
   var modal = document.querySelector('.workstations__modal');
@@ -77,4 +79,6 @@ function ready() {
 
 }
 
-export { ready };
+return { ready };
+
+})();

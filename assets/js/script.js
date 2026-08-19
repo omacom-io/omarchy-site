@@ -1,10 +1,7 @@
-import * as search from './modules/search.js';
-import * as workstations from './modules/workstations.js';
-
 document.addEventListener('DOMContentLoaded', () => {
 
-  search.ready();
+  window.search.ready();
 
-  workstations.ready();
+  window.workstations.ready();
 
 });
