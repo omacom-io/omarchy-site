@@ -244,6 +244,7 @@
 
   .manual__toc {
     display: block;
+    font-size: 77.5%;
     min-height: 0;
     overflow-y: auto;
     scrollbar-width: thin;

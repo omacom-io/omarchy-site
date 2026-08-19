@@ -76,8 +76,10 @@ end
 
 def h(text) = CGI.escapeHTML(text)
 
+# Tags become spaces so the words either side of them stay apart, then the space an
+# inline tag left stranded in front of punctuation goes again
 def plain_text(html)
-  CGI.unescapeHTML(html.gsub(%r{<[^>]*>}, " ")).gsub(/\s+/, " ").strip
+  CGI.unescapeHTML(html.gsub(%r{<[^>]*>}, " ")).gsub(/\s+/, " ").gsub(/ ([.,;:!?)\]’])/, '\1').strip
 end
 
 # Splits a rendered chapter into one search entry per heading, so results can link
@@ -98,7 +100,7 @@ def index_entries(chapter, html)
     }
   end
 
-  entries.reject { |entry| entry[:text].empty? && entry[:title] == chapter.title }
+  entries.reject { |entry| entry[:text].empty? }
 end
 
 def render(template, locals)
