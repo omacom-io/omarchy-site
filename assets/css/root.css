@@ -22,6 +22,9 @@
   --color-turquoise: rgb(var(--rgb-turquoise));
   --color-white: rgb(var(--rgb-white));
 
+  --border-color: rgb(var(--rgb-terminal-black) / 0.8);
+  --border-width: max(1px, 0.0625em);
+
   --font-family: 'JetBrains Mono', monospace;
   --font-size: clamp(0.625rem, 1.25vw, 1rem);
   --font-size-small: 80%;
@@ -32,6 +35,7 @@
 
   --space-small: 0.5em;
   --space-medium: 1em;
+  --space-neutral: 1.5em;
   --space-large: 2em;
   --space-x-large: 3em;
   --space-xx-large: 4em;
