@@ -43,7 +43,8 @@ function ready() {
 
     document.addEventListener('keydown', (e) => {
 
-      if(shortcut(e)) {
+      // A chapter hides the box at narrow widths, where there's nothing to focus
+      if(shortcut(e) && input.offsetParent) {
 
         e.preventDefault();
 

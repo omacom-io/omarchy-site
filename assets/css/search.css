@@ -165,9 +165,10 @@
 
 @media(max-width: 63.99em) {
 
-  /* The chapter list is hidden at this width, so the box carries the sidebar alone */
-  .search {
-    max-width: 24em;
+  /* The chapter list is hidden at this width, and a chapter's box goes with it rather
+     than hanging over the text on its own. The table of contents keeps its own box. */
+  .manual__sidebar {
+    display: none;
   }
 
   .search__shortcut {
