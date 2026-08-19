@@ -22,7 +22,7 @@ function ready() {
     clearTimeout(button.copied);
 
     button.setAttribute('data-copied', '');
-    button.copied = setTimeout(() => button.removeAttribute('data-copied'), 2000);
+    button.copied = setTimeout(() => button.removeAttribute('data-copied'), 1500);
 
   }
 
