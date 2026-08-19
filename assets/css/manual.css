@@ -6,8 +6,8 @@
   width: min(100%, 90em);
 }
 
-.manual__chapters {
-  border-right: var(--border-width) solid var(--border-color);
+.manual__chapters,
+.manual__toc {
   display: none;
   max-height: calc(100vh - var(--nav-height));
   min-height: calc(100vh - var(--nav-height));
@@ -18,13 +18,35 @@
   top: var(--nav-height);
 }
 
+.manual__chapters ol,
+.manual__toc ol {
+  display: grid;
+  font-size: var(--font-size-small);
+  gap: var(--space-xx-small);
+  list-style: none;
+  margin-bottom: -0.425em;
+  margin-top: -0.3875em;
+}
+
+.manual__chapters ol li a,
+.manual__toc ol li a {
+  color: var(--color-terminal-blue);
+  font-weight: 400;
+  text-decoration: none;
+  text-wrap: pretty;
+}
+
+.manual__chapters ol li a[aria-current="true"],
+.manual__toc ol li a[aria-current="true"] {
+  color: var(--color-white);
+}
+
+.manual__chapters {
+  border-right: var(--border-width) solid var(--border-color);
+}
+
 .manual__chapters ol {
   counter-reset: chapter;
-  display: grid;
-  gap: var(--space-xxx-small);
-  list-style: none;
-  margin-bottom: -0.4375em;
-  margin-top: -0.3875em;
 }
 
 .manual__chapters ol li {
@@ -32,11 +54,8 @@
 }
 
 .manual__chapters ol li a {
-  color: var(--color-terminal-blue);
   display: flex;
-  font-weight: 400;
-  gap: var(--space-small);
-  text-decoration: none;
+  gap: 1ch;
 }
 
 .manual__chapters ol li a:before {
@@ -44,23 +63,136 @@
   content: counter(chapter, decimal-leading-zero);
 }
 
-.manual__chapters ol li a[aria-current="page"] {
-  color: var(--color-white);
+.manual__toc {
+  border-left: var(--border-width) solid var(--border-color);
 }
 
 .manual__container {
   align-content: start;
   display: grid;
-  gap: var(--space-xx-large);
-  padding: var(--space-xx-large);
-}
-
-.manual__content {
-  align-content: start;
-  display: grid;
-  gap: var(--space-xx-large);
   padding: var(--space-large);
 }
+
+.manual__container--chapters,
+.manual__container--toc {
+  gap: var(--space-large);
+}
+
+.manual__location {
+  align-items: center;
+  color: oklch(var(--oklch-terminal-white) / 0.6);
+  display: grid;
+  font-size: var(--font-size-small);
+  font-weight: 500;
+  height: 2.6em;
+  letter-spacing: 0.0625em;
+  text-transform: uppercase;
+}
+
+.manual__location p,
+.manual__location ul {
+  margin-bottom: -0.425em;
+  margin-top: -0.4125em;
+}
+
+.manual__location ul {
+  display: flex;
+  gap: 1ch;
+}
+
+.manual__location span {
+  color: oklch(var(--oklch-terminal-white) / 0.25);
+}
+
+.manual__location a {
+  color: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  text-decoration: none;
+}
+
+.manual__header {
+  border-bottom: var(--border-width) solid var(--border-color);
+  display: grid;
+  gap: var(--space-small);
+  justify-items: start;
+  margin-bottom: 2.725em;
+  margin-top: var(--space-large);
+  padding-bottom: var(--space-large);
+}
+
+.manual__header h1 {
+  color: var(--color-white);
+  font-size: var(--font-size-x-large);
+  font-weight: 700;
+  line-height: 1.3em;
+  margin-bottom: -0.2875em;
+  margin-top: -0.2625em;
+}
+
+
+
+.manual__actions {
+  display: flex;
+  gap: var(--space-neutral);
+  height: 2em;
+  margin-bottom: -0.7125em;
+}
+
+.manual__action {
+  align-items: center;
+  color: oklch(var(--oklch-terminal-white) / 0.6);
+  cursor: pointer;
+  display: flex;
+  font-size: var(--font-size-small);
+  font-weight: 500;
+  gap: 1ch;
+  letter-spacing: 0.0625em;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.manual__action-icon {
+  display: grid;
+  place-items: center;
+}
+
+.manual__action-icon svg {
+  grid-area: 1 / 1;
+  height: 1.1em;
+  overflow: visible;
+  width: auto;
+}
+
+.manual__action-icon--transform svg {
+  transition:
+    opacity var(--transition),
+    transform var(--transition)
+  ;
+  will-change: transform;
+}
+
+.manual__action-icon--transform svg:last-child {
+  opacity: 0;
+  transform: scale(0.8);
+}
+
+.manual__action[data-copied] .manual__action-icon--transform svg:first-child {
+  opacity: 0;
+  transform: scale(0.8);
+}
+
+.manual__action[data-copied] .manual__action-icon--transform svg:last-child {
+  opacity: 1;
+  transform: none;
+}
+
+.manual__action-label {
+  margin-bottom: -0.4125em;
+  margin-top: -0.3875em;
+}
+
+
 
 .manual__article {
   color: var(--color-terminal-white);
@@ -69,7 +201,6 @@
   text-wrap: pretty;
 }
 
-.manual__article h1,
 .manual__article h2,
 .manual__article h3,
 .manual__article h4,
@@ -80,18 +211,14 @@
   line-height: var(--line-height-tight);
 }
 
-.manual__article h1 {
-  font-size: var(--font-size-x-large);
-  line-height: 1.3em;
-  padding-block: 0.1555em;
-  margin-bottom: 0.925em;
-}
-
+/* The lead-in space is margin, not padding, so an anchor jump lands on the
+   heading's text instead of the top of its padding. .manual__article is a grid,
+   so margins never collapse and the spacing is unchanged. Each value is the old
+   padding-top less the -0.2375em leading trim. */
 .manual__article h2 {
   font-size: var(--font-size-large);
   margin-bottom: -0.3em;
-  margin-top: -0.2375em;
-  padding-top: 1.025em;
+  margin-top: 0.7875em;
 }
 
 .manual__article h3,
@@ -100,19 +227,9 @@
 .manual__article h6 {
   font-size: var(--font-size-medium);
   margin-bottom: -0.3125em;
-  margin-top: -0.2375em;
-  padding-top: 1.25em;
+  margin-top: 1.0125em;
 }
 
-.manual__article h1 + h2,
-.manual__article h1 + h3,
-.manual__article h1 + h4,
-.manual__article h1 + h5,
-.manual__article h1 + h6 {
-  padding-top: 0;
-}
-
-.manual__article h1 a,
 .manual__article h2 a,
 .manual__article h3 a,
 .manual__article h4 a,
@@ -217,8 +334,14 @@
 .manual__article table th,
 .manual__article table td {
   border-bottom: var(--border-width) solid var(--border-color);
-  padding: var(--space-medium);
+  padding-block: var(--space-medium);
+  padding-right: var(--space-neutral);
   vertical-align: top;
+}
+
+.manual__article table th:last-child,
+.manual__article table td:last-child {
+  padding-right: 0;
 }
 
 .manual__article table th {
@@ -232,21 +355,19 @@
   border-top: var(--border-width) dashed var(--border-color);
 }
 
-.manual__article a {
-  color: var(--color-white);
-  font-weight: 700;
+.manual__article h2:first-child,
+.manual__article h3:first-child,
+.manual__article h4:first-child,
+.manual__article h5:first-child,
+.manual__article h6:first-child {
+  margin-top: -0.2375em;
 }
 
-.manual__heading-link {
-  color: var(--color-white);
-  font-size: var(--font-size-small);
-  font-weight: inherit;
-  opacity: 0;
-  text-decoration: none;
-}
+
 
 .manual__pagination {
   display: grid;
+  margin-top: var(--space-xx-large);
 }
 
 .manual__pagination-button {
@@ -268,7 +389,7 @@
   color: oklch(var(--oklch-terminal-white) / 0.6);
   font-size: var(--font-size-small);
   font-weight: 500;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.0625em;
   text-transform: uppercase;
 }
 
@@ -287,9 +408,9 @@
 
 @media(hover: hover) {
 
-  .manual__chapters ol li a:focus,
-  .manual__chapters ol li a:hover {
-    color: var(--color-white);
+  .manual__article a:focus,
+  .manual__article a:hover {
+    color: var(--color-green);
   }
 
   .manual__article table tr td {
@@ -300,26 +421,19 @@
     background: oklch(var(--oklch-terminal-black) / 0.1);
   }
 
-  .manual__article a:focus,
-  .manual__article a:hover {
-    color: var(--color-green);
+  .manual__action {
+    transition: color var(--transition);
   }
 
-  .manual__heading-link {
-    transition:
-      color var(--transition),
-      opacity var(--transition)
-    ;
-  }
-
-  .manual__article :is(h2, h3, h4, h5, h6):hover .manual__heading-link,
-  .manual__heading-link:focus-visible {
-    opacity: 0.5;
-  }
-
-  .manual__article :is(h2, h3, h4, h5, h6) .manual__heading-link:hover {
+  .manual__chapters ol li a:focus,
+  .manual__chapters ol li a:hover,
+  .manual__toc ol a:focus,
+  .manual__toc ol a:hover,
+  .manual__location a:focus,
+  .manual__location a:hover,
+  .manual__action:focus,
+  .manual__action:hover {
     color: var(--color-white);
-    opacity: 1;
   }
 
   .manual__pagination-button {
@@ -362,15 +476,19 @@
 @media(min-width: 64em) {
 
   .manual {
-    grid-template-columns: 30em auto;
+    grid-template-columns: 20em auto 18em;
   }
 
   .manual__chapters {
     display: grid;
   }
 
-  .manual__content {
-    padding: var(--space-xx-large);
+  .manual__toc {
+    display: grid;
+  }
+
+  .manual__location {
+    font-size: var(--font-size-small);
   }
 
 }
