@@ -51,7 +51,7 @@
     </div>
 
     <header class="header">
-      <h1><a href="/manual/">The Omarchy Manual</a></h1>
+      <h1>The Manual</h1>
     </header>
 
     <main class="main">
@@ -131,35 +131,35 @@
 
 <p>That panel scans for Wi-Fi networks, shows signal strength, and connects. Ethernet needs nothing at all — plug it in and it works. If you’d rather stay in the terminal, <code>nmtui</code> gives you the same controls, and there’s an <code>omarchy network</code> command group too.</p>
 
-<h2 id="sharing-your-wi-fi">Sharing your Wi-Fi</h2>
+<h2 id="sharing-your-wi-fi">Sharing your Wi-Fi <a class="manual__heading-link" href="#sharing-your-wi-fi" aria-label="Link to this section">#</a></h2>
 
 <p>Rather than reading a long password out loud, run <em>Setup &gt; Network &gt; QR Code</em> while you’re on Wi-Fi. That puts a QR code on screen that any phone camera can scan to join. It’s one of those things you’ll use more than you’d expect once you know it’s there.</p>
 
 <p>If you actually need the password itself, <code>omarchy network password &lt;interface&gt;</code> prints it.</p>
 
-<h2 id="dns">DNS</h2>
+<h2 id="dns">DNS <a class="manual__heading-link" href="#dns" aria-label="Link to this section">#</a></h2>
 
 <p>Omarchy uses whatever DNS your network hands out over DHCP. You can override that for the whole machine under <em>Setup &gt; Network &gt; DNS</em>, where Cloudflare and Google are one click away. Pick <em>Custom</em> to type in your own servers.</p>
 
 <p>From the terminal, <code>omarchy dns</code> prints the current provider and <code>omarchy dns Cloudflare</code> sets one.</p>
 
-<h2 id="pinning-the-wi-fi-band">Pinning the Wi-Fi band</h2>
+<h2 id="pinning-the-wi-fi-band">Pinning the Wi-Fi band <a class="manual__heading-link" href="#pinning-the-wi-fi-band" aria-label="Link to this section">#</a></h2>
 
 <p>If your router puts 2.4GHz, 5GHz, and 6GHz on the same network name, your laptop will sometimes cling to the slow one. <code>omarchy network band</code> shows which band you’re on, and <code>omarchy network band 5</code> pins it. Use <code>auto</code> to let it choose again.</p>
 
 <p>This pins the band rather than a specific access point, so you keep roaming between APs normally.</p>
 
-<h2 id="how-fast-is-it">How fast is it?</h2>
+<h2 id="how-fast-is-it">How fast is it? <a class="manual__heading-link" href="#how-fast-is-it" aria-label="Link to this section">#</a></h2>
 
 <p><em>Trigger &gt; Speed Test &gt; Network Speed Test</em> measures your actual up and down speed with a pair of dials. From the terminal it’s <code>omarchy network speedtest down</code> or <code>up</code>. (There’s a disk speed test sitting next to it in that menu, if you’re benchmarking the other bottleneck.)</p>
 
-<h2 id="the-firewall">The firewall</h2>
+<h2 id="the-firewall">The firewall <a class="manual__heading-link" href="#the-firewall" aria-label="Link to this section">#</a></h2>
 
 <p>The firewall is on by default and blocks all incoming traffic, with one exception: port 53317, so <a href="../guis/">LocalSend</a> works out of the box.</p>
 
 <p>SSH is off until you turn it on with <em>Setup &gt; Security &gt; SSHD</em>, which starts the daemon, opens port 22 rate-limited against brute force, and authorizes a key. Docker is locked down too, so containers can’t accidentally expose themselves to the world. See <a href="../security/">security</a> for the whole story.</p>
 
-<h2 id="tailscale">Tailscale</h2>
+<h2 id="tailscale">Tailscale <a class="manual__heading-link" href="#tailscale" aria-label="Link to this section">#</a></h2>
 
 <p><a href="https://tailscale.com/">Tailscale</a> is a mesh VPN that makes reaching all your computers and servers over the internet simple and secure. Install it with <em>Install &gt; Service &gt; Tailscale</em>.</p>
 
@@ -167,7 +167,7 @@
 
 <p>Installing it also adds a web app for the Tailscale admin console.</p>
 
-<h2 id="when-it-stops-working">When it stops working</h2>
+<h2 id="when-it-stops-working">When it stops working <a class="manual__heading-link" href="#when-it-stops-working" aria-label="Link to this section">#</a></h2>
 
 <p>Before rebooting, try restarting the offending piece on its own. <em>Update &gt; Hardware</em> has Wi-Fi, Bluetooth, Audio, and Trackpad, and reloading one of those clears up most “it worked five minutes ago” situations. See <a href="../troubleshooting/">troubleshooting</a>.</p>
 
@@ -180,22 +180,5 @@
   </div>
     </main>
 
-    <footer class="footer">
-      <div class="footer__subhead">
-        <p>Brought to you by <a href="https://37signals.com">37signals</a></p>
-      </div>
-
-      <div class="footer__buttons">
-        <a href="https://basecamp.com"><img src="/assets/images/logo-basecamp.svg" width="145" height="32" alt="Basecamp"></a>
-        <a href="https://hey.com"><img src="/assets/images/logo-hey.svg" width="123" height="57" alt="HEY"></a>
-        <a href="https://fizzy.do"><img src="/assets/images/logo-fizzy.svg" width="56" height="56" alt="Fizzy"></a>
-        <a href="https://once.com"><img src="/assets/images/logo-once.svg" width="72" height="72" alt="ONCE"></a>
-      </div>
-
-      <div class="footer__sponsor">
-        <span>Sponsored hosting by</span>
-        <a href="https://cloudflare.com"><img src="/assets/images/logo-cloudflare.svg" width="213" height="32" alt="Cloudflare"></a>
-      </div>
-    </footer>
   </body>
 </html>

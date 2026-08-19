@@ -51,7 +51,7 @@
     </div>
 
     <header class="header">
-      <h1><a href="/manual/">The Omarchy Manual</a></h1>
+      <h1>The Manual</h1>
     </header>
 
     <main class="main">
@@ -129,7 +129,7 @@
       <h1>Branding</h1>
 <p>Omarchy allows you to set your company logo or personal image for both the boot unlock, the screensaver, and the about screen.</p>
 
-<h3 id="boot-unlock">Boot unlock</h3>
+<h3 id="boot-unlock">Boot unlock <a class="manual__heading-link" href="#boot-unlock" aria-label="Link to this section">#</a></h3>
 
 <p>You can use <code>omarchy plymouth preview</code> to see what your custom logo and colors would look like. It takes a background color, a text color, a logo png, and a path for the preview image:</p>
 
@@ -140,7 +140,7 @@
 
 <p><img src="/manual/images/branding-plymouth-shopify.webp" alt="branding-plymouth-shopify" /></p>
 
-<h3 id="screensaver">Screensaver</h3>
+<h3 id="screensaver">Screensaver <a class="manual__heading-link" href="#screensaver" aria-label="Link to this section">#</a></h3>
 
 <p>You can change the logo used for the screensaver under <em>Style &gt; Screensaver</em>. It’s an ASCII logo, so you can edit the text directly, but you can also hand it a png or svg image, and we’ll convert that to ASCII. It looks pretty cool.</p>
 
@@ -154,13 +154,13 @@
   <li><strong>Restore Default</strong> puts the Omarchy logo back.</li>
 </ul>
 
-<h3 id="about-screen">About screen</h3>
+<h3 id="about-screen">About screen <a class="manual__heading-link" href="#about-screen" aria-label="Link to this section">#</a></h3>
 
 <p>The same three options are under <em>Style &gt; About</em> for the <em>About</em> screen you get from the Omarchy menu, and they work identically — the file is <code>~/.config/omarchy/branding/about.txt</code>, and the About window pops up after each change. The About art is converted to a smaller size than the screensaver’s, since it has to fit in a window rather than fill your display.</p>
 
 <p><img src="/manual/images/branding-about.webp" alt="branding-about" /></p>
 
-<h3 id="converting-images-yourself">Converting images yourself</h3>
+<h3 id="converting-images-yourself">Converting images yourself <a class="manual__heading-link" href="#converting-images-yourself" aria-label="Link to this section">#</a></h3>
 
 <p>Both of the <em>Set From Image</em> options are just calling <code>omarchy transcode ascii</code>, which you can run directly if you want control over the conversion:</p>
 
@@ -178,22 +178,5 @@
   </div>
     </main>
 
-    <footer class="footer">
-      <div class="footer__subhead">
-        <p>Brought to you by <a href="https://37signals.com">37signals</a></p>
-      </div>
-
-      <div class="footer__buttons">
-        <a href="https://basecamp.com"><img src="/assets/images/logo-basecamp.svg" width="145" height="32" alt="Basecamp"></a>
-        <a href="https://hey.com"><img src="/assets/images/logo-hey.svg" width="123" height="57" alt="HEY"></a>
-        <a href="https://fizzy.do"><img src="/assets/images/logo-fizzy.svg" width="56" height="56" alt="Fizzy"></a>
-        <a href="https://once.com"><img src="/assets/images/logo-once.svg" width="72" height="72" alt="ONCE"></a>
-      </div>
-
-      <div class="footer__sponsor">
-        <span>Sponsored hosting by</span>
-        <a href="https://cloudflare.com"><img src="/assets/images/logo-cloudflare.svg" width="213" height="32" alt="Cloudflare"></a>
-      </div>
-    </footer>
   </body>
 </html>

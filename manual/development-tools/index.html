@@ -51,7 +51,7 @@
     </div>
 
     <header class="header">
-      <h1><a href="/manual/">The Omarchy Manual</a></h1>
+      <h1>The Manual</h1>
     </header>
 
     <main class="main">
@@ -127,7 +127,7 @@
 
     <article class="manual__content">
       <h1>Development Tools</h1>
-<h2 id="alternative-editors">Alternative Editors</h2>
+<h2 id="alternative-editors">Alternative Editors <a class="manual__heading-link" href="#alternative-editors" aria-label="Link to this section">#</a></h2>
 
 <p>Omarchy ships with <a href="https://neovim.io/">Neovim</a> by default, but if you’d like something a bit more mainstream and familiar, you can run the Omarchy Menu (<code>Super + Space</code>) and see the options under <em>Install &gt; Editor</em>. We have VSCode, Cursor, Zed, Sublime Text, Helix, Vim, and Emacs listed there. If you don’t find what you’re looking for, checkout <em>Install &gt; Package</em>, and see if it isn’t in an Arch package (and if not, try <em>Install &gt; AUR</em> to check the AUR).</p>
 
@@ -135,7 +135,7 @@
 
 <p>You can set the system-wide default editor under <code>Setup &gt; Defaults &gt; Editor</code>.</p>
 
-<h2 id="environment">Environment</h2>
+<h2 id="environment">Environment <a class="manual__heading-link" href="#environment" aria-label="Link to this section">#</a></h2>
 
 <p>Omarchy supports setting up a whole host of development environments through the <em>Install &gt; Development</em> section of the Omarchy Menu (<code>Super + Space</code>). You’ll of course find <em>Ruby on Rails</em>, but also all three major runtimes for JavaScript (Node.js, Bun, Deno), as well as popular PHP frameworks like Laravel and Symfony. Oh, and there’s Go, Rust, Python, Java, Elixir (with Phoenix), .NET, OCaml, Zig, Clojure, and Scala too. It’s a very broad selection!</p>
 
@@ -143,7 +143,7 @@
 
 <p>To install, say, Ruby, you’d run <code>mise use -g ruby</code>, which will both install Ruby and set it as the global default. Or, if your project has a .ruby-version file, you can just run <code>mise i</code> in the root of that project.</p>
 
-<h2 id="docker">Docker</h2>
+<h2 id="docker">Docker <a class="manual__heading-link" href="#docker" aria-label="Link to this section">#</a></h2>
 
 <p><a href="https://www.docker.com/">Docker</a> hardly needs any introduction. It allows you to run isolated containers, and Omarchy installs everything needed to run it well. This includes Docker itself, <a href="https://docs.docker.com/compose/">Docker Compose</a>, and the user group changes needed for you to run Docker as the normal user and not as root.</p>
 
@@ -151,7 +151,7 @@
 
 <p>You can setup the common databases for local development in Docker using <em>Install &gt; Development &gt; Docker DB</em> in the Omarchy menu.</p>
 
-<h2 id="github-cli">GitHub CLI</h2>
+<h2 id="github-cli">GitHub CLI <a class="manual__heading-link" href="#github-cli" aria-label="Link to this section">#</a></h2>
 
 <p><a href="https://cli.github.com/">The GitHub CLI</a> let’s you authenticate with your GitHub account and clone private repositories using it. It’s wired up as one of the lazy-loading mise stubs, so the first time you run <code>gh</code>, it installs itself. To authenticate, run <code>gh auth login</code>. Then you can checkout private repositories using <code>gh repo clone org/repo</code>.</p>
 
@@ -168,22 +168,5 @@
   </div>
     </main>
 
-    <footer class="footer">
-      <div class="footer__subhead">
-        <p>Brought to you by <a href="https://37signals.com">37signals</a></p>
-      </div>
-
-      <div class="footer__buttons">
-        <a href="https://basecamp.com"><img src="/assets/images/logo-basecamp.svg" width="145" height="32" alt="Basecamp"></a>
-        <a href="https://hey.com"><img src="/assets/images/logo-hey.svg" width="123" height="57" alt="HEY"></a>
-        <a href="https://fizzy.do"><img src="/assets/images/logo-fizzy.svg" width="56" height="56" alt="Fizzy"></a>
-        <a href="https://once.com"><img src="/assets/images/logo-once.svg" width="72" height="72" alt="ONCE"></a>
-      </div>
-
-      <div class="footer__sponsor">
-        <span>Sponsored hosting by</span>
-        <a href="https://cloudflare.com"><img src="/assets/images/logo-cloudflare.svg" width="213" height="32" alt="Cloudflare"></a>
-      </div>
-    </footer>
   </body>
 </html>

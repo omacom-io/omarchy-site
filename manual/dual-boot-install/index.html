@@ -51,7 +51,7 @@
     </div>
 
     <header class="header">
-      <h1><a href="/manual/">The Omarchy Manual</a></h1>
+      <h1>The Manual</h1>
     </header>
 
     <main class="main">
@@ -131,7 +131,7 @@
 
 <p>This installation method still comes with LUKS encryption for the partition by default so it’s effectively no different than full drive and simply requires free space to be available on the disk.</p>
 
-<h2 id="making-space-on-windows">Making Space on Windows</h2>
+<h2 id="making-space-on-windows">Making Space on Windows <a class="manual__heading-link" href="#making-space-on-windows" aria-label="Link to this section">#</a></h2>
 
 <p>To install alongside Windows, type <code>disk management</code> in the start menu and select the option for <strong>Create and format hard disk partitions</strong>.</p>
 
@@ -149,7 +149,7 @@
 
 <p><img src="/manual/images/dual-boot-4.webp" alt="dual-boot-4" /></p>
 
-<h2 id="installing-omarchy">Installing Omarchy</h2>
+<h2 id="installing-omarchy">Installing Omarchy <a class="manual__heading-link" href="#installing-omarchy" aria-label="Link to this section">#</a></h2>
 
 <p>The install process for Omarchy is effectively the same as normal. After you select your disk, you’ll be given the option of <strong>Free space install</strong>. Select that option to prevent wiping the full disk.</p>
 
@@ -158,13 +158,13 @@
 <p>Confirm that everything looks good and wait for the install to finish like normal. This is also where you could elect to install unencrypted (not recommended) just like on a full-drive install.
  <img src="/manual/images/dual-boot-6.webp" alt="dual-boot-6" /></p>
 
-<h2 id="adding-other-installs-to-the-bootloader">Adding Other Installs to the Bootloader</h2>
+<h2 id="adding-other-installs-to-the-bootloader">Adding Other Installs to the Bootloader <a class="manual__heading-link" href="#adding-other-installs-to-the-bootloader" aria-label="Link to this section">#</a></h2>
 
 <p>When you finish your Omarchy install, you’ll notice that the Limine bootloader is the default now. With this, you can also add options to Limine for your other installs such as Windows.</p>
 
 <p>In order to do that, run <code>limine-scan</code> and follow the prompts to add whichever items you’d like to your limine config. Then when you boot, you’ll see your normal options for Omarchy, as well as Windows Boot Manager or others.</p>
 
-<h2 id="bitlocker">Bitlocker</h2>
+<h2 id="bitlocker">Bitlocker <a class="manual__heading-link" href="#bitlocker" aria-label="Link to this section">#</a></h2>
 
 <p>It’s important to note that this install method is not compatible with Bitlocker as it encrypts the entire drive, not just the partition. If you encounter an error stating that Bitlocker is enabled, boot to Windows, go to <strong>Settings -&gt; Privacy &amp; Security -&gt; Device encryption</strong> and toggle Bitlocker off. It may take some time to decrypt the drive.</p>
 
@@ -179,22 +179,5 @@
   </div>
     </main>
 
-    <footer class="footer">
-      <div class="footer__subhead">
-        <p>Brought to you by <a href="https://37signals.com">37signals</a></p>
-      </div>
-
-      <div class="footer__buttons">
-        <a href="https://basecamp.com"><img src="/assets/images/logo-basecamp.svg" width="145" height="32" alt="Basecamp"></a>
-        <a href="https://hey.com"><img src="/assets/images/logo-hey.svg" width="123" height="57" alt="HEY"></a>
-        <a href="https://fizzy.do"><img src="/assets/images/logo-fizzy.svg" width="56" height="56" alt="Fizzy"></a>
-        <a href="https://once.com"><img src="/assets/images/logo-once.svg" width="72" height="72" alt="ONCE"></a>
-      </div>
-
-      <div class="footer__sponsor">
-        <span>Sponsored hosting by</span>
-        <a href="https://cloudflare.com"><img src="/assets/images/logo-cloudflare.svg" width="213" height="32" alt="Cloudflare"></a>
-      </div>
-    </footer>
   </body>
 </html>

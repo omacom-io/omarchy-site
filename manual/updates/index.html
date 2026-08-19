@@ -51,7 +51,7 @@
     </div>
 
     <header class="header">
-      <h1><a href="/manual/">The Omarchy Manual</a></h1>
+      <h1>The Manual</h1>
     </header>
 
     <main class="main">
@@ -135,7 +135,7 @@
 
 <p><img src="/manual/images/update-available.webp" alt="update-available" /></p>
 
-<h3 id="four-channels">Four channels</h3>
+<h3 id="four-channels">Four channels <a class="manual__heading-link" href="#four-channels" aria-label="Link to this section">#</a></h3>
 
 <p>Omarchy is updated along four channels: stable, RC, edge, and dev. New installations start on the stable channel, which tracks the <a href="https://github.com/basecamp/omarchy/releases/">official releases</a>, as well as the <a href="https://github.com/omacom-io/omarchy-mirror">stable Omarchy Arch mirror</a> that’s running one month behind the latest, so we can catch any new incompatibilities that require config changes before they cause problems for people.</p>
 
@@ -147,15 +147,15 @@
 
 <p>You can switch between channels using <em>Update &gt; Channel</em> from the Omarchy menu (or <code>omarchy-channel-set</code> in the terminal).</p>
 
-<h3 id="firmware-updates">Firmware updates</h3>
+<h3 id="firmware-updates">Firmware updates <a class="manual__heading-link" href="#firmware-updates" aria-label="Link to this section">#</a></h3>
 
 <p>Your packages aren’t the only thing that goes stale. Many laptops and peripherals ship BIOS, SSD, and dock firmware through the Linux Vendor Firmware Service, and <em>Update &gt; Firmware</em> in the Omarchy menu will fetch and install whatever your hardware has waiting. It installs <code>fwupd</code> the first time you run it. Plenty of firmware can only be written during a reboot, so don’t be surprised to be asked for one.</p>
 
-<h3 id="warning-about-direct-pacmanyay-updates">Warning about direct pacman/yay updates</h3>
+<h3 id="warning-about-direct-pacmanyay-updates">Warning about direct pacman/yay updates <a class="manual__heading-link" href="#warning-about-direct-pacmanyay-updates" aria-label="Link to this section">#</a></h3>
 
 <p>If you’re already familiar with Arch, you might be tempted to just run <code>pacman -Syu</code> or <code>yay -Syu</code> yourself, but if you do that, you’ll miss the snapshot, migrations, and configuration updates that Omarchy runs together with new packages. That’s why Omarchy will actually stop a direct system upgrade and point you to <code>omarchy update</code> instead. (If you really know what you’re doing, the guard will tell you how to bypass it for a single transaction.)</p>
 
-<h3 id="rolling-back-bad-updates">Rolling back bad updates</h3>
+<h3 id="rolling-back-bad-updates">Rolling back bad updates <a class="manual__heading-link" href="#rolling-back-bad-updates" aria-label="Link to this section">#</a></h3>
 
 <p>If you ever have a problem after doing an update, you can rollback your system to the snapshot taken before the update. Just restart and pick the snapshot in the boot loading menu from before you started the update.</p>
 
@@ -172,22 +172,5 @@
   </div>
     </main>
 
-    <footer class="footer">
-      <div class="footer__subhead">
-        <p>Brought to you by <a href="https://37signals.com">37signals</a></p>
-      </div>
-
-      <div class="footer__buttons">
-        <a href="https://basecamp.com"><img src="/assets/images/logo-basecamp.svg" width="145" height="32" alt="Basecamp"></a>
-        <a href="https://hey.com"><img src="/assets/images/logo-hey.svg" width="123" height="57" alt="HEY"></a>
-        <a href="https://fizzy.do"><img src="/assets/images/logo-fizzy.svg" width="56" height="56" alt="Fizzy"></a>
-        <a href="https://once.com"><img src="/assets/images/logo-once.svg" width="72" height="72" alt="ONCE"></a>
-      </div>
-
-      <div class="footer__sponsor">
-        <span>Sponsored hosting by</span>
-        <a href="https://cloudflare.com"><img src="/assets/images/logo-cloudflare.svg" width="213" height="32" alt="Cloudflare"></a>
-      </div>
-    </footer>
   </body>
 </html>

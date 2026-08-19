@@ -51,7 +51,7 @@
     </div>
 
     <header class="header">
-      <h1><a href="/manual/">The Omarchy Manual</a></h1>
+      <h1>The Manual</h1>
     </header>
 
     <main class="main">
@@ -131,13 +131,13 @@
 
 <p>It’s also the one piece of the desktop that’s always on screen, so it’s worth knowing what all those little glyphs do.</p>
 
-<h2 id="whats-on-it-by-default">What’s on it by default</h2>
+<h2 id="whats-on-it-by-default">What’s on it by default <a class="manual__heading-link" href="#whats-on-it-by-default" aria-label="Link to this section">#</a></h2>
 
 <p>The bar has three sections. On the left sits the Omarchy logo (the menu launcher) and the workspace indicators. In the center you get the status indicators, the clock, the keyboard layout, the weather, and an Omarchy update badge. On the right: the system tray, agents, bluetooth, network, audio, display, and power.</p>
 
 <p>A few of those only show up when they have something to say. The keyboard layout appears only if you’ve configured more than one layout. The update badge appears only when there’s an Omarchy update waiting. And the agents icon appears the first time Omarchy finds AI coding usage on the machine (see <a href="../ai/">AI</a>).</p>
 
-<h2 id="clicking-around">Clicking around</h2>
+<h2 id="clicking-around">Clicking around <a class="manual__heading-link" href="#clicking-around" aria-label="Link to this section">#</a></h2>
 
 <p>Nearly every widget does something on left, right, and middle click, and several respond to scrolling. This is the part people miss — the right and middle buttons are where a lot of the good stuff hides.</p>
 
@@ -240,7 +240,7 @@
 
 <p>Not everything in that table is on your bar out of the box. The media widget (MPRIS now-playing, with a scrolling track and artist) and the microphone widget are both built in but off by default — add them if you want them, as described below.</p>
 
-<h2 id="the-panels">The panels</h2>
+<h2 id="the-panels">The panels <a class="manual__heading-link" href="#the-panels" aria-label="Link to this section">#</a></h2>
 
 <p>Clicking a bar icon opens a panel, which is a proper popup with sliders, lists, and keyboard navigation rather than a tooltip. Each one also has a hotkey, so you never have to aim at a 16-pixel glyph:</p>
 
@@ -298,7 +298,7 @@
 
 <p><code>Super + Ctrl + 1-9</code> counts panels left to right in the right section, skipping the tray since it has no panel of its own. So the number matches the icon you’d point at.</p>
 
-<h3 id="tailscale-and-dropbox">Tailscale and Dropbox</h3>
+<h3 id="tailscale-and-dropbox">Tailscale and Dropbox <a class="manual__heading-link" href="#tailscale-and-dropbox" aria-label="Link to this section">#</a></h3>
 
 <p>Two more widgets appear on the bar only once you install the matching service from <strong>Install → Service</strong>, and both are worth knowing about because they do more than report status.</p>
 
@@ -308,13 +308,13 @@
 
 <p>Removing either service takes its widget back off the bar.</p>
 
-<h2 id="indicators">Indicators</h2>
+<h2 id="indicators">Indicators <a class="manual__heading-link" href="#indicators" aria-label="Link to this section">#</a></h2>
 
 <p>The little cluster in the center is the indicators widget. These are status glyphs for modes you’ve turned on: do not disturb, night light, a queued <a href="../reminders/">reminder</a>, an active screen recording, stay awake, and <a href="../text-extraction-dictation/">dictation</a>. They light up when the mode is active and otherwise stay out of the way — hover the center of the bar to peek at the inactive ones. Clicking an indicator toggles that mode.</p>
 
 <p>If you’d rather they were always visible, set <code>alwaysShow</code> to <code>true</code> on the widget. And if you only care about some of them, list the ones you want in <code>items</code>: <code>["Dnd", "Reminder", "NightLight"]</code>. You can have more than one indicators widget, so different sections can show different subsets.</p>
 
-<h2 id="rearranging-the-bar">Rearranging the bar</h2>
+<h2 id="rearranging-the-bar">Rearranging the bar <a class="manual__heading-link" href="#rearranging-the-bar" aria-label="Link to this section">#</a></h2>
 
 <p>The bar configures itself. You don’t have to open a config file to move things.</p>
 
@@ -337,11 +337,11 @@ omarchy bar defaults          # back to the shipped layout
 omarchy plugin disable omarchy.weather
 </code></pre>
 
-<h2 id="hiding-the-bar">Hiding the bar</h2>
+<h2 id="hiding-the-bar">Hiding the bar <a class="manual__heading-link" href="#hiding-the-bar" aria-label="Link to this section">#</a></h2>
 
 <p><code>Super + Shift + Space</code> toggles the bar off and back on without killing the shell — panels and hotkeys keep working, you just get the pixels back. It’s also in the menu under <strong>Trigger → Toggle → Menu Bar</strong>.</p>
 
-<h2 id="the-config-file">The config file</h2>
+<h2 id="the-config-file">The config file <a class="manual__heading-link" href="#the-config-file" aria-label="Link to this section">#</a></h2>
 
 <p>All of it is stored in <code>~/.config/omarchy/shell.json</code>, under the <code>bar</code> key. Here’s a trimmed version:</p>
 
@@ -377,22 +377,5 @@ omarchy plugin disable omarchy.weather
   </div>
     </main>
 
-    <footer class="footer">
-      <div class="footer__subhead">
-        <p>Brought to you by <a href="https://37signals.com">37signals</a></p>
-      </div>
-
-      <div class="footer__buttons">
-        <a href="https://basecamp.com"><img src="/assets/images/logo-basecamp.svg" width="145" height="32" alt="Basecamp"></a>
-        <a href="https://hey.com"><img src="/assets/images/logo-hey.svg" width="123" height="57" alt="HEY"></a>
-        <a href="https://fizzy.do"><img src="/assets/images/logo-fizzy.svg" width="56" height="56" alt="Fizzy"></a>
-        <a href="https://once.com"><img src="/assets/images/logo-once.svg" width="72" height="72" alt="ONCE"></a>
-      </div>
-
-      <div class="footer__sponsor">
-        <span>Sponsored hosting by</span>
-        <a href="https://cloudflare.com"><img src="/assets/images/logo-cloudflare.svg" width="213" height="32" alt="Cloudflare"></a>
-      </div>
-    </footer>
   </body>
 </html>

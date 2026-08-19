@@ -4,6 +4,16 @@ Beautiful, Modern & Opinionated Linux by DHH.
 
 See https://github.com/basecamp/omarchy for more.
 
+## News
+
+Add posts as Markdown under `content/news/YYYY/MM/post-slug.md`. A post may
+start with YAML front matter containing `title`, `date`, `author`, `author_url`,
+and `description`; only the title is required, either there or as the first `#`
+heading. Images stored beside the post are published with it. Regenerate the
+pages under `news/` with:
+
+    bin/build-news
+
 ## The Manual
 
 The pages under `manual/` are generated from the authoritative markdown chapters

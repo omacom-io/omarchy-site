@@ -51,7 +51,7 @@
     </div>
 
     <header class="header">
-      <h1><a href="/manual/">The Omarchy Manual</a></h1>
+      <h1>The Manual</h1>
     </header>
 
     <main class="main">
@@ -163,7 +163,16 @@ o.window("(Alacritty|kitty|foot)", { scroll_touchpad = 1.5 })
 
 <p>You can <a href="https://wiki.hypr.land/Configuring/Basics/Variables/#input">see all the input options</a> on the Hyprland wiki for inputs.</p>
 
-<h3 id="trackpad-gestures">Trackpad gestures</h3>
+<p>By default, Omarchy uses CapsLock as the compose key for <a href="../hotkeys/#quick-emojis">quick emojis</a> and <a href="../hotkeys/#quick-completions">other completions</a>. If you’d rather use CapsLock as Caps Lock, move the compose key elsewhere by changing <code>compose:caps</code> in <code>kb_options</code>. For example, this moves the compose key to Right Alt:</p>
+
+<pre><code class="language-lua">hl.config({
+  input = {
+    kb_options = "compose:ralt",
+  },
+})
+</code></pre>
+
+<h3 id="trackpad-gestures">Trackpad gestures <a class="manual__heading-link" href="#trackpad-gestures" aria-label="Link to this section">#</a></h3>
 
 <p>You can also turn on <a href="https://wiki.hypr.land/Configuring/Advanced-and-Cool/Gestures/">touchpad gestures</a>, like swiping with three fingers to change workspaces:</p>
 
@@ -172,11 +181,11 @@ o.window("(Alacritty|kitty|foot)", { scroll_touchpad = 1.5 })
 
 <p>On Dell XPS laptops with a haptic touchpad, you can also set the click strength to low, mid, or high under <em>Trigger &gt; Hardware &gt; Touchpad Haptics</em>.</p>
 
-<h3 id="typing-in-chinese-japanese-and-other-languages">Typing in Chinese, Japanese, and other languages</h3>
+<h3 id="typing-in-chinese-japanese-and-other-languages">Typing in Chinese, Japanese, and other languages <a class="manual__heading-link" href="#typing-in-chinese-japanese-and-other-languages" aria-label="Link to this section">#</a></h3>
 
 <p>Omarchy runs the <a href="https://fcitx-im.org/">fcitx5</a> input method framework as part of every session — it’s what powers the CapsLock compose sequences. That means the plumbing for non-Latin input is already in place: install an input engine like <code>fcitx5-mozc</code> (Japanese) or <code>fcitx5-chinese-addons</code> (Chinese) with <code>omarchy pkg add</code>, plus <code>fcitx5-configtool</code> to add the engine to your input methods and set the key that switches between them.</p>
 
-<h3 id="use-alt-as-super">Use ALT as SUPER</h3>
+<h3 id="use-alt-as-super">Use ALT as SUPER <a class="manual__heading-link" href="#use-alt-as-super" aria-label="Link to this section">#</a></h3>
 
 <p>On some keyboards, it’s not convenient to use the primary meta key (Windows/cmd key) as SUPER. You can change this to be ALT instead using this change:</p>
 
@@ -196,22 +205,5 @@ o.window("(Alacritty|kitty|foot)", { scroll_touchpad = 1.5 })
   </div>
     </main>
 
-    <footer class="footer">
-      <div class="footer__subhead">
-        <p>Brought to you by <a href="https://37signals.com">37signals</a></p>
-      </div>
-
-      <div class="footer__buttons">
-        <a href="https://basecamp.com"><img src="/assets/images/logo-basecamp.svg" width="145" height="32" alt="Basecamp"></a>
-        <a href="https://hey.com"><img src="/assets/images/logo-hey.svg" width="123" height="57" alt="HEY"></a>
-        <a href="https://fizzy.do"><img src="/assets/images/logo-fizzy.svg" width="56" height="56" alt="Fizzy"></a>
-        <a href="https://once.com"><img src="/assets/images/logo-once.svg" width="72" height="72" alt="ONCE"></a>
-      </div>
-
-      <div class="footer__sponsor">
-        <span>Sponsored hosting by</span>
-        <a href="https://cloudflare.com"><img src="/assets/images/logo-cloudflare.svg" width="213" height="32" alt="Cloudflare"></a>
-      </div>
-    </footer>
   </body>
 </html>

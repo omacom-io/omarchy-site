@@ -47,3 +47,13 @@
 .pre--error {
   margin-top: 0;
 }
+
+
+
+.pre--news {
+  margin-top: var(--space-x-large);
+}
+
+.pre--news pre {
+  font-size: clamp(0.1417rem, 0.4167vw, 0.3333rem);
+}
