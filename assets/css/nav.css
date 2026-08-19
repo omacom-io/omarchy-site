@@ -3,23 +3,19 @@
 }
 
 #nav-active:checked ~ .nav-mobile {
-  opacity: 1;
-  pointer-events: auto;
+  display: grid;
 }
 
 
 
 .nav-mobile {
   background: var(--color-background-night);
-  display: grid;
+  display: none;
   inset: 0;
-  opacity: 0;
   overflow: hidden auto;
-  pointer-events: none;
   position: fixed;
   scrollbar-gutter: stable;
   scrollbar-width: thin;
-  transition: opacity var(--transition);
   user-select: none;
   -webkit-user-select: none;
   z-index: 102;
