@@ -1,6 +1,6 @@
   <div class="manual">
     <nav class="manual__chapters">
-      <div class="manual__container">
+      <div class="manual__container manual__container--chapters">
 <%= render "_search" -%>
 
         <ol>
@@ -9,9 +9,14 @@
       </div>
     </nav>
 
-    <div class="manual__content">
+    <div class="manual__container manual__container--content">
+<%= render "_location", title: "Search" -%>
+
+      <header class="manual__header">
+        <h1 class="search-query">Search results for “<mark></mark>”</h1>
+      </header>
+
       <div class="search-results">
-        <h1 class="search-results__query">Search results for “<mark></mark>”</h1>
         <div class="search-results__entries"></div>
       </div>
     </div>
