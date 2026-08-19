@@ -23,6 +23,20 @@
   text-rendering: optimizeLegibility;
 }
 
+/* The masthead is block-drawing ASCII, which only renders cleanly in JetBrains
+   Mono; .news-body's proportional font would otherwise be inherited. */
+@font-face {
+  font-display: swap;
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../fonts/JetBrainsMono-Regular.woff2') format('woff2');
+}
+
+.news-body .pre {
+  font-family: 'JetBrains Mono', monospace;
+}
+
 .news-body a {
   color: var(--color-terminal-cyan);
   text-decoration-thickness: from-font;
