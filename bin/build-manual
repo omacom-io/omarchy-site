@@ -21,7 +21,7 @@ require "tmpdir"
 
 SITE_ROOT = File.expand_path("..", __dir__)
 THEME_PREVIEW_REF = %r{\]\(\.\./themes/([\w-]+)/(preview(?:-unlock)?)\.png\)}
-TEMPLATE_DIR = File.join(SITE_ROOT, "templates")
+TEMPLATE_DIR = File.join(SITE_ROOT, "templates", "manual")
 SOURCE_REPO = "https://github.com/basecamp/omarchy.git"
 
 Chapter = Struct.new(:number, :slug, :title, :body, keyword_init: true) do
