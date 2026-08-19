@@ -60,7 +60,7 @@
           <li><a href="/manual/navigation/">Navigation</a></li>
           <li><a href="/manual/the-top-bar/">The Top Bar</a></li>
           <li><a href="/manual/themes/">Themes</a></li>
-          <li><a href="/manual/hotkeys/" aria-current="page">Hotkeys</a></li>
+          <li><a href="/manual/hotkeys/" aria-current="true">Hotkeys</a></li>
           <li><a href="/manual/unified-clipboard-history/">Unified Clipboard &amp; History</a></li>
           <li><a href="/manual/reminders/">Reminders</a></li>
           <li><a href="/manual/notices/">Notices</a></li>
@@ -186,7 +186,7 @@
     <main class="main main--manual">
   <div class="manual">
     <nav class="manual__chapters">
-      <div class="manual__container">
+      <div class="manual__container manual__container--chapters">
 <form class="search" action="/manual/search/" method="get">
   <input type="search" placeholder="Search..." class="search-box" name="q" aria-label="Search Omarchy Manual">
   <button type="submit" aria-label="Search Omarchy Manual">
@@ -201,7 +201,7 @@
           <li><a href="/manual/navigation/">Navigation</a></li>
           <li><a href="/manual/the-top-bar/">The Top Bar</a></li>
           <li><a href="/manual/themes/">Themes</a></li>
-          <li><a href="/manual/hotkeys/" aria-current="page">Hotkeys</a></li>
+          <li><a href="/manual/hotkeys/" aria-current="true">Hotkeys</a></li>
           <li><a href="/manual/unified-clipboard-history/">Unified Clipboard &amp; History</a></li>
           <li><a href="/manual/reminders/">Reminders</a></li>
           <li><a href="/manual/notices/">Notices</a></li>
@@ -250,12 +250,40 @@
       </div>
     </nav>
 
-    <div class="manual__content">
-      <article class="manual__article">
+    <div class="manual__container">
+      <div class="manual__location">
+        <ul>
+          <li><a href="/manual/">Manual</a></li>
+          <li><span>/</span></li>
+          <li>Hotkeys</li>
+        </ul>
+      </div>
+
+      <header class="manual__header">
         <h1>Hotkeys</h1>
+
+          <div class="manual__actions">
+            <button class="manual__action manual__action--copy" type="button" data-markdown="/manual/hotkeys/index.md">
+              <span class="manual__action-icon manual__action-icon--transform">
+                <svg viewBox="0 0 32 32" aria-hidden="true"><g fill="currentColor"><path d="m1 13.6563c0-1.8113 1.47-3.2813 3.28125-3.2813h2.8125c.37296 0 .73065.1482.99437.4119s.41188.6214.41188.9944c0 .3729-.14816.7306-.41188.9943s-.62141.4119-.99437.4119h-2.8125c-.12432 0-.24355.0494-.33146.1373-.0879.0879-.13729.2071-.13729.3315v14.0625c0 .2587.21.4687.46875.4687h14.06255c.1243 0 .2435-.0494.3314-.1373s.1373-.2071.1373-.3314v-2.8125c0-.373.1482-.7307.4119-.9944s.6214-.4119.9944-.4119c.3729 0 .7306.1482.9943.4119s.4119.6214.4119.9944v2.8125c0 .8702-.3457 1.7048-.9611 2.3201-.6153.6154-1.4499.9611-2.3201.9611h-14.06255c-.87024 0-1.70484-.3457-2.32019-.9611-.61536-.6153-.96106-1.4499-.96106-2.3201z"/><path d="m10.375 4.28125c0-1.81125 1.47-3.28125 3.2813-3.28125h14.0625c1.8112 0 3.2812 1.47 3.2812 3.28125v14.06255c0 .8702-.3457 1.7048-.9611 2.3201-.6153.6154-1.4499.9611-2.3201.9611h-14.0625c-.8703 0-1.7049-.3457-2.3202-.9611-.6154-.6153-.9611-1.4499-.9611-2.3201zm3.2813-.46875c-.1244 0-.2436.04939-.3315.13729-.0879.08791-.1373.20714-.1373.33146v14.06255c0 .2587.21.4687.4688.4687h14.0625c.1243 0 .2435-.0494.3314-.1373s.1373-.2071.1373-.3314v-14.06255c0-.12432-.0494-.24355-.1373-.33146-.0879-.0879-.2071-.13729-.3314-.13729z"/></g></svg>
+                <svg viewBox="0 0 32 32" aria-hidden="true"><path clip-rule="evenodd" d="m1 16c0 8.2843 6.71571 15 15 15 8.2843 0 15-6.7157 15-15 0-8.28429-6.7157-15-15-15-8.28429 0-15 6.71571-15 15zm6.21204 2.3594 4.28576 4.2857c.7113.7113 1.8646.7113 2.5759 0l10.7143-10.7143c.7113-.7113.7113-1.8646 0-2.57591-.7114-.71132-1.8646-.71132-2.576 0l-9.4263 9.42631-2.99774-2.9977c-.71132-.7114-1.8646-.7114-2.57592 0-.71133.7113-.71133 1.8646 0 2.5759z" fill="currentColor" fill-rule="evenodd"/></svg>
+              </span>
+              <span class="manual__action-label">Copy Markdown</span>
+            </button>
+
+            <a class="manual__action manual__action--view" href="/manual/hotkeys/index.md" target="_blank" rel="noopener">
+              <span class="manual__action-icon">
+                <svg viewBox="0 0 52 32" aria-hidden="true"><g fill="currentColor"><path d="m17.4062 13.8906 4.6876-5.85935h4.6874v15.93755h-4.6874v-9.1407l-4.6876 5.8594-4.6874-5.8594v9.1407h-4.68755v-15.93755h4.68755z"/><path d="m39.6719 16.2344h4.6875l-7.0313 7.7344-7.0312-7.7344h4.6875v-8.20315h4.6875z"/><path clip-rule="evenodd" d="m47.4805 1c1.9414.00025 3.5195 1.57416 3.5195 3.51562v22.96878c0 1.9414-1.5781 3.5153-3.5195 3.5156h-42.96488c-1.94162 0-3.51562-1.574-3.51562-3.5156v-22.96878c0-1.94162 1.574-3.51562 3.51562-3.51562zm-42.96488 2.34375c-.6472 0-1.17187.52467-1.17187 1.17187v22.96878c0 .6472.52467 1.1718 1.17187 1.1718h42.96488c.647-.0002 1.1797-.5248 1.1797-1.1718v-22.96878c0-.64705-.5327-1.17162-1.1797-1.17187z" fill-rule="evenodd"/></g></svg>
+              </span>
+              <span class="manual__action-label">View Markdown</span>
+            </a>
+          </div>
+      </header>
+      <article class="manual__article">
+
 <p>You can see all the main keyboard bindings with <code>Super + K</code> (Tmux bindings with <code>Super + Alt + K</code> and Herdr bindings with <code>Super + Ctrl + K</code>).</p>
 
-<h2 id="navigating">Navigating <a class="manual__heading-link" href="#navigating" aria-label="Link to this section">#</a></h2>
+<h2 id="navigating"><a href="#navigating">Navigating</a></h2>
 
 <table>
   <thead>
@@ -346,6 +374,14 @@
       <td>Move window to workspace without following</td>
     </tr>
     <tr>
+      <td><code>Super + S</code> / <code>Super + Grave</code></td>
+      <td>Toggle scratchpad</td>
+    </tr>
+    <tr>
+      <td><code>Super + Alt + S</code> / <code>Super + Shift + Grave</code></td>
+      <td>Move window to scratchpad</td>
+    </tr>
+    <tr>
       <td><code>Super + Shift + Alt + Arrows</code></td>
       <td>Move workspaces to directional monitor</td>
     </tr>
@@ -430,14 +466,6 @@
       <td>Move between windows inside a tiling group</td>
     </tr>
     <tr>
-      <td><code>Super + S</code></td>
-      <td>Show scratchpad workspace overlay</td>
-    </tr>
-    <tr>
-      <td><code>Super + Alt + S</code></td>
-      <td>Move window to scratchpad workspace</td>
-    </tr>
-    <tr>
       <td><code>Super + Ctrl + Z</code></td>
       <td>Zoom in on screen (repeat for more zoom)</td>
     </tr>
@@ -472,7 +500,7 @@
   </tbody>
 </table>
 
-<h2 id="system-controls">System controls <a class="manual__heading-link" href="#system-controls" aria-label="Link to this section">#</a></h2>
+<h2 id="system-controls"><a href="#system-controls">System controls</a></h2>
 
 <table>
   <thead>
@@ -549,7 +577,7 @@
   </tbody>
 </table>
 
-<h2 id="adjustments">Adjustments <a class="manual__heading-link" href="#adjustments" aria-label="Link to this section">#</a></h2>
+<h2 id="adjustments"><a href="#adjustments">Adjustments</a></h2>
 
 <table>
   <thead>
@@ -594,7 +622,7 @@
   </tbody>
 </table>
 
-<h2 id="launching-apps">Launching apps <a class="manual__heading-link" href="#launching-apps" aria-label="Link to this section">#</a></h2>
+<h2 id="launching-apps"><a href="#launching-apps">Launching apps</a></h2>
 
 <table>
   <thead>
@@ -717,7 +745,7 @@
 
 <p>Change/add bindings in <code>~/.config/hypr/bindings.lua</code>.</p>
 
-<h2 id="universal-clipboard">Universal clipboard <a class="manual__heading-link" href="#universal-clipboard" aria-label="Link to this section">#</a></h2>
+<h2 id="universal-clipboard"><a href="#universal-clipboard">Universal clipboard</a></h2>
 
 <table>
   <thead>
@@ -748,7 +776,7 @@
 
 <p>Usually on Linux, you need <code>Ctrl + Shift + C/V</code> to copy’n’paste in the terminal and <code>Ctrl + C/V</code> to do it everywhere else. These Omarchy unified clipboard hotkeys work everywhere.</p>
 
-<h2 id="capture">Capture <a class="manual__heading-link" href="#capture" aria-label="Link to this section">#</a></h2>
+<h2 id="capture"><a href="#capture">Capture</a></h2>
 
 <table>
   <thead>
@@ -809,7 +837,7 @@
 
 <p>All capture options are also accessible under <em>Trigger &gt; Capture</em> in the Omarchy menu (<code>Super + Space</code>).</p>
 
-<h2 id="notifications">Notifications <a class="manual__heading-link" href="#notifications" aria-label="Link to this section">#</a></h2>
+<h2 id="notifications"><a href="#notifications">Notifications</a></h2>
 
 <table>
   <thead>
@@ -842,7 +870,7 @@
   </tbody>
 </table>
 
-<h2 id="style">Style <a class="manual__heading-link" href="#style" aria-label="Link to this section">#</a></h2>
+<h2 id="style"><a href="#style">Style</a></h2>
 
 <table>
   <thead>
@@ -875,7 +903,7 @@
 
 <p>All style options are also accessible under <em>Style</em> in the Omarchy menu (<code>Super + Space</code>).</p>
 
-<h2 id="toggles">Toggles <a class="manual__heading-link" href="#toggles" aria-label="Link to this section">#</a></h2>
+<h2 id="toggles"><a href="#toggles">Toggles</a></h2>
 
 <table>
   <thead>
@@ -920,7 +948,7 @@
   </tbody>
 </table>
 
-<h2 id="reminders">Reminders <a class="manual__heading-link" href="#reminders" aria-label="Link to this section">#</a></h2>
+<h2 id="reminders"><a href="#reminders">Reminders</a></h2>
 
 <table>
   <thead>
@@ -945,7 +973,7 @@
   </tbody>
 </table>
 
-<h2 id="notices">Notices <a class="manual__heading-link" href="#notices" aria-label="Link to this section">#</a></h2>
+<h2 id="notices"><a href="#notices">Notices</a></h2>
 
 <table>
   <thead>
@@ -970,11 +998,11 @@
   </tbody>
 </table>
 
-<h2 id="tmux">Tmux <a class="manual__heading-link" href="#tmux" aria-label="Link to this section">#</a></h2>
+<h2 id="tmux"><a href="#tmux">Tmux</a></h2>
 
 <p>The prefix key is <code>Ctrl + Space</code> (<code>Ctrl + B</code> also works). You can change these bindings in <code>~/.config/tmux/tmux.conf</code>.</p>
 
-<h3 id="panes">Panes <a class="manual__heading-link" href="#panes" aria-label="Link to this section">#</a></h3>
+<h3 id="panes"><a href="#panes">Panes</a></h3>
 
 <table>
   <thead>
@@ -1023,7 +1051,7 @@
   </tbody>
 </table>
 
-<h3 id="windows">Windows <a class="manual__heading-link" href="#windows" aria-label="Link to this section">#</a></h3>
+<h3 id="windows"><a href="#windows">Windows</a></h3>
 
 <table>
   <thead>
@@ -1060,7 +1088,7 @@
   </tbody>
 </table>
 
-<h3 id="sessions">Sessions <a class="manual__heading-link" href="#sessions" aria-label="Link to this section">#</a></h3>
+<h3 id="sessions"><a href="#sessions">Sessions</a></h3>
 
 <table>
   <thead>
@@ -1105,7 +1133,7 @@
   </tbody>
 </table>
 
-<h3 id="copy-mode-vi-style">Copy mode (vi-style) <a class="manual__heading-link" href="#copy-mode-vi-style" aria-label="Link to this section">#</a></h3>
+<h3 id="copy-mode-vi-style"><a href="#copy-mode-vi-style">Copy mode (vi-style)</a></h3>
 
 <table>
   <thead>
@@ -1130,7 +1158,7 @@
   </tbody>
 </table>
 
-<h3 id="general">General <a class="manual__heading-link" href="#general" aria-label="Link to this section">#</a></h3>
+<h3 id="general"><a href="#general">General</a></h3>
 
 <table>
   <thead>
@@ -1155,7 +1183,7 @@
   </tbody>
 </table>
 
-<h3 id="tmux-layout-functions">Tmux layout functions <a class="manual__heading-link" href="#tmux-layout-functions" aria-label="Link to this section">#</a></h3>
+<h3 id="tmux-layout-functions"><a href="#tmux-layout-functions">Tmux layout functions</a></h3>
 
 <p>These functions must be run inside a Tmux session.</p>
 
@@ -1182,7 +1210,7 @@
   </tbody>
 </table>
 
-<h2 id="ghostty-terminal">Ghostty Terminal <a class="manual__heading-link" href="#ghostty-terminal" aria-label="Link to this section">#</a></h2>
+<h2 id="ghostty-terminal"><a href="#ghostty-terminal">Ghostty Terminal</a></h2>
 
 <p>Ghostty terminal is installed using <em>Install &gt; Terminal</em> via the Omarchy menu.</p>
 
@@ -1237,7 +1265,7 @@
   </tbody>
 </table>
 
-<h2 id="file-manager">File Manager <a class="manual__heading-link" href="#file-manager" aria-label="Link to this section">#</a></h2>
+<h2 id="file-manager"><a href="#file-manager">File Manager</a></h2>
 
 <table>
   <thead>
@@ -1262,9 +1290,9 @@
   </tbody>
 </table>
 
-<h2 id="neovim-w-lazyvim">Neovim (w/ lazyvim) <a class="manual__heading-link" href="#neovim-w-lazyvim" aria-label="Link to this section">#</a></h2>
+<h2 id="neovim-w-lazyvim"><a href="#neovim-w-lazyvim">Neovim (w/ lazyvim)</a></h2>
 
-<h3 id="navigation">Navigation <a class="manual__heading-link" href="#navigation" aria-label="Link to this section">#</a></h3>
+<h3 id="navigation"><a href="#navigation">Navigation</a></h3>
 
 <table>
   <thead>
@@ -1317,7 +1345,7 @@
   </tbody>
 </table>
 
-<h3 id="while-in-sidebar">While in sidebar <a class="manual__heading-link" href="#while-in-sidebar" aria-label="Link to this section">#</a></h3>
+<h3 id="while-in-sidebar"><a href="#while-in-sidebar">While in sidebar</a></h3>
 
 <table>
   <thead>
@@ -1356,7 +1384,7 @@
 
 <p><a href="https://www.lazyvim.org/keymaps">See all the Neovim hotkeys configured by LazyVim</a>.</p>
 
-<h2 id="quick-emojis">Quick Emojis <a class="manual__heading-link" href="#quick-emojis" aria-label="Link to this section">#</a></h2>
+<h2 id="quick-emojis"><a href="#quick-emojis">Quick Emojis</a></h2>
 
 <p>You can use <code>Super + Ctrl + E</code> to show a complete emoji picker that’ll put the selection on the clipboard or you can use these quick access options.</p>
 
@@ -1487,7 +1515,7 @@
   </tbody>
 </table>
 
-<h2 id="quick-completions">Quick Completions <a class="manual__heading-link" href="#quick-completions" aria-label="Link to this section">#</a></h2>
+<h2 id="quick-completions"><a href="#quick-completions">Quick Completions</a></h2>
 
 <table>
   <thead>
@@ -1532,6 +1560,42 @@
         </a>
       </nav>
     </div>
+
+    <nav class="manual__toc">
+      <div class="manual__container manual__container--toc">
+        <div class="manual__location">
+          <p>On this page</p>
+        </div>
+
+        <ol>
+          <li><a href="#navigating">Navigating</a></li>
+          <li><a href="#system-controls">System controls</a></li>
+          <li><a href="#adjustments">Adjustments</a></li>
+          <li><a href="#launching-apps">Launching apps</a></li>
+          <li><a href="#universal-clipboard">Universal clipboard</a></li>
+          <li><a href="#capture">Capture</a></li>
+          <li><a href="#notifications">Notifications</a></li>
+          <li><a href="#style">Style</a></li>
+          <li><a href="#toggles">Toggles</a></li>
+          <li><a href="#reminders">Reminders</a></li>
+          <li><a href="#notices">Notices</a></li>
+          <li><a href="#tmux">Tmux</a></li>
+          <li><a href="#panes">Panes</a></li>
+          <li><a href="#windows">Windows</a></li>
+          <li><a href="#sessions">Sessions</a></li>
+          <li><a href="#copy-mode-vi-style">Copy mode (vi-style)</a></li>
+          <li><a href="#general">General</a></li>
+          <li><a href="#tmux-layout-functions">Tmux layout functions</a></li>
+          <li><a href="#ghostty-terminal">Ghostty Terminal</a></li>
+          <li><a href="#file-manager">File Manager</a></li>
+          <li><a href="#neovim-w-lazyvim">Neovim (w/ lazyvim)</a></li>
+          <li><a href="#navigation">Navigation</a></li>
+          <li><a href="#while-in-sidebar">While in sidebar</a></li>
+          <li><a href="#quick-emojis">Quick Emojis</a></li>
+          <li><a href="#quick-completions">Quick Completions</a></li>
+        </ol>
+      </div>
+    </nav>
   </div>
     </main>
 

@@ -58,7 +58,7 @@
           <li><a href="/manual/getting-started/">Getting Started</a></li>
           <li><a href="/manual/coming-from-mac-or-windows/">Coming From Mac or Windows</a></li>
           <li><a href="/manual/navigation/">Navigation</a></li>
-          <li><a href="/manual/the-top-bar/" aria-current="page">The Top Bar</a></li>
+          <li><a href="/manual/the-top-bar/" aria-current="true">The Top Bar</a></li>
           <li><a href="/manual/themes/">Themes</a></li>
           <li><a href="/manual/hotkeys/">Hotkeys</a></li>
           <li><a href="/manual/unified-clipboard-history/">Unified Clipboard &amp; History</a></li>
@@ -186,7 +186,7 @@
     <main class="main main--manual">
   <div class="manual">
     <nav class="manual__chapters">
-      <div class="manual__container">
+      <div class="manual__container manual__container--chapters">
 <form class="search" action="/manual/search/" method="get">
   <input type="search" placeholder="Search..." class="search-box" name="q" aria-label="Search Omarchy Manual">
   <button type="submit" aria-label="Search Omarchy Manual">
@@ -199,7 +199,7 @@
           <li><a href="/manual/getting-started/">Getting Started</a></li>
           <li><a href="/manual/coming-from-mac-or-windows/">Coming From Mac or Windows</a></li>
           <li><a href="/manual/navigation/">Navigation</a></li>
-          <li><a href="/manual/the-top-bar/" aria-current="page">The Top Bar</a></li>
+          <li><a href="/manual/the-top-bar/" aria-current="true">The Top Bar</a></li>
           <li><a href="/manual/themes/">Themes</a></li>
           <li><a href="/manual/hotkeys/">Hotkeys</a></li>
           <li><a href="/manual/unified-clipboard-history/">Unified Clipboard &amp; History</a></li>
@@ -250,20 +250,48 @@
       </div>
     </nav>
 
-    <div class="manual__content">
-      <article class="manual__article">
+    <div class="manual__container">
+      <div class="manual__location">
+        <ul>
+          <li><a href="/manual/">Manual</a></li>
+          <li><span>/</span></li>
+          <li>The Top Bar</li>
+        </ul>
+      </div>
+
+      <header class="manual__header">
         <h1>The Top Bar</h1>
+
+          <div class="manual__actions">
+            <button class="manual__action manual__action--copy" type="button" data-markdown="/manual/the-top-bar/index.md">
+              <span class="manual__action-icon manual__action-icon--transform">
+                <svg viewBox="0 0 32 32" aria-hidden="true"><g fill="currentColor"><path d="m1 13.6563c0-1.8113 1.47-3.2813 3.28125-3.2813h2.8125c.37296 0 .73065.1482.99437.4119s.41188.6214.41188.9944c0 .3729-.14816.7306-.41188.9943s-.62141.4119-.99437.4119h-2.8125c-.12432 0-.24355.0494-.33146.1373-.0879.0879-.13729.2071-.13729.3315v14.0625c0 .2587.21.4687.46875.4687h14.06255c.1243 0 .2435-.0494.3314-.1373s.1373-.2071.1373-.3314v-2.8125c0-.373.1482-.7307.4119-.9944s.6214-.4119.9944-.4119c.3729 0 .7306.1482.9943.4119s.4119.6214.4119.9944v2.8125c0 .8702-.3457 1.7048-.9611 2.3201-.6153.6154-1.4499.9611-2.3201.9611h-14.06255c-.87024 0-1.70484-.3457-2.32019-.9611-.61536-.6153-.96106-1.4499-.96106-2.3201z"/><path d="m10.375 4.28125c0-1.81125 1.47-3.28125 3.2813-3.28125h14.0625c1.8112 0 3.2812 1.47 3.2812 3.28125v14.06255c0 .8702-.3457 1.7048-.9611 2.3201-.6153.6154-1.4499.9611-2.3201.9611h-14.0625c-.8703 0-1.7049-.3457-2.3202-.9611-.6154-.6153-.9611-1.4499-.9611-2.3201zm3.2813-.46875c-.1244 0-.2436.04939-.3315.13729-.0879.08791-.1373.20714-.1373.33146v14.06255c0 .2587.21.4687.4688.4687h14.0625c.1243 0 .2435-.0494.3314-.1373s.1373-.2071.1373-.3314v-14.06255c0-.12432-.0494-.24355-.1373-.33146-.0879-.0879-.2071-.13729-.3314-.13729z"/></g></svg>
+                <svg viewBox="0 0 32 32" aria-hidden="true"><path clip-rule="evenodd" d="m1 16c0 8.2843 6.71571 15 15 15 8.2843 0 15-6.7157 15-15 0-8.28429-6.7157-15-15-15-8.28429 0-15 6.71571-15 15zm6.21204 2.3594 4.28576 4.2857c.7113.7113 1.8646.7113 2.5759 0l10.7143-10.7143c.7113-.7113.7113-1.8646 0-2.57591-.7114-.71132-1.8646-.71132-2.576 0l-9.4263 9.42631-2.99774-2.9977c-.71132-.7114-1.8646-.7114-2.57592 0-.71133.7113-.71133 1.8646 0 2.5759z" fill="currentColor" fill-rule="evenodd"/></svg>
+              </span>
+              <span class="manual__action-label">Copy Markdown</span>
+            </button>
+
+            <a class="manual__action manual__action--view" href="/manual/the-top-bar/index.md" target="_blank" rel="noopener">
+              <span class="manual__action-icon">
+                <svg viewBox="0 0 52 32" aria-hidden="true"><g fill="currentColor"><path d="m17.4062 13.8906 4.6876-5.85935h4.6874v15.93755h-4.6874v-9.1407l-4.6876 5.8594-4.6874-5.8594v9.1407h-4.68755v-15.93755h4.68755z"/><path d="m39.6719 16.2344h4.6875l-7.0313 7.7344-7.0312-7.7344h4.6875v-8.20315h4.6875z"/><path clip-rule="evenodd" d="m47.4805 1c1.9414.00025 3.5195 1.57416 3.5195 3.51562v22.96878c0 1.9414-1.5781 3.5153-3.5195 3.5156h-42.96488c-1.94162 0-3.51562-1.574-3.51562-3.5156v-22.96878c0-1.94162 1.574-3.51562 3.51562-3.51562zm-42.96488 2.34375c-.6472 0-1.17187.52467-1.17187 1.17187v22.96878c0 .6472.52467 1.1718 1.17187 1.1718h42.96488c.647-.0002 1.1797-.5248 1.1797-1.1718v-22.96878c0-.64705-.5327-1.17162-1.1797-1.17187z" fill-rule="evenodd"/></g></svg>
+              </span>
+              <span class="manual__action-label">View Markdown</span>
+            </a>
+          </div>
+      </header>
+      <article class="manual__article">
+
 <p>The strip along the top of your screen is the Omarchy bar. It’s not a bolted-on status bar but part of the Omarchy shell, the single long-running Quickshell process that also draws the menu, the notifications, the OSD popups, and the lock screen. That’s why it themes perfectly with everything else and why a panel opens instantly instead of spawning a new app.</p>
 
 <p>It’s also the one piece of the desktop that’s always on screen, so it’s worth knowing what all those little glyphs do.</p>
 
-<h2 id="whats-on-it-by-default">What’s on it by default <a class="manual__heading-link" href="#whats-on-it-by-default" aria-label="Link to this section">#</a></h2>
+<h2 id="whats-on-it-by-default"><a href="#whats-on-it-by-default">What’s on it by default</a></h2>
 
 <p>The bar has three sections. On the left sits the Omarchy logo (the menu launcher) and the workspace indicators. In the center you get the status indicators, the clock, the keyboard layout, the weather, and an Omarchy update badge. On the right: the system tray, agents, bluetooth, network, audio, display, and power.</p>
 
 <p>A few of those only show up when they have something to say. The keyboard layout appears only if you’ve configured more than one layout. The update badge appears only when there’s an Omarchy update waiting. And the agents icon appears the first time Omarchy finds AI coding usage on the machine (see <a href="../ai/">AI</a>).</p>
 
-<h2 id="clicking-around">Clicking around <a class="manual__heading-link" href="#clicking-around" aria-label="Link to this section">#</a></h2>
+<h2 id="clicking-around"><a href="#clicking-around">Clicking around</a></h2>
 
 <p>Nearly every widget does something on left, right, and middle click, and several respond to scrolling. This is the part people miss — the right and middle buttons are where a lot of the good stuff hides.</p>
 
@@ -366,7 +394,7 @@
 
 <p>Not everything in that table is on your bar out of the box. The media widget (MPRIS now-playing, with a scrolling track and artist) and the microphone widget are both built in but off by default — add them if you want them, as described below.</p>
 
-<h2 id="the-panels">The panels <a class="manual__heading-link" href="#the-panels" aria-label="Link to this section">#</a></h2>
+<h2 id="the-panels"><a href="#the-panels">The panels</a></h2>
 
 <p>Clicking a bar icon opens a panel, which is a proper popup with sliders, lists, and keyboard navigation rather than a tooltip. Each one also has a hotkey, so you never have to aim at a 16-pixel glyph:</p>
 
@@ -424,7 +452,7 @@
 
 <p><code>Super + Ctrl + 1-9</code> counts panels left to right in the right section, skipping the tray since it has no panel of its own. So the number matches the icon you’d point at.</p>
 
-<h3 id="tailscale-and-dropbox">Tailscale and Dropbox <a class="manual__heading-link" href="#tailscale-and-dropbox" aria-label="Link to this section">#</a></h3>
+<h3 id="tailscale-and-dropbox"><a href="#tailscale-and-dropbox">Tailscale and Dropbox</a></h3>
 
 <p>Two more widgets appear on the bar only once you install the matching service from <strong>Install → Service</strong>, and both are worth knowing about because they do more than report status.</p>
 
@@ -434,13 +462,13 @@
 
 <p>Removing either service takes its widget back off the bar.</p>
 
-<h2 id="indicators">Indicators <a class="manual__heading-link" href="#indicators" aria-label="Link to this section">#</a></h2>
+<h2 id="indicators"><a href="#indicators">Indicators</a></h2>
 
 <p>The little cluster in the center is the indicators widget. These are status glyphs for modes you’ve turned on: do not disturb, night light, a queued <a href="../reminders/">reminder</a>, an active screen recording, stay awake, and <a href="../text-extraction-dictation/">dictation</a>. They light up when the mode is active and otherwise stay out of the way — hover the center of the bar to peek at the inactive ones. Clicking an indicator toggles that mode.</p>
 
 <p>If you’d rather they were always visible, set <code>alwaysShow</code> to <code>true</code> on the widget. And if you only care about some of them, list the ones you want in <code>items</code>: <code>["Dnd", "Reminder", "NightLight"]</code>. You can have more than one indicators widget, so different sections can show different subsets.</p>
 
-<h2 id="rearranging-the-bar">Rearranging the bar <a class="manual__heading-link" href="#rearranging-the-bar" aria-label="Link to this section">#</a></h2>
+<h2 id="rearranging-the-bar"><a href="#rearranging-the-bar">Rearranging the bar</a></h2>
 
 <p>The bar configures itself. You don’t have to open a config file to move things.</p>
 
@@ -463,11 +491,11 @@ omarchy bar defaults          # back to the shipped layout
 omarchy plugin disable omarchy.weather
 </code></pre>
 
-<h2 id="hiding-the-bar">Hiding the bar <a class="manual__heading-link" href="#hiding-the-bar" aria-label="Link to this section">#</a></h2>
+<h2 id="hiding-the-bar"><a href="#hiding-the-bar">Hiding the bar</a></h2>
 
 <p><code>Super + Shift + Space</code> toggles the bar off and back on without killing the shell — panels and hotkeys keep working, you just get the pixels back. It’s also in the menu under <strong>Trigger → Toggle → Menu Bar</strong>.</p>
 
-<h2 id="the-config-file">The config file <a class="manual__heading-link" href="#the-config-file" aria-label="Link to this section">#</a></h2>
+<h2 id="the-config-file"><a href="#the-config-file">The config file</a></h2>
 
 <p>All of it is stored in <code>~/.config/omarchy/shell.json</code>, under the <code>bar</code> key. Here’s a trimmed version:</p>
 
@@ -512,6 +540,25 @@ omarchy plugin disable omarchy.weather
         </a>
       </nav>
     </div>
+
+    <nav class="manual__toc">
+      <div class="manual__container manual__container--toc">
+        <div class="manual__location">
+          <p>On this page</p>
+        </div>
+
+        <ol>
+          <li><a href="#whats-on-it-by-default">What’s on it by default</a></li>
+          <li><a href="#clicking-around">Clicking around</a></li>
+          <li><a href="#the-panels">The panels</a></li>
+          <li><a href="#tailscale-and-dropbox">Tailscale and Dropbox</a></li>
+          <li><a href="#indicators">Indicators</a></li>
+          <li><a href="#rearranging-the-bar">Rearranging the bar</a></li>
+          <li><a href="#hiding-the-bar">Hiding the bar</a></li>
+          <li><a href="#the-config-file">The config file</a></li>
+        </ol>
+      </div>
+    </nav>
   </div>
     </main>
 

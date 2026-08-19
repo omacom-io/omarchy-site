@@ -56,7 +56,7 @@
         <ol class="nav-mobile__chapters">
           <li><a href="/manual/">Welcome to Omarchy!</a></li>
           <li><a href="/manual/getting-started/">Getting Started</a></li>
-          <li><a href="/manual/coming-from-mac-or-windows/" aria-current="page">Coming From Mac or Windows</a></li>
+          <li><a href="/manual/coming-from-mac-or-windows/" aria-current="true">Coming From Mac or Windows</a></li>
           <li><a href="/manual/navigation/">Navigation</a></li>
           <li><a href="/manual/the-top-bar/">The Top Bar</a></li>
           <li><a href="/manual/themes/">Themes</a></li>
@@ -186,7 +186,7 @@
     <main class="main main--manual">
   <div class="manual">
     <nav class="manual__chapters">
-      <div class="manual__container">
+      <div class="manual__container manual__container--chapters">
 <form class="search" action="/manual/search/" method="get">
   <input type="search" placeholder="Search..." class="search-box" name="q" aria-label="Search Omarchy Manual">
   <button type="submit" aria-label="Search Omarchy Manual">
@@ -197,7 +197,7 @@
         <ol>
           <li><a href="/manual/">Welcome to Omarchy!</a></li>
           <li><a href="/manual/getting-started/">Getting Started</a></li>
-          <li><a href="/manual/coming-from-mac-or-windows/" aria-current="page">Coming From Mac or Windows</a></li>
+          <li><a href="/manual/coming-from-mac-or-windows/" aria-current="true">Coming From Mac or Windows</a></li>
           <li><a href="/manual/navigation/">Navigation</a></li>
           <li><a href="/manual/the-top-bar/">The Top Bar</a></li>
           <li><a href="/manual/themes/">Themes</a></li>
@@ -250,22 +250,50 @@
       </div>
     </nav>
 
-    <div class="manual__content">
-      <article class="manual__article">
+    <div class="manual__container">
+      <div class="manual__location">
+        <ul>
+          <li><a href="/manual/">Manual</a></li>
+          <li><span>/</span></li>
+          <li>Coming From Mac or Windows</li>
+        </ul>
+      </div>
+
+      <header class="manual__header">
         <h1>Coming From Mac or Windows</h1>
+
+          <div class="manual__actions">
+            <button class="manual__action manual__action--copy" type="button" data-markdown="/manual/coming-from-mac-or-windows/index.md">
+              <span class="manual__action-icon manual__action-icon--transform">
+                <svg viewBox="0 0 32 32" aria-hidden="true"><g fill="currentColor"><path d="m1 13.6563c0-1.8113 1.47-3.2813 3.28125-3.2813h2.8125c.37296 0 .73065.1482.99437.4119s.41188.6214.41188.9944c0 .3729-.14816.7306-.41188.9943s-.62141.4119-.99437.4119h-2.8125c-.12432 0-.24355.0494-.33146.1373-.0879.0879-.13729.2071-.13729.3315v14.0625c0 .2587.21.4687.46875.4687h14.06255c.1243 0 .2435-.0494.3314-.1373s.1373-.2071.1373-.3314v-2.8125c0-.373.1482-.7307.4119-.9944s.6214-.4119.9944-.4119c.3729 0 .7306.1482.9943.4119s.4119.6214.4119.9944v2.8125c0 .8702-.3457 1.7048-.9611 2.3201-.6153.6154-1.4499.9611-2.3201.9611h-14.06255c-.87024 0-1.70484-.3457-2.32019-.9611-.61536-.6153-.96106-1.4499-.96106-2.3201z"/><path d="m10.375 4.28125c0-1.81125 1.47-3.28125 3.2813-3.28125h14.0625c1.8112 0 3.2812 1.47 3.2812 3.28125v14.06255c0 .8702-.3457 1.7048-.9611 2.3201-.6153.6154-1.4499.9611-2.3201.9611h-14.0625c-.8703 0-1.7049-.3457-2.3202-.9611-.6154-.6153-.9611-1.4499-.9611-2.3201zm3.2813-.46875c-.1244 0-.2436.04939-.3315.13729-.0879.08791-.1373.20714-.1373.33146v14.06255c0 .2587.21.4687.4688.4687h14.0625c.1243 0 .2435-.0494.3314-.1373s.1373-.2071.1373-.3314v-14.06255c0-.12432-.0494-.24355-.1373-.33146-.0879-.0879-.2071-.13729-.3314-.13729z"/></g></svg>
+                <svg viewBox="0 0 32 32" aria-hidden="true"><path clip-rule="evenodd" d="m1 16c0 8.2843 6.71571 15 15 15 8.2843 0 15-6.7157 15-15 0-8.28429-6.7157-15-15-15-8.28429 0-15 6.71571-15 15zm6.21204 2.3594 4.28576 4.2857c.7113.7113 1.8646.7113 2.5759 0l10.7143-10.7143c.7113-.7113.7113-1.8646 0-2.57591-.7114-.71132-1.8646-.71132-2.576 0l-9.4263 9.42631-2.99774-2.9977c-.71132-.7114-1.8646-.7114-2.57592 0-.71133.7113-.71133 1.8646 0 2.5759z" fill="currentColor" fill-rule="evenodd"/></svg>
+              </span>
+              <span class="manual__action-label">Copy Markdown</span>
+            </button>
+
+            <a class="manual__action manual__action--view" href="/manual/coming-from-mac-or-windows/index.md" target="_blank" rel="noopener">
+              <span class="manual__action-icon">
+                <svg viewBox="0 0 52 32" aria-hidden="true"><g fill="currentColor"><path d="m17.4062 13.8906 4.6876-5.85935h4.6874v15.93755h-4.6874v-9.1407l-4.6876 5.8594-4.6874-5.8594v9.1407h-4.68755v-15.93755h4.68755z"/><path d="m39.6719 16.2344h4.6875l-7.0313 7.7344-7.0312-7.7344h4.6875v-8.20315h4.6875z"/><path clip-rule="evenodd" d="m47.4805 1c1.9414.00025 3.5195 1.57416 3.5195 3.51562v22.96878c0 1.9414-1.5781 3.5153-3.5195 3.5156h-42.96488c-1.94162 0-3.51562-1.574-3.51562-3.5156v-22.96878c0-1.94162 1.574-3.51562 3.51562-3.51562zm-42.96488 2.34375c-.6472 0-1.17187.52467-1.17187 1.17187v22.96878c0 .6472.52467 1.1718 1.17187 1.1718h42.96488c.647-.0002 1.1797-.5248 1.1797-1.1718v-22.96878c0-.64705-.5327-1.17162-1.1797-1.17187z" fill-rule="evenodd"/></g></svg>
+              </span>
+              <span class="manual__action-label">View Markdown</span>
+            </a>
+          </div>
+      </header>
+      <article class="manual__article">
+
 <p>If you’ve spent years on macOS or Windows, your fingers know a hundred things your brain has forgotten it ever learned. This chapter is the translation layer: where those instincts go in Omarchy. The features themselves are covered in depth elsewhere — this is just the map.</p>
 
-<h3 id="super-is-the-center-of-everything">Super is the center of everything <a class="manual__heading-link" href="#super-is-the-center-of-everything" aria-label="Link to this section">#</a></h3>
+<h3 id="super-is-the-center-of-everything"><a href="#super-is-the-center-of-everything">Super is the center of everything</a></h3>
 
 <p>All the muscle memory you’ve built around Cmd or the Windows key transfers to one key: Super. That’s the Windows key on a PC keyboard, and it’s the anchor for nearly every hotkey in Omarchy.</p>
 
 <p>Your Spotlight or Raycast or Start-menu reflex becomes <code>Super + Space</code>. That opens the Omarchy menu, which launches apps, changes settings, installs software, captures the screen — just about everything. Start typing to filter. There’s also a dedicated apps-only menu on <code>Super + Alt + Space</code>. See <a href="../navigation/">navigation</a>.</p>
 
-<h3 id="theres-no-dock-and-no-desktop-icons">There’s no dock and no desktop icons <a class="manual__heading-link" href="#theres-no-dock-and-no-desktop-icons" aria-label="Link to this section">#</a></h3>
+<h3 id="theres-no-dock-and-no-desktop-icons"><a href="#theres-no-dock-and-no-desktop-icons">There’s no dock and no desktop icons</a></h3>
 
 <p>Nothing to click to launch things, no icons to arrange on the desktop. Apps start from a hotkey (<code>Super + Return</code> for the terminal, <code>Super + Shift + Return</code> for the browser, and <code>Super + K</code> for a list of everything that’s mapped) or from the menu. The one persistent piece of UI is <a href="../the-top-bar/">the top bar</a>, which covers what the menu bar, system tray, and Notification Center did for you before — and nearly every widget on it does something on left, right, and middle click.</p>
 
-<h3 id="windows-place-themselves">Windows place themselves <a class="manual__heading-link" href="#windows-place-themselves" aria-label="Link to this section">#</a></h3>
+<h3 id="windows-place-themselves"><a href="#windows-place-themselves">Windows place themselves</a></h3>
 
 <p>The biggest mindset shift: you don’t drag windows around or snap them to screen halves. Open a window and it takes the whole screen. Open a second and they split it. You never fish a window out from under another one, because windows don’t overlap.</p>
 
@@ -273,13 +301,13 @@
 
 <p>Workspaces will feel familiar: they’re macOS Spaces or Windows virtual desktops, except you’ll actually use them, because <code>Super + 1/2/3/4</code> jumps straight to one and <code>Super + Shift + 1/2/3/4</code> sends the active window there. No animation delay, just instant jumps. This means that you might not even need multiple monitors, if you were used to that before.</p>
 
-<h3 id="copy-and-paste-just-work">Copy and paste just work <a class="manual__heading-link" href="#copy-and-paste-just-work" aria-label="Link to this section">#</a></h3>
+<h3 id="copy-and-paste-just-work"><a href="#copy-and-paste-just-work">Copy and paste just work</a></h3>
 
 <p>On the Mac you had Cmd + C everywhere. On Windows you had Ctrl + C everywhere — except the terminal, where it kills your program. Omarchy gives you <code>Super + C</code>, <code>Super + X</code>, and <code>Super + V</code>, and they work everywhere, including the terminal. No separate reflex to learn for the shell.</p>
 
 <p>Windows folks: your Win + V clipboard history lives on <code>Super + Ctrl + V</code>, and it holds images as well as text. See <a href="../unified-clipboard-history/">unified clipboard &amp; history</a>.</p>
 
-<h3 id="the-translation-table">The translation table <a class="manual__heading-link" href="#the-translation-table" aria-label="Link to this section">#</a></h3>
+<h3 id="the-translation-table"><a href="#the-translation-table">The translation table</a></h3>
 
 <table>
   <thead>
@@ -320,7 +348,7 @@
   </tbody>
 </table>
 
-<h3 id="some-things-really-are-different">Some things really are different <a class="manual__heading-link" href="#some-things-really-are-different" aria-label="Link to this section">#</a></h3>
+<h3 id="some-things-really-are-different"><a href="#some-things-really-are-different">Some things really are different</a></h3>
 
 <p>A lot of settings live in text files you edit, not panels you click through. That sounds primitive until you realize it means every tweak can be seen, copied to your next machine, and put in version control. The <em>Setup</em> menu drops you straight into the right file and restarts whatever needs restarting when you’re done.</p>
 
@@ -330,11 +358,11 @@
 
 <p>And when you close a window, the app actually quits. There’s no macOS limbo where the program keeps running with no windows. <code>Super + W</code> means gone.</p>
 
-<h3 id="on-mac-hardware">On Mac hardware <a class="manual__heading-link" href="#on-mac-hardware" aria-label="Link to this section">#</a></h3>
+<h3 id="on-mac-hardware"><a href="#on-mac-hardware">On Mac hardware</a></h3>
 
 <p>Omarchy runs well on Intel Macs — see <a href="../mac-support/">Mac support</a>. And the keyboard is kind to you: Omarchy doesn’t remap anything, and Linux treats the Command key as Super, so Super sits right where Cmd always was. Your thumb won’t notice the move.</p>
 
-<h3 id="give-it-two-weeks">Give it two weeks <a class="manual__heading-link" href="#give-it-two-weeks" aria-label="Link to this section">#</a></h3>
+<h3 id="give-it-two-weeks"><a href="#give-it-two-weeks">Give it two weeks</a></h3>
 
 <p>The instincts transfer faster than you’d think. Skim the <a href="../hotkeys/">hotkeys</a> chapter once, and whenever you blank on a binding, hit <code>Super + K</code> — it shows you all of them. That’s the only hotkey you actually have to memorize.</p>
 
@@ -356,6 +384,25 @@
         </a>
       </nav>
     </div>
+
+    <nav class="manual__toc">
+      <div class="manual__container manual__container--toc">
+        <div class="manual__location">
+          <p>On this page</p>
+        </div>
+
+        <ol>
+          <li><a href="#super-is-the-center-of-everything">Super is the center of everything</a></li>
+          <li><a href="#theres-no-dock-and-no-desktop-icons">There’s no dock and no desktop icons</a></li>
+          <li><a href="#windows-place-themselves">Windows place themselves</a></li>
+          <li><a href="#copy-and-paste-just-work">Copy and paste just work</a></li>
+          <li><a href="#the-translation-table">The translation table</a></li>
+          <li><a href="#some-things-really-are-different">Some things really are different</a></li>
+          <li><a href="#on-mac-hardware">On Mac hardware</a></li>
+          <li><a href="#give-it-two-weeks">Give it two weeks</a></li>
+        </ol>
+      </div>
+    </nav>
   </div>
     </main>
 

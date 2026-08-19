@@ -73,7 +73,7 @@
           <li><a href="/manual/ai/">AI</a></li>
           <li><a href="/manual/development-tools/">Development Tools</a></li>
           <li><a href="/manual/shell-tools/">Shell Tools</a></li>
-          <li><a href="/manual/shell-functions/" aria-current="page">Shell Functions</a></li>
+          <li><a href="/manual/shell-functions/" aria-current="true">Shell Functions</a></li>
           <li><a href="/manual/tuis/">TUIs</a></li>
           <li><a href="/manual/guis/">GUIs</a></li>
           <li><a href="/manual/browsers/">Browsers</a></li>
@@ -186,7 +186,7 @@
     <main class="main main--manual">
   <div class="manual">
     <nav class="manual__chapters">
-      <div class="manual__container">
+      <div class="manual__container manual__container--chapters">
 <form class="search" action="/manual/search/" method="get">
   <input type="search" placeholder="Search..." class="search-box" name="q" aria-label="Search Omarchy Manual">
   <button type="submit" aria-label="Search Omarchy Manual">
@@ -214,7 +214,7 @@
           <li><a href="/manual/ai/">AI</a></li>
           <li><a href="/manual/development-tools/">Development Tools</a></li>
           <li><a href="/manual/shell-tools/">Shell Tools</a></li>
-          <li><a href="/manual/shell-functions/" aria-current="page">Shell Functions</a></li>
+          <li><a href="/manual/shell-functions/" aria-current="true">Shell Functions</a></li>
           <li><a href="/manual/tuis/">TUIs</a></li>
           <li><a href="/manual/guis/">GUIs</a></li>
           <li><a href="/manual/browsers/">Browsers</a></li>
@@ -250,26 +250,54 @@
       </div>
     </nav>
 
-    <div class="manual__content">
-      <article class="manual__article">
+    <div class="manual__container">
+      <div class="manual__location">
+        <ul>
+          <li><a href="/manual/">Manual</a></li>
+          <li><span>/</span></li>
+          <li>Shell Functions</li>
+        </ul>
+      </div>
+
+      <header class="manual__header">
         <h1>Shell Functions</h1>
+
+          <div class="manual__actions">
+            <button class="manual__action manual__action--copy" type="button" data-markdown="/manual/shell-functions/index.md">
+              <span class="manual__action-icon manual__action-icon--transform">
+                <svg viewBox="0 0 32 32" aria-hidden="true"><g fill="currentColor"><path d="m1 13.6563c0-1.8113 1.47-3.2813 3.28125-3.2813h2.8125c.37296 0 .73065.1482.99437.4119s.41188.6214.41188.9944c0 .3729-.14816.7306-.41188.9943s-.62141.4119-.99437.4119h-2.8125c-.12432 0-.24355.0494-.33146.1373-.0879.0879-.13729.2071-.13729.3315v14.0625c0 .2587.21.4687.46875.4687h14.06255c.1243 0 .2435-.0494.3314-.1373s.1373-.2071.1373-.3314v-2.8125c0-.373.1482-.7307.4119-.9944s.6214-.4119.9944-.4119c.3729 0 .7306.1482.9943.4119s.4119.6214.4119.9944v2.8125c0 .8702-.3457 1.7048-.9611 2.3201-.6153.6154-1.4499.9611-2.3201.9611h-14.06255c-.87024 0-1.70484-.3457-2.32019-.9611-.61536-.6153-.96106-1.4499-.96106-2.3201z"/><path d="m10.375 4.28125c0-1.81125 1.47-3.28125 3.2813-3.28125h14.0625c1.8112 0 3.2812 1.47 3.2812 3.28125v14.06255c0 .8702-.3457 1.7048-.9611 2.3201-.6153.6154-1.4499.9611-2.3201.9611h-14.0625c-.8703 0-1.7049-.3457-2.3202-.9611-.6154-.6153-.9611-1.4499-.9611-2.3201zm3.2813-.46875c-.1244 0-.2436.04939-.3315.13729-.0879.08791-.1373.20714-.1373.33146v14.06255c0 .2587.21.4687.4688.4687h14.0625c.1243 0 .2435-.0494.3314-.1373s.1373-.2071.1373-.3314v-14.06255c0-.12432-.0494-.24355-.1373-.33146-.0879-.0879-.2071-.13729-.3314-.13729z"/></g></svg>
+                <svg viewBox="0 0 32 32" aria-hidden="true"><path clip-rule="evenodd" d="m1 16c0 8.2843 6.71571 15 15 15 8.2843 0 15-6.7157 15-15 0-8.28429-6.7157-15-15-15-8.28429 0-15 6.71571-15 15zm6.21204 2.3594 4.28576 4.2857c.7113.7113 1.8646.7113 2.5759 0l10.7143-10.7143c.7113-.7113.7113-1.8646 0-2.57591-.7114-.71132-1.8646-.71132-2.576 0l-9.4263 9.42631-2.99774-2.9977c-.71132-.7114-1.8646-.7114-2.57592 0-.71133.7113-.71133 1.8646 0 2.5759z" fill="currentColor" fill-rule="evenodd"/></svg>
+              </span>
+              <span class="manual__action-label">Copy Markdown</span>
+            </button>
+
+            <a class="manual__action manual__action--view" href="/manual/shell-functions/index.md" target="_blank" rel="noopener">
+              <span class="manual__action-icon">
+                <svg viewBox="0 0 52 32" aria-hidden="true"><g fill="currentColor"><path d="m17.4062 13.8906 4.6876-5.85935h4.6874v15.93755h-4.6874v-9.1407l-4.6876 5.8594-4.6874-5.8594v9.1407h-4.68755v-15.93755h4.68755z"/><path d="m39.6719 16.2344h4.6875l-7.0313 7.7344-7.0312-7.7344h4.6875v-8.20315h4.6875z"/><path clip-rule="evenodd" d="m47.4805 1c1.9414.00025 3.5195 1.57416 3.5195 3.51562v22.96878c0 1.9414-1.5781 3.5153-3.5195 3.5156h-42.96488c-1.94162 0-3.51562-1.574-3.51562-3.5156v-22.96878c0-1.94162 1.574-3.51562 3.51562-3.51562zm-42.96488 2.34375c-.6472 0-1.17187.52467-1.17187 1.17187v22.96878c0 .6472.52467 1.1718 1.17187 1.1718h42.96488c.647-.0002 1.1797-.5248 1.1797-1.1718v-22.96878c0-.64705-.5327-1.17162-1.1797-1.17187z" fill-rule="evenodd"/></g></svg>
+              </span>
+              <span class="manual__action-label">View Markdown</span>
+            </a>
+          </div>
+      </header>
+      <article class="manual__article">
+
 <p>Omarchy comes with a set of shell functions to simplify common tasks and encapsulate convoluted parameter calls.</p>
 
-<h2 id="compression">Compression <a class="manual__heading-link" href="#compression" aria-label="Link to this section">#</a></h2>
+<h2 id="compression"><a href="#compression">Compression</a></h2>
 
 <ul>
   <li><code>compress [file/dir]</code>: Create a tar.gz archive from the file/dir.</li>
   <li><code>decompress [file.tar.gz]</code>: Expand a tar.gz file.</li>
 </ul>
 
-<h2 id="drives">Drives <a class="manual__heading-link" href="#drives" aria-label="Link to this section">#</a></h2>
+<h2 id="drives"><a href="#drives">Drives</a></h2>
 
 <ul>
   <li><code>iso2sd [image.iso]</code>: Create a bootable drive on an SD card using the referenced iso file and picking the drive interactively.</li>
   <li><code>format-drive [device] [name]</code>: Format an entire disk with a single exFAT partition (which works on Windows and macOS too). Run it without arguments to see the available drives. Be careful!</li>
 </ul>
 
-<h2 id="dev-layouts">Dev layouts <a class="manual__heading-link" href="#dev-layouts" aria-label="Link to this section">#</a></h2>
+<h2 id="dev-layouts"><a href="#dev-layouts">Dev layouts</a></h2>
 
 <p>Instant multi-pane development layouts for tmux:</p>
 
@@ -282,14 +310,14 @@
 
 <p>The same layouts are available for Herdr as <code>hdl</code>, <code>hds</code>, <code>hdlm</code>, and <code>hsl</code>.</p>
 
-<h2 id="git-worktrees">Git worktrees <a class="manual__heading-link" href="#git-worktrees" aria-label="Link to this section">#</a></h2>
+<h2 id="git-worktrees"><a href="#git-worktrees">Git worktrees</a></h2>
 
 <ul>
   <li><code>ga [branch]</code>: Create a new worktree and branch next to the current repository and jump into it.</li>
   <li><code>gd</code>: Remove the current worktree and its branch (asks for confirmation first).</li>
 </ul>
 
-<h2 id="rsync-watchers">Rsync watchers <a class="manual__heading-link" href="#rsync-watchers" aria-label="Link to this section">#</a></h2>
+<h2 id="rsync-watchers"><a href="#rsync-watchers">Rsync watchers</a></h2>
 
 <ul>
   <li><code>rsw [source] [destination]</code>: Start a background watcher that rsyncs source to destination whenever anything changes. The destination can be a remote host, like <code>rsw ~/Work/app nyc-dev:Work/app</code>.</li>
@@ -297,7 +325,7 @@
   <li><code>dsw</code>: Stop all active watchers.</li>
 </ul>
 
-<h2 id="ssh-portforwarding">SSH Portforwarding <a class="manual__heading-link" href="#ssh-portforwarding" aria-label="Link to this section">#</a></h2>
+<h2 id="ssh-portforwarding"><a href="#ssh-portforwarding">SSH Portforwarding</a></h2>
 
 <p>Ideal for doing web development with localhost secure-context privileges against a remote box.</p>
 
@@ -309,7 +337,7 @@
 
 <p>Say you start a dev server on port <code>3000</code> on a machine accessible as <code>nyc-dev</code>, then you can run <code>fip nyc-dev 3000</code> to forward that port, so <code>localhost:3000</code> actually reaches <code>nyc-dev:3000</code>, but without the need for SSL certificates to establish the secure context needed for testing web sockets or the like.</p>
 
-<h2 id="ssh-reconnection">SSH reconnection <a class="manual__heading-link" href="#ssh-reconnection" aria-label="Link to this section">#</a></h2>
+<h2 id="ssh-reconnection"><a href="#ssh-reconnection">SSH reconnection</a></h2>
 
 <p><code>ssh</code> itself is wrapped in a function that cleans up the terminal if a connection dies while a remote tmux, Herdr, or editor has claimed it, and then automatically reconnects when an interactive session drops (Ctrl-C stops the retry loop).</p>
 
@@ -331,6 +359,24 @@
         </a>
       </nav>
     </div>
+
+    <nav class="manual__toc">
+      <div class="manual__container manual__container--toc">
+        <div class="manual__location">
+          <p>On this page</p>
+        </div>
+
+        <ol>
+          <li><a href="#compression">Compression</a></li>
+          <li><a href="#drives">Drives</a></li>
+          <li><a href="#dev-layouts">Dev layouts</a></li>
+          <li><a href="#git-worktrees">Git worktrees</a></li>
+          <li><a href="#rsync-watchers">Rsync watchers</a></li>
+          <li><a href="#ssh-portforwarding">SSH Portforwarding</a></li>
+          <li><a href="#ssh-reconnection">SSH reconnection</a></li>
+        </ol>
+      </div>
+    </nav>
   </div>
     </main>
 

@@ -102,7 +102,7 @@
           <li><a href="/manual/faq/">FAQ</a></li>
           <li><a href="/manual/system-snapshots/">System snapshots</a></li>
           <li><a href="/manual/security/">Security</a></li>
-          <li><a href="/manual/omarchy-on/" aria-current="page">Omarchy on...</a></li>
+          <li><a href="/manual/omarchy-on/" aria-current="true">Omarchy on...</a></li>
           <li><a href="/manual/dual-boot-install/">Dual Boot Install</a></li>
           <li><a href="/manual/unattended-installs/">Unattended Installs</a></li>
         </ol>
@@ -186,7 +186,7 @@
     <main class="main main--manual">
   <div class="manual">
     <nav class="manual__chapters">
-      <div class="manual__container">
+      <div class="manual__container manual__container--chapters">
 <form class="search" action="/manual/search/" method="get">
   <input type="search" placeholder="Search..." class="search-box" name="q" aria-label="Search Omarchy Manual">
   <button type="submit" aria-label="Search Omarchy Manual">
@@ -243,41 +243,69 @@
           <li><a href="/manual/faq/">FAQ</a></li>
           <li><a href="/manual/system-snapshots/">System snapshots</a></li>
           <li><a href="/manual/security/">Security</a></li>
-          <li><a href="/manual/omarchy-on/" aria-current="page">Omarchy on...</a></li>
+          <li><a href="/manual/omarchy-on/" aria-current="true">Omarchy on...</a></li>
           <li><a href="/manual/dual-boot-install/">Dual Boot Install</a></li>
           <li><a href="/manual/unattended-installs/">Unattended Installs</a></li>
         </ol>
       </div>
     </nav>
 
-    <div class="manual__content">
-      <article class="manual__article">
+    <div class="manual__container">
+      <div class="manual__location">
+        <ul>
+          <li><a href="/manual/">Manual</a></li>
+          <li><span>/</span></li>
+          <li>Omarchy on...</li>
+        </ul>
+      </div>
+
+      <header class="manual__header">
         <h1>Omarchy on...</h1>
-<h3 id="apple-m1m2-chips">Apple M1/M2 chips <a class="manual__heading-link" href="#apple-m1m2-chips" aria-label="Link to this section">#</a></h3>
+
+          <div class="manual__actions">
+            <button class="manual__action manual__action--copy" type="button" data-markdown="/manual/omarchy-on/index.md">
+              <span class="manual__action-icon manual__action-icon--transform">
+                <svg viewBox="0 0 32 32" aria-hidden="true"><g fill="currentColor"><path d="m1 13.6563c0-1.8113 1.47-3.2813 3.28125-3.2813h2.8125c.37296 0 .73065.1482.99437.4119s.41188.6214.41188.9944c0 .3729-.14816.7306-.41188.9943s-.62141.4119-.99437.4119h-2.8125c-.12432 0-.24355.0494-.33146.1373-.0879.0879-.13729.2071-.13729.3315v14.0625c0 .2587.21.4687.46875.4687h14.06255c.1243 0 .2435-.0494.3314-.1373s.1373-.2071.1373-.3314v-2.8125c0-.373.1482-.7307.4119-.9944s.6214-.4119.9944-.4119c.3729 0 .7306.1482.9943.4119s.4119.6214.4119.9944v2.8125c0 .8702-.3457 1.7048-.9611 2.3201-.6153.6154-1.4499.9611-2.3201.9611h-14.06255c-.87024 0-1.70484-.3457-2.32019-.9611-.61536-.6153-.96106-1.4499-.96106-2.3201z"/><path d="m10.375 4.28125c0-1.81125 1.47-3.28125 3.2813-3.28125h14.0625c1.8112 0 3.2812 1.47 3.2812 3.28125v14.06255c0 .8702-.3457 1.7048-.9611 2.3201-.6153.6154-1.4499.9611-2.3201.9611h-14.0625c-.8703 0-1.7049-.3457-2.3202-.9611-.6154-.6153-.9611-1.4499-.9611-2.3201zm3.2813-.46875c-.1244 0-.2436.04939-.3315.13729-.0879.08791-.1373.20714-.1373.33146v14.06255c0 .2587.21.4687.4688.4687h14.0625c.1243 0 .2435-.0494.3314-.1373s.1373-.2071.1373-.3314v-14.06255c0-.12432-.0494-.24355-.1373-.33146-.0879-.0879-.2071-.13729-.3314-.13729z"/></g></svg>
+                <svg viewBox="0 0 32 32" aria-hidden="true"><path clip-rule="evenodd" d="m1 16c0 8.2843 6.71571 15 15 15 8.2843 0 15-6.7157 15-15 0-8.28429-6.7157-15-15-15-8.28429 0-15 6.71571-15 15zm6.21204 2.3594 4.28576 4.2857c.7113.7113 1.8646.7113 2.5759 0l10.7143-10.7143c.7113-.7113.7113-1.8646 0-2.57591-.7114-.71132-1.8646-.71132-2.576 0l-9.4263 9.42631-2.99774-2.9977c-.71132-.7114-1.8646-.7114-2.57592 0-.71133.7113-.71133 1.8646 0 2.5759z" fill="currentColor" fill-rule="evenodd"/></svg>
+              </span>
+              <span class="manual__action-label">Copy Markdown</span>
+            </button>
+
+            <a class="manual__action manual__action--view" href="/manual/omarchy-on/index.md" target="_blank" rel="noopener">
+              <span class="manual__action-icon">
+                <svg viewBox="0 0 52 32" aria-hidden="true"><g fill="currentColor"><path d="m17.4062 13.8906 4.6876-5.85935h4.6874v15.93755h-4.6874v-9.1407l-4.6876 5.8594-4.6874-5.8594v9.1407h-4.68755v-15.93755h4.68755z"/><path d="m39.6719 16.2344h4.6875l-7.0313 7.7344-7.0312-7.7344h4.6875v-8.20315h4.6875z"/><path clip-rule="evenodd" d="m47.4805 1c1.9414.00025 3.5195 1.57416 3.5195 3.51562v22.96878c0 1.9414-1.5781 3.5153-3.5195 3.5156h-42.96488c-1.94162 0-3.51562-1.574-3.51562-3.5156v-22.96878c0-1.94162 1.574-3.51562 3.51562-3.51562zm-42.96488 2.34375c-.6472 0-1.17187.52467-1.17187 1.17187v22.96878c0 .6472.52467 1.1718 1.17187 1.1718h42.96488c.647-.0002 1.1797-.5248 1.1797-1.1718v-22.96878c0-.64705-.5327-1.17162-1.1797-1.17187z" fill-rule="evenodd"/></g></svg>
+              </span>
+              <span class="manual__action-label">View Markdown</span>
+            </a>
+          </div>
+      </header>
+      <article class="manual__article">
+
+<h3 id="apple-m1m2-chips"><a href="#apple-m1m2-chips">Apple M1/M2 chips</a></h3>
 
 <p><a href="https://asahi-alarm.org/">Asahi Alarm</a> is a version of Arch for Apple M1/M2 computers built on top of <a href="https://asahilinux.org/">Asahi Linux</a>. You can get Omarchy running on top of that with some effort. See <a href="https://codeberg.org/malik-na/omarchy-mac">the user-driven guide</a>.</p>
 
-<h3 id="apple-virtual-machine">Apple Virtual Machine <a class="manual__heading-link" href="#apple-virtual-machine" aria-label="Link to this section">#</a></h3>
+<h3 id="apple-virtual-machine"><a href="#apple-virtual-machine">Apple Virtual Machine</a></h3>
 
 <p>You can also install Omarchy inside a Parallels VM. Quite the cumbersome process, but there’s <a href="https://github.com/basecamp/omarchy/discussions/452">a user-driven guide</a> for that too.</p>
 
-<h3 id="virtualbox">VirtualBox <a class="manual__heading-link" href="#virtualbox" aria-label="Link to this section">#</a></h3>
+<h3 id="virtualbox"><a href="#virtualbox">VirtualBox</a></h3>
 
 <p>VirtualBox is a popular VM runner. <a href="https://github.com/basecamp/omarchy/discussions/176">You can run Omarchy inside that too</a>. But performance probably won’t be great.</p>
 
-<h3 id="vmware-workstation-on-windows-11">VMware Workstation on Windows 11 <a class="manual__heading-link" href="#vmware-workstation-on-windows-11" aria-label="Link to this section">#</a></h3>
+<h3 id="vmware-workstation-on-windows-11"><a href="#vmware-workstation-on-windows-11">VMware Workstation on Windows 11</a></h3>
 
 <p>Another popular VM runner for Windows. <a href="https://github.com/basecamp/omarchy/discussions/572">Omarchy has been setup inside of that as well</a>.</p>
 
-<h3 id="steam-deck">Steam Deck <a class="manual__heading-link" href="#steam-deck" aria-label="Link to this section">#</a></h3>
+<h3 id="steam-deck"><a href="#steam-deck">Steam Deck</a></h3>
 
 <p>The Steam Deck runs on Arch, which means you can run Omarchy on your Steam Deck. Altynbek Orumbayev has <a href="https://github.com/aorumbayev/deckarchy">a full setup script and explanation on how to do it</a>. How cool is that!</p>
 
-<h3 id="nixos">NixOS <a class="manual__heading-link" href="#nixos" aria-label="Link to this section">#</a></h3>
+<h3 id="nixos"><a href="#nixos">NixOS</a></h3>
 
 <p>Omarchy is really Arch + Hyprland, but Henry Sipp has <a href="https://github.com/henrysipp/omarchy-nix">ported the essence of the setup to NixOS</a>. So if you’ve been nix-pilled, here’s a good starting point. It may or may not stay up-to-date with the latest Omarchy changes, but it’s pretty cool none the less!</p>
 
-<h3 id="something-else">Something else! <a class="manual__heading-link" href="#something-else" aria-label="Link to this section">#</a></h3>
+<h3 id="something-else"><a href="#something-else">Something else!</a></h3>
 
 <p>If you’re trying to get Omarchy running on a configuration that isn’t the default, you should join the #omarchy-on-other channel on <a href="https://discord.gg/tXFUdasqhY">our community Discord</a>.</p>
 
@@ -299,6 +327,24 @@
         </a>
       </nav>
     </div>
+
+    <nav class="manual__toc">
+      <div class="manual__container manual__container--toc">
+        <div class="manual__location">
+          <p>On this page</p>
+        </div>
+
+        <ol>
+          <li><a href="#apple-m1m2-chips">Apple M1/M2 chips</a></li>
+          <li><a href="#apple-virtual-machine">Apple Virtual Machine</a></li>
+          <li><a href="#virtualbox">VirtualBox</a></li>
+          <li><a href="#vmware-workstation-on-windows-11">VMware Workstation on Windows 11</a></li>
+          <li><a href="#steam-deck">Steam Deck</a></li>
+          <li><a href="#nixos">NixOS</a></li>
+          <li><a href="#something-else">Something else!</a></li>
+        </ol>
+      </div>
+    </nav>
   </div>
     </main>
 

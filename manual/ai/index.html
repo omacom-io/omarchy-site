@@ -70,7 +70,7 @@
           <li><a href="/manual/omarchy-cli/">Omarchy CLI</a></li>
           <li><a href="/manual/terminal/">Terminal</a></li>
           <li><a href="/manual/neovim/">Neovim</a></li>
-          <li><a href="/manual/ai/" aria-current="page">AI</a></li>
+          <li><a href="/manual/ai/" aria-current="true">AI</a></li>
           <li><a href="/manual/development-tools/">Development Tools</a></li>
           <li><a href="/manual/shell-tools/">Shell Tools</a></li>
           <li><a href="/manual/shell-functions/">Shell Functions</a></li>
@@ -186,7 +186,7 @@
     <main class="main main--manual">
   <div class="manual">
     <nav class="manual__chapters">
-      <div class="manual__container">
+      <div class="manual__container manual__container--chapters">
 <form class="search" action="/manual/search/" method="get">
   <input type="search" placeholder="Search..." class="search-box" name="q" aria-label="Search Omarchy Manual">
   <button type="submit" aria-label="Search Omarchy Manual">
@@ -211,7 +211,7 @@
           <li><a href="/manual/omarchy-cli/">Omarchy CLI</a></li>
           <li><a href="/manual/terminal/">Terminal</a></li>
           <li><a href="/manual/neovim/">Neovim</a></li>
-          <li><a href="/manual/ai/" aria-current="page">AI</a></li>
+          <li><a href="/manual/ai/" aria-current="true">AI</a></li>
           <li><a href="/manual/development-tools/">Development Tools</a></li>
           <li><a href="/manual/shell-tools/">Shell Tools</a></li>
           <li><a href="/manual/shell-functions/">Shell Functions</a></li>
@@ -250,9 +250,37 @@
       </div>
     </nav>
 
-    <div class="manual__content">
-      <article class="manual__article">
+    <div class="manual__container">
+      <div class="manual__location">
+        <ul>
+          <li><a href="/manual/">Manual</a></li>
+          <li><span>/</span></li>
+          <li>AI</li>
+        </ul>
+      </div>
+
+      <header class="manual__header">
         <h1>AI</h1>
+
+          <div class="manual__actions">
+            <button class="manual__action manual__action--copy" type="button" data-markdown="/manual/ai/index.md">
+              <span class="manual__action-icon manual__action-icon--transform">
+                <svg viewBox="0 0 32 32" aria-hidden="true"><g fill="currentColor"><path d="m1 13.6563c0-1.8113 1.47-3.2813 3.28125-3.2813h2.8125c.37296 0 .73065.1482.99437.4119s.41188.6214.41188.9944c0 .3729-.14816.7306-.41188.9943s-.62141.4119-.99437.4119h-2.8125c-.12432 0-.24355.0494-.33146.1373-.0879.0879-.13729.2071-.13729.3315v14.0625c0 .2587.21.4687.46875.4687h14.06255c.1243 0 .2435-.0494.3314-.1373s.1373-.2071.1373-.3314v-2.8125c0-.373.1482-.7307.4119-.9944s.6214-.4119.9944-.4119c.3729 0 .7306.1482.9943.4119s.4119.6214.4119.9944v2.8125c0 .8702-.3457 1.7048-.9611 2.3201-.6153.6154-1.4499.9611-2.3201.9611h-14.06255c-.87024 0-1.70484-.3457-2.32019-.9611-.61536-.6153-.96106-1.4499-.96106-2.3201z"/><path d="m10.375 4.28125c0-1.81125 1.47-3.28125 3.2813-3.28125h14.0625c1.8112 0 3.2812 1.47 3.2812 3.28125v14.06255c0 .8702-.3457 1.7048-.9611 2.3201-.6153.6154-1.4499.9611-2.3201.9611h-14.0625c-.8703 0-1.7049-.3457-2.3202-.9611-.6154-.6153-.9611-1.4499-.9611-2.3201zm3.2813-.46875c-.1244 0-.2436.04939-.3315.13729-.0879.08791-.1373.20714-.1373.33146v14.06255c0 .2587.21.4687.4688.4687h14.0625c.1243 0 .2435-.0494.3314-.1373s.1373-.2071.1373-.3314v-14.06255c0-.12432-.0494-.24355-.1373-.33146-.0879-.0879-.2071-.13729-.3314-.13729z"/></g></svg>
+                <svg viewBox="0 0 32 32" aria-hidden="true"><path clip-rule="evenodd" d="m1 16c0 8.2843 6.71571 15 15 15 8.2843 0 15-6.7157 15-15 0-8.28429-6.7157-15-15-15-8.28429 0-15 6.71571-15 15zm6.21204 2.3594 4.28576 4.2857c.7113.7113 1.8646.7113 2.5759 0l10.7143-10.7143c.7113-.7113.7113-1.8646 0-2.57591-.7114-.71132-1.8646-.71132-2.576 0l-9.4263 9.42631-2.99774-2.9977c-.71132-.7114-1.8646-.7114-2.57592 0-.71133.7113-.71133 1.8646 0 2.5759z" fill="currentColor" fill-rule="evenodd"/></svg>
+              </span>
+              <span class="manual__action-label">Copy Markdown</span>
+            </button>
+
+            <a class="manual__action manual__action--view" href="/manual/ai/index.md" target="_blank" rel="noopener">
+              <span class="manual__action-icon">
+                <svg viewBox="0 0 52 32" aria-hidden="true"><g fill="currentColor"><path d="m17.4062 13.8906 4.6876-5.85935h4.6874v15.93755h-4.6874v-9.1407l-4.6876 5.8594-4.6874-5.8594v9.1407h-4.68755v-15.93755h4.68755z"/><path d="m39.6719 16.2344h4.6875l-7.0313 7.7344-7.0312-7.7344h4.6875v-8.20315h4.6875z"/><path clip-rule="evenodd" d="m47.4805 1c1.9414.00025 3.5195 1.57416 3.5195 3.51562v22.96878c0 1.9414-1.5781 3.5153-3.5195 3.5156h-42.96488c-1.94162 0-3.51562-1.574-3.51562-3.5156v-22.96878c0-1.94162 1.574-3.51562 3.51562-3.51562zm-42.96488 2.34375c-.6472 0-1.17187.52467-1.17187 1.17187v22.96878c0 .6472.52467 1.1718 1.17187 1.1718h42.96488c.647-.0002 1.1797-.5248 1.1797-1.1718v-22.96878c0-.64705-.5327-1.17162-1.1797-1.17187z" fill-rule="evenodd"/></g></svg>
+              </span>
+              <span class="manual__action-label">View Markdown</span>
+            </a>
+          </div>
+      </header>
+      <article class="manual__article">
+
 <p>Omarchy treats AI coding agents as first-class citizens, but it doesn’t pick a favorite for you. Instead, every major coding-agent CLI comes pre-wired as a lazy-loaded launcher. The launchers are tiny <a href="https://mise.jdx.dev/">mise</a>-managed stubs in <code>~/.local/bin/</code>, so nothing is downloaded until the first time you actually run one. Invoke any of these and authenticate when prompted:</p>
 
 <table>
@@ -304,7 +332,7 @@
 
 <p>To wrap an additional CLI the same way, run <code>omarchy-mise-install &lt;package&gt; [command-name]</code>. The stubs are kept current along with everything else mise manages when you run <code>omarchy update</code> (or the <code>mup</code> alias).</p>
 
-<h3 id="the-default-agent">The default agent <a class="manual__heading-link" href="#the-default-agent" aria-label="Link to this section">#</a></h3>
+<h3 id="the-default-agent"><a href="#the-default-agent">The default agent</a></h3>
 
 <p>Pick your default agent with <code>omarchy default agent &lt;name&gt;</code> or under <em>Setup &gt; Defaults &gt; Agent</em> in the Omarchy Menu (<code>Super + Space</code>). If the agent isn’t installed yet, picking it installs it first. A fresh Omarchy will invite you to make this choice with a one-time notification.</p>
 
@@ -312,27 +340,27 @@
 
 <p>There are terminal shortcuts too: <code>a</code> runs the default agent inline in the current terminal, while <code>c</code>, <code>cx</code>, and <code>cy</code> start OpenCode, Claude Code, and Codex directly (again in their auto-approving modes). Theme changes sync to the agents as well: Claude Code, Pi, and OpenCode all follow along when you switch the Omarchy theme.</p>
 
-<h3 id="the-agents-panel">The agents panel <a class="manual__heading-link" href="#the-agents-panel" aria-label="Link to this section">#</a></h3>
+<h3 id="the-agents-panel"><a href="#the-agents-panel">The agents panel</a></h3>
 
 <p>The top bar grows an agents icon the first time Omarchy finds AI coding usage on the machine (and stays out of the way until then). The panel behind it tracks every subscription in one place: your plan, the percentage used of the 5-hour session and weekly limits (or the remaining prepaid balance), and token usage by day and by model. Claude Code, Codex, and Fireworks are covered out of the box.</p>
 
 <p>Left-click the bar icon for the panel, right-click to launch your default agent. The usage records behind it are regenerated every 15 minutes by <code>omarchy agent usage-update</code>, and the panel can even merge usage from your other machines via a synced folder. See the README under <code>$OMARCHY_PATH/shell/plugins/agents/</code> for the full settings.</p>
 
-<h3 id="crash-diagnosis">Crash diagnosis <a class="manual__heading-link" href="#crash-diagnosis" aria-label="Link to this section">#</a></h3>
+<h3 id="crash-diagnosis"><a href="#crash-diagnosis">Crash diagnosis</a></h3>
 
 <p>Omarchy watches systemd-coredump for process crashes. When something segfaults, you’ll get a “Process crashed” notification — click it, and the crash is handed to your default agent along with Omarchy’s diagnose-crash skill, which walks the agent through establishing the facts from the core dump and deciding whether the crash is worth reporting upstream. You can also run it by hand against any PID from <code>coredumpctl list</code> with <code>omarchy agent crash &lt;pid&gt;</code>.</p>
 
 <p>The watching is on by default. Turn it off under <em>Trigger &gt; Toggle &gt; Crash Capture</em> (or with <code>omarchy toggle crash-capture</code>) and the notifications stop; <code>omarchy agent crash &lt;pid&gt;</code> still works by hand.</p>
 
-<h3 id="desktop-apps">Desktop apps <a class="manual__heading-link" href="#desktop-apps" aria-label="Link to this section">#</a></h3>
+<h3 id="desktop-apps"><a href="#desktop-apps">Desktop apps</a></h3>
 
 <p>The <em>Install &gt; AI</em> menu also carries a couple of graphical AI apps: the ChatGPT desktop app, and Grok Bot for chatting with xAI’s models.</p>
 
-<h3 id="local-llms">Local LLMs <a class="manual__heading-link" href="#local-llms" aria-label="Link to this section">#</a></h3>
+<h3 id="local-llms"><a href="#local-llms">Local LLMs</a></h3>
 
 <p>Omarchy recommends two ways of running local LLM models: LM Studio and Ollama. LM Studio provides a GUI interface for finding open-weight models, installing them, and running them. It’s a great way to get going easily. Ollama offers a CLI for doing so similarly. But if you’re new to local models, I’d start with LM Studio. You can install either under <em>Install &gt; AI</em> in the Omarchy Menu.</p>
 
-<h3 id="the-omarchy-skill">The Omarchy Skill <a class="manual__heading-link" href="#the-omarchy-skill" aria-label="Link to this section">#</a></h3>
+<h3 id="the-omarchy-skill"><a href="#the-omarchy-skill">The Omarchy Skill</a></h3>
 
 <p>Agent skills help AI use specific tools in a specific way, and Omarchy ships with a default skill for tailoring the system. Like tweaking your Hyprland config, adjusting the bar, or even creating a new theme from scratch. It’s symlinked into the skill directories for Claude Code (<code>~/.claude/skills</code>), Codex (<code>~/.codex/skills</code>), Pi (<code>~/.pi/agent/skills</code>), and the generic <code>~/.agents/skills</code> location, so most harnesses pick it up automatically.</p>
 
@@ -356,6 +384,23 @@
         </a>
       </nav>
     </div>
+
+    <nav class="manual__toc">
+      <div class="manual__container manual__container--toc">
+        <div class="manual__location">
+          <p>On this page</p>
+        </div>
+
+        <ol>
+          <li><a href="#the-default-agent">The default agent</a></li>
+          <li><a href="#the-agents-panel">The agents panel</a></li>
+          <li><a href="#crash-diagnosis">Crash diagnosis</a></li>
+          <li><a href="#desktop-apps">Desktop apps</a></li>
+          <li><a href="#local-llms">Local LLMs</a></li>
+          <li><a href="#the-omarchy-skill">The Omarchy Skill</a></li>
+        </ol>
+      </div>
+    </nav>
   </div>
     </main>
 
