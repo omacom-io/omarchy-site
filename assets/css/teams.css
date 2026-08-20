@@ -1,0 +1,100 @@
+.teams {
+  display: grid;
+  gap: var(--space-xxx-large);
+  justify-self: center;
+  max-width: 52em;
+  padding-inline: var(--space-large);
+  width: 100%;
+}
+
+
+
+.team {
+  display: grid;
+  gap: var(--space-x-large);
+}
+
+.team + .team {
+  border-top: var(--border-width) solid rgba(var(--rgb-terminal-black), 0.8);
+  padding-top: var(--space-xxx-large);
+}
+
+.team__header {
+  display: grid;
+  gap: var(--space-small);
+  text-align: center;
+}
+
+.team__name {
+  color: var(--color-terminal-white);
+  font-size: var(--font-size-medium);
+  font-weight: 700;
+  letter-spacing: 0.075em;
+  text-transform: uppercase;
+}
+
+.team__description {
+  text-wrap: pretty;
+}
+
+
+
+.team__members {
+  display: grid;
+  gap: var(--space-large) var(--space-medium);
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.team__pending {
+  color: rgba(var(--rgb-terminal-white), 0.6);
+  text-align: center;
+}
+
+
+
+.member {
+  align-content: start;
+  display: grid;
+  gap: var(--space-small);
+  justify-items: center;
+  text-align: center;
+}
+
+/* The avatars are circles on transparency; the ring reads them as one set. */
+.member__avatar {
+  aspect-ratio: 1;
+  border-radius: 50%;
+  box-shadow: 0 0 0 var(--border-width) rgba(var(--rgb-terminal-black), 0.8);
+  margin-bottom: var(--space-small);
+  width: 8em;
+}
+
+.member__name {
+  font-size: var(--font-size-medium);
+}
+
+.member__location {
+  color: rgba(var(--rgb-terminal-white), 0.6);
+  font-size: var(--font-size-small);
+  text-wrap: balance;
+}
+
+
+
+@media(min-width: 48em) {
+
+  .team__members {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+}
+
+
+
+@media(min-width: 64em) {
+
+  .teams {
+    padding-inline: var(--space-xx-large);
+  }
+
+}

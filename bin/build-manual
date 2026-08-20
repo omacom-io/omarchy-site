@@ -15,12 +15,16 @@ end
 require "cgi"
 require "erb"
 require "fileutils"
+require "json"
 require "tmpdir"
 
 SITE_ROOT = File.expand_path("..", __dir__)
 THEME_PREVIEW_REF = %r{\]\(\.\./themes/([\w-]+)/(preview(?:-unlock)?)\.png\)}
 TEMPLATE_DIR = File.join(SITE_ROOT, "templates")
 SOURCE_TARBALL = "https://github.com/basecamp/omarchy/archive/HEAD.tar.gz"
+
+# Rendered headings, which carry the anchor links and split chapters into search entries
+HEADING = %r{<h([2-6]) id="([^"]+)">(.*?)</h\1>}m
 
 Chapter = Struct.new(:number, :slug, :title, :body, keyword_init: true) do
   # The first chapter is the manual's front page
@@ -59,14 +63,45 @@ def render_markdown(chapter)
     .gsub(/\]\((\d\d)-([\w-]+)\.md(#[^)]*)?\)/) { $1 == "01" ? "](../#{$3})" : "](../#{$2}/#{$3})" }
     .gsub("](images/", "](/manual/images/")
     .gsub(THEME_PREVIEW_REF) { "](/manual/images/#{$1}-#{$2}.webp)" }
-  html = Kramdown::Document.new(markdown, input: "GFM", hard_wrap: false, syntax_highlighter: nil).to_html
-  html.gsub(/<h([2-6]) id="([^"]+)">(.*?)<\/h\1>/m) do
+  Kramdown::Document.new(markdown, input: "GFM", hard_wrap: false, syntax_highlighter: nil).to_html
+end
+
+# Applied after the search index has been taken, so the "#" stays out of the section titles
+def link_headings(html)
+  html.gsub(HEADING) do
     level, id, content = $1, $2, $3
     %(<h#{level} id="#{id}">#{content} <a class="manual__heading-link" href="##{id}" aria-label="Link to this section">#</a></h#{level}>)
   end
 end
 
 def h(text) = CGI.escapeHTML(text)
+
+# Tags become spaces so the words either side of them stay apart, then the space an
+# inline tag left stranded in front of punctuation goes again
+def plain_text(html)
+  CGI.unescapeHTML(html.gsub(%r{<[^>]*>}, " ")).gsub(/\s+/, " ").gsub(/ ([.,;:!?)\]’])/, '\1').strip
+end
+
+# Splits a rendered chapter into one search entry per heading, so results can link
+# straight to the section that matched rather than to the top of the chapter.
+def index_entries(chapter, html)
+  headings = html.enum_for(:scan, HEADING).map { Regexp.last_match }
+  intro = plain_text(html[0, headings.first&.begin(0) || html.length])
+  entries = [{ chapter: chapter.title, title: chapter.title, url: chapter.path, text: intro }]
+
+  headings.each_with_index do |heading, index|
+    body = html[heading.end(0)...(headings[index + 1]&.begin(0) || html.length)]
+
+    entries << {
+      chapter: chapter.title,
+      title: plain_text(heading[3]),
+      url: "#{chapter.path}##{heading[2]}",
+      text: plain_text(body)
+    }
+  end
+
+  entries.reject { |entry| entry[:text].empty? }
+end
 
 def render(template, locals)
   scope = binding
@@ -92,23 +127,30 @@ def build(source_dir)
     path: "/manual/toc/",
     chapters: chapters
 
+  search_index = []
+
   chapters.each_with_index do |chapter, index|
+    content = render_markdown(chapter)
+    search_index.concat index_entries(chapter, content)
+
     write_page File.join(SITE_ROOT, chapter.path, "index.html"), "chapter",
       title: chapter.title,
       description: chapter.description,
       path: chapter.path,
       chapters: chapters,
       chapter: chapter,
-      content: render_markdown(chapter),
+      content: link_headings(content),
       previous_chapter: index > 0 ? chapters[index - 1] : nil,
       next_chapter: chapters[index + 1]
   end
+
+  File.write File.join(manual_dir, "search-index.json"), JSON.generate(search_index)
 
   images_dir = File.join(source_dir, "images")
   FileUtils.cp_r images_dir, File.join(manual_dir, "images") if Dir.exist?(images_dir)
   convert_theme_previews source_dir, chapters, File.join(manual_dir, "images")
 
-  puts "Built #{chapters.size} chapters into manual/"
+  puts "Built #{chapters.size} chapters and #{search_index.size} search entries into manual/"
 end
 
 # The themes chapter references themes/*/preview*.png straight from the omarchy

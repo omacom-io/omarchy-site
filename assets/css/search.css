@@ -1,0 +1,178 @@
+.search {
+  display: grid;
+  position: relative;
+  width: 100%;
+}
+
+.search[hidden] {
+  display: none;
+}
+
+
+
+/* Input — a quiet line above the chapter list, not a box competing with it */
+
+.search__field {
+  align-items: center;
+  display: flex;
+  position: relative;
+}
+
+.search__input {
+  background: none;
+  border: none;
+  border-bottom: 1px solid rgba(var(--rgb-terminal-black), 0.8);
+  color: var(--color-terminal-white);
+  font: inherit;
+  padding: 0.3em 1.5em 0.5em 0;
+  transition: border-color var(--transition);
+  width: 100%;
+}
+
+.search__input::placeholder {
+  color: rgba(var(--rgb-terminal-white), 0.35);
+}
+
+.search__input:focus {
+  border-bottom-color: var(--color-green);
+  outline: none;
+}
+
+.search__input::-webkit-search-cancel-button {
+  display: none;
+}
+
+.search__shortcut {
+  color: rgba(var(--rgb-terminal-white), 0.3);
+  pointer-events: none;
+  position: absolute;
+  right: 0;
+  transition: opacity var(--transition);
+}
+
+.search__input:focus ~ .search__shortcut,
+.search__input:not(:placeholder-shown) ~ .search__shortcut {
+  opacity: 0;
+}
+
+
+
+/* Results — anchored to the box, but wide enough to read over the chapter text */
+
+.search__results {
+  background: var(--color-background-storm);
+  border: 1px solid rgba(var(--rgb-terminal-black), 0.8);
+  border-radius: 0.4em;
+  box-shadow: 0 1em 2em rgba(var(--rgb-black), 0.5);
+  display: grid;
+  left: 0;
+  max-height: min(30em, 65dvh);
+  max-width: min(90vw, 40em);
+  min-width: 100%;
+  overflow-y: auto;
+  position: absolute;
+  scrollbar-width: thin;
+  text-align: left;
+  top: calc(100% + 0.5em);
+  width: 32em;
+  z-index: 10;
+}
+
+.search__results[hidden] {
+  display: none;
+}
+
+.search__result {
+  border-top: 1px solid rgba(var(--rgb-terminal-black), 0.5);
+  color: var(--color-terminal-white);
+  display: grid;
+  font-weight: 300;
+  gap: 0.2em;
+  padding: 0.7em 1em;
+  text-decoration: none;
+}
+
+.search__result:first-child {
+  border-top: none;
+}
+
+.search__result--active,
+.search__result:hover {
+  background: rgba(var(--rgb-terminal-black), 0.45);
+}
+
+.search__result-heading {
+  align-items: baseline;
+  display: flex;
+  gap: 1.5ch;
+  justify-content: space-between;
+}
+
+.search__result-title {
+  color: var(--color-white);
+  font-weight: 700;
+}
+
+.search__result-chapter {
+  color: var(--color-green);
+  flex: none;
+  font-size: var(--font-size-small);
+}
+
+.search__result-preview {
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  color: var(--color-terminal-blue);
+  display: -webkit-box;
+  font-size: var(--font-size-small);
+  line-clamp: 2;
+  overflow: hidden;
+}
+
+.search__result mark {
+  background: none;
+  color: var(--color-turquoise);
+  font-weight: 700;
+}
+
+.search__empty {
+  color: rgba(var(--rgb-terminal-white), 0.6);
+  font-size: var(--font-size-small);
+  padding: 0.9em 1em;
+}
+
+
+
+/* The table of contents has no sidebar to sit above, so it centers over the list */
+
+.manual--index .search {
+  justify-self: center;
+  max-width: 24em;
+}
+
+
+
+@media(min-width: 64em) {
+
+  /* Match the chapter list's scale, but leave the results at reading size */
+  .manual__sidebar .search__field {
+    font-size: 77.5%;
+  }
+
+}
+
+
+
+@media(max-width: 63.99em) {
+
+  /* The chapter list is hidden at this width, and a chapter's box goes with it rather
+     than hanging over the text on its own. The table of contents keeps its own box. */
+  .manual__sidebar {
+    display: none;
+  }
+
+  .search__shortcut {
+    display: none;
+  }
+
+}
