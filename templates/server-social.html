@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="/assets/css/reset.css">
+    <link rel="stylesheet" href="/assets/css/root.css">
+    <link rel="stylesheet" href="/assets/css/fonts.css">
+    <link rel="stylesheet" href="/assets/css/elements.css">
+    <link rel="stylesheet" href="/assets/css/server.css">
+    <style>
+      /* 1200x630 — the 1.91:1 that X, Facebook, LinkedIn and Slack all show
+         uncropped. Everything else is inherited from server.css so the card and
+         the page share one chrome treatment. */
+      body { display: block; min-height: 0; }
+      .card {
+        align-content: center;
+        background: #0c0e1a;
+        display: grid;
+        height: 630px;
+        justify-items: center;
+        width: 1200px;
+      }
+      .card .server { max-width: 860px; padding-inline: 0; }
+      .card .server__coming { font-size: 30px; }
+    </style>
+  </head>
+  <body class="server-body">
+    <div class="card">
+      <div class="server">
+        <img src="/assets/images/omarchy-server.webp" width="1536" height="1024" alt="">
+        <p class="server__coming">Coming 2026</p>
+      </div>
+    </div>
+  </body>
+</html>
