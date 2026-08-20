@@ -14,6 +14,10 @@
   width: 100%;
 }
 
+.server a {
+  display: block;
+}
+
 .server img {
   -webkit-mask-composite: source-in;
   mask-composite: intersect;
