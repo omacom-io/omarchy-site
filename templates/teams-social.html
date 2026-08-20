@@ -7,50 +7,47 @@
     <link rel="stylesheet" href="/assets/css/fonts.css">
     <link rel="stylesheet" href="/assets/css/elements.css">
     <style>
+      /* Same composition as assets/images/opengraph.png — masthead over a single
+         blue line — at the 1.91:1 that X, Facebook, LinkedIn and Slack show
+         uncropped. */
       body { display: block; min-height: 0; }
       .card {
         align-content: center;
         background: var(--color-background-night);
         display: grid;
-        gap: 40px;
+        gap: 34px;
         height: 630px;
         justify-items: center;
         width: 1200px;
       }
-      .card__brand {
+      .card pre {
         color: var(--color-green);
+        font-size: 21.5px;
+        letter-spacing: -0.0425em;
+        line-height: 1.09375;
+        white-space: pre;
+      }
+      .card p {
+        color: var(--color-terminal-blue);
         font-size: 30px;
-        font-weight: 700;
-        letter-spacing: 0.55em;
-        text-indent: 0.55em;
-      }
-      .card__avatars { display: flex; gap: 26px; }
-      .card__avatars img {
-        border-radius: 50%;
-        box-shadow: 0 0 0 2px rgba(var(--rgb-terminal-black), 0.9);
-        height: 158px;
-        width: 158px;
-      }
-      .card__title {
-        color: var(--color-terminal-white);
-        font-size: 48px;
-        font-weight: 500;
-        letter-spacing: -0.01em;
       }
     </style>
   </head>
   <body>
     <div class="card">
-      <p class="card__brand">OMARCHY</p>
-      <div class="card__avatars">
-        <img src="/assets/images/team/dhh.webp" alt="">
-        <img src="/assets/images/team/ryan-hughes.webp" alt="">
-        <img src="/assets/images/team/tobi-lutke.webp" alt="">
-        <img src="/assets/images/team/bjarne-overli.webp" alt="">
-        <img src="/assets/images/team/hancore.webp" alt="">
-        <img src="/assets/images/team/spencer-bull.webp" alt="">
-      </div>
-      <p class="card__title">The teams that build Omarchy</p>
+<pre>
+                 ▄▄▄
+ ▄█████▄    ▄███████████▄    ▄███████   ▄███████   ▄███████   ▄█   █▄    ▄█   █▄
+███   ███  ███   ███   ███  ███   ███  ███   ███  ███   ███  ███   ███  ███   ███
+███   ███  ███   ███   ███  ███   ███  ███   ███  ███   █▀   ███   ███  ███   ███
+███   ███  ███   ███   ███ ▄███▄▄▄███ ▄███▄▄▄██▀  ███       ▄███▄▄▄███▄ ███▄▄▄███
+███   ███  ███   ███   ███ ▀███▀▀▀███ ▀███▀▀▀▀    ███      ▀▀███▀▀▀███  ▀▀▀▀▀▀███
+███   ███  ███   ███   ███  ███   ███ ██████████  ███   █▄   ███   ███  ▄██   ███
+███   ███  ███   ███   ███  ███   ███  ███   ███  ███   ███  ███   ███  ███   ███
+ ▀█████▀    ▀█   ███   █▀   ███   █▀   ███   ███  ███████▀   ███   █▀    ▀█████▀
+                                       ███   █▀
+</pre>
+      <p>The teams that build Omarchy</p>
     </div>
   </body>
 </html>
