@@ -52,7 +52,7 @@
   flex: 0 0 calc((100% - var(--space-medium)) / 2);
 }
 
-.team__pending {
+.team__note {
   color: rgba(var(--rgb-terminal-white), 0.6);
   text-align: center;
 }
