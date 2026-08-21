@@ -39,10 +39,17 @@
 
 
 
+/* Flex rather than grid so a short final row centres itself; the basis is the
+   column width grid would have produced, so full rows land identically. */
 .team__members {
-  display: grid;
+  display: flex;
+  flex-wrap: wrap;
   gap: var(--space-large) var(--space-medium);
-  grid-template-columns: repeat(2, 1fr);
+  justify-content: center;
+}
+
+.team__members > * {
+  flex: 0 0 calc((100% - var(--space-medium)) / 2);
 }
 
 .team__pending {
@@ -79,7 +86,7 @@
   text-wrap: balance;
 }
 
-/* On /foundation this line is a link to the company; keep it as quiet as the
+/* On /patrons this line is a link to the company; keep it as quiet as the
    plain text it replaces, so the name stays the loudest thing on the card. */
 .member__meta a {
   color: inherit;
@@ -90,8 +97,8 @@
 
 @media(min-width: 48em) {
 
-  .team__members {
-    grid-template-columns: repeat(3, 1fr);
+  .team__members > * {
+    flex-basis: calc((100% - 2 * var(--space-medium)) / 3);
   }
 
 }
