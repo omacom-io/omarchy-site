@@ -73,10 +73,17 @@
   font-size: var(--font-size-medium);
 }
 
-.member__location {
+.member__meta {
   color: rgba(var(--rgb-terminal-white), 0.6);
   font-size: var(--font-size-small);
   text-wrap: balance;
+}
+
+/* On /foundation this line is a link to the company; keep it as quiet as the
+   plain text it replaces, so the name stays the loudest thing on the card. */
+.member__meta a {
+  color: inherit;
+  font-weight: inherit;
 }
 
 
