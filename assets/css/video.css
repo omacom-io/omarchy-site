@@ -5,6 +5,11 @@
   width: min(100%, 90em);
 }
 
+/* .main sets no gap, so stacked videos would otherwise touch. */
+.video + .video {
+  margin-top: var(--space-large);
+}
+
 .video iframe {
   aspect-ratio: 16/9;
   border: none;
