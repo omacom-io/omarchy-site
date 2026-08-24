@@ -1,5 +1,5 @@
 ---
-import { formatDate, isoDate, type Post } from "@/lib/news";
+import { date, formatDate, isoDate, type Post } from "@/lib/news";
 
 interface Props {
   post: Post;
@@ -8,20 +8,28 @@ interface Props {
 }
 
 const { post, prefix = "" } = Astro.props;
-const { author, author_url, date } = post.data;
+const { author, author_url } = post.data;
+const published = date(post);
 ---
 
+{/* set:text keeps these elements childless, so reformatting cannot add stray whitespace. */}
 <p class="news-meta">
   <span class="news-byline"
     >{prefix}{
       author_url ? (
-        <a href={author_url} rel="author noopener noreferrer" target="_blank">
-          {author}
-        </a>
+        <a
+          href={author_url}
+          rel="author noopener noreferrer"
+          target="_blank"
+          set:text={author}
+        />
       ) : (
         author
       )
     }</span
-  > on <time class="news-date" datetime={isoDate(date)}>{formatDate(date)}</time
-  >
+  > on <time
+    class="news-date"
+    datetime={isoDate(published)}
+    set:text={formatDate(published)}
+  />
 </p>

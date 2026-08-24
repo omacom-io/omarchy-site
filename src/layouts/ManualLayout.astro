@@ -1,0 +1,59 @@
+---
+import Pre from "@/components/Pre.astro";
+
+interface Props {
+  title: string;
+  description: string;
+  /** The page's path, which the og:url is built from. */
+  path: string;
+}
+
+const { title, description, path } = Astro.props;
+
+const stylesheets = [
+  "reset", "root", "fonts", "elements", "footer",
+  "header", "main", "pre", "manual", "search",
+];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>{title} — The Omarchy Manual</title>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1, width=device-width" />
+    <meta name="description" content={description} />
+
+    <meta property="og:site_name" content="Omarchy" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content="https://omarchy.org/assets/images/opengraph.png" />
+    <meta property="og:url" content={`https://omarchy.org${path}`} />
+    <meta property="og:type" content="article" />
+
+    <link rel="icon" href="/assets/images/favicon.png" />
+
+    {
+      stylesheets.map((name) => (
+        <link rel="stylesheet" type="text/css" href={`/assets/css/${name}.css`} />
+      ))
+    }
+
+    <script src="/assets/js/manual.js" type="module" is:inline></script>
+    <script defer data-domain="omarchy.org" src="https://plausible.io/js/script.js" is:inline
+    ></script>
+  </head>
+
+  <body>
+    <Pre />
+
+    <header class="header">
+      <h1>The Manual</h1>
+    </header>
+
+    <main class="main">
+      <slot />
+    </main>
+  </body>
+</html>

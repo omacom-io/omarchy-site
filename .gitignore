@@ -1,3 +1,6 @@
 .astro/
 dist/
 node_modules/
+
+# Copied from content/news/ by scripts/sync-news-assets.mjs
+public/news/

@@ -1,0 +1,19 @@
+---
+import type { GetStaticPaths } from "astro";
+
+import ChapterPage from "@/components/ChapterPage.astro";
+import { chapters, slug, type Chapter } from "@/lib/manual";
+
+export const getStaticPaths = (async () => {
+  const all = await chapters();
+  // The first chapter is served from /manual/ by index.astro instead.
+  return all.slice(1).map((chapter) => ({
+    params: { slug: slug(chapter) },
+    props: { chapter, chapters: all },
+  }));
+}) satisfies GetStaticPaths;
+
+const { chapter, chapters: all } = Astro.props as { chapter: Chapter; chapters: Chapter[] };
+---
+
+<ChapterPage chapter={chapter} chapters={all} />

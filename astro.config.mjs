@@ -12,4 +12,9 @@ export default defineConfig({
   build: {
     format: "directory",
   },
+  markdown: {
+    // The manual is styled by assets/css/manual.css; Shiki's inline colours would
+    // fight it. Kramdown ran with syntax_highlighter: nil for the same reason.
+    syntaxHighlight: false,
+  },
 });

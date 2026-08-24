@@ -4,10 +4,12 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "astro dev",
-    "build": "astro check && astro build",
+    "dev": "node scripts/sync-news-assets.mjs && astro dev",
+    "build": "node scripts/sync-news-assets.mjs && astro check && astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "sync-news-assets": "node scripts/sync-news-assets.mjs",
+    "sync-manual": "node scripts/sync-manual.mjs"
   },
   "devDependencies": {
     "@astrojs/check": "0.9.10",

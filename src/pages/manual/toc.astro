@@ -1,0 +1,23 @@
+---
+import Search from "@/components/Search.astro";
+import ManualLayout from "@/layouts/ManualLayout.astro";
+import { chapters, path, title } from "@/lib/manual";
+
+const all = await chapters();
+const rows = Math.floor((all.length + 1) / 2);
+---
+
+<ManualLayout
+  title="Table of Contents"
+  description="The complete manual for Omarchy — Beautiful, Modern & Opinionated Linux by DHH."
+  path="/manual/toc/"
+>
+  <div class="manual manual--index">
+    <Search />
+    <nav class="manual__index" style={`--chapter-rows: ${rows}`} aria-label="Chapters">
+      <ol>
+        {all.map((chapter) => <li><a href={path(chapter)} set:text={title(chapter)} /></li>)}
+      </ol>
+    </nav>
+  </div>
+</ManualLayout>

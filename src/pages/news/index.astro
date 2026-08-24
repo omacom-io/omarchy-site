@@ -1,7 +1,7 @@
 ---
 import NewsMeta from "@/components/NewsMeta.astro";
 import NewsLayout from "@/layouts/NewsLayout.astro";
-import { description, formatDate, newsPosts, postPath } from "@/lib/news";
+import { date, description, formatDate, newsPosts, postPath, title } from "@/lib/news";
 
 const posts = await newsPosts();
 const canonicalUrl = "https://omarchy.org/news";
@@ -30,18 +30,17 @@ const indexDescription =
         <article class="news-card">
           <header>
             <NewsMeta post={post} />
-            <h2 class="news-card__title">{post.data.title}</h2>
+            <h2 class="news-card__title" set:text={title(post)} />
           </header>
 
-          <div class="news-card__excerpt">{description(post)}</div>
+          <div class="news-card__excerpt" set:text={description(post)} />
 
           <a
             class="news-card__link"
             href={postPath(post)}
-            aria-label={`Post: ${post.data.title}, on ${formatDate(post.data.date)}`}
-          >
-            Read more
-          </a>
+            aria-label={`Post: ${title(post)}, on ${formatDate(date(post))}`}
+            set:text="Read more"
+          />
 
           <div class="news-card__more" aria-hidden="true">
             <span class="news-card__button">Read more</span>

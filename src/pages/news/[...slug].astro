@@ -1,14 +1,15 @@
 ---
 import type { GetStaticPaths } from "astro";
-import { render } from "astro:content";
-
 import NewsMeta from "@/components/NewsMeta.astro";
 import NewsLayout from "@/layouts/NewsLayout.astro";
 import {
+  date,
   description,
+  html,
   isoDate,
   newsPosts,
   postPath,
+  title,
   type Post,
 } from "@/lib/news";
 
@@ -18,27 +19,28 @@ export const getStaticPaths = (async () => {
 }) satisfies GetStaticPaths;
 
 const { post } = Astro.props as { post: Post };
-const { Content } = await render(post);
+const { author, author_url } = post.data;
 
 const canonicalUrl = `https://omarchy.org${postPath(post)}`;
-const { title, author, author_url, date } = post.data;
+const heading = title(post);
+const publishedAt = isoDate(date(post));
 const summary = description(post);
 ---
 
 <NewsLayout
-  pageTitle={`${title} — Omarchy News`}
-  socialTitle={title}
+  pageTitle={`${heading} — Omarchy News`}
+  socialTitle={heading}
   description={summary}
   author={author}
   canonicalUrl={canonicalUrl}
   article
-  publishedAt={isoDate(date)}
+  publishedAt={publishedAt}
   jsonLd={{
     "@context": "https://schema.org",
     "@type": "BlogPosting",
-    headline: title,
+    headline: heading,
     description: summary,
-    datePublished: isoDate(date),
+    datePublished: publishedAt,
     author: {
       "@type": author_url ? "Person" : "Organization",
       name: author,
@@ -59,11 +61,11 @@ const summary = description(post);
   <article class="news-post">
     <header class="news-post__header">
       <NewsMeta post={post} prefix="By " />
-      <h1 class="news-post__title">{title}</h1>
+      <h1 class="news-post__title" set:text={heading} />
     </header>
 
     <div class="news-prose">
-      <Content />
+      <Fragment set:html={html(post)} />
     </div>
   </article>
 </NewsLayout>

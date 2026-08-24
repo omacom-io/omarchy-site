@@ -1,5 +1,6 @@
-// Client-side search over the manual. The index is built by bin/build-manual —
-// one entry per heading — and fetched the first time someone reaches for the box.
+// Client-side search over the manual. The index is built by Astro, at
+// src/pages/manual/search-index.json.ts — one entry per heading — and fetched
+// the first time someone reaches for the box.
 
 const INDEX_URL = '/manual/search-index.json';
 const MAX_RESULTS = 8;

@@ -1,0 +1,9 @@
+---
+import ChapterPage from "@/components/ChapterPage.astro";
+import { chapters } from "@/lib/manual";
+
+// The first chapter is the manual's front page, at /manual/ itself.
+const all = await chapters();
+---
+
+<ChapterPage chapter={all[0]} chapters={all} />
