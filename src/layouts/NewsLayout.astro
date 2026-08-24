@@ -29,6 +29,7 @@ const {
 const jsonLdText = JSON.stringify(jsonLd).replaceAll("</", "<\\/");
 
 const stylesheets = ["reset", "root", "fonts", "header", "pre", "news"];
+const fontPreloads = ["/assets/fonts/JetBrainsMono-Regular.woff2"];
 ---
 
 <!doctype html>
@@ -38,6 +39,9 @@ const stylesheets = ["reset", "root", "fonts", "header", "pre", "news"];
 
     <meta charset="utf-8" />
     <meta name="viewport" content="initial-scale=1, width=device-width" />
+    {fontPreloads.map((href) => (
+      <link rel="preload" href={href} as="font" type="font/woff2" crossorigin />
+    ))}
     <meta name="description" content={description} />
     <meta name="author" content={author} />
 

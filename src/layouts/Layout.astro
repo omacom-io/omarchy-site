@@ -11,6 +11,7 @@ interface Props {
   ogImage?: string;
   ogImageAlt?: string;
   ogUrl?: string;
+  twitter?: boolean;
   /** Stylesheet names under /assets/css/, appended after the shared base set. */
   styles?: string[];
   /** ES module entry points under /assets/js/. */
@@ -26,6 +27,7 @@ const {
   ogImage,
   ogImageAlt,
   ogUrl,
+  twitter = true,
   styles = [],
   scripts = [],
 } = Astro.props;
@@ -33,6 +35,11 @@ const {
 // Every page loads these four first; pages add their own on top.
 const baseStyles = ["reset", "root", "fonts", "elements"];
 const stylesheets = [...baseStyles, ...styles];
+const fontPreloads = [
+  "/assets/fonts/JetBrainsMono-Light.woff2",
+  "/assets/fonts/JetBrainsMono-Regular.woff2",
+  "/assets/fonts/JetBrainsMono-Bold.woff2",
+];
 ---
 
 <!doctype html>
@@ -42,6 +49,9 @@ const stylesheets = [...baseStyles, ...styles];
 
     <meta charset="utf-8" />
     <meta name="viewport" content="initial-scale=1, width=device-width" />
+    {fontPreloads.map((href) => (
+      <link rel="preload" href={href} as="font" type="font/woff2" crossorigin />
+    ))}
     {description && <meta name="description" content={description} />}
 
     {canonical && <link rel="canonical" href={canonical} />}
@@ -53,11 +63,11 @@ const stylesheets = [...baseStyles, ...styles];
     {ogUrl && <meta property="og:url" content={ogUrl} />}
     <meta property="og:type" content="website" />
 
-    {ogTitle && <meta name="twitter:title" content={ogTitle} />}
-    {ogDescription && <meta name="twitter:description" content={ogDescription} />}
-    {ogImage && <meta name="twitter:image" content={ogImage} />}
-    {ogImageAlt && <meta name="twitter:image:alt" content={ogImageAlt} />}
-    <meta name="twitter:card" content="summary_large_image" />
+    {twitter && ogTitle && <meta name="twitter:title" content={ogTitle} />}
+    {twitter && ogDescription && <meta name="twitter:description" content={ogDescription} />}
+    {twitter && ogImage && <meta name="twitter:image" content={ogImage} />}
+    {twitter && ogImageAlt && <meta name="twitter:image:alt" content={ogImageAlt} />}
+    {twitter && <meta name="twitter:card" content="summary_large_image" />}
 
     <link rel="icon" href="/assets/images/favicon.png" />
 

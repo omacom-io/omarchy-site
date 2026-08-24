@@ -1,0 +1,46 @@
+---
+import Pre from "@/components/Pre.astro";
+import Layout from "@/layouts/Layout.astro";
+import { themes } from "@/lib/themes";
+---
+
+<Layout
+  title="Omarchy — The Extra Themes"
+  description="Community themes for Omarchy — install them straight from the Omarchy menu."
+  ogTitle="The Extra Themes"
+  ogImage="https://omarchy.org/assets/images/opengraph.png"
+  ogUrl="https://omarchy.org/themes/"
+  twitter={false}
+  styles={[
+    "footer",
+    "header",
+    "main",
+    "pre",
+    "themes",
+  ]}
+>
+  <Pre />
+
+  <header class="header">
+    <h1>The Extra Themes</h1>
+  </header>
+
+  <main class="main">
+    <div class="themes">
+      <p class="themes__intro">
+        Install any of these community themes by copying its GitHub URL and selecting <em>Install &gt; Style &gt; Theme</em> via the Omarchy menu (<code>Super + Space</code>). Remove it again with <em>Remove &gt; Theme</em>. Made your own? Get it added with a pull request to <a href="https://github.com/omacom-io/omarchy-site">the omarchy-site repo</a>.
+      </p>
+
+      <div class="themes__grid">
+        {themes.map((theme) => (
+          <figure class="themes__theme">
+            <a href={theme.url}>
+              <img src={theme.image} alt={`${theme.name} theme`} loading="lazy" decoding="async" />
+            </a>
+            <figcaption><a href={theme.url}>{theme.name}</a></figcaption>
+          </figure>
+        ))}
+      </div>
+    </div>
+  </main>
+</Layout>

@@ -14,6 +14,11 @@ const stylesheets = [
   "reset", "root", "fonts", "elements", "footer",
   "header", "main", "pre", "manual", "search",
 ];
+const fontPreloads = [
+  "/assets/fonts/JetBrainsMono-Light.woff2",
+  "/assets/fonts/JetBrainsMono-Regular.woff2",
+  "/assets/fonts/JetBrainsMono-Bold.woff2",
+];
 ---
 
 <!doctype html>
@@ -23,6 +28,9 @@ const stylesheets = [
 
     <meta charset="utf-8" />
     <meta name="viewport" content="initial-scale=1, width=device-width" />
+    {fontPreloads.map((href) => (
+      <link rel="preload" href={href} as="font" type="font/woff2" crossorigin />
+    ))}
     <meta name="description" content={description} />
 
     <meta property="og:site_name" content="Omarchy" />
