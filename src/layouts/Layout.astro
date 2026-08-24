@@ -1,0 +1,78 @@
+---
+// The shared document shell. Mirrors the hand-written <head> the static pages
+// carry today: same tags, same order, same stylesheet files under /assets/css/.
+interface Props {
+  /** Contents of <title>. */
+  title: string;
+  description?: string;
+  canonical?: string;
+  ogTitle?: string;
+  ogDescription?: string;
+  ogImage?: string;
+  ogImageAlt?: string;
+  ogUrl?: string;
+  /** Stylesheet names under /assets/css/, appended after the shared base set. */
+  styles?: string[];
+  /** ES module entry points under /assets/js/. */
+  scripts?: string[];
+}
+
+const {
+  title,
+  description,
+  canonical,
+  ogTitle,
+  ogDescription = description,
+  ogImage,
+  ogImageAlt,
+  ogUrl,
+  styles = [],
+  scripts = [],
+} = Astro.props;
+
+// Every page loads these four first; pages add their own on top.
+const baseStyles = ["reset", "root", "fonts", "elements"];
+const stylesheets = [...baseStyles, ...styles];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>{title}</title>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1, width=device-width" />
+    {description && <meta name="description" content={description} />}
+
+    {canonical && <link rel="canonical" href={canonical} />}
+
+    <meta property="og:site_name" content="Omarchy" />
+    {ogTitle && <meta property="og:title" content={ogTitle} />}
+    {ogDescription && <meta property="og:description" content={ogDescription} />}
+    {ogImage && <meta property="og:image" content={ogImage} />}
+    {ogUrl && <meta property="og:url" content={ogUrl} />}
+    <meta property="og:type" content="website" />
+
+    {ogTitle && <meta name="twitter:title" content={ogTitle} />}
+    {ogDescription && <meta name="twitter:description" content={ogDescription} />}
+    {ogImage && <meta name="twitter:image" content={ogImage} />}
+    {ogImageAlt && <meta name="twitter:image:alt" content={ogImageAlt} />}
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <link rel="icon" href="/assets/images/favicon.png" />
+
+    {
+      stylesheets.map((name) => (
+        <link rel="stylesheet" type="text/css" href={`/assets/css/${name}.css`} />
+      ))
+    }
+
+    {scripts.map((name) => <script src={`/assets/js/${name}.js`} type="module" is:inline />)}
+
+    <script defer data-domain="omarchy.org" src="https://plausible.io/js/script.js" is:inline></script>
+  </head>
+
+  <body>
+    <slot />
+  </body>
+</html>

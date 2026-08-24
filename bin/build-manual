@@ -19,6 +19,7 @@ require "json"
 require "tmpdir"
 
 SITE_ROOT = File.expand_path("..", __dir__)
+PUBLIC_ROOT = File.join(SITE_ROOT, "public")
 THEME_PREVIEW_REF = %r{\]\(\.\./themes/([\w-]+)/(preview(?:-unlock)?)\.png\)}
 TEMPLATE_DIR = File.join(SITE_ROOT, "templates")
 SOURCE_TARBALL = "https://github.com/basecamp/omarchy/archive/HEAD.tar.gz"
@@ -118,7 +119,7 @@ end
 def build(source_dir)
   chapters = load_chapters(source_dir)
 
-  manual_dir = File.join(SITE_ROOT, "manual")
+  manual_dir = File.join(PUBLIC_ROOT, "manual")
   FileUtils.rm_rf manual_dir
 
   write_page File.join(manual_dir, "toc/index.html"), "toc",
@@ -133,7 +134,7 @@ def build(source_dir)
     content = render_markdown(chapter)
     search_index.concat index_entries(chapter, content)
 
-    write_page File.join(SITE_ROOT, chapter.path, "index.html"), "chapter",
+    write_page File.join(PUBLIC_ROOT, chapter.path, "index.html"), "chapter",
       title: chapter.title,
       description: chapter.description,
       path: chapter.path,

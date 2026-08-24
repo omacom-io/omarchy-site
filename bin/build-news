@@ -16,7 +16,8 @@ require "yaml"
 
 SITE_ROOT = File.expand_path("..", __dir__)
 CONTENT_DIR = File.join(SITE_ROOT, "content", "news")
-NEWS_DIR = File.join(SITE_ROOT, "news")
+PUBLIC_ROOT = File.join(SITE_ROOT, "public")
+NEWS_DIR = File.join(PUBLIC_ROOT, "news")
 TEMPLATE_DIR = File.join(SITE_ROOT, "templates", "news")
 RELATIVE_ASSET = %r{\]\((?!\w+:|[/#])([^)]+)\)}
 
@@ -113,7 +114,7 @@ def build
 
   posts.each do |post|
     canonical_url = "https://omarchy.org#{post.path}"
-    output = File.join(SITE_ROOT, post.path.delete_prefix("/"), "index.html")
+    output = File.join(PUBLIC_ROOT, post.path.delete_prefix("/"), "index.html")
 
     FileUtils.mkdir_p File.dirname(output)
     post.assets.each do |asset|

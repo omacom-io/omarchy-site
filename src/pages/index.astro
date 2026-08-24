@@ -1,0 +1,66 @@
+---
+import Footer from "@/components/Footer.astro";
+import Nav from "@/components/Nav.astro";
+import Pre from "@/components/Pre.astro";
+import Layout from "@/layouts/Layout.astro";
+---
+
+<Layout
+  title="Omarchy — Beautiful, Modern & Opinionated Linux by DHH"
+  description="Beautiful, Modern & Opinionated Linux by DHH"
+  ogTitle="Omarchy"
+  ogImage="https://omarchy.org/assets/images/opengraph.png"
+  ogImageAlt="Omarchy"
+  ogUrl="https://omarchy.org"
+  styles={[
+    "button",
+    "footer",
+    "header",
+    "main",
+    "nav",
+    "notification",
+    "pre",
+    "video",
+    "workstations",
+  ]}
+  scripts={["script"]}
+>
+  <div class="notification">
+    <a href="/news/2026/08/omacom-foundation-launches-with-8-million"
+      >Omacom Foundation launches with $8 million</a
+    >
+  </div>
+
+  <Pre />
+
+  <header class="header">
+    <h1>
+      Beautiful, Modern &amp; Opinionated Linux by <a href="https://dhh.dk"
+        >DHH</a>
+    </h1>
+  </header>
+
+  <Nav />
+
+  <main class="main">
+    <div class="video">
+      <iframe
+        title="Omarchy introduction video"
+        src="https://www.youtube-nocookie.com/embed/F7fe9pa8OeE"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerpolicy="strict-origin-when-cross-origin"
+        allowfullscreen></iframe>
+    </div>
+
+    <div class="video">
+      <iframe
+        title="You need to switch to Linux RIGHT NOW!! by NetworkChuck"
+        src="https://www.youtube-nocookie.com/embed/9SDkU5VDQEQ"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerpolicy="strict-origin-when-cross-origin"
+        allowfullscreen></iframe>
+    </div>
+  </main>
+
+  <Footer />
+</Layout>

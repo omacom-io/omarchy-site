@@ -6,7 +6,8 @@
 require "socket"
 require "uri"
 
-ROOT = File.expand_path("..", __dir__)
+# Serves the built output in dist/, so run `pnpm build` first (or use `pnpm dev`).
+ROOT = File.expand_path("../dist", __dir__)
 PORT = Integer(ARGV[0] || ENV.fetch("PORT", "3000"))
 
 CONTENT_TYPES = {

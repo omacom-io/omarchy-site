@@ -4,6 +4,21 @@ Beautiful, Modern & Opinionated Linux by DHH.
 
 See https://github.com/basecamp/omarchy for more.
 
+## Development
+
+The site is built with [Astro](https://astro.build) in static mode: the output in
+`dist/` is plain HTML, CSS and JS with no runtime.
+
+    pnpm install
+    pnpm dev      # dev server with live reload
+    pnpm build    # type-check and write dist/
+
+Pages migrated to Astro live in `src/pages/`, with the shared document shell in
+`src/layouts/Layout.astro` and shared markup in `src/components/`. Everything not
+migrated yet — the manual, news, themes, the other sections and all of `assets/` —
+sits in `public/` and is copied to `dist/` untouched, so its URLs are unchanged.
+`bin/serve` serves `dist/` with clean URLs the way omarchy.org does.
+
 ## News
 
 Add posts as Markdown under `content/news/YYYY/MM/post-slug.md`. A post may
