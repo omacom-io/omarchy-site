@@ -1,0 +1,58 @@
+---
+import Pre from "@/components/Pre.astro";
+import Layout from "@/layouts/Layout.astro";
+import { workstationImages } from "@/lib/workstations";
+---
+
+<Layout
+  title="Omarchy — Beautiful, Modern & Opinionated Linux by DHH"
+  description="Beautiful, Modern & Opinionated Linux by DHH"
+  ogTitle="Omarchy"
+  ogImage="https://omarchy.org/assets/images/opengraph.png"
+  ogImageAlt="Omarchy"
+  ogUrl="https://omarchy.org"
+  fontPreloads={[]}
+  styles={[
+    "button",
+    "footer",
+    "header",
+    "main",
+    "nav",
+    "notification",
+    "pre",
+    "video",
+    "workstations",
+  ]}
+  scripts={["script"]}
+>
+  <Pre />
+
+  <header class="header">
+    <h1>
+      <a href="https://discord.com/channels/1390012484194275541/1399365919293051010"
+        >#omarchy-workstations</a
+      >
+    </h1>
+  </header>
+
+  <main class="main">
+    <div class="workstations">
+      <div class="workstations__images">
+        {
+          workstationImages.map((src) => (
+            <button class="workstations__image" aria-label="View workstation photo">
+              <figure>
+                <img src={src} alt="" loading="lazy" decoding="async" />
+              </figure>
+            </button>
+          ))
+        }
+      </div>
+
+      <dialog class="workstations__modal">
+        <div class="workstations__backdrop"></div>
+        <div class="workstations__container"></div>
+      </dialog>
+    </div>
+  </main>
+</Layout>

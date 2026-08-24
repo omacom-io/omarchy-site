@@ -12,6 +12,8 @@ interface Props {
   ogImageAlt?: string;
   ogUrl?: string;
   twitter?: boolean;
+  /** Font files to preload in the document head. */
+  fontPreloads?: string[];
   /** Stylesheet names under /assets/css/, appended after the shared base set. */
   styles?: string[];
   /** ES module entry points under /assets/js/. */
@@ -28,6 +30,11 @@ const {
   ogImageAlt,
   ogUrl,
   twitter = true,
+  fontPreloads = [
+    "/assets/fonts/JetBrainsMono-Light.woff2",
+    "/assets/fonts/JetBrainsMono-Regular.woff2",
+    "/assets/fonts/JetBrainsMono-Bold.woff2",
+  ],
   styles = [],
   scripts = [],
 } = Astro.props;
@@ -35,11 +42,6 @@ const {
 // Every page loads these four first; pages add their own on top.
 const baseStyles = ["reset", "root", "fonts", "elements"];
 const stylesheets = [...baseStyles, ...styles];
-const fontPreloads = [
-  "/assets/fonts/JetBrainsMono-Light.woff2",
-  "/assets/fonts/JetBrainsMono-Regular.woff2",
-  "/assets/fonts/JetBrainsMono-Bold.woff2",
-];
 ---
 
 <!doctype html>
