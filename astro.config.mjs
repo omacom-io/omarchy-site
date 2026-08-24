@@ -6,9 +6,9 @@ import { defineConfig } from "astro/config";
 export default defineConfig({
   site: "https://omarchy.org",
   output: "static",
-  // Whitespace between inline elements is significant in the existing markup
-  // (e.g. the footer credits), so leave the HTML as authored.
-  compressHTML: false,
+  compressHTML: true,
+  // Omarchy's URLs are directories: /teams/ served from teams/index.html.
+  trailingSlash: "always",
   build: {
     format: "directory",
   },
