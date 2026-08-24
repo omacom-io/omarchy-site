@@ -11,8 +11,18 @@
 // work: Astro's Markdown image pipeline claims it and republishes it under a
 // hashed /_astro/ URL, so this fails the build rather than move the URL.
 
-import { readdirSync, readFileSync, statSync, cpSync, mkdirSync, rmSync } from "node:fs";
-import { dirname, join, relative } from "node:path";
+import {
+  cpSync,
+  existsSync,
+  mkdirSync,
+  mkdtempSync,
+  readdirSync,
+  readFileSync,
+  renameSync,
+  rmSync,
+  statSync,
+} from "node:fs";
+import { dirname, isAbsolute, join, relative, resolve, sep } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const ROOT = fileURLToPath(new URL("..", import.meta.url));
@@ -31,40 +41,81 @@ function markdownFiles(dir) {
   });
 }
 
-function fail(message) {
-  console.error(message);
-  process.exit(1);
+function collectAssets() {
+  const assets = [];
+
+  for (const file of markdownFiles(CONTENT)) {
+    const post = relative(CONTENT, file).replace(/\.md$/, "").split(/[\\/]/).join("/");
+    const targets = new Set([...readFileSync(file, "utf8").matchAll(LINK)].map(([, url]) => url));
+
+    for (const target of targets) {
+      if (!/^\w+:|^[/#]/.test(target)) {
+        throw new Error(
+          `content/news/${post}.md links to ${target}. Link files kept beside the ` +
+            `post by the path they are published at: /news/${post}/${target}`,
+        );
+      }
+
+      const prefix = `/news/${post}/`;
+      const asset = target.startsWith(prefix) && target.slice(prefix.length);
+      if (!asset || isAbsolute(asset)) continue;
+
+      const source = resolve(dirname(file), asset);
+      const postDirectory = resolve(dirname(file));
+      const sourceRelative = relative(postDirectory, source);
+      if (sourceRelative.startsWith(`..${sep}`) || isAbsolute(sourceRelative)) {
+        throw new Error(`content/news/${post}.md links outside its directory: ${asset}`);
+      }
+      if (!statSync(source, { throwIfNoEntry: false })?.isFile()) {
+        throw new Error(`content/news/${post}.md links to ${asset}, but no such file sits next to it`);
+      }
+
+      assets.push({ source, destination: join(post, asset) });
+    }
+  }
+
+  return assets;
 }
 
-rmSync(PUBLIC, { recursive: true, force: true });
+function replaceGeneratedDirectory(stage) {
+  const parent = dirname(PUBLIC);
+  const backup = mkdtempSync(join(parent, ".news-assets-backup-"));
+  rmSync(backup, { recursive: true, force: true });
+  let movedExisting = false;
 
-let copied = 0;
-
-for (const file of markdownFiles(CONTENT)) {
-  const post = relative(CONTENT, file).replace(/\.md$/, "").split(/[\\/]/).join("/");
-  const targets = new Set([...readFileSync(file, "utf8").matchAll(LINK)].map(([, url]) => url));
-
-  for (const target of targets) {
-    if (!/^\w+:|^[/#]/.test(target)) {
-      fail(
-        `content/news/${post}.md links to ${target}. Link files kept beside the ` +
-          `post by the path they are published at: /news/${post}/${target}`,
-      );
+  try {
+    if (existsSync(PUBLIC)) {
+      renameSync(PUBLIC, backup);
+      movedExisting = true;
     }
-
-    const asset = target.startsWith(`/news/${post}/`) && target.slice(`/news/${post}/`.length);
-    if (!asset) continue;
-
-    const source = join(dirname(file), asset);
-    if (!statSync(source, { throwIfNoEntry: false })?.isFile()) {
-      fail(`content/news/${post}.md links to ${asset}, but no such file sits next to it`);
-    }
-
-    const destination = join(PUBLIC, post, asset);
-    mkdirSync(dirname(destination), { recursive: true });
-    cpSync(source, destination);
-    copied++;
+    renameSync(stage, PUBLIC);
+  } catch (error) {
+    if (!existsSync(PUBLIC) && movedExisting) renameSync(backup, PUBLIC);
+    throw error;
+  } finally {
+    rmSync(backup, { recursive: true, force: true });
   }
 }
 
-console.log(`Synced ${copied} news asset${copied === 1 ? "" : "s"} into public/news/`);
+try {
+  // Validation happens before the existing generated directory is touched.
+  const assets = collectAssets();
+  const stage = mkdtempSync(join(dirname(PUBLIC), ".news-assets-"));
+
+  try {
+    for (const { source, destination } of assets) {
+      const output = join(stage, destination);
+      mkdirSync(dirname(output), { recursive: true });
+      cpSync(source, output);
+    }
+
+    replaceGeneratedDirectory(stage);
+  } finally {
+    rmSync(stage, { recursive: true, force: true });
+  }
+
+  console.log(`Synced ${assets.length} news asset${assets.length === 1 ? "" : "s"} into public/news/`);
+} catch (error) {
+  console.error(error instanceof Error ? error.message : error);
+  process.exitCode = 1;
+}

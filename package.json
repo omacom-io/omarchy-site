@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "node scripts/sync-news-assets.mjs && astro dev",
     "build": "node scripts/sync-news-assets.mjs && astro check && astro build",
+    "verify-build": "node scripts/verify-build.mjs",
     "preview": "astro preview",
     "astro": "astro",
     "sync-news-assets": "node scripts/sync-news-assets.mjs",
@@ -16,5 +17,8 @@
     "astro": "7.2.4",
     "typescript": "6.0.3"
   },
-  "packageManager": "pnpm@11.20.0"
+  "packageManager": "pnpm@11.20.0",
+  "engines": {
+    "node": ">=22.12.0"
+  }
 }
