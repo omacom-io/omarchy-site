@@ -1,0 +1,69 @@
+---
+import type { GetStaticPaths } from "astro";
+import { render } from "astro:content";
+
+import NewsMeta from "@/components/NewsMeta.astro";
+import NewsLayout from "@/layouts/NewsLayout.astro";
+import {
+  description,
+  isoDate,
+  newsPosts,
+  postPath,
+  type Post,
+} from "@/lib/news";
+
+export const getStaticPaths = (async () => {
+  const posts = await newsPosts();
+  return posts.map((post) => ({ params: { slug: post.id }, props: { post } }));
+}) satisfies GetStaticPaths;
+
+const { post } = Astro.props as { post: Post };
+const { Content } = await render(post);
+
+const canonicalUrl = `https://omarchy.org${postPath(post)}`;
+const { title, author, author_url, date } = post.data;
+const summary = description(post);
+---
+
+<NewsLayout
+  pageTitle={`${title} — Omarchy News`}
+  socialTitle={title}
+  description={summary}
+  author={author}
+  canonicalUrl={canonicalUrl}
+  article
+  publishedAt={isoDate(date)}
+  jsonLd={{
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: title,
+    description: summary,
+    datePublished: isoDate(date),
+    author: {
+      "@type": author_url ? "Person" : "Organization",
+      name: author,
+      ...(author_url ? { url: author_url } : {}),
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "Omarchy",
+      logo: {
+        "@type": "ImageObject",
+        url: "https://omarchy.org/assets/images/favicon.png",
+      },
+    },
+    image: "https://omarchy.org/assets/images/favicon.png",
+    mainEntityOfPage: canonicalUrl,
+  }}
+>
+  <article class="news-post">
+    <header class="news-post__header">
+      <NewsMeta post={post} prefix="By " />
+      <h1 class="news-post__title">{title}</h1>
+    </header>
+
+    <div class="news-prose">
+      <Content />
+    </div>
+  </article>
+</NewsLayout>

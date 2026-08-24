@@ -15,19 +15,26 @@ The site is built with [Astro](https://astro.build) in static mode: the output i
 
 Pages migrated to Astro live in `src/pages/`, with the shared document shell in
 `src/layouts/Layout.astro` and shared markup in `src/components/`. Everything not
-migrated yet — the manual, news, themes, the other sections and all of `assets/` —
-sits in `public/` and is copied to `dist/` untouched, so its URLs are unchanged.
+migrated yet — the manual, themes, the other sections and all of `assets/` — sits
+in `public/` and is copied to `dist/` untouched, so its URLs are unchanged.
 `bin/serve` serves `dist/` with clean URLs the way omarchy.org does.
 
 ## News
 
-Add posts as Markdown under `content/news/YYYY/MM/post-slug.md`. A post may
-start with YAML front matter containing `title`, `date`, `author`, `author_url`,
-and `description`; only the title is required, either there or as the first `#`
-heading. Images stored beside the post are published with it. Regenerate the
-pages under `news/` with:
+Posts are Markdown under `content/news/YYYY/MM/post-slug.md`, read by the `news`
+content collection in `src/content.config.ts` and rendered by `src/pages/news/`.
+`pnpm build` publishes `/news/` and one `/news/YYYY/MM/post-slug/` page per post;
+there is no separate generation step.
 
-    bin/build-news
+Front matter needs a `title` and a `date`; `author` (default "Omarchy"),
+`author_url`, and `description` are optional. Without a `description` the index
+and the social tags fall back to an excerpt of the opening of the post.
+
+Images and other per-post assets live in `public/news/YYYY/MM/post-slug/` and are
+linked from the post by their full path, e.g.
+`![Alt](/news/2026/09/a-post/photo.webp)`. `public/` is copied to `dist/`
+verbatim, so an asset's URL is exactly where you put it — no build step, no
+hashing, and it survives beside the page Astro generates for the same directory.
 
 ## The Manual
 

@@ -1,0 +1,27 @@
+---
+import { formatDate, isoDate, type Post } from "@/lib/news";
+
+interface Props {
+  post: Post;
+  /** Post pages read "By DHH", the index just "DHH". */
+  prefix?: string;
+}
+
+const { post, prefix = "" } = Astro.props;
+const { author, author_url, date } = post.data;
+---
+
+<p class="news-meta">
+  <span class="news-byline"
+    >{prefix}{
+      author_url ? (
+        <a href={author_url} rel="author noopener noreferrer" target="_blank">
+          {author}
+        </a>
+      ) : (
+        author
+      )
+    }</span
+  > on <time class="news-date" datetime={isoDate(date)}>{formatDate(date)}</time
+  >
+</p>

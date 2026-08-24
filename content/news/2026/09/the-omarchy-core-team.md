@@ -25,4 +25,4 @@ Together we're going to build Omarchy into the premier Linux distribution for pe
 
 To infinity and beyond!
 
-![DHH, Ryan Hughes, Tobi Lütke, Bjarne Øverli, HANCORE, and Spencer Bull](core-team.webp)
+![DHH, Ryan Hughes, Tobi Lütke, Bjarne Øverli, HANCORE, and Spencer Bull](/news/2026/09/the-omarchy-core-team/core-team.webp)

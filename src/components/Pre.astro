@@ -1,8 +1,14 @@
 ---
 // The ASCII logo banner shared by every page. Whitespace inside <pre> is significant.
+interface Props {
+  /** News article pages use "pre pre--news" for the compact banner. */
+  class?: string;
+}
+
+const { class: className = "pre" } = Astro.props;
 ---
 
-<div class="pre">
+<div class={className}>
   <a href="/">
     <pre>
                  ▄▄▄
