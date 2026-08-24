@@ -25,3 +25,5 @@ These eight Founding Patrons are each contributing $1 million to this mission:
 This is a ridiculous sum of money, so I intend to make sure it lasts a long time, and that we make the most of it. But just as important as the incredible cushion is the vote of confidence delivered by these pledges.
 
 We're going to make the prophecy of The Year of Linux on the Desktop come true. All the pieces are now in place. Time to go all in!
+
+**UPDATE:** [We've added another $2 million in funding](/news/2026/08/omacom-foundation-funding-hits-10m) from [Drew Houston](https://x.com/drewhouston), cofounder and co-CEO of [Dropbox](https://www.dropbox.com), and [Peter Steinberger](https://x.com/steipete), creator of [OpenClaw](https://openclaw.ai).
