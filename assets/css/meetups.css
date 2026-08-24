@@ -1,0 +1,103 @@
+.main--meetups {
+  margin-top: var(--space-large);
+}
+
+
+
+.meetups {
+  display: grid;
+  gap: var(--space-xx-large);
+  justify-self: center;
+  max-width: 46em;
+  padding-inline: var(--space-large);
+  width: 100%;
+}
+
+.meetups__calendar {
+  display: grid;
+  gap: var(--space-neutral);
+  justify-items: center;
+  text-align: center;
+}
+
+.meetups__embed {
+  background: var(--color-background-night);
+  border: var(--border-width) solid rgba(var(--rgb-terminal-black), 0.8);
+  border-radius: 0.4em;
+  height: 450px;
+  width: 100%;
+}
+
+
+
+.rules {
+  border-top: var(--border-width) solid rgba(var(--rgb-terminal-black), 0.8);
+  display: grid;
+  gap: var(--space-large);
+  padding-top: var(--space-xx-large);
+}
+
+.rules__header {
+  display: grid;
+  gap: var(--space-small);
+  text-align: center;
+}
+
+.rules__title {
+  color: var(--color-terminal-white);
+  font-size: var(--font-size-medium);
+  font-weight: 700;
+  letter-spacing: 0.075em;
+  text-transform: uppercase;
+}
+
+.rules__note {
+  border-top: var(--border-width) solid rgba(var(--rgb-terminal-black), 0.8);
+  color: rgba(var(--rgb-terminal-white), 0.6);
+  padding-top: var(--space-large);
+  text-align: center;
+  text-wrap: pretty;
+}
+
+.rules ol {
+  counter-reset: rule;
+  display: grid;
+  gap: var(--space-neutral);
+}
+
+.rule {
+  counter-increment: rule;
+  display: grid;
+  gap: var(--space-small);
+  grid-template-columns: 2.5em 1fr;
+}
+
+/* The number is decoration; the rule's name is what people quote at each other. */
+.rule::before {
+  color: rgba(var(--rgb-terminal-white), 0.35);
+  content: counter(rule, decimal-leading-zero);
+  grid-row: span 2;
+}
+
+.rule__name {
+  color: var(--color-terminal-white);
+  font-weight: 700;
+}
+
+.rule p {
+  text-wrap: pretty;
+}
+
+
+
+@media(min-width: 64em) {
+
+  .main--meetups {
+    margin-top: var(--space-x-large);
+  }
+
+  .meetups {
+    padding-inline: var(--space-xx-large);
+  }
+
+}
