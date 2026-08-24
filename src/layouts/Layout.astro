@@ -9,9 +9,12 @@ interface Props {
   ogTitle?: string;
   ogDescription?: string;
   ogImage?: string;
+  ogImageWidth?: string;
+  ogImageHeight?: string;
   ogImageAlt?: string;
   ogUrl?: string;
   twitter?: boolean;
+  bodyClass?: string;
   /** Font files to preload in the document head. */
   fontPreloads?: string[];
   /** Stylesheet names under /assets/css/, appended after the shared base set. */
@@ -27,6 +30,8 @@ const {
   ogTitle,
   ogDescription = description,
   ogImage,
+  ogImageWidth,
+  ogImageHeight,
   ogImageAlt,
   ogUrl,
   twitter = true,
@@ -37,6 +42,7 @@ const {
   ],
   styles = [],
   scripts = [],
+  bodyClass,
 } = Astro.props;
 
 // Every page loads these four first; pages add their own on top.
@@ -51,40 +57,83 @@ const stylesheets = [...baseStyles, ...styles];
 
     <meta charset="utf-8" />
     <meta name="viewport" content="initial-scale=1, width=device-width" />
-    {fontPreloads.map((href) => (
-      <link rel="preload" href={href} as="font" type="font/woff2" crossorigin />
-    ))}
+    {
+      fontPreloads.map((href) => (
+        <link
+          rel="preload"
+          href={href}
+          as="font"
+          type="font/woff2"
+          crossorigin
+        />
+      ))
+    }
     {description && <meta name="description" content={description} />}
 
     {canonical && <link rel="canonical" href={canonical} />}
 
     <meta property="og:site_name" content="Omarchy" />
     {ogTitle && <meta property="og:title" content={ogTitle} />}
-    {ogDescription && <meta property="og:description" content={ogDescription} />}
+    {
+      ogDescription && (
+        <meta property="og:description" content={ogDescription} />
+      )
+    }
     {ogImage && <meta property="og:image" content={ogImage} />}
+    {ogImageWidth && <meta property="og:image:width" content={ogImageWidth} />}
+    {
+      ogImageHeight && (
+        <meta property="og:image:height" content={ogImageHeight} />
+      )
+    }
+    {
+      ogImageWidth && ogImageHeight && ogImageAlt && (
+        <meta property="og:image:alt" content={ogImageAlt} />
+      )
+    }
     {ogUrl && <meta property="og:url" content={ogUrl} />}
     <meta property="og:type" content="website" />
 
     {twitter && ogTitle && <meta name="twitter:title" content={ogTitle} />}
-    {twitter && ogDescription && <meta name="twitter:description" content={ogDescription} />}
+    {
+      twitter && ogDescription && (
+        <meta name="twitter:description" content={ogDescription} />
+      )
+    }
     {twitter && ogImage && <meta name="twitter:image" content={ogImage} />}
-    {twitter && ogImageAlt && <meta name="twitter:image:alt" content={ogImageAlt} />}
+    {
+      twitter && ogImageAlt && (
+        <meta name="twitter:image:alt" content={ogImageAlt} />
+      )
+    }
     {twitter && <meta name="twitter:card" content="summary_large_image" />}
 
     <link rel="icon" href="/assets/images/favicon.png" />
 
     {
       stylesheets.map((name) => (
-        <link rel="stylesheet" type="text/css" href={`/assets/css/${name}.css`} />
+        <link
+          rel="stylesheet"
+          type="text/css"
+          href={`/assets/css/${name}.css`}
+        />
       ))
     }
 
-    {scripts.map((name) => <script src={`/assets/js/${name}.js`} type="module" is:inline />)}
+    {
+      scripts.map((name) => (
+        <script src={`/assets/js/${name}.js`} type="module" is:inline />
+      ))
+    }
 
-    <script defer data-domain="omarchy.org" src="https://plausible.io/js/script.js" is:inline></script>
+    <script
+      defer
+      data-domain="omarchy.org"
+      src="https://plausible.io/js/script.js"
+      is:inline></script>
   </head>
 
-  <body>
+  <body class={bodyClass}>
     <slot />
   </body>
 </html>

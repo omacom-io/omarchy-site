@@ -1,0 +1,159 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Pre from "@/components/Pre.astro";
+
+const members = [
+  {
+    name: "Tobi Lütke",
+    twitter: "https://x.com/tobi",
+    avatar: "/assets/images/patrons/tobi-lutke.webp",
+    meta: "Shopify",
+    metaUrl: "https://www.shopify.com/",
+  },
+  {
+    name: "Patrick Collison",
+    twitter: "https://x.com/patrickc",
+    avatar: "/assets/images/patrons/patrick-collison.webp",
+    meta: "Stripe",
+    metaUrl: "https://stripe.com",
+  },
+  {
+    name: "Michael Dell",
+    twitter: "https://x.com/MichaelDell",
+    avatar: "/assets/images/patrons/michael-dell.webp",
+    meta: "Dell Technologies",
+    metaUrl: "https://www.dell.com",
+  },
+  {
+    name: "Jack Dorsey",
+    twitter: "https://x.com/jack",
+    avatar: "/assets/images/patrons/jack-dorsey.webp",
+    meta: "Block",
+    metaUrl: "https://block.xyz",
+  },
+  {
+    name: "Matthew Prince",
+    twitter: "https://x.com/eastdakota",
+    avatar: "/assets/images/patrons/matthew-prince.webp",
+    meta: "Cloudflare",
+    metaUrl: "https://www.cloudflare.com",
+  },
+  {
+    name: "Brendan Iribe",
+    twitter: "https://x.com/brendaniribe",
+    avatar: "/assets/images/patrons/brendan-iribe.webp",
+    meta: "Sesame",
+    metaUrl: "https://www.sesame.com",
+  },
+  {
+    name: "Jason Fried",
+    twitter: "https://x.com/jasonfried",
+    avatar: "/assets/images/patrons/jason-fried.webp",
+    meta: "37signals",
+    metaUrl: "https://37signals.com",
+  },
+  {
+    name: "Drew Houston",
+    twitter: "https://x.com/drewhouston",
+    avatar: "/assets/images/patrons/drew-houston.webp",
+    meta: "Dropbox",
+    metaUrl: "https://www.dropbox.com",
+  },
+  {
+    name: "Peter Steinberger",
+    twitter: "https://x.com/steipete",
+    avatar: "/assets/images/patrons/peter-steinberger.webp",
+    meta: "OpenClaw",
+    metaUrl: "https://openclaw.ai",
+  },
+  {
+    name: "DHH",
+    twitter: "https://dhh.dk",
+    avatar: "/assets/images/patrons/dhh.webp",
+    meta: "37signals",
+    metaUrl: "https://37signals.com",
+  },
+];
+---
+
+<Layout
+  title="Omacom Foundation — Omarchy"
+  description="The foundation funding Omarchy."
+  canonical="https://omarchy.org/patrons"
+  ogTitle="Omacom Foundation"
+  ogImage="https://omarchy.org/assets/images/patrons-social.png"
+  ogImageWidth="2400"
+  ogImageHeight="1260"
+  ogImageAlt="Omarchy logo"
+  ogUrl="https://omarchy.org/patrons"
+  fontPreloads={[]}
+  styles={["header", "main", "pre", "teams"]}
+>
+  <Pre />
+
+  <header class="header">
+    <h1>The Omacom Foundation</h1>
+  </header>
+
+  <main class="main">
+    <div class="teams">
+      <section class="team">
+        <header class="team__header">
+          <h2 class="team__name">Founding Patrons</h2>
+          <p class="team__description">
+            Each contributing $1,000,000 to the mission
+          </p>
+        </header>
+
+        <div class="team__members">
+          {
+            members.map((member) => (
+              <article class="member">
+                <img
+                  class="member__avatar"
+                  src={member.avatar}
+                  width="240"
+                  height="240"
+                  alt={member.name}
+                  loading="lazy"
+                  decoding="async"
+                />
+                <h3 class="member__name">
+                  <a href={member.twitter}>{member.name}</a>
+                </h3>
+                <p class="member__meta">
+                  <a href={member.metaUrl}>{member.meta}</a>
+                </p>
+              </article>
+            ))
+          }
+        </div>
+      </section>
+
+      <section class="team">
+        <header class="team__header">
+          <h2 class="team__name">Distinguished Patrons</h2>
+          <p class="team__description">
+            Each contributing $100,000 to the mission
+          </p>
+        </header>
+
+        <p class="team__note">
+          Get in touch with <a href="mailto:david@omarchy.org"
+            >david@omarchy.org</a>
+        </p>
+      </section>
+
+      <section class="team">
+        <header class="team__header">
+          <h2 class="team__name">Patrons</h2>
+          <p class="team__description">
+            Each contributing as they see fit to the mission
+          </p>
+        </header>
+
+        <p class="team__note">Open for everyone. Coming soon.</p>
+      </section>
+    </div>
+  </main>
+</Layout>
