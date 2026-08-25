@@ -23,7 +23,6 @@ import { workstationImages } from "@/lib/workstations";
     "video",
     "workstations",
   ]}
-  scripts={["script"]}
 >
   <Pre />
 
@@ -55,4 +54,61 @@ import { workstationImages } from "@/lib/workstations";
       </dialog>
     </div>
   </main>
+
+  <script>
+    const modal = document.querySelector<HTMLDialogElement>('.workstations__modal');
+
+    if (modal) {
+      const modalImages = document.querySelectorAll<HTMLButtonElement>('.workstations__image');
+      const modalBackdrop = modal.querySelector<HTMLElement>('.workstations__backdrop');
+      const modalContainer = modal.querySelector<HTMLElement>('.workstations__container');
+
+      if (modalBackdrop && modalContainer) {
+        const dialog = modal;
+        const container = modalContainer;
+
+        modalImages.forEach((image) => {
+          image.addEventListener('click', () => {
+            const figure = image.querySelector('figure');
+            if (figure) open(figure);
+          });
+        });
+
+        modalBackdrop.addEventListener('click', close);
+
+        document.addEventListener('keydown', (event) => {
+          if (event.key === 'Escape') close();
+        });
+
+        function open(element: HTMLElement) {
+          const elementImg = element.querySelector<HTMLImageElement>('img');
+          const elementFigcaption = element.querySelector('figcaption');
+          if (!elementImg) return;
+
+          const figureImgSrc = elementImg.src;
+          const figureImgAlt = elementImg.alt;
+          const figureFigcaption = elementFigcaption ? elementFigcaption.textContent : '';
+
+          container.innerHTML = `
+            <div class="workstations__image workstations__image--modal">
+              <figure>
+                <img src="${figureImgSrc}" alt="${figureImgAlt}" loading="lazy" decoding="async">
+                ${figureFigcaption ? `<figcaption>${figureFigcaption}</figcaption>` : ''}
+              </figure>
+            </div>
+          `;
+
+          const modalImage = container.querySelector<HTMLElement>('.workstations__image');
+          modalImage?.addEventListener('click', close);
+          dialog.showModal();
+        }
+
+        function close() {
+          container.innerHTML = '';
+          dialog.scrollTo(0, 0);
+          dialog.close();
+        }
+      }
+    }
+  </script>
 </Layout>

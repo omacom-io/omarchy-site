@@ -19,8 +19,6 @@ interface Props {
   fontPreloads?: string[];
   /** Stylesheet names under /assets/css/, appended after the shared base set. */
   styles?: string[];
-  /** ES module entry points under /assets/js/. */
-  scripts?: string[];
 }
 
 const {
@@ -41,7 +39,6 @@ const {
     "/assets/fonts/JetBrainsMono-Bold.woff2",
   ],
   styles = [],
-  scripts = [],
   bodyClass,
 } = Astro.props;
 
@@ -117,12 +114,6 @@ const stylesheets = [...baseStyles, ...styles];
           type="text/css"
           href={`/assets/css/${name}.css`}
         />
-      ))
-    }
-
-    {
-      scripts.map((name) => (
-        <script src={`/assets/js/${name}.js`} type="module" is:inline />
       ))
     }
 

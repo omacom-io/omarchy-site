@@ -94,7 +94,7 @@ first `#` heading, and chapter `01` is served from `/manual/` itself.
 
 Theme data is maintained in `src/pages/themes/index.astro`, and workstation data
 is maintained in `src/pages/workstations/index.astro`. Raw files that are not
-HTML pages, including install, upgrade, patch, CSS, JS, and static images, remain
+HTML pages, including install, upgrade, patch, CSS, and static images, remain
 under `public/` and are copied to `dist/` by Astro.
 
 ## Deployment
@@ -109,6 +109,6 @@ production publisher; it does not deploy the repository root.
 
 `src/pages/manual/search-index.json.ts` writes `/manual/search-index.json` — one
 entry per heading, so results link straight to the section that matched.
-`assets/js/modules/search.js` fetches it the first time someone reaches for the
-box in the header and matches in the browser; there is no search service and
-nothing to run. Press `/` anywhere in the manual to search.
+`Search.astro` fetches it the first time someone reaches for the box in the
+header and matches in the browser; there is no search service and nothing to
+run. Press `/` anywhere in the manual to search.

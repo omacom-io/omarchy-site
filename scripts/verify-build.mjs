@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 import { readFileSync, readdirSync, statSync } from "node:fs";
-import { join, relative } from "node:path";
+import { join, relative, sep } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const ROOT = fileURLToPath(new URL("..", import.meta.url));
@@ -13,12 +13,8 @@ const requiredFiles = [
   "CNAME",
   "discord/index.html",
   "news/index.html",
-  "news/2026/09/the-omarchy-core-team/index.html",
-  "news/2026/08/omacom-foundation-launches-with-8-million/index.html",
   "manual/index.html",
   "manual/search-index.json",
-  "manual/getting-started/index.html",
-  "manual/themes/index.html",
   "themes/index.html",
   "workstations/index.html",
   "meetups/index.html",
@@ -68,12 +64,48 @@ function allFiles(dir) {
   });
 }
 
+function verifyNewsRoutes() {
+  const contentRoot = join(ROOT, "content/news");
+
+  // The glob loader uses the YYYY/MM/slug path relative to content/news as post.id,
+  // and postPath() publishes that same path below /news/.
+  for (const sourcePath of allFiles(contentRoot)) {
+    const postId = relative(contentRoot, sourcePath).split(sep).join("/");
+    if (!/^\d{4}\/\d{2}\/[^/]+\.md$/.test(postId)) continue;
+
+    file(`news/${postId.slice(0, -3)}/index.html`);
+  }
+
+  file("news/index.html");
+}
+
+function verifyManualRoutes() {
+  const chapterIds = readdirSync(join(ROOT, "content/manual"), { withFileTypes: true })
+    .filter((entry) => entry.isFile() && /^\d{2}-.+\.md$/.test(entry.name))
+    .map((entry) => entry.name.slice(0, -3))
+    .sort((a, b) => a.localeCompare(b));
+
+  chapterIds.forEach((chapterId, index) => {
+    if (index === 0) {
+      file("manual/index.html");
+      return;
+    }
+
+    // Keep this in step with src/lib/manual.ts: "07-hotkeys" -> "hotkeys".
+    const slug = chapterId.slice(chapterId.indexOf("-") + 1);
+    file(`manual/${slug}/index.html`);
+  });
+
+  file("manual/toc/index.html");
+  file("manual/search-index.json");
+}
+
 for (const path of requiredFiles) file(path);
 
-const indexPages = allFiles(DIST).filter((path) => path.endsWith("/index.html") || path === join(DIST, "index.html"));
-if (indexPages.length !== 70) {
-  throw new Error(`Expected 70 directory pages, found ${indexPages.length}`);
-}
+verifyNewsRoutes();
+verifyManualRoutes();
+
+const indexPages = allFiles(DIST).filter((path) => path.endsWith("/index.html"));
 
 const forbidden = join(DIST, "404", "index.html");
 try {
@@ -92,4 +124,4 @@ for (const [sourcePath, distPath] of byteIdentical) {
 }
 
 const relativeRoutes = indexPages.map((path) => relative(DIST, path)).sort();
-console.log(`Verified ${relativeRoutes.length + 1} routes, raw endpoints, and representative assets.`);
+console.log(`Verified ${relativeRoutes.length} directory pages, raw endpoints, and representative assets.`);

@@ -1,6 +1,6 @@
 ---
-// The manual's search box. assets/js/modules/search.js unhides it and fills the
-// results from /manual/search-index.json.
+// The manual's search box. The client behavior stays with the markup it owns,
+// and fills the results from /manual/search-index.json.
 ---
 
 <search class="search" hidden>
@@ -31,3 +31,319 @@
   >
   </div>
 </search>
+
+<script>
+  // Client-side search over the manual. The index is built by Astro, at
+  // src/pages/manual/search-index.json.ts — one entry per heading — and fetched
+  // the first time someone reaches for the box.
+
+  const INDEX_URL = "/manual/search-index.json";
+  const MAX_RESULTS = 8;
+  const PREVIEW_LENGTH = 160;
+
+  interface SearchEntry {
+    chapter: string;
+    title: string;
+    url: string;
+    text: string;
+  }
+
+  interface SearchTerm {
+    anywhere: RegExp;
+    whole: RegExp;
+  }
+
+  interface SearchPattern {
+    terms: SearchTerm[];
+    phrase: string;
+    first: RegExp;
+    words: RegExp;
+  }
+
+  interface SearchMatch {
+    entry: SearchEntry;
+    pattern: SearchPattern;
+    score: number;
+  }
+
+  let entries: SearchEntry[] | null = null;
+  let loading: Promise<void> | null = null;
+
+  const search = document.querySelector<HTMLElement>(".search");
+
+  if (search) {
+    const input = search.querySelector<HTMLInputElement>(".search__input");
+    const results = search.querySelector<HTMLElement>(".search__results");
+
+    if (input && results) {
+      const searchInput = input;
+      const searchResults = results;
+      let query = "";
+      let matches: SearchMatch[] = [];
+      let active = -1;
+
+      search.hidden = false;
+
+      searchInput.addEventListener("focus", () => load());
+      searchInput.addEventListener("input", () => run(searchInput.value));
+      searchInput.addEventListener("keydown", (event) => navigate(event));
+
+      searchResults.addEventListener("mousedown", (event) => {
+        // Hold the focus so the blur doesn't close the results before the click lands.
+        // The link still navigates itself, so middle and modifier clicks keep working.
+        if (event.target instanceof Element && event.target.closest(".search__result")) {
+          event.preventDefault();
+        }
+      });
+
+      search.addEventListener("focusout", (event) => {
+        if (!(event.relatedTarget instanceof Node) || !search.contains(event.relatedTarget)) {
+          close();
+        }
+      });
+
+      document.addEventListener("keydown", (event) => {
+        // A chapter hides the box at narrow widths, where there's nothing to focus.
+        if (shortcut(event) && searchInput.offsetParent) {
+          event.preventDefault();
+          searchInput.focus();
+          searchInput.select();
+        }
+      });
+
+      function run(value: string) {
+        query = value.trim();
+
+        if (!query) return close();
+        if (!entries) return load().then(resume);
+
+        matches = lookup(entries, query).slice(0, MAX_RESULTS);
+        active = -1;
+        render();
+      }
+
+      // The index finished loading — or failed to — while the query was being typed.
+      function resume() {
+        if (query !== searchInput.value.trim()) return;
+        entries ? run(searchInput.value) : unavailable();
+      }
+
+      function render() {
+        searchResults.innerHTML = matches.length
+          ? matches.map((match, index) => result(match, index)).join("")
+          : `<p class="search__empty">No results for &ldquo;${escape(query)}&rdquo;</p>`;
+
+        open();
+      }
+
+      function unavailable() {
+        matches = [];
+        active = -1;
+        searchResults.innerHTML = "<p class=\"search__empty\">Search is unavailable right now</p>";
+        open();
+      }
+
+      function result(match: SearchMatch, index: number) {
+        const entry = match.entry;
+        const chapter = entry.title === entry.chapter
+          ? ""
+          : `<span class="search__result-chapter">${escape(entry.chapter)}</span>`;
+
+        return `
+          <a class="search__result" href="${escape(entry.url)}" role="option" id="search-result-${index}" aria-selected="false" tabindex="-1">
+            <span class="search__result-heading">
+              <span class="search__result-title">${highlight(entry.title, match.pattern)}</span>
+              ${chapter}
+            </span>
+            <span class="search__result-preview">${preview(entry.text, match.pattern)}</span>
+          </a>
+        `;
+      }
+
+      function navigate(event: KeyboardEvent) {
+        if (event.key === "ArrowDown" || event.key === "ArrowUp") {
+          event.preventDefault();
+
+          if (searchResults.hidden) run(searchInput.value);
+          else select(active + (event.key === "ArrowDown" ? 1 : -1));
+        } else if (event.key === "Enter" && !searchResults.hidden) {
+          const chosen = active >= 0 ? matches[active] : matches[0];
+
+          if (chosen) {
+            event.preventDefault();
+            window.location.href = chosen.entry.url;
+          }
+        } else if (event.key === "Tab") {
+          // The results are a scroller, which Chrome will otherwise tab into.
+          close();
+        } else if (event.key === "Escape") {
+          // A search input clears itself on Escape, which would take the query along
+          // with the results — the second press does the clearing here instead.
+          event.preventDefault();
+
+          if (searchResults.hidden) {
+            searchInput.value = "";
+            searchInput.blur();
+          } else {
+            close();
+          }
+        }
+      }
+
+      function select(index: number) {
+        const options = searchResults.querySelectorAll<HTMLAnchorElement>(".search__result");
+
+        if (!options.length) return;
+        if (index < 0) index = options.length - 1;
+        if (index >= options.length) index = 0;
+
+        options.forEach((option) => {
+          option.classList.remove("search__result--active");
+          option.setAttribute("aria-selected", "false");
+        });
+
+        active = index;
+        options[active].classList.add("search__result--active");
+        options[active].setAttribute("aria-selected", "true");
+        options[active].scrollIntoView({ block: "nearest" });
+        searchInput.setAttribute("aria-activedescendant", options[active].id);
+      }
+
+      function open() {
+        searchResults.hidden = false;
+        searchInput.setAttribute("aria-expanded", "true");
+        searchInput.removeAttribute("aria-activedescendant");
+      }
+
+      function close() {
+        searchResults.hidden = true;
+        matches = [];
+        active = -1;
+        searchInput.setAttribute("aria-expanded", "false");
+        searchInput.removeAttribute("aria-activedescendant");
+      }
+    }
+  }
+
+  function shortcut(event: KeyboardEvent) {
+    if (event.metaKey || event.ctrlKey || event.altKey) return false;
+    if (event.target instanceof Element && event.target.closest("input, textarea, select, [contenteditable]")) {
+      return false;
+    }
+
+    return event.key === "/";
+  }
+
+  // A load that fails isn't kept, so the next keystroke or focus tries again.
+  function load(): Promise<void> {
+    loading ||= fetch(INDEX_URL)
+      .then((response) => response.ok ? response.json() as Promise<SearchEntry[]> : Promise.reject(response.status))
+      .then((index) => { entries = index; })
+      .catch(() => { loading = null; });
+
+    return loading;
+  }
+
+  /* Matching */
+
+  // The same handful of expressions runs against every entry in the index, so a query
+  // is compiled once here rather than once per entry.
+  function lookup(index: SearchEntry[], query: string): SearchMatch[] {
+    const pattern = compile(query);
+    if (!pattern) return [];
+
+    return index
+      .map((entry) => ({ entry, pattern, score: score(entry, pattern) }))
+      .filter((match) => match.score > 0)
+      .sort((a, b) => b.score - a.score || a.entry.url.localeCompare(b.entry.url));
+  }
+
+  function compile(query: string): SearchPattern | null {
+    const sources = tokenize(query).map(quote);
+    if (!sources.length) return null;
+
+    return {
+      terms: sources.map((source) => ({
+        anywhere: matcher(source, "giu"),
+        whole: matcher(`${source}(?![\\p{L}\\p{N}])`, "iu"),
+      })),
+      phrase: query.toLowerCase(),
+      first: matcher(`(?:${sources.join("|")})`, "iu"),
+      words: matcher(`(${sources.map((source) => `${source}[\\p{L}\\p{N}]*`).join("|")})`, "giu"),
+    };
+  }
+
+  function tokenize(query: string) {
+    return query.toLowerCase().split(/[^\p{L}\p{N}+#_-]+/u).filter(Boolean);
+  }
+
+  // Every term has to appear in the section itself — a term that only shows up in the
+  // chapter title would otherwise drag in every other section of that chapter. Headings
+  // count for much more than body text, and the terms found as a run count for more
+  // than the same terms scattered across the section.
+  function score(entry: SearchEntry, pattern: SearchPattern) {
+    let total = 0;
+
+    for (const term of pattern.terms) {
+      const inTitle = occurrences(entry.title, term.anywhere);
+      const inText = occurrences(entry.text, term.anywhere);
+
+      if (!inTitle && !inText) return 0;
+
+      total += inTitle * 30 + Math.min(inText, 5) * 2 + occurrences(entry.chapter, term.anywhere) * 10;
+      if (term.whole.test(entry.title)) total += 20;
+    }
+
+    if (pattern.terms.length > 1 && phrased(entry, pattern.phrase)) total += 40;
+    return total;
+  }
+
+  function occurrences(text: string, term: RegExp) {
+    return (text.match(term) || []).length;
+  }
+
+  // Only entries that already matched every term get this far, so the text they are
+  // joined from is built here rather than carried on every entry.
+  function phrased(entry: SearchEntry, phrase: string) {
+    return `${entry.title} ${entry.chapter} ${entry.text}`.toLowerCase().includes(phrase);
+  }
+
+  // Terms match at the start of a word, so "nav" finds "navigation" but not "trackpad".
+  function matcher(source: string, flags: string) {
+    return new RegExp(`(?<![\\p{L}\\p{N}])${source}`, flags);
+  }
+
+  // Hyphens in the text are optional, so "wifi" finds "Wi-Fi" and "dualboot" finds "dual-boot".
+  function quote(term: string) {
+    return [...term].map((character) => character.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")).join("-?");
+  }
+
+  /* Rendering */
+
+  // Centred on the first term to appear, so the preview shows why the section matched.
+  function preview(text: string, pattern: SearchPattern) {
+    const at = text.search(pattern.first);
+    const start = Math.max(0, at - PREVIEW_LENGTH / 3);
+    let snippet = text.slice(start, start + PREVIEW_LENGTH);
+
+    if (start > 0) snippet = `…${snippet.replace(/^\S*\s/, "")}`;
+    if (start + PREVIEW_LENGTH < text.length) snippet = `${snippet.replace(/\s\S*$/, "")}…`;
+
+    return highlight(snippet, pattern);
+  }
+
+  // Splitting on a capturing pattern lands the matches on the odd indexes, so the
+  // surrounding text can be escaped and the matches wrapped in one pass.
+  function highlight(text: string, pattern: SearchPattern) {
+    return text
+      .split(pattern.words)
+      .map((part, index) => index % 2 ? `<mark>${escape(part)}</mark>` : escape(part))
+      .join("");
+  }
+
+  const ESCAPES: Record<string, string> = { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" };
+
+  function escape(text: string) {
+    return text.replace(/[&<>\"]/g, (character) => ESCAPES[character]);
+  }
+</script>
