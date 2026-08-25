@@ -1,9 +1,3 @@
-.main--security {
-  margin-top: var(--space-large);
-}
-
-
-
 .security {
   display: grid;
   gap: var(--space-xx-large);
@@ -73,11 +67,7 @@
 
 @media(min-width: 64em) {
 
-  .main--security {
-    margin-top: var(--space-x-large);
-  }
-
-  .security {
+    .security {
     padding-inline: var(--space-xx-large);
   }
 

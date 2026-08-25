@@ -24,6 +24,7 @@ const requiredFiles = [
   "security/credits/index.html",
   "server/index.html",
   "teams/index.html",
+  "sponsorships/index.html",
   "install",
   "install-dev",
   "install-rc",
@@ -51,8 +52,44 @@ const byteIdentical = [
     "assets/images/credits/teles.webp",
   ],
   [
-    "public/assets/images/security-credits-social.png",
-    "assets/images/security-credits-social.png",
+    "public/assets/images/social/security-credits.png",
+    "assets/images/social/security-credits.png",
+  ],
+  [
+    "public/assets/images/social/sponsorships.png",
+    "assets/images/social/sponsorships.png",
+  ],
+  [
+    "public/assets/images/social/meetups.png",
+    "assets/images/social/meetups.png",
+  ],
+  [
+    "public/assets/images/social/patrons.png",
+    "assets/images/social/patrons.png",
+  ],
+  [
+    "public/assets/images/social/potato.png",
+    "assets/images/social/potato.png",
+  ],
+  [
+    "public/assets/images/social/server.jpg",
+    "assets/images/social/server.jpg",
+  ],
+  [
+    "public/assets/images/social/teams.png",
+    "assets/images/social/teams.png",
+  ],
+  [
+    "public/assets/images/logos/hyprland.svg",
+    "assets/images/logos/hyprland.svg",
+  ],
+  [
+    "public/assets/images/logos/quickshell.svg",
+    "assets/images/logos/quickshell.svg",
+  ],
+  [
+    "public/assets/images/logos/mise.svg",
+    "assets/images/logos/mise.svg",
   ],
 ];
 

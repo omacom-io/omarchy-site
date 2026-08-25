@@ -1,9 +1,3 @@
-.main--meetups {
-  margin-top: var(--space-large);
-}
-
-
-
 .meetups {
   display: grid;
   gap: var(--space-xx-large);
@@ -92,11 +86,7 @@
 
 @media(min-width: 64em) {
 
-  .main--meetups {
-    margin-top: var(--space-x-large);
-  }
-
-  .meetups {
+    .meetups {
     padding-inline: var(--space-xx-large);
   }
 
