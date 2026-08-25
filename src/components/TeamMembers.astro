@@ -1,0 +1,36 @@
+---
+export type Member = {
+    name: string;
+    url: string;
+    avatar: string;
+    location: string;
+};
+
+interface Props {
+    members: Member[];
+}
+
+const { members } = Astro.props;
+---
+
+<div class="team__members">
+    {
+        members.map((member) => (
+            <article class="member">
+                <img
+                    class="member__avatar"
+                    src={member.avatar}
+                    width="240"
+                    height="240"
+                    alt={member.name}
+                    loading="lazy"
+                    decoding="async"
+                />
+                <h3 class="member__name">
+                    <a href={member.url}>{member.name}</a>
+                </h3>
+                <p class="member__meta">{member.location}</p>
+            </article>
+        ))
+    }
+</div>
