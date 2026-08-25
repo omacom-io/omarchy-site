@@ -162,7 +162,9 @@ omarchy windows vm launch    # start and connect
 
 <p>The version installed is Windows 11 Pro, unactivated. You’ll need your own license key to use the gated features.</p>
 
-<p>You can change the resource allocation later by editing <code>~/.config/windows/docker-compose.yml</code>, which is also where you’d mount a USB device. See all the options on <a href="https://github.com/dockur/windows">the Dockur Windows project</a>.</p>
+<p>If this computer shipped with Windows, the OEM key is still in firmware even after installing Omarchy. Print it with <code>omarchy windows key</code>. That key is bound to this machine — it will activate Windows reinstalled on this hardware, but it usually will not activate the VM.</p>
+
+<p>You can change the resource allocation later by re-running <code>omarchy-windows-vm install</code>, which rewrites the VM’s configuration from your answers. The compose file itself now lives at <code>/var/lib/omarchy/windows/docker-compose.yml</code> and is owned by root — that is deliberate, so a process running as you cannot rewrite it and have the privileged bring-up mount your whole disk into the container. If you need to hand-edit it (for example to mount a USB device), edit it with <code>sudo</code> and see all the options on <a href="https://github.com/dockur/windows">the Dockur Windows project</a>.</p>
 
 <p>To get rid of the whole thing, use <em>Remove &gt; Windows</em> from the Omarchy menu. That deletes the VM’s disk and all its data, so make sure anything you care about is out of <code>~/Windows</code> first.</p>
 
