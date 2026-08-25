@@ -21,6 +21,7 @@ const requiredFiles = [
   "patrons/index.html",
   "potato/index.html",
   "security/index.html",
+  "security/credits/index.html",
   "server/index.html",
   "teams/index.html",
   "install",
@@ -45,6 +46,14 @@ const byteIdentical = [
   ],
   ["public/manual/images/install-config.webp", "manual/images/install-config.webp"],
   ["public/manual/images/tokyo-night-preview.webp", "manual/images/tokyo-night-preview.webp"],
+  [
+    "public/assets/images/credits/teles.webp",
+    "assets/images/credits/teles.webp",
+  ],
+  [
+    "public/assets/images/security-credits-social.png",
+    "assets/images/security-credits-social.png",
+  ],
 ];
 
 function file(path) {
