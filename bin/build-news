@@ -46,6 +46,51 @@ def plain_text(html)
   CGI.unescapeHTML(html.gsub(/<[^>]+>/, " ")).gsub(/\s+/, " ").strip
 end
 
+SITE_URL = "https://omarchy.org"
+FEED_URL = "#{SITE_URL}/news/rss.xml"
+
+def rfc822(date)
+  date.strftime("%a, %d %b %Y %H:%M:%S GMT")
+end
+
+def cdata(text)
+  "<![CDATA[#{text.gsub("]]>", "]]]]><![CDATA[>")}]]>"
+end
+
+def write_feed(posts)
+  items = posts.map do |post|
+    # Feed readers have no site origin, so make asset and link URLs absolute.
+    html = post.html.gsub(%r{(href|src)="/}, %(\\1="#{SITE_URL}/))
+    <<~ITEM
+      <item>
+        <title>#{h post.title}</title>
+        <link>#{SITE_URL}#{post.path}</link>
+        <guid isPermaLink="true">#{SITE_URL}#{post.path}</guid>
+        <pubDate>#{rfc822(post.date)}</pubDate>
+        <dc:creator>#{h post.author}</dc:creator>
+        <description>#{cdata(post.description)}</description>
+        <content:encoded>#{cdata(html)}</content:encoded>
+      </item>
+    ITEM
+  end
+
+  FileUtils.mkdir_p NEWS_DIR
+  File.write(File.join(NEWS_DIR, "rss.xml"), <<~XML)
+    <?xml version="1.0" encoding="UTF-8"?>
+    <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:dc="http://purl.org/dc/elements/1.1/">
+      <channel>
+        <title>Omarchy News</title>
+        <link>#{SITE_URL}/news</link>
+        <description>Notes on the people, ideas, and releases shaping Omarchy.</description>
+        <language>en</language>
+        <lastBuildDate>#{rfc822(posts.first.date)}</lastBuildDate>
+        <atom:link href="#{FEED_URL}" rel="self" type="application/rss+xml"/>
+    #{items.join("\n")}
+      </channel>
+    </rss>
+  XML
+end
+
 def excerpt(text, length = 240)
   return text if text.length <= length
 
@@ -158,6 +203,8 @@ def build
       "url" => "https://omarchy.org/news",
       "publisher" => { "@type" => "Organization", "name" => "Omarchy" }
     }
+
+  write_feed posts
 
   puts "Built #{posts.size} news #{posts.size == 1 ? "post" : "posts"} into news/"
 end
