@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Omarchy News</title>
+    <link>https://omarchy.org/news</link>
+    <description>Notes on the people, ideas, and releases shaping Omarchy.</description>
+    <language>en</language>
+    <lastBuildDate>Tue, 25 Aug 2026 00:00:00 GMT</lastBuildDate>
+    <atom:link href="https://omarchy.org/news/rss.xml" rel="self" type="application/rss+xml"/>
+<item>
+  <title>Omacom Foundation to be premier mise sponsor</title>
+  <link>https://omarchy.org/news/2026/08/omacom-foundation-to-be-premier-mise-sponsor</link>
+  <guid isPermaLink="true">https://omarchy.org/news/2026/08/omacom-foundation-to-be-premier-mise-sponsor</guid>
+  <pubDate>Tue, 25 Aug 2026 00:00:00 GMT</pubDate>
+  <dc:creator>DHH</dc:creator>
+  <description><![CDATA[Third sponsorship out the door! The Omacom Foundation is becoming a premier sponsor of mise , and thereby of jdx , who has spent years building the tool that quietly makes managing different versions of Ruby, Node, Go a joy to manage, and…]]></description>
+  <content:encoded><![CDATA[<p>Third sponsorship out the door! The Omacom Foundation is becoming a premier sponsor of <a href="https://mise.jdx.dev/">mise</a>, and thereby of <a href="https://x.com/jdx">jdx</a>, who has spent years building the tool that quietly makes managing different versions of Ruby, Node, Go a joy to manage, and gives all your agent tooling in upgrade channel that can keep up with the pace of shipping.</p>
+
+<p>If you’ve used Omarchy, you’ve used mise, whether or not you noticed. It’s what manages the language runtimes, so <code>mise use -g ruby</code> gets you Ruby without a single line of PATH archaeology. But the part I care most about right now is the agents.</p>
+
+<p>Every major coding-agent CLI in Omarchy ships as a lazy-loading mise stub in <code>~/.local/bin/</code>. Claude Code, Codex, OpenCode, Antigravity, Copilot, Crush, Grok, Pi, Oh My Pi — all sitting there, costing you nothing until the first time you actually type one. Then it installs itself and you’re working. No package to hunt down, no version to pin, no toolchain to reason about. <code>omarchy-mise-install &lt;package&gt;</code> wraps any other CLI the same way, and <code>omarchy update</code> keeps every last one current.</p>
+
+<p>That’s the fast track. In <em>The Age of Agents</em>, the gap between hearing about a tool and running it needs to be about four seconds, and mise delivers that. Nobody had to package anything for a distro first.</p>
+
+<p><img src="https://omarchy.org/news/2026/08/omacom-foundation-to-be-premier-mise-sponsor/mise-mau.webp" alt="mise monthly active users: 568,100, up 24% in the ten days after Omarchy Quattro shipped" /></p>
+
+<p>The interest runs both ways, too: traffic to mise is up 24% since Omarchy launched! A lot of people are meeting this tool for the first time through us, which is exactly the kind of thing a sponsorship should recognize rather than take for granted.</p>
+
+<p>Once again, special thanks to <a href="https://x.com/tobi">Tobi Lütke</a>, <a href="https://x.com/patrickc">Patrick Collison</a>, <a href="https://x.com/MichaelDell">Michael Dell</a>, <a href="https://x.com/jack">Jack Dorsey</a>, <a href="https://x.com/eastdakota">Matthew Prince</a>, <a href="https://x.com/brendaniribe">Brendan Iribe</a>, <a href="https://x.com/jasonfried">Jason Fried</a>, <a href="https://x.com/drewhouston">Drew Houston</a>, and <a href="https://x.com/steipete">Peter Steinberger</a> for making this possible. If it wasn’t for <a href="https://oligarchy.fyi">Oligarchy</a>, we wouldn’t be able to fund open-source developers like this!</p>
+
+]]></content:encoded>
+</item>
+
+<item>
+  <title>Omarchy meetups around the world</title>
+  <link>https://omarchy.org/news/2026/08/omarchy-meetups-around-the-world</link>
+  <guid isPermaLink="true">https://omarchy.org/news/2026/08/omarchy-meetups-around-the-world</guid>
+  <pubDate>Mon, 24 Aug 2026 00:00:00 GMT</pubDate>
+  <dc:creator>DHH</dc:creator>
+  <description><![CDATA[Find an Omarchy meetup near you or start one yourself and add it to the global calendar.]]></description>
+  <content:encoded><![CDATA[<p>Omarchy has grown into a global community, with ~35,000 members on <a href="https://discord.com/invite/tXFUdasqhY">the Discord</a>, and now it’s time we started meeting face to face. So we’re launching <a href="https://omarchy.org/meetups/">Omarchy Meetups</a> with a shared calendar for gatherings around the world.</p>
+
+<p>These are community-run events. You don’t need permission to organize one, nobody owns a city, and anyone can put one together anywhere. Talk about Omarchy, Linux, open source, programming, customization, or whatever adjacent hacker culture gets people excited about making computers fun again.</p>
+
+<p>Keep it open to everyone, disclose any sponsorships, and don’t turn the Omarchy name into an events business or a sales pitch. Beyond that, behave like civilized adults (with child-like wonder), and have a great time.</p>
+
+<p>Bring your laptop. Show off your setup. Swap themes and plugins. Help someone through their first installation. The point is to get the people who care about personal, programmable, beautiful computers together in the same room.</p>
+
+<p>You can <a href="https://omarchy.org/meetups/">find an upcoming meetup or submit your own</a> through the global Omarchy calendar on Luma. Let’s make this a worldwide movement!</p>
+]]></content:encoded>
+</item>
+
+<item>
+  <title>Omacom Foundation to be premier Quickshell sponsor</title>
+  <link>https://omarchy.org/news/2026/08/omacom-foundation-to-be-premier-quickshell-sponsor</link>
+  <guid isPermaLink="true">https://omarchy.org/news/2026/08/omacom-foundation-to-be-premier-quickshell-sponsor</guid>
+  <pubDate>Mon, 24 Aug 2026 00:00:00 GMT</pubDate>
+  <dc:creator>DHH</dc:creator>
+  <description><![CDATA[More money in , more money out! Our second major sponsorship from the Omacom Foundation is going to outfoxxed for his superb work on Quickshell . It’s only been part of the public release for a week, but it’s already crystal clear that it…]]></description>
+  <content:encoded><![CDATA[<p><a href="https://omarchy.org/news/2026/08/omacom-foundation-funding-hits-10m">More money in</a>, more money out! Our second major sponsorship from the Omacom Foundation is going to <a href="https://x.com/outfoxxedd">outfoxxed</a> for his superb work on <a href="https://quickshell.org/">Quickshell</a>. It’s only been part of the public release for a week, but it’s already crystal clear that it was the missing, pivotal piece for us to truly achieve <a href="https://world.hey.com/dhh/the-malleable-computer-7c187a9b">The Malleable Computer</a>.</p>
+
+<p>The proof is in the plugins! <a href="https://omarchyplugins.com/">Over one thousand plugins</a> have been created in the week that <a href="https://github.com/basecamp/omarchy/releases/tag/v4.0.0">Quattro</a> has been out. That’s an absolutely astounding testament to the technical flexibility of Quickshell, and how much agents love to write QML code.</p>
+
+<p>This sponsorship thus rewards outfoxxed for his outstanding contribution to Omarchy, and helps cement the connection to our long-term plans for <em>The Age of Agents</em> (don’t post that on Bluesky, they’ll go nuts!). It’s termed for three years out the gate.</p>
+
+<p>A special thanks to <a href="https://x.com/tobi">Tobi Lütke</a>, <a href="https://x.com/patrickc">Patrick Collison</a>, <a href="https://x.com/MichaelDell">Michael Dell</a>, <a href="https://x.com/jack">Jack Dorsey</a>, <a href="https://x.com/eastdakota">Matthew Prince</a>, <a href="https://x.com/brendaniribe">Brendan Iribe</a>, <a href="https://x.com/jasonfried">Jason Fried</a>, <a href="https://x.com/drewhouston">Drew Houston</a>, and <a href="https://x.com/steipete">Peter Steinberger</a> for making this possible. If it wasn’t for <a href="https://oligarchy.fyi">Oligarchy</a>, we wouldn’t be able to fund open-source developers like this!</p>
+]]></content:encoded>
+</item>
+
+<item>
+  <title>Omacom Foundation funding hits $10m</title>
+  <link>https://omarchy.org/news/2026/08/omacom-foundation-funding-hits-10m</link>
+  <guid isPermaLink="true">https://omarchy.org/news/2026/08/omacom-foundation-funding-hits-10m</guid>
+  <pubDate>Mon, 24 Aug 2026 00:00:00 GMT</pubDate>
+  <dc:creator>DHH</dc:creator>
+  <description><![CDATA[Drew Houston and Peter Steinberger join the Omacom Foundation as Founding Patrons, taking total funding to $10 million.]]></description>
+  <content:encoded><![CDATA[<p>The Omacom Foundation’s funding has just hit $10 million with two new <a href="https://omarchy.org/patrons/">Founding Patrons</a> joining the mission: <a href="https://x.com/drewhouston">Drew Houston</a>, cofounder and co-CEO of <a href="https://www.dropbox.com">Dropbox</a>, and <a href="https://x.com/steipete">Peter Steinberger</a>, creator of <a href="https://openclaw.ai">OpenClaw</a>.</p>
+
+<p>Like the original eight Founding Patrons, Drew and Peter are each contributing $1 million. That gives the foundation ten patrons and a clean TEN MILLION DOLLARS to propel our audacious mission to make Linux on the desktop happen in a much bigger way.</p>
+
+<p>It’s extra sweet to have Drew and Peter on board because I’ve personally been such a big fan of both of them and their accomplishments. I’ve been an enthusiastic customer of Dropbox for nearly two decades, and it’s central to how I’m able to live with <em><a href="https://world.hey.com/dhh/no-backup-no-cry-274e0c31">no backup, no cry</a></em> yet constantly switch computers.</p>
+
+<p>That’s why Omarchy ships with great Dropbox integration out of the box. Just go to <em>Install &gt; Service &gt; Dropbox</em>, and you’ll have file manager integration and a bespoke menu panel for controls.</p>
+
+<p>And OpenClaw has essentially provided the roadmap for how Omarchy should tackle its explosive growth. How do you deal with PR backlogs that suddenly go parabolic? What about security around plugins? How should meetups in the project’s name be handled? I’ve already had the pleasure of drawing on Peter’s advice and experience on several of these topics.</p>
+
+<p>Beyond that, they both represent exactly the kind of technical ambition I want around Omarchy. Drew turned a personal itch about moving files between computers into Dropbox. Peter turned a weekend project into OpenClaw, and in the process reminded everyone just how much appetite there is for computers that feel personal, programmable, and fun.</p>
+
+<p>That’s the spirit behind the Omacom Foundation too. We’re here to fund the infrastructure, open-source projects, and developers needed to make the Linux desktop a delightful home for the next generation of computer users.</p>
+
+<p>Welcome, Drew and Peter. Ten Founding Patrons. Ten million dollars. The prophecy just got another $2 million closer!</p>
+]]></content:encoded>
+</item>
+
+<item>
+  <title>Omacom Foundation to be exclusive Hyprland sponsor</title>
+  <link>https://omarchy.org/news/2026/08/omacom-foundation-to-be-exclusive-hyprland-sponsor</link>
+  <guid isPermaLink="true">https://omarchy.org/news/2026/08/omacom-foundation-to-be-exclusive-hyprland-sponsor</guid>
+  <pubDate>Fri, 21 Aug 2026 00:00:00 GMT</pubDate>
+  <dc:creator>DHH</dc:creator>
+  <description><![CDATA[What better way to start spending some of the treasure we just raised for the Omacom Foundation than on the most cracked Linux kid in Poland: Vaxry ! As the creator of Hyprland , he’s responsible for one of the three core technologies in…]]></description>
+  <content:encoded><![CDATA[<p>What better way to start spending some of the treasure we <a href="https://omarchy.org/news/2026/08/omacom-foundation-launches-with-8-million">just raised for the Omacom Foundation</a> than on the most cracked Linux kid in Poland: <a href="https://x.com/vaxryy">Vaxry</a>!</p>
+
+<p>As the creator of <a href="https://hypr.land/">Hyprland</a>, he’s responsible for one of the three core technologies in Omarchy (Arch Linux/Hyprland/Quickshell), and I’m thrilled to announce an exclusive sponsorship that lets him focus fully on developing it further without any need to think about commercial development or fundraising.</p>
+
+<p>We’re signing up for the long term with Vaxry to support the long term future of Omarchy. Our exclusive sponsorship deal is set for three years, with an option for another two.</p>
+
+<p>The deal also allows for Hyprland’s existing <a href="https://hypr.land/news/hyprperks/">Hyprperks</a> program to be released for free, for everyone, as the paid subscriptions will end. But Hyprland will still accept personal donations to let individuals buy into the project’s development and to support Vaxry and the team.</p>
+
+<p>Many thanks to <a href="https://37signals.com">37signals</a> (hello self! 😂), <a href="https://www.butterfly.so/">Butterfly</a>, and <a href="https://frame.work/">Framework</a> for helping Hyprland get to this point. Thrilled that the Omacom Foundation can take over from October 10, and give one of the best developers in this new Linux moment the chance to go all-in.</p>
+
+<p>(* This deal does not include any direct assistance in getting Vaxry a girlfriend, but I’ll personally be available as a reference for any inquiries on the matter.)</p>
+]]></content:encoded>
+</item>
+
+<item>
+  <title>Omacom Foundation launches with $8 million</title>
+  <link>https://omarchy.org/news/2026/08/omacom-foundation-launches-with-8-million</link>
+  <guid isPermaLink="true">https://omarchy.org/news/2026/08/omacom-foundation-launches-with-8-million</guid>
+  <pubDate>Fri, 21 Aug 2026 00:00:00 GMT</pubDate>
+  <dc:creator>DHH</dc:creator>
+  <description><![CDATA[It’s time to dream big. Omarchy Quattro has given people a chance to experience what the malleable computer of the future looks like, and they like it (a lot!). It now feels like a moral obligation to make this future more broadly…]]></description>
+  <content:encoded><![CDATA[<p>It’s time to dream big. Omarchy Quattro has given people a chance to experience what the malleable computer of the future looks like, and they like it (a lot!). It now feels like a moral obligation to make this future more broadly available and fundamentally change how people relate to their computers for the first time in what seems like forever.</p>
+
+<p>To do just that, I’m incorporating the Omacom Foundation to ensure that this mission is fully funded, durable, and ready to accelerate.</p>
+
+<p>This nonprofit foundation will hold the trademarks, fund the infrastructure, promote the work, and support the open-source projects and developers Omarchy depends on.</p>
+
+<p>These eight Founding Patrons are each contributing $1 million to this mission:</p>
+
+<ul>
+  <li><a href="https://x.com/tobi">Tobi Lütke</a>, CEO of <a href="https://www.shopify.com/">Shopify</a></li>
+  <li><a href="https://x.com/patrickc">Patrick Collison</a>, CEO of <a href="https://stripe.com">Stripe</a></li>
+  <li><a href="https://x.com/MichaelDell">Michael Dell</a>, Chairman and CEO of <a href="https://www.dell.com">Dell Technologies</a></li>
+  <li><a href="https://x.com/jack">Jack Dorsey</a>, Block Head and Chairman of <a href="https://block.xyz">Block</a></li>
+  <li><a href="https://x.com/eastdakota">Matthew Prince</a>, CEO of <a href="https://www.cloudflare.com">Cloudflare</a></li>
+  <li><a href="https://x.com/brendaniribe">Brendan Iribe</a>, Cofounder of <a href="https://www.sesame.com">Sesame</a> and Oculus</li>
+  <li><a href="https://x.com/jasonfried">Jason Fried</a>, CEO of <a href="https://37signals.com">37signals</a></li>
+  <li>Yours truly</li>
+</ul>
+
+<p>This is a ridiculous sum of money, so I intend to make sure it lasts a long time, and that we make the most of it. But just as important as the incredible cushion is the vote of confidence delivered by these pledges.</p>
+
+<p>We’re going to make the prophecy of The Year of Linux on the Desktop come true. All the pieces are now in place. Time to go all in!</p>
+
+<p><strong>UPDATE:</strong> <a href="https://omarchy.org/news/2026/08/omacom-foundation-funding-hits-10m">We’ve added another $2 million in funding</a> from <a href="https://x.com/drewhouston">Drew Houston</a>, cofounder and co-CEO of <a href="https://www.dropbox.com">Dropbox</a>, and <a href="https://x.com/steipete">Peter Steinberger</a>, creator of <a href="https://openclaw.ai">OpenClaw</a>.</p>
+]]></content:encoded>
+</item>
+
+<item>
+  <title>The Omarchy Core Team</title>
+  <link>https://omarchy.org/news/2026/09/the-omarchy-core-team</link>
+  <guid isPermaLink="true">https://omarchy.org/news/2026/09/the-omarchy-core-team</guid>
+  <pubDate>Wed, 19 Aug 2026 00:00:00 GMT</pubDate>
+  <dc:creator>DHH</dc:creator>
+  <description><![CDATA[Omarchy’s explosive growth demands structured teams in response, and we’re going to get started by incorporating The Omarchy Core Team. This group will share the responsibility of driving the direction of our distro, ensuring we continue…]]></description>
+  <content:encoded><![CDATA[<p>Omarchy’s explosive growth demands structured teams in response, and we’re going to get started by incorporating The Omarchy Core Team. This group will share the responsibility of driving the direction of our distro, ensuring we continue to push forward, and assisting other contributors.</p>
+
+<p>Allow me to present the inaugural Core Team:</p>
+
+<p><a href="https://x.com/ryanrhughes">Ryan Hughes</a> has been my wingman on Omarchy since day one. We fought the 3am emergency AUR outages together in the early days, and we conspired to build our own package repository. Ryan’s contributions span every layer of the distro: installation, packaging, hardware support, gaming, theming, CLI tooling, and now Quattro. He helped drive the move to Quickshell, the plugin system, and much of the infrastructure that turned Omarchy from a carefully assembled Linux setup into a proper operating system. When he’s not hacking on Omarchy, Ryan is a partner at <a href="https://heyoodle.com/">Oodle</a>.</p>
+
+<p><a href="https://x.com/tobi">Tobi Lütke</a> is the only person who’s made both of my core teams! As a member of the first <a href="https://rubyonrails.org/community">Rails Core Team</a> started in 2004, he drove not only a <a href="https://contributors.rubyonrails.org/contributors/tobias-lutke/commits">serious record of contributions</a> to the framework, but also authored Liquid, Delayed Job, and Active Merchant. That work eventually turned into a little company called <a href="https://www.shopify.com/">Shopify</a>, have you heard of them? Now he’s a prolific contributor to Omarchy with projects like <a href="https://github.com/tobi/try">try</a>, <a href="https://github.com/tobi/omasnap">Omasnap</a>, <a href="https://github.com/basecamp/omarchy/pull/6463">Wi-Fi QR codes</a>, and <a href="https://x.com/tobi/status/2089812224869044678?s=20">the Quake-style agent console</a>. He also happens to be my co-driver in <a href="https://www.youtube.com/watch?v=-C4icxRS4xw">the #11 Shopify Racing LMP2 car</a> racing in IMSA.</p>
+
+<p><a href="https://x.com/iamdothash">Bjarne Øverli</a> is the CTO of <a href="https://www.unite.as/">Unite AS</a> and the creator of <a href="https://github.com/bjarneo/aether">Aether</a>, the visual theme builder we ship in Omarchy, and <a href="https://github.com/bjarneo/cliamp">cliamp</a>, our TUI-based music player. He’s helped turn our theming system from a collection of configuration files into something far more systematic, with semantic colors and generated themes across Neovim, VS Code, btop, and the rest of the stack. He’s also responsible for themes like Ethereal, Hackerman, and Lupine. Bjarne has that rare combination of programmer rigor and visual taste that fits Omarchy perfectly.</p>
+
+<p><a href="https://github.com/HANCORE-linux">HANCORE</a> is a mechanical engineer who somehow ended up becoming one of the defining aesthetic forces in the Omarchy community. He’s produced an absurd number of themes, including Last Horizon and Solitude, which ships by default in Omarchy. Now he’s helping steward <a href="https://omarchyplugins.com/">the plugin ecosystem</a> around Quattro. Omarchy has always insisted that a computer should be beautiful as well as useful, and HANCORE has pushed that premise further than almost anyone.</p>
+
+<p><a href="https://x.com/SpencerGBull">Spencer Bull</a> is a Distinguished Engineer at Dell working on Linux client enablement, AI, and platform software. He’s been our bridge into the messy reality of brand-new hardware, helping Omarchy work properly on Panther Lake and the latest XPS machines before the usual Linux lag could set in. Kernel issues, drivers, displays, Wi-Fi, speakers, power management: Spencer operates in the layer where software meets atoms, and having that expertise inside the Core Team is invaluable.</p>
+
+<p>These five have already been doing the work. This just makes it official. Together with me, it’s a phenomenal inaugural Core Team. But it’s also not going to be the only team. Stay tuned for an announcement on Omarchy Rangers!</p>
+
+<p>Together we’re going to build Omarchy into the premier Linux distribution for people who are excited about the age of agents, the malleable computer, and beautiful, modern, opinionated computing.</p>
+
+<p>To infinity and beyond!</p>
+
+<p><img src="https://omarchy.org/news/2026/09/the-omarchy-core-team/core-team.webp" alt="DHH, Ryan Hughes, Tobi Lütke, Bjarne Øverli, HANCORE, and Spencer Bull" /></p>
+]]></content:encoded>
+</item>
+
+<item>
+  <title>The first plugin competition</title>
+  <link>https://omarchy.org/news/2026/08/the-first-plugin-competition</link>
+  <guid isPermaLink="true">https://omarchy.org/news/2026/08/the-first-plugin-competition</guid>
+  <pubDate>Wed, 19 Aug 2026 00:00:00 GMT</pubDate>
+  <dc:creator>DHH</dc:creator>
+  <description><![CDATA[The Omarchy Plugin Marketplace is already home to over 500 plugins and growing very fast. We have a million ideas for how we can improve this setup, including with automated agent-powered security reviews, but let’s not have perfect be…]]></description>
+  <content:encoded><![CDATA[<p>The <a href="https://omarchyplugins.com/">Omarchy Plugin Marketplace</a> is already home to over 500 plugins and growing very fast. We have a million ideas for how we can improve this setup, including with automated agent-powered security reviews, but let’s not have perfect be the enemy of good and fun for now!</p>
+
+<p>So in celebration of this huge outburst of creativity, we’ll be hosting the first plugin competition using <a href="https://x.com/dhh/status/2088362620617425277">the four grand</a> that I received from yapping endlessly about Omarchy on X last week.</p>
+
+<p>The rules are as follows:</p>
+
+<ol>
+  <li>All plugins submitted to the repository before Monday August 24 at 9am CEST are eligible (including the ones already listed).</li>
+  <li>The winners will be selected by the new <a href="https://omarchy.org/news/2026/09/the-omarchy-core-team/">Omarchy Core Team</a>, which will vote to find a podium.</li>
+  <li>The prize money will be $2,500 for first, $1,000 for second, and $500 for third.</li>
+  <li>You must be able to receive payment by Zelle, Venmo, PayPal, or EU IBAN to collect the prize money.</li>
+</ol>
+
+<p>The winners will be announced next week when we’re done reviewing all submissions, but no later than Friday, August 28.</p>
+
+<p>Have fun and may the best ideas and execution win!</p>
+]]></content:encoded>
+</item>
+
+  </channel>
+</rss>
