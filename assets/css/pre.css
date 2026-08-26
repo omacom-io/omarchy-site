@@ -17,8 +17,31 @@
   justify-self: center;
   letter-spacing: -0.0425em;
   line-height: 1.09375;
-  transition: color var(--transition);
+  transition: color var(--transition), opacity var(--transition);
   white-space: pre;
+}
+
+.pre--ttfx a {
+  display: grid;
+  overflow: hidden;
+  position: relative;
+}
+
+.pre__ttfx-canvas {
+  left: 0;
+  opacity: 0;
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  transition: opacity var(--transition);
+}
+
+.pre--ttfx.is-ttfx-ready pre {
+  opacity: 0;
+}
+
+.pre--ttfx.is-ttfx-ready .pre__ttfx-canvas {
+  opacity: 1;
 }
 
 
@@ -27,6 +50,16 @@
 
   .pre a:hover pre {
     color: var(--color-turquoise);
+  }
+
+}
+
+
+
+@media(prefers-reduced-motion: reduce) {
+
+  .pre__ttfx-canvas {
+    display: none;
   }
 
 }
