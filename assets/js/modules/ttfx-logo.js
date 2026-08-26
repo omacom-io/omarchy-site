@@ -1,13 +1,66 @@
 import initTtfx, { Session, effectCatalog } from '../vendor/ttfx/ttfx-wasm.js';
 
+/**
+ * Browser pipeline for the terminal-oriented ttfx engine:
+ *
+ *   static <pre> text
+ *          |
+ *          v
+ *   ttfx/WASM Session  -- step() -->  symbols + colors + style flags
+ *                                          |
+ *                                          v
+ *                                      paintFrame()
+ *                                          |
+ *                                          v
+ *                                        canvas
+ *
+ * WASM owns the effect simulation. JavaScript owns browser timing, drawing,
+ * resize, visibility and replay. The <pre> remains the layout reference and the
+ * fallback when animation is unavailable.
+ */
+
 const EFFECT = 'laseretch';
 const EFFECT_PADDING_ROWS = 4;
-const FRAME_RATE = 120;
-const PLAYBACK_RATE = 3.5;
+const FRAME_RATE = 120; // Virtual frame rate passed to the ttfx engine.
+const PLAYBACK_RATE = 3.5; // Simulation speed relative to the engine frame rate.
 const REPEAT_DELAY = 5000;
 const LOGO_COLOR = '\u001b[38;2;158;206;106m';
 const ANSI_RESET = '\u001b[0m';
 
+/**
+ * Special canvas shapes for Unicode block characters:
+ *
+ *   WASM returns "▄"
+ *          |
+ *          v
+ *   paintFrame() finds its cell
+ *          |
+ *          v
+ *   drawGlyph() reads blockGlyphs['▄']
+ *          |
+ *          v
+ *   [0, .5, 1, .5]             [left, top, width, height]
+ *          |
+ *          v
+ *      +---------+
+ *      |         |
+ *      +---------+
+ *      |#########|  <- lower half is painted with fillRect()
+ *      +---------+
+ *
+ * Rectangle values run from 0 to 1 as fractions of one terminal cell. Entries
+ * may contain multiple rectangles, as with the diagonal quadrants in ▚ and ▞.
+ *
+ * This table is not a whitelist:
+ *
+ *   █ ▄ ▀ and listed blocks     -> exact rectangles with fillRect()
+ *   letters, /, \, *, etc.      -> configured font with fillText()
+ *   emoji, Braille, box drawing -> configured font with fillText()
+ *   ▁ ▂ ▃ or ░ ▒ ▓              -> fillText(); add shapes only if seams appear
+ *
+ * blockGlyphs is merely a visual optimization for the block characters used
+ * by the Omarchy logo. Most other text art works without changing it.
+ */
 const blockGlyphs = {
   '█': [[0, 0, 1, 1]],
   '▀': [[0, 0, 1, .5]],
@@ -39,6 +92,8 @@ function inputDimensions(input) {
 
 function configureCanvas(canvas, fallback, input) {
 
+  // Mirror the responsive <pre> cell geometry and add room for laser particles.
+  // The backing bitmap is HiDPI while all drawing coordinates remain CSS pixels.
   var pixelRatio = Math.min(Math.max(1, window.devicePixelRatio || 1), 2);
   var bounds = fallback.getBoundingClientRect();
   var source = inputDimensions(input);
@@ -118,6 +173,8 @@ function drawGlyph(context, symbol, x, y, metrics, fill, italic, bold) {
 
 function paintFrame(metrics, frame, timestamp) {
 
+  // A frame is a row-major terminal grid. Colors are packed ARGB integers and
+  // flags carry terminal styles such as italic, bold, underline and blinking.
   var context = metrics.context;
   var blinkVisible = Math.floor(timestamp / 400) % 2 == 0;
 
@@ -179,6 +236,8 @@ class LogoEffect {
 
   captureFrame() {
 
+    // Copy the current WASM frame into browser-owned values before the session
+    // advances and reuses its internal buffers.
     this.frame = {
       symbols: Array.from(this.session.symbols()),
       fg: this.session.fg(),
@@ -255,6 +314,9 @@ class LogoEffect {
     this.animationFrame = 0;
     if(this.paused || !this.session) return;
 
+    // requestAnimationFrame still paints at the display refresh rate. At 3.5x,
+    // the accumulator advances several ttfx frames before painting the newest
+    // one, preserving the simulation while shortening its wall-clock duration.
     var frameDuration = 1000 / (FRAME_RATE * PLAYBACK_RATE);
 
     this.accumulator += Math.min(timestamp - this.lastTimestamp, 100);
@@ -305,6 +367,8 @@ class LogoEffect {
 
 async function ready() {
 
+  // This is a progressive enhancement: reduced-motion users and any startup
+  // failure continue to see the original static <pre> logo.
   var container = document.querySelector('.pre--ttfx');
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
