@@ -5,7 +5,7 @@ author: DHH
 author_url: https://x.com/dhh
 ---
 
-Third sponsorship out the door! The Omacom Foundation is becoming a premier sponsor of [mise](https://mise.jdx.dev/), and thereby of [jdx](https://x.com/jdx), who has spent years building the tool that quietly makes managing different versions of Ruby, Node, Go a joy to manage, and gives all your agent tooling in upgrade channel that can keep up with the pace of shipping.
+Third sponsorship out the door! The Omacom Foundation is becoming a premier sponsor of [mise](https://mise.jdx.dev/), and thereby of [jdx](https://x.com/jdxcode), who has spent years building the tool that quietly makes managing different versions of Ruby, Node, Go a joy to manage, and gives all your agent tooling in upgrade channel that can keep up with the pace of shipping.
 
 If you've used Omarchy, you've used mise, whether or not you noticed. It's what manages the language runtimes, so `mise use -g ruby` gets you Ruby without a single line of PATH archaeology. But the part I care most about right now is the agents.
 
