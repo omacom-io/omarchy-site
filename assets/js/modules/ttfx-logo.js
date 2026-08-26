@@ -3,6 +3,7 @@ import initTtfx, { Session, effectCatalog } from '../vendor/ttfx/ttfx-wasm.js';
 const EFFECT = 'laseretch';
 const EFFECT_PADDING_ROWS = 4;
 const FRAME_RATE = 120;
+const PLAYBACK_RATE = 3.5;
 const REPEAT_DELAY = 5000;
 const LOGO_COLOR = '\u001b[38;2;158;206;106m';
 const ANSI_RESET = '\u001b[0m';
@@ -254,7 +255,7 @@ class LogoEffect {
     this.animationFrame = 0;
     if(this.paused || !this.session) return;
 
-    var frameDuration = 1000 / FRAME_RATE;
+    var frameDuration = 1000 / (FRAME_RATE * PLAYBACK_RATE);
 
     this.accumulator += Math.min(timestamp - this.lastTimestamp, 100);
     this.lastTimestamp = timestamp;
