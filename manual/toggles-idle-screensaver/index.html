@@ -197,7 +197,7 @@
   </tbody>
 </table>
 
-<p>The touchpad, touchscreen, and hybrid GPU switches live under <em>Trigger &gt; Hardware</em> (<code>Super + Ctrl + H</code>) rather than under Toggle, since they only show up when you actually have that hardware. The touchpad and touchscreen ones survive a Hyprland reload — the disabled state is written back out as a small Lua file that Hyprland sources on startup.</p>
+<p>The touchpad, touchscreen, and hybrid GPU switches live under <em>Trigger &gt; Hardware</em> (<code>Super + Ctrl + H</code>) rather than under Toggle, since they only show up when you actually have that hardware. The touchpad and touchscreen ones survive a Hyprland reload — the disabled device’s name is saved to a small state file that Hyprland reads on startup to disable it again.</p>
 
 <p>The Toggle menu also carries a few things that aren’t <code>omarchy toggle</code> commands but behave the same: battery percentage in the bar, workspace layout (<code>Super + L</code>), window gaps (<code>Super + Shift + Backspace</code>), and the 1-window square aspect (<code>Super + Ctrl + Backspace</code>).</p>
 
