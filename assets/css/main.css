@@ -1,6 +1,10 @@
+/* Every page is masthead, then a one-line header, then content. The gap under
+   that header is the same everywhere; /security and /meetups each used to
+   correct it locally with identical values, so it lives here now. */
 .main {
   display: grid;
-  margin-block: var(--space-xx-large);
+  margin-bottom: var(--space-xx-large);
+  margin-top: calc(var(--space-large) * 1.2);
 }
 
 
@@ -15,7 +19,8 @@
 @media(min-width: 64em) {
 
   .main {
-    margin-block: var(--space-xxxx-large);
+    margin-bottom: var(--space-xxxx-large);
+    margin-top: calc(var(--space-x-large) * 1.2);
   }
 
 }
