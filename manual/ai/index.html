@@ -150,8 +150,8 @@
       <td><a href="https://opencode.ai/">OpenCode</a></td>
     </tr>
     <tr>
-      <td><code>gemini</code></td>
-      <td><a href="https://github.com/google-gemini/gemini-cli">Google Gemini CLI</a></td>
+      <td><code>agy</code></td>
+      <td><a href="https://github.com/google-antigravity/antigravity-cli">Google Antigravity CLI</a></td>
     </tr>
     <tr>
       <td><code>copilot</code></td>
@@ -173,8 +173,14 @@
       <td><code>omp</code></td>
       <td><a href="https://github.com/can1357/oh-my-pi">Oh My Pi</a></td>
     </tr>
+    <tr>
+      <td><code>ori</code></td>
+      <td><a href="https://openrouter.ai/docs/guides/ori/harness">Ori</a>, OpenRouter’s harness</td>
+    </tr>
   </tbody>
 </table>
+
+<p><code>ori</code> is the odd one out: it runs the other harnesses against OpenRouter’s whole model catalog, so <code>ori claude</code>, <code>ori codex</code>, or <code>ori opencode</code> start those agents on whichever model you point them at, and <code>ori code</code> is Ori’s own agent.</p>
 
 <p>To wrap an additional CLI the same way, run <code>omarchy-mise-install &lt;package&gt; [command-name]</code>. The stubs are kept current along with everything else mise manages when you run <code>omarchy update</code> (or the <code>mup</code> alias).</p>
 
@@ -208,7 +214,7 @@
 
 <h3 id="the-omarchy-skill">The Omarchy Skill <a class="manual__heading-link" href="#the-omarchy-skill" aria-label="Link to this section">#</a></h3>
 
-<p>Agent skills help AI use specific tools in a specific way, and Omarchy ships with a default skill for tailoring the system. Like tweaking your Hyprland config, adjusting the bar, or even creating a new theme from scratch. It’s symlinked into the skill directories for Claude Code (<code>~/.claude/skills</code>), Codex (<code>~/.codex/skills</code>), Pi (<code>~/.pi/agent/skills</code>), and the generic <code>~/.agents/skills</code> location, so most harnesses pick it up automatically.</p>
+<p>Agent skills help AI use specific tools in a specific way, and Omarchy ships with a default skill for tailoring the system. Like tweaking your Hyprland config, adjusting the bar, or even creating a new theme from scratch. It’s symlinked into the skill directories for Claude Code (<code>~/.claude/skills</code>), Codex (<code>~/.codex/skills</code>), Pi (<code>~/.pi/agent/skills</code>), Antigravity (<code>~/.gemini/config/skills</code>), and the generic <code>~/.agents/skills</code> location, so most harnesses pick it up automatically.</p>
 
 <p>But you should treat this skill as experimental. Different models will use it to different effect. It’s best to run in plan mode first, so you have an idea of what the agent would like to change. And then be ready to rollback changes or even invoking <code>omarchy reinstall configs</code>, if the agent makes a mess of everything.</p>
 

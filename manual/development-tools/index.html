@@ -145,9 +145,11 @@
 
 <h2 id="docker">Docker <a class="manual__heading-link" href="#docker" aria-label="Link to this section">#</a></h2>
 
-<p><a href="https://www.docker.com/">Docker</a> hardly needs any introduction. It allows you to run isolated containers, and Omarchy installs everything needed to run it well. This includes Docker itself, <a href="https://docs.docker.com/compose/">Docker Compose</a>, and the user group changes needed for you to run Docker as the normal user and not as root.</p>
+<p><a href="https://www.docker.com/">Docker</a> hardly needs any introduction. It allows you to run isolated containers, and Omarchy installs everything needed to run it well, including Docker itself and <a href="https://docs.docker.com/compose/">Docker Compose</a>.</p>
 
-<p>Remember to checkout the Lazydocker command to manage your containers in a cool TUI using <code>Super + Shift + D</code>.</p>
+<p>By default your user is <em>not</em> in the <code>docker</code> group. That group is effectively passwordless root — anything in it can <code>docker run -v /:/host</code> and take over the machine — so a single rogue script or dependency running as you would otherwise be one command away from root. So on the command line you run Docker with <code>sudo</code> (<code>sudo docker ps</code>, <code>sudo docker compose up</code>), and the graphical tools that talk to the daemon — the Docker TUI on <code>Super + Shift + D</code> and the Windows VM — ask for authorization when they need it. If you want the convenience of a groupless setup back and understand the tradeoff, enable it from <strong>Setup &gt; Security &gt; Sudoless Docker</strong> (or run <code>omarchy-setup-security-sudoless-docker</code>), which adds you to the <code>docker</code> group after a warning; then plain <code>docker</code> and the <code>d</code> alias work without <code>sudo</code> again.</p>
+
+<p>Remember to checkout the Lazydocker command to manage your containers in a cool TUI using <code>Super + Shift + D</code>; it asks for authorization the first time unless you have enabled sudoless Docker.</p>
 
 <p>You can setup the common databases for local development in Docker using <em>Install &gt; Development &gt; Docker DB</em> in the Omarchy menu.</p>
 
