@@ -8,13 +8,13 @@ description: The first Omarchy Rangers are here to help people find their way, a
 
 Omarchy has grown so fast that thousands of people are arriving at once, and most of them are arriving from macOS or Windows. That's a lot of first installations, a lot of "where do I even start", and a lot of questions that benefit from a real answer from someone who is used to helping others.
 
-Enter [Omarchy Rangers](/teams/#rangers).
+Enter [Omarchy Rangers](/teams/#rangers): A new official team setup to help people find their way. 
 
-A new official team setup to help people find their way. The inaugural three members:
+The inaugural three members (and their *Discord* handles):
 
-- [Mihai](https://x.com/SandorhaziM), Romania
-- [Mateo Vaz](https://x.com/Mateo_VX), Uruguay
-- [Nira](https://x.com/niraletter), Nepal
+- [Mihai](https://x.com/SandorhaziM) *@Michael91*, Romania
+- [Mateo Vaz](https://x.com/Mateo_VX) *@m4teo*, Uruguay
+- [Nira](https://x.com/niraletter) *@.+ N1R4 .+*, Nepal
 
 Three people, three continents, which is roughly the point. Omarchy's community doesn't keep office hours in a single time zone, and neither should the people helping it. [The Discord](https://discord.com/invite/tXFUdasqhY) is always buzzing.
 
