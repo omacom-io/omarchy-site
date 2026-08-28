@@ -12,7 +12,7 @@ The votes are in! [Omarchy Core](/teams/) went through the submissions, voted, a
 
 🥈 **Second place: [Omagotchi](https://omarchyplugins.com/plugin.html?id=slcode777.omagotchi) by [SLcode777](https://x.com/StellaSLcode).** A little creature that lives in your bar and needs you. Absolutely nobody needed this and everybody wants it. That's $1,000.
 
-🥉 **Third place: [AirPods](https://omarchyplugins.com/plugin.html?id=soup.airpods) by GM.** Battery levels and one-click switching for your AirPods, right in the bar. The kind of thing you only miss when you come from a Mac. $500 for that.
+🥉 **Third place: [AirPods](https://omarchyplugins.com/plugin.html?id=io.github.thisisgm.omapods) by GM.** Battery levels and one-click switching for your AirPods, right in the bar. The kind of thing you only miss when you come from a Mac. $500 for that.
 
 Honorable mention to [GitHub](https://omarchyplugins.com/plugin.html?id=robzolkos.github) by [Rob Zolkos](https://x.com/robzolkos), which puts your notifications and pull requests in the bar. No prize money, but a lot of votes!
 
