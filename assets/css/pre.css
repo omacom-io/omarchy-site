@@ -11,6 +11,55 @@
   text-decoration: none;
 }
 
+.pre a:has(wte-canvas) {
+  display: block;
+}
+
+.pre wte-canvas {
+  background: transparent;
+  display: block;
+  min-height: 0;
+  mix-blend-mode: screen;
+}
+
+.pre wte-canvas:not(:defined) {
+  display: none;
+}
+
+.pre:has(wte-canvas:defined) pre {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+}
+
+.pre.pre--static wte-canvas {
+  display: none;
+}
+
+.pre.pre--static pre {
+  clip-path: none;
+  height: auto;
+  overflow: visible;
+  position: static;
+  width: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pre wte-canvas {
+    display: none;
+  }
+
+  .pre:has(wte-canvas:defined) pre {
+    position: static;
+    width: auto;
+    height: auto;
+    overflow: visible;
+    clip-path: none;
+  }
+}
+
 .pre pre {
   color: var(--color-green);
   font-size: clamp(0.425rem, 1.25vw, 1rem);
