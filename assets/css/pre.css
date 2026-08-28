@@ -36,11 +36,7 @@
   transition: opacity var(--transition);
 }
 
-.pre--ttfx.is-ttfx-loading pre {
-  opacity: 0;
-  transition: none;
-}
-
+/* Also re-hides the fallback if the startup timeout already revealed it. */
 .pre--ttfx.is-ttfx-ready pre {
   opacity: 0;
 }
@@ -51,27 +47,13 @@
 
 
 
-@keyframes reveal-ttfx-fallback {
-
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
-
-}
-
-
-
 @media(prefers-reduced-motion: no-preference) {
 
-  /* This rule applies before the deferred module script can add its loading
-     class. If JavaScript never starts, reveal the fallback after the grace
-     period instead of leaving the logo permanently hidden. */
-  .pre--ttfx:not(.is-ttfx-loading):not(.is-ttfx-ready) pre {
-    animation: reveal-ttfx-fallback 0.15s ease-out 2s both;
+  /* Set by an inline <head> script, so the fallback is hidden from the first
+     paint. Without JavaScript it is never set and the logo shows immediately. */
+  .js-ttfx .pre--ttfx pre {
+    opacity: 0;
+    transition: none;
   }
 
 }

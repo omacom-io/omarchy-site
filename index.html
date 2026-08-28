@@ -37,6 +37,16 @@
     <link rel="stylesheet" type="text/css" href="/assets/css/video.css">
     <link rel="stylesheet" type="text/css" href="/assets/css/workstations.css">
 
+    <!-- Hides the static logo before the body paints. The timeout is the only
+         safety net when script.js never runs at all, so it has to live in a
+         classic script: no module support, no dynamic import, failed fetch. -->
+    <script>
+      document.documentElement.classList.add('js-ttfx');
+      window.ttfxRevealTimer = setTimeout(function () {
+        document.documentElement.classList.remove('js-ttfx');
+      }, 4000);
+    </script>
+
     <script src="/assets/js/script.js" type="module"></script>
 
     <script defer data-domain="omarchy.org" src="https://plausible.io/js/script.js"></script>

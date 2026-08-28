@@ -2,23 +2,29 @@ import * as workstations from './modules/workstations.js';
 
 var ttfxContainer = document.querySelector('.pre--ttfx');
 var reduceTtfxMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+var animateTtfx = Boolean(ttfxContainer) && !reduceTtfxMotion;
 
-// Keep the static fallback available if JavaScript fails, but hide it as soon
-// as we know the animated logo can be attempted. Otherwise the complete green
-// logo flashes briefly before laseretch starts from an empty frame.
-if(ttfxContainer && !reduceTtfxMotion) ttfxContainer.classList.add('is-ttfx-loading');
+// An inline <head> script hides the fallback before the first paint and arms
+// the timeout that reveals it again. Drop the class early when the canvas
+// cannot take over; cancel the timeout once it has.
+function revealTtfxFallback() {
+
+  document.documentElement.classList.remove('js-ttfx');
+
+}
 
 document.addEventListener('DOMContentLoaded', () => {
 
   workstations.ready();
 
-  if(ttfxContainer && !reduceTtfxMotion) {
+  if(animateTtfx) {
 
     import('./modules/ttfx-logo.js')
       .then(module => module.ready())
+      .then(() => window.clearTimeout(window.ttfxRevealTimer))
       .catch(error => {
 
-        ttfxContainer.classList.remove('is-ttfx-loading');
+        revealTtfxFallback();
         console.error('Unable to load the Omarchy logo effect.', error);
 
       });

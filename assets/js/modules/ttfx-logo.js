@@ -305,7 +305,6 @@ class LogoEffect {
 
     paintFrame(this.metrics, this.frame, performance.now());
     this.container.classList.add('is-ttfx-ready');
-    this.container.classList.remove('is-ttfx-loading');
 
   }
 
@@ -410,6 +409,14 @@ class LogoEffect {
 
 }
 
+function revealFallback(container) {
+
+  // Undoes the js-ttfx class set by the inline <head> script.
+  document.documentElement.classList.remove('js-ttfx');
+  container.classList.remove('is-ttfx-ready');
+
+}
+
 async function ready() {
 
   // This is a progressive enhancement: reduced-motion users and any startup
@@ -424,7 +431,7 @@ async function ready() {
 
   if(!fallback || !canvas) {
 
-    container.classList.remove('is-ttfx-loading');
+    revealFallback(container);
     return;
 
   }
@@ -468,8 +475,7 @@ async function ready() {
   } catch(error) {
 
     console.error('Unable to start the Omarchy logo effect.', error);
-    container.classList.remove('is-ttfx-loading');
-    container.classList.remove('is-ttfx-ready');
+    revealFallback(container);
 
   }
 
