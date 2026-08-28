@@ -7,6 +7,7 @@
     "dev": "node scripts/sync-news-assets.mjs && astro dev",
     "build": "node scripts/sync-news-assets.mjs && astro check && astro build",
     "verify-build": "node scripts/verify-build.mjs",
+    "validate": "pnpm build && pnpm verify-build",
     "preview": "astro preview",
     "astro": "astro",
     "sync-news-assets": "node scripts/sync-news-assets.mjs",

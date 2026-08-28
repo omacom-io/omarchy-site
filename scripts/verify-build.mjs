@@ -6,6 +6,7 @@ import { fileURLToPath } from "node:url";
 
 const ROOT = fileURLToPath(new URL("..", import.meta.url));
 const DIST = join(ROOT, "dist");
+const SITE = new URL("https://omarchy.org");
 
 const requiredFiles = [
   "index.html",
@@ -109,6 +110,93 @@ function allFiles(dir) {
   });
 }
 
+function isFile(path) {
+  return statSync(path, { throwIfNoEntry: false })?.isFile() ?? false;
+}
+
+function pageUrl(path) {
+  const route = relative(DIST, path).split(sep).join("/");
+  if (route === "index.html") return SITE;
+  if (route.endsWith("/index.html")) return new URL(`/${route.slice(0, -10)}`, SITE);
+  return new URL(`/${route}`, SITE);
+}
+
+function localTarget(pathname) {
+  const output = join(DIST, decodeURIComponent(pathname).replace(/^\/+/, ""));
+  if (isFile(output)) return output;
+  if (pathname.endsWith("/") || pathname === "/") return join(output, "index.html");
+  return join(output, "index.html");
+}
+
+function localUrlTarget(url, sourcePath) {
+  if (/^(?:mailto:|data:|javascript:|#|\/\/)/i.test(url)) return;
+
+  const resolved = new URL(url, pageUrl(sourcePath));
+  if (resolved.origin !== SITE.origin) return;
+  return localTarget(resolved.pathname);
+}
+
+function attribute(tag, name) {
+  return tag.match(new RegExp(`\\b${name}=("|')(.*?)\\1`, "i"))?.[2];
+}
+
+function metaContent(html, name, value) {
+  return [...html.matchAll(/<meta\b[^>]*>/gi)]
+    .find((tag) => attribute(tag[0], name) === value)
+    && attribute([...html.matchAll(/<meta\b[^>]*>/gi)]
+      .find((tag) => attribute(tag[0], name) === value)[0], "content");
+}
+
+function verifyLocalUrls(htmlPath) {
+  const html = readFileSync(htmlPath, "utf8");
+  const document = html.replace(/<script\b[\s\S]*?<\/script>/gi, "");
+  for (const [, , , url] of document.matchAll(/\b(href|src|poster)=("|')(.*?)\2/gi)) {
+    const target = localUrlTarget(url, htmlPath);
+    if (target && !isFile(target)) {
+      throw new Error(`${relative(DIST, htmlPath)} references missing local URL ${url}`);
+    }
+  }
+}
+
+function verifyMetadata(htmlPath) {
+  const html = readFileSync(htmlPath, "utf8");
+  const route = relative(DIST, htmlPath).split(sep).join("/");
+  const canonical = [...html.matchAll(/<link\b[^>]*>/gi)]
+    .find((tag) => attribute(tag[0], "rel") === "canonical");
+  const canonicalUrl = canonical && attribute(canonical[0], "href");
+  if (canonicalUrl && !/^https:\/\/omarchy\.org(?:\/.*)?$/.test(canonicalUrl)) {
+    throw new Error(`${route} has a non-canonical canonical URL: ${canonicalUrl}`);
+  }
+
+  const ogUrl = metaContent(html, "property", "og:url");
+  if (ogUrl && new URL(ogUrl).origin !== SITE.origin) {
+    throw new Error(`${route} has an off-site og:url: ${ogUrl}`);
+  }
+
+  const ogImage = metaContent(html, "property", "og:image");
+  if (ogImage && new URL(ogImage).origin === SITE.origin) {
+    const target = localTarget(new URL(ogImage).pathname);
+    if (!isFile(target)) throw new Error(`${route} has a missing og:image: ${ogImage}`);
+  }
+
+  if (route.startsWith("news/") && route !== "news/index.html") {
+    if (metaContent(html, "property", "og:type") !== "article") {
+      throw new Error(`${route} is missing og:type=article`);
+    }
+    if (!metaContent(html, "property", "article:published_time")) {
+      throw new Error(`${route} is missing article:published_time`);
+    }
+    const structuredData = [...html.matchAll(/<script\b[^>]*type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/gi)]
+      .map((match) => JSON.parse(match[1]));
+    if (!structuredData.some((data) => data["@type"] === "BlogPosting")) {
+      throw new Error(`${route} is missing BlogPosting JSON-LD`);
+    }
+  }
+
+  const plausibleScripts = html.match(/https:\/\/plausible\.io\/js\/script\.js/g)?.length ?? 0;
+  if (plausibleScripts > 1) throw new Error(`${route} contains ${plausibleScripts} Plausible scripts`);
+}
+
 // Every /assets/… path an Astro page references, so a page's own images are
 // checked without listing them here.
 function assetsReferencedBy(sourcePath) {
@@ -188,6 +276,7 @@ verifyPageAssets("src/pages/air/index.astro");
 verifyPageAssets("src/pages/patrons/index.astro");
 
 const indexPages = allFiles(DIST).filter((path) => path.endsWith("/index.html"));
+const htmlPages = allFiles(DIST).filter((path) => path.endsWith(".html"));
 
 const forbidden = join(DIST, "404", "index.html");
 try {
@@ -203,6 +292,24 @@ for (const [sourcePath, distPath] of byteIdentical) {
   if (!source.equals(output)) {
     throw new Error(`Build artifact differs from ${sourcePath}: dist/${distPath}`);
   }
+}
+
+for (const htmlPath of htmlPages) {
+  verifyLocalUrls(htmlPath);
+  verifyMetadata(htmlPath);
+}
+
+const homepage = readFileSync(file("index.html"), "utf8");
+if (/\bsrc="\/_astro\//.test(homepage)) {
+  throw new Error("Homepage unexpectedly ships a first-party Astro JS bundle");
+}
+
+if (statSync(join(DIST, "assets", "js"), { throwIfNoEntry: false })) {
+  throw new Error("Unexpected legacy dist/assets/js directory");
+}
+
+if (allFiles(DIST).some((path) => relative(DIST, path).startsWith(`assets${sep}js${sep}`))) {
+  throw new Error("Unexpected legacy dist/assets/js file");
 }
 
 const relativeRoutes = indexPages.map((path) => relative(DIST, path)).sort();
