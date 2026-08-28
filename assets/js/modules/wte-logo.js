@@ -1,7 +1,9 @@
 // Upgrade the homepage ASCII mark to a Web Text Effects canvas. The <pre>
-// stays in the document for no-JS and reduced-motion. wte.csfh.dev has no
-// npm package; /wte-canvas.js is the published web component (the
-// /builds/latest/ path currently serves the player HTML).
+// stays in the document as the layout size and as the fallback. index.html
+// adds .wte-home before first paint so the green mark stays hidden while
+// the skin loads. wte.csfh.dev has no npm package; /wte-canvas.js is the
+// published web component (the /builds/latest/ path currently serves the
+// player HTML).
 
 const WTE_CANVAS_URL = 'https://wte.csfh.dev/wte-canvas.js';
 const EFFECT = 'laseretch';
@@ -20,10 +22,8 @@ function artFromPre(pre) {
   return text.replace(/\n+$/, '');
 }
 
-function restoreAscii(canvas) {
-  const root = canvas.closest('.pre');
-  canvas.style.display = 'none';
-  root?.classList.add('pre--static');
+function markStatic() {
+  document.querySelector('.pre')?.classList.add('pre--static');
 }
 
 function afterFonts() {
@@ -38,11 +38,17 @@ function afterFonts() {
   ]);
 }
 
-function sizeCanvas(canvas, pre) {
-  const box = pre.getBoundingClientRect();
-  const cell = Math.max(1, Math.floor(box.width / ART_COLUMNS));
-  canvas.style.width = `${cell * ART_COLUMNS}px`;
-  canvas.style.height = `${cell * ART_ROWS * CELL_ASPECT}px`;
+function fitCanvas(canvas, host) {
+  const box = host.getBoundingClientRect();
+  const cell = Math.max(
+    1,
+    Math.floor(Math.min(box.width / ART_COLUMNS, box.height / (ART_ROWS * CELL_ASPECT))),
+  );
+  const nativeWidth = cell * ART_COLUMNS;
+  const nativeHeight = cell * ART_ROWS * CELL_ASPECT;
+  canvas.style.width = `${nativeWidth}px`;
+  canvas.style.height = `${nativeHeight}px`;
+  canvas.style.transform = `scale(${box.width / nativeWidth}, ${box.height / nativeHeight})`;
 }
 
 function ready() {
@@ -50,16 +56,28 @@ function ready() {
   if (window.location.pathname !== '/') return;
 
   const pre = document.querySelector('.pre a pre');
-  if (!(pre instanceof HTMLPreElement)) return;
+  const link = pre?.parentElement;
+  if (!(pre instanceof HTMLPreElement) || link == null) return;
 
   const input = artFromPre(pre);
-  if (input.trim() === '') return;
+  if (input.trim() === '') {
+    markStatic();
+    return;
+  }
 
   afterFonts()
     .then(() => import(WTE_CANVAS_URL))
     .then(() => {
+      const box = pre.getBoundingClientRect();
+      if (box.width < 8 || box.height < 8) {
+        markStatic();
+        return;
+      }
+
+      const holder = document.createElement('span');
+      holder.className = 'pre__wte';
+
       const canvas = document.createElement('wte-canvas');
-      sizeCanvas(canvas, pre);
       canvas.setAttribute('effect', EFFECT);
       canvas.setAttribute('input', input);
       canvas.setAttribute('aria-hidden', 'true');
@@ -68,14 +86,16 @@ function ready() {
         const message = String(event.message ?? event.error ?? '');
         if (!/memory access out of bounds|RuntimeError/i.test(message)) return;
         window.removeEventListener('error', onError);
-        restoreAscii(canvas);
+        markStatic();
       };
       window.addEventListener('error', onError);
 
-      pre.after(canvas);
+      fitCanvas(canvas, pre);
+      holder.append(canvas);
+      link.append(holder);
     })
     .catch(() => {
-      // Leave the ASCII mark in place if the skin fails to load.
+      markStatic();
     });
 }
 

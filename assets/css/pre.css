@@ -11,52 +11,48 @@
   text-decoration: none;
 }
 
-.pre a:has(wte-canvas) {
+html.wte-home .pre a {
   display: block;
+  max-width: 100%;
+  position: relative;
+  width: max-content;
 }
 
-.pre wte-canvas {
+html.wte-home .pre pre {
+  visibility: hidden;
+}
+
+html.wte-home .pre__wte {
+  display: block;
+  inset: 0;
+  overflow: hidden;
+  position: absolute;
+}
+
+html.wte-home .pre wte-canvas {
   background: transparent;
   display: block;
   min-height: 0;
   mix-blend-mode: screen;
-}
-
-.pre wte-canvas:not(:defined) {
-  display: none;
-}
-
-.pre:has(wte-canvas:defined) pre {
   position: absolute;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-  clip-path: inset(50%);
+  transform-origin: 0 0;
 }
 
-.pre.pre--static wte-canvas {
+html.wte-home .pre.pre--static pre {
+  visibility: visible;
+}
+
+html.wte-home .pre.pre--static .pre__wte {
   display: none;
-}
-
-.pre.pre--static pre {
-  clip-path: none;
-  height: auto;
-  overflow: visible;
-  position: static;
-  width: auto;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .pre wte-canvas {
-    display: none;
+  html.wte-home .pre pre {
+    visibility: visible;
   }
 
-  .pre:has(wte-canvas:defined) pre {
-    position: static;
-    width: auto;
-    height: auto;
-    overflow: visible;
-    clip-path: none;
+  html.wte-home .pre__wte {
+    display: none;
   }
 }
 
