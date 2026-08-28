@@ -1,7 +1,7 @@
-// Upgrade the homepage ASCII mark to a WTE canvas. The <pre> stays in the
-// document for no-JS and reduced-motion. wte.csfh.dev has no npm package;
-// /wte-canvas.js is the published web component (the /builds/latest/ path
-// currently serves the player HTML).
+// Upgrade the homepage ASCII mark to a Web Text Effects canvas. The <pre>
+// stays in the document for no-JS and reduced-motion. wte.csfh.dev has no
+// npm package; /wte-canvas.js is the published web component (the
+// /builds/latest/ path currently serves the player HTML).
 
 const WTE_CANVAS_URL = 'https://wte.csfh.dev/wte-canvas.js';
 const EFFECT = 'decrypt';
