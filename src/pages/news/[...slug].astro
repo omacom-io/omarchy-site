@@ -1,0 +1,70 @@
+---
+import type { GetStaticPaths } from "astro";
+import NewsMeta from "@/components/NewsMeta.astro";
+import NewsLayout from "@/layouts/NewsLayout.astro";
+import { blogPostingStructuredData, currentPageUrl } from "@/lib/seo";
+import {
+  date,
+  description,
+  html,
+  isoDate,
+  newsPosts,
+  title,
+  type Post,
+} from "@/lib/news";
+
+export const getStaticPaths = (async () => {
+  const posts = await newsPosts();
+  return posts.map((post) => ({ params: { slug: post.id }, props: { post } }));
+}) satisfies GetStaticPaths;
+
+const { post } = Astro.props as { post: Post };
+const { author, author_url } = post.data;
+
+const canonicalUrl = currentPageUrl(Astro);
+const heading = title(post);
+const publishedAt = isoDate(date(post));
+const summary = description(post);
+---
+
+<NewsLayout
+  seo={{
+    title: `${heading} — Omarchy News`,
+    description: summary,
+    canonicalUrl,
+    ogSiteName: "Omarchy News",
+    socialTitle: heading,
+    socialDescription: summary,
+    image: {
+      url: "https://omarchy.org/assets/images/social.png",
+      width: "600",
+      height: "600",
+      alt: "Omarchy logo",
+    },
+    ogUrl: canonicalUrl,
+    ogType: "article",
+    twitter: { card: "summary" },
+    author,
+    publishedTime: publishedAt,
+    structuredData: [blogPostingStructuredData({
+      headline: heading,
+      description: summary,
+      datePublished: publishedAt,
+      author,
+      authorUrl: author_url,
+      canonicalUrl,
+    })],
+  }}
+  article
+>
+  <article class="news-post">
+    <header class="news-post__header">
+      <NewsMeta post={post} prefix="By " />
+      <h1 class="news-post__title" set:text={heading} />
+    </header>
+
+    <div class="news-prose">
+      <Fragment set:html={html(post)} />
+    </div>
+  </article>
+</NewsLayout>

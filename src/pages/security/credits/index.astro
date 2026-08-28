@@ -1,0 +1,59 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Pre from "@/components/Pre.astro";
+import { pageSeo } from "@/lib/seo";
+
+const seo = pageSeo(Astro, {
+  title: "Security Credits — Omarchy",
+  description: "Thanking the people who reported security issues in Omarchy privately, and gave us the chance to fix them.",
+  socialTitle: "Security Credits",
+  image: "/assets/images/social/security-credits.png",
+});
+---
+
+<Layout
+  seo={seo}
+  fontPreloads={[]}
+  styles={["header", "main", "pre", "teams"]}
+>
+  <Pre />
+
+  <header class="header">
+    <h1>Security credits</h1>
+  </header>
+
+  <main class="main">
+    <div class="teams">
+      <section class="team">
+        <header class="team__header">
+          <h2 class="team__name">Responsible disclosure</h2>
+          <p class="team__description">
+            They found it, told us privately, and waited for the patch
+          </p>
+        </header>
+
+        <div class="team__members">
+          <article class="member">
+            <img
+              class="member__avatar"
+              src="/assets/images/credits/teles.webp"
+              width="240"
+              height="240"
+              alt="Teles"
+              loading="lazy"
+              decoding="async"
+            />
+            <h3 class="member__name">
+              <a href="https://x.com/teles_dev">Teles</a>
+            </h3>
+          </article>
+        </div>
+
+        <p class="team__note">
+          Found something? <a href="/security/">Report it privately</a> and you&rsquo;ll
+          end up here too.
+        </p>
+      </section>
+    </div>
+  </main>
+</Layout>

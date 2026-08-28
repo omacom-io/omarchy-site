@@ -1,0 +1,51 @@
+---
+import Pre from "@/components/Pre.astro";
+
+const discordUrl = "https://discord.gg/tXFUdasqhY";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Omarchy — Redirecting to Discord</title>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1, width=device-width" />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta http-equiv="refresh" content={`0;url=${discordUrl}`} />
+
+    <link rel="icon" href="/assets/images/favicon.png" />
+
+    <link rel="stylesheet" type="text/css" href="/assets/css/reset.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/css/root.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/css/fonts.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/css/elements.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/css/header.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/css/main.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/css/pre.css" />
+
+    <script
+      defer
+      data-domain="omarchy.org"
+      src="https://plausible.io/js/script.js"
+      is:inline></script>
+
+    <script is:inline>
+      window.location.href = 'https://discord.gg/tXFUdasqhY';
+    </script>
+  </head>
+
+  <body>
+    <main class="main main--error">
+      <Pre class="pre pre--error" />
+
+      <header class="header">
+        <h1>
+          If you’re not redirected to Discord automatically, <a
+            href={discordUrl}>click here</a
+          >.
+        </h1>
+      </header>
+    </main>
+  </body>
+</html>

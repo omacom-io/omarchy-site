@@ -22,4 +22,4 @@ Because almost nobody switches to Linux alone. And they often stay because someb
 
 If you'd like to help new users find their way, consider joining Omarchy Rangers. Apply to [rangers@omarchy.org](mailto:rangers@omarchy.org).
 
-![Mihai, Mateo Vaz, and Nira](rangers.webp)
+![Mihai, Mateo Vaz, and Nira](/news/2026/08/introducing-the-omarchy-rangers/rangers.webp)

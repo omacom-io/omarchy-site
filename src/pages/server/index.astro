@@ -1,0 +1,39 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import { pageSeo } from "@/lib/seo";
+
+const seo = {
+  ...pageSeo(Astro, {
+    title: "Omarchy Server 4.0",
+    description: "Coming 2026",
+    image: "/assets/images/social/server.jpg",
+  }),
+  image: {
+    url: "https://omarchy.org/assets/images/social/server.jpg",
+    width: "2400",
+    height: "1260",
+    alt: "Omarchy Server 4.0",
+  },
+};
+---
+
+<Layout
+  seo={seo}
+  fontPreloads={[]}
+  styles={["main", "server"]}
+  bodyClass="server-body"
+>
+  <main class="main main--error">
+    <div class="server">
+      <a href="/" aria-label="Omarchy">
+        <img
+          src="/assets/images/omarchy-server.webp"
+          width="1536"
+          height="1024"
+          alt="Omarchy Server 4.0"
+        />
+      </a>
+      <p class="server__coming">Coming 2026</p>
+    </div>
+  </main>
+</Layout>

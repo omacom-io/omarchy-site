@@ -1,0 +1,22 @@
+---
+import Pre from "@/components/Pre.astro";
+import Layout from "@/layouts/Layout.astro";
+---
+
+<Layout
+  seo={{ title: "Omarchy — Page not found", robots: "noindex, nofollow" }}
+  fontPreloads={[]}
+  styles={["header", "main", "pre"]}
+>
+  <main class="main main--error">
+    <Pre class="pre pre--error" />
+
+    <header class="header">
+      <h1>
+        The page you’re looking for could not be found, <a href="/"
+          >return to home</a
+        >.
+      </h1>
+    </header>
+  </main>
+</Layout>

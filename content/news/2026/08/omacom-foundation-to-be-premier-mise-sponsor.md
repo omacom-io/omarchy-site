@@ -13,9 +13,8 @@ Every major coding-agent CLI in Omarchy ships as a lazy-loading mise stub in `~/
 
 That's the fast track. In _The Age of Agents_, the gap between hearing about a tool and running it needs to be about four seconds, and mise delivers that. Nobody had to package anything for a distro first.
 
-![mise monthly active users: 568,100, up 24% in the ten days after Omarchy Quattro shipped](mise-mau.webp)
+![mise monthly active users: 568,100, up 24% in the ten days after Omarchy Quattro shipped](/news/2026/08/omacom-foundation-to-be-premier-mise-sponsor/mise-mau.webp)
 
 The interest runs both ways, too: traffic to mise is up 24% since Omarchy launched! A lot of people are meeting this tool for the first time through us, which is exactly the kind of thing a sponsorship should recognize rather than take for granted.
 
 Once again, special thanks to [Tobi Lütke](https://x.com/tobi), [Patrick Collison](https://x.com/patrickc), [Michael Dell](https://x.com/MichaelDell), [Jack Dorsey](https://x.com/jack), [Matthew Prince](https://x.com/eastdakota), [Brendan Iribe](https://x.com/brendaniribe), [Jason Fried](https://x.com/jasonfried), [Drew Houston](https://x.com/drewhouston), and [Peter Steinberger](https://x.com/steipete) for making this possible. If it wasn't for [Oligarchy](https://oligarchy.fyi), we wouldn't be able to fund open-source developers like this!
-

@@ -22,4 +22,4 @@ The last seat is by invitation. The program begins in October.
 
 I like Vitruvius' three requirements for good architecture: _firmitas, utilitas, venustas_. It must stand up, it must be useful, and it must be beautiful. Not two out of three. We will invest in all of it. We can fix everything.
 
-![HANCORE and OldJobobo](air.webp)
+![HANCORE and OldJobobo](/news/2026/08/introducing-omarchy-air/air.webp)

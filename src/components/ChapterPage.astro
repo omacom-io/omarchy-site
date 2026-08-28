@@ -1,0 +1,71 @@
+---
+import Search from "@/components/Search.astro";
+import ManualLayout from "@/layouts/ManualLayout.astro";
+import { description, html, path, title, type Chapter } from "@/lib/manual";
+
+interface Props {
+  chapter: Chapter;
+  chapters: Chapter[];
+}
+
+const { chapter, chapters } = Astro.props;
+
+const index = chapters.indexOf(chapter);
+const previous = index > 0 ? chapters[index - 1] : undefined;
+const next = chapters[index + 1];
+---
+
+<ManualLayout title={title(chapter)} description={description(chapter)} path={path(chapter)}>
+  <div class="manual manual--chapter">
+    <div class="manual__sidebar">
+      <Search />
+      <nav class="manual__toc" aria-label="Chapters">
+        <ol>
+          {
+            chapters.map((other) => (
+              <li>
+                <a
+                  href={path(other)}
+                  aria-current={other.id === chapter.id ? "page" : undefined}
+                  set:text={title(other)}
+                />
+              </li>
+            ))
+          }
+        </ol>
+      </nav>
+    </div>
+
+    <article class="manual__content">
+      <h1 set:text={title(chapter)} />
+      <Fragment set:html={html(chapter)} />
+      <nav class="manual__pagination">
+        {
+          previous ? (
+            <a
+              class="manual__pagination-previous"
+              href={path(previous)}
+              rel="prev"
+              set:text={`← ${title(previous)}`}
+            />
+          ) : (
+            <span />
+          )
+        }
+        <a class="manual__pagination-contents" href="/manual/toc/">Table of Contents</a>
+        {
+          next ? (
+            <a
+              class="manual__pagination-next"
+              href={path(next)}
+              rel="next"
+              set:text={`${title(next)} →`}
+            />
+          ) : (
+            <span />
+          )
+        }
+      </nav>
+    </article>
+  </div>
+</ManualLayout>

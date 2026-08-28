@@ -1,0 +1,122 @@
+---
+import Pre from "@/components/Pre.astro";
+import Layout from "@/layouts/Layout.astro";
+import { workstationImages } from "@/lib/workstations";
+import type { SeoMeta } from "@/lib/seo";
+
+const seo = {
+  title: "Omarchy — Beautiful, Modern & Opinionated Linux by DHH",
+  description: "Beautiful, Modern & Opinionated Linux by DHH",
+  ogSiteName: "Omarchy",
+  socialTitle: "Omarchy",
+  socialDescription: "Beautiful, Modern & Opinionated Linux by DHH",
+  image: { url: "https://omarchy.org/assets/images/opengraph.png", alt: "Omarchy" },
+  ogUrl: "https://omarchy.org",
+  ogType: "website",
+  twitter: { card: "summary_large_image" },
+} satisfies SeoMeta;
+---
+
+<Layout
+  seo={seo}
+  fontPreloads={[]}
+  styles={[
+    "button",
+    "footer",
+    "header",
+    "main",
+    "nav",
+    "notification",
+    "pre",
+    "video",
+    "workstations",
+  ]}
+>
+  <Pre />
+
+  <header class="header">
+    <h1>
+      <a href="https://discord.com/channels/1390012484194275541/1399365919293051010"
+        >#omarchy-workstations</a
+      >
+    </h1>
+  </header>
+
+  <main class="main">
+    <div class="workstations">
+      <div class="workstations__images">
+        {
+          workstationImages.map((src) => (
+            <button class="workstations__image" aria-label="View workstation photo">
+              <figure>
+                <img src={src} alt="" loading="lazy" decoding="async" />
+              </figure>
+            </button>
+          ))
+        }
+      </div>
+
+      <dialog class="workstations__modal">
+        <div class="workstations__backdrop"></div>
+        <div class="workstations__container"></div>
+      </dialog>
+    </div>
+  </main>
+
+  <script>
+    const modal = document.querySelector<HTMLDialogElement>('.workstations__modal');
+
+    if (modal) {
+      const modalImages = document.querySelectorAll<HTMLButtonElement>('.workstations__image');
+      const modalBackdrop = modal.querySelector<HTMLElement>('.workstations__backdrop');
+      const modalContainer = modal.querySelector<HTMLElement>('.workstations__container');
+
+      if (modalBackdrop && modalContainer) {
+        const dialog = modal;
+        const container = modalContainer;
+
+        modalImages.forEach((image) => {
+          image.addEventListener('click', () => {
+            const figure = image.querySelector('figure');
+            if (figure) open(figure);
+          });
+        });
+
+        modalBackdrop.addEventListener('click', close);
+
+        document.addEventListener('keydown', (event) => {
+          if (event.key === 'Escape') close();
+        });
+
+        function open(element: HTMLElement) {
+          const elementImg = element.querySelector<HTMLImageElement>('img');
+          const elementFigcaption = element.querySelector('figcaption');
+          if (!elementImg) return;
+
+          const figureImgSrc = elementImg.src;
+          const figureImgAlt = elementImg.alt;
+          const figureFigcaption = elementFigcaption ? elementFigcaption.textContent : '';
+
+          container.innerHTML = `
+            <div class="workstations__image workstations__image--modal">
+              <figure>
+                <img src="${figureImgSrc}" alt="${figureImgAlt}" loading="lazy" decoding="async">
+                ${figureFigcaption ? `<figcaption>${figureFigcaption}</figcaption>` : ''}
+              </figure>
+            </div>
+          `;
+
+          const modalImage = container.querySelector<HTMLElement>('.workstations__image');
+          modalImage?.addEventListener('click', close);
+          dialog.showModal();
+        }
+
+        function close() {
+          container.innerHTML = '';
+          dialog.scrollTo(0, 0);
+          dialog.close();
+        }
+      }
+    }
+  </script>
+</Layout>

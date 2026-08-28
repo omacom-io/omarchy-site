@@ -1,0 +1,171 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Pre from "@/components/Pre.astro";
+import TeamMembers, { type Member } from "@/components/TeamMembers.astro";
+import { pageSeo } from "@/lib/seo";
+
+const members = {
+  core: [
+    {
+      name: "DHH",
+      url: "https://dhh.dk",
+      avatar: "/assets/images/team/dhh.webp",
+      location: "USA/Denmark",
+    },
+    {
+      name: "Ryan Hughes",
+      url: "https://x.com/ryanrhughes",
+      avatar: "/assets/images/team/ryan-hughes.webp",
+      location: "USA",
+    },
+    {
+      name: "Tobi Lütke",
+      url: "https://x.com/tobi",
+      avatar: "/assets/images/team/tobi-lutke.webp",
+      location: "Canada",
+    },
+    {
+      name: "Bjarne Øverli",
+      url: "https://x.com/iamdothash",
+      avatar: "/assets/images/team/bjarne-overli.webp",
+      location: "Norway",
+    },
+    {
+      name: "HANCORE",
+      url: "https://github.com/HANCORE-linux",
+      avatar: "/assets/images/team/hancore.webp",
+      location: "Germany",
+    },
+    {
+      name: "Spencer Bull",
+      url: "https://x.com/SpencerGBull",
+      avatar: "/assets/images/team/spencer-bull.webp",
+      location: "USA",
+    },
+  ],
+  security: [
+    {
+      name: "Adrian Rangel",
+      url: "https://x.com/acrogenesis",
+      avatar: "/assets/images/team/adrian-rangel.webp",
+      location: "Mexico",
+    },
+    {
+      name: "Mehmet İnce",
+      url: "https://x.com/mdisec",
+      avatar: "/assets/images/team/mehmet-ince.webp",
+      location: "UK",
+    },
+    {
+      name: "Erik Melton",
+      url: "https://x.com/meltonaerik",
+      avatar: "/assets/images/team/erik-melton.webp",
+      location: "Norway",
+    },
+    {
+      name: "Sayem Chowdhury",
+      url: "https://x.com/Sayem314",
+      avatar: "/assets/images/team/sayem-chowdhury.webp",
+      location: "Bangladesh",
+    },
+    {
+      name: "Sebastian Stange",
+      url: "https://x.com/bastidotnet",
+      avatar: "/assets/images/team/sebastian-stange.webp",
+      location: "Germany",
+    },
+    {
+      name: "Ryan Hughes",
+      url: "https://x.com/ryanrhughes",
+      avatar: "/assets/images/team/ryan-hughes.webp",
+      location: "USA",
+    },
+    {
+      name: "DHH",
+      url: "https://dhh.dk",
+      avatar: "/assets/images/team/dhh.webp",
+      location: "USA/Denmark",
+    },
+  ],
+  rangers: [
+    {
+      name: "Mihai",
+      url: "https://x.com/SandorhaziM",
+      avatar: "/assets/images/team/mihai.webp",
+      location: "Romania",
+    },
+    {
+      name: "Mateo Vaz",
+      url: "https://x.com/Mateo_VX",
+      avatar: "/assets/images/team/mateo-vaz.webp",
+      location: "Uruguay",
+    },
+    {
+      name: "Nira",
+      url: "https://x.com/niraletter",
+      avatar: "/assets/images/team/nira.webp",
+      location: "Nepal",
+    },
+  ],
+} satisfies Record<"core" | "security" | "rangers", Member[]>;
+
+const seo = pageSeo(Astro, {
+  title: "Omarchy — The Teams",
+  description: "The teams guiding Omarchy.",
+  socialTitle: "The Omarchy Teams",
+  image: "/assets/images/social/teams.png",
+});
+---
+
+<Layout
+  seo={seo}
+  fontPreloads={[]}
+  styles={["header", "main", "pre", "teams"]}
+>
+  <Pre />
+
+  <header class="header">
+    <h1>The teams guiding Omarchy</h1>
+  </header>
+
+  <main class="main">
+    <div class="teams">
+      <section class="team" id="core">
+        <header class="team__header">
+          <h2 class="team__name">Omarchy Core</h2>
+          <p class="team__description">Setting the direction</p>
+        </header>
+
+        <TeamMembers members={members.core} />
+      </section>
+
+      <section class="team" id="security">
+        <header class="team__header">
+          <h2 class="team__name">Omarchy Security</h2>
+          <p class="team__description">Keeping your system safe</p>
+        </header>
+
+        <TeamMembers members={members.security} />
+
+        <p class="team__note">
+          <a href="/security/">Report a security issue</a>
+        </p>
+      </section>
+
+      <section class="team" id="rangers">
+        <header class="team__header">
+          <h2 class="team__name">Omarchy Rangers</h2>
+          <p class="team__description">Helping others find their way</p>
+        </header>
+
+        <TeamMembers members={members.rangers} />
+
+        <p class="team__note">
+          Want to help? Apply to <a href="mailto:rangers@omarchy.org"
+            >rangers@omarchy.org</a
+          >
+        </p>
+      </section>
+    </div>
+  </main>
+</Layout>

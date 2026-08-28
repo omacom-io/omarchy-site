@@ -1,0 +1,142 @@
+---
+import { serializeStructuredData, type SeoMeta } from "@/lib/seo";
+
+interface Props {
+  seo: SeoMeta;
+  bodyClass?: string;
+  fontPreloads?: string[];
+  styles?: string[];
+  baseStyles?: string[];
+  faviconBeforeMetadata?: boolean;
+  stylesheetType?: boolean;
+  twitterCardFirst?: boolean;
+}
+
+const {
+  seo,
+  fontPreloads = [
+    "/assets/fonts/JetBrainsMono-Light.woff2",
+    "/assets/fonts/JetBrainsMono-Regular.woff2",
+    "/assets/fonts/JetBrainsMono-Bold.woff2",
+  ],
+  styles = [],
+  baseStyles = ["reset", "root", "fonts", "elements"],
+  faviconBeforeMetadata = false,
+  stylesheetType = true,
+  twitterCardFirst = false,
+  bodyClass,
+} = Astro.props;
+
+const stylesheets = [...baseStyles, ...styles];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>{seo.title}</title>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1, width=device-width" />
+    {
+      fontPreloads.map((href) => (
+        <link
+          rel="preload"
+          href={href}
+          as="font"
+          type="font/woff2"
+          crossorigin
+        />
+      ))
+    }
+    {seo.description && <meta name="description" content={seo.description} />}
+    {seo.robots && <meta name="robots" content={seo.robots} />}
+    {seo.author && <meta name="author" content={seo.author} />}
+
+    {seo.canonicalUrl && <link rel="canonical" href={seo.canonicalUrl} />}
+
+    {faviconBeforeMetadata && <link rel="icon" href="/assets/images/favicon.png" />}
+
+    {seo.ogSiteName && <meta property="og:site_name" content={seo.ogSiteName} />}
+    {seo.socialTitle && <meta property="og:title" content={seo.socialTitle} />}
+    {
+      seo.socialDescription && (
+        <meta property="og:description" content={seo.socialDescription} />
+      )
+    }
+    {seo.image && <meta property="og:image" content={seo.image.url} />}
+    {seo.image?.width && <meta property="og:image:width" content={seo.image.width} />}
+    {
+      seo.image?.height && (
+        <meta property="og:image:height" content={seo.image.height} />
+      )
+    }
+    {
+      seo.image?.width && seo.image.height && seo.image.alt && (
+        <meta property="og:image:alt" content={seo.image.alt} />
+      )
+    }
+    {seo.ogUrl && <meta property="og:url" content={seo.ogUrl} />}
+    {seo.ogType && <meta property="og:type" content={seo.ogType} />}
+    {
+      seo.ogType === "article" && seo.publishedTime && (
+        <meta property="article:published_time" content={seo.publishedTime} />
+      )
+    }
+    {
+      seo.ogType === "article" && seo.author && (
+        <meta property="article:author" content={seo.author} />
+      )
+    }
+
+    {
+      seo.twitter && twitterCardFirst && (
+        <meta name="twitter:card" content={seo.twitter.card} />
+      )
+    }
+    {seo.twitter && seo.socialTitle && <meta name="twitter:title" content={seo.socialTitle} />}
+    {
+      seo.twitter && seo.socialDescription && (
+        <meta name="twitter:description" content={seo.socialDescription} />
+      )
+    }
+    {seo.twitter && seo.image && <meta name="twitter:image" content={seo.image.url} />}
+    {
+      seo.twitter && seo.image?.alt && (
+        <meta name="twitter:image:alt" content={seo.image.alt} />
+      )
+    }
+    {
+      seo.twitter && !twitterCardFirst && (
+        <meta name="twitter:card" content={seo.twitter.card} />
+      )
+    }
+
+    {
+      seo.structuredData?.map((data) => (
+        <script type="application/ld+json" is:inline set:html={serializeStructuredData(data)} />
+      ))
+    }
+
+    {!faviconBeforeMetadata && <link rel="icon" href="/assets/images/favicon.png" />}
+
+    {
+      stylesheets.map((name) => (
+        <link
+          rel="stylesheet"
+          type={stylesheetType ? "text/css" : undefined}
+          href={`/assets/css/${name}.css`}
+        />
+      ))
+    }
+
+    <script
+      defer
+      data-domain="omarchy.org"
+      src="https://plausible.io/js/script.js"
+      is:inline></script>
+  </head>
+
+  <body class={bodyClass}>
+    <slot />
+  </body>
+</html>

@@ -1,0 +1,4 @@
+# Not a workspace: pnpm 11 reads its settings only from this file, and esbuild
+# (an Astro dependency) needs its install script approved or the build fails.
+allowBuilds:
+  esbuild: true

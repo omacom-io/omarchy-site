@@ -1,0 +1,43 @@
+---
+import Pre from "@/components/Pre.astro";
+import Layout from "@/layouts/Layout.astro";
+import type { SeoMeta } from "@/lib/seo";
+
+interface Props {
+  seo: SeoMeta;
+  /** Article pages get the article og:type, the compact banner and no header. */
+  article?: boolean;
+  publishedAt?: string;
+}
+
+const {
+  seo,
+  article = false,
+} = Astro.props;
+const fontPreloads = ["/assets/fonts/JetBrainsMono-Regular.woff2"];
+---
+
+<Layout
+  seo={seo}
+  bodyClass="news-body"
+  fontPreloads={fontPreloads}
+  baseStyles={["reset", "root", "fonts"]}
+  styles={["header", "pre", "news"]}
+  faviconBeforeMetadata
+  stylesheetType={false}
+  twitterCardFirst
+>
+  <Pre class={article ? "pre pre--news" : "pre"} />
+
+  {
+    !article && (
+      <header class="header">
+        <h1>Announcements, releases, and other news</h1>
+      </header>
+    )
+  }
+
+  <main class="news-page">
+    <slot />
+  </main>
+</Layout>

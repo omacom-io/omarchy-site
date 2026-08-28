@@ -1,0 +1,35 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Pre from "@/components/Pre.astro";
+import { pageSeo } from "@/lib/seo";
+
+const seo = pageSeo(Astro, {
+  title: "Runs great on ancient hardware — Omarchy",
+  description: "Runs great on ancient hardware.",
+  socialTitle: "Runs great on ancient hardware",
+  image: "/assets/images/social/potato.png",
+});
+---
+
+<Layout
+  seo={seo}
+  fontPreloads={[]}
+  styles={["header", "main", "pre", "video"]}
+>
+  <Pre />
+
+  <header class="header">
+    <h1>Runs great on ancient hardware</h1>
+  </header>
+
+  <main class="main">
+    <div class="video">
+      <iframe
+        title="Omarchy running on 2011 X220 2GB RAM (with room to spare)"
+        src="https://www.youtube-nocookie.com/embed/jgSjG0IYw4o"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerpolicy="strict-origin-when-cross-origin"
+        allowfullscreen></iframe>
+    </div>
+  </main>
+</Layout>
