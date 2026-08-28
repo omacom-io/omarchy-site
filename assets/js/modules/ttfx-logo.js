@@ -438,8 +438,11 @@ async function ready() {
 
   try {
 
+    // fonts.ready would block on every face the page loads, not just this one.
+    var fallbackStyle = window.getComputedStyle(fallback);
+
     await Promise.all([
-      document.fonts.ready,
+      document.fonts.load(`${fallbackStyle.fontWeight} ${fallbackStyle.fontSize} ${fallbackStyle.fontFamily}`).catch(() => {}),
       initTtfx(),
     ]);
 

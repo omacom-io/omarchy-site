@@ -37,6 +37,12 @@
     <link rel="stylesheet" type="text/css" href="/assets/css/video.css">
     <link rel="stylesheet" type="text/css" href="/assets/css/workstations.css">
 
+    <!-- A dynamic import cannot start these during parse; media= keeps
+         reduced-motion visitors from fetching them at all. -->
+    <link rel="modulepreload" href="/assets/js/modules/ttfx-logo.js" media="(prefers-reduced-motion: no-preference)">
+    <link rel="modulepreload" href="/assets/js/vendor/ttfx/ttfx-wasm.js" media="(prefers-reduced-motion: no-preference)">
+    <link rel="preload" href="/assets/js/vendor/ttfx/ttfx_bg.wasm" as="fetch" type="application/wasm" crossorigin media="(prefers-reduced-motion: no-preference)">
+
     <!-- Hides the static logo before the body paints. The timeout is the only
          safety net when script.js never runs at all, so it has to live in a
          classic script: no module support, no dynamic import, failed fetch. -->

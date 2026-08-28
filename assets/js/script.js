@@ -13,22 +13,23 @@ function revealTtfxFallback() {
 
 }
 
+// Deferred module, so the document is already parsed.
+if(animateTtfx) {
+
+  import('./modules/ttfx-logo.js')
+    .then(module => module.ready())
+    .then(() => window.clearTimeout(window.ttfxRevealTimer))
+    .catch(error => {
+
+      revealTtfxFallback();
+      console.error('Unable to load the Omarchy logo effect.', error);
+
+    });
+
+}
+
 document.addEventListener('DOMContentLoaded', () => {
 
   workstations.ready();
-
-  if(animateTtfx) {
-
-    import('./modules/ttfx-logo.js')
-      .then(module => module.ready())
-      .then(() => window.clearTimeout(window.ttfxRevealTimer))
-      .catch(error => {
-
-        revealTtfxFallback();
-        console.error('Unable to load the Omarchy logo effect.', error);
-
-      });
-
-  }
 
 });
