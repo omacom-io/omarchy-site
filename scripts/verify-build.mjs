@@ -25,6 +25,8 @@ const requiredFiles = [
   "server/index.html",
   "teams/index.html",
   "sponsorships/index.html",
+  "air/index.html",
+  "assets/css/air.css",
   "install",
   "install-dev",
   "install-rc",
@@ -41,10 +43,7 @@ const byteIdentical = [
   ["public/upgrade-to-quattro", "upgrade-to-quattro"],
   ["public/upgrade-to-quattro-dev", "upgrade-to-quattro-dev"],
   ["public/patch/pin-abseil-cpp", "patch/pin-abseil-cpp"],
-  [
-    "content/news/2026/09/core-team.webp",
-    "news/2026/09/the-omarchy-core-team/core-team.webp",
-  ],
+  ["public/assets/css/air.css", "assets/css/air.css"],
   ["public/manual/images/install-config.webp", "manual/images/install-config.webp"],
   ["public/manual/images/tokyo-night-preview.webp", "manual/images/tokyo-night-preview.webp"],
   [
@@ -110,6 +109,23 @@ function allFiles(dir) {
   });
 }
 
+// Every /assets/… path an Astro page references, so a page's own images are
+// checked without listing them here.
+function assetsReferencedBy(sourcePath) {
+  const source = readFileSync(join(ROOT, sourcePath), "utf8");
+  return [...new Set(source.match(/\/assets\/[\w./-]+\.\w+/g) ?? [])];
+}
+
+function verifyPageAssets(sourcePath) {
+  for (const asset of assetsReferencedBy(sourcePath)) {
+    const publicPath = join("public", asset);
+    if (!statSync(join(ROOT, publicPath), { throwIfNoEntry: false })?.isFile()) {
+      throw new Error(`${sourcePath} references ${asset}, but no such file sits in public/`);
+    }
+    byteIdentical.push([publicPath, asset.slice(1)]);
+  }
+}
+
 function verifyNewsRoutes() {
   const contentRoot = join(ROOT, "content/news");
 
@@ -119,7 +135,20 @@ function verifyNewsRoutes() {
     const postId = relative(contentRoot, sourcePath).split(sep).join("/");
     if (!/^\d{4}\/\d{2}\/[^/]+\.md$/.test(postId)) continue;
 
-    file(`news/${postId.slice(0, -3)}/index.html`);
+    const post = postId.slice(0, -3);
+    file(`news/${post}/index.html`);
+
+    // Images a post links to are published beside it by
+    // scripts/sync-news-assets.mjs, from the file kept next to the Markdown.
+    const prefix = `/news/${post}/`;
+    for (const [, url] of readFileSync(sourcePath, "utf8").matchAll(/\]\(([^)\s]+)/g)) {
+      if (!url.startsWith(prefix)) continue;
+      const asset = url.slice(prefix.length);
+      byteIdentical.push([
+        relative(ROOT, join(contentRoot, postId, "..", asset)),
+        `news/${post}/${asset}`,
+      ]);
+    }
   }
 
   file("news/index.html");
@@ -150,6 +179,13 @@ for (const path of requiredFiles) file(path);
 
 verifyNewsRoutes();
 verifyManualRoutes();
+
+// Pages that render an image per data entry: every preview and avatar they name
+// has to have shipped, however many there are.
+verifyPageAssets("src/lib/themes.ts");
+verifyPageAssets("src/pages/teams/index.astro");
+verifyPageAssets("src/pages/air/index.astro");
+verifyPageAssets("src/pages/patrons/index.astro");
 
 const indexPages = allFiles(DIST).filter((path) => path.endsWith("/index.html"));
 

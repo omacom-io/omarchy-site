@@ -2,7 +2,7 @@
 title: The Omarchy Core Team
 date: 2026-08-19
 author: DHH
-author_url: https://x.com/dhh
+author_url: https://dhh.dk
 ---
 
 Omarchy's explosive growth demands structured teams in response, and we're going to get started by incorporating The Omarchy Core Team. This group will share the responsibility of driving the direction of our distro, ensuring we continue to push forward, and assisting other contributors.

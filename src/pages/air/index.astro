@@ -1,0 +1,111 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Pre from "@/components/Pre.astro";
+---
+
+<Layout
+  title="Omarchy AIR — Artist In Residence"
+  description="A six-month residency for artists working on themes, plugins, and everything else that makes Omarchy beautiful."
+  canonical="https://omarchy.org/air"
+  ogTitle="Omarchy AIR"
+  ogImage="https://omarchy.org/assets/images/social/air.png"
+  ogImageWidth="2400"
+  ogImageHeight="1260"
+  ogImageAlt="Omarchy logo"
+  ogUrl="https://omarchy.org/air"
+  fontPreloads={[]}
+  styles={["header", "main", "pre", "air"]}
+>
+  <Pre />
+
+  <header class="header">
+    <h1>Artists in Residence</h1>
+  </header>
+
+  <main class="main">
+    <div class="air">
+      <p class="air__lede">
+        A six-month residency for artists who make Omarchy beautiful. Themes,
+        plugins, and whatever else. The point is to let creativity flow with the
+        support of the Omacom Foundation. Up to three seats at any one time.
+      </p>
+
+      <section class="air__section">
+        <h2>The first residents</h2>
+
+        <article class="resident">
+          <img
+            class="resident__avatar"
+            src="/assets/images/air/hancore.webp"
+            width="240"
+            height="240"
+            alt="HANCORE"
+            loading="lazy"
+            decoding="async"
+          />
+          <h3 class="resident__name">
+            <a href="https://github.com/HANCORE-linux">HANCORE</a>
+          </h3>
+          <p>
+            <a href="/manual/themes/">Solitude and Last Horizon</a> both ship with
+            Omarchy, and another twenty of his themes sit on <a href="/themes/"
+              >the extras page</a
+            > &mdash; more than anyone else has contributed: Batou, Oxo Carbon, Velvet
+            Night, Rose of Dune, Shades of Jade, and on it goes. He&rsquo;s a mechanical
+            engineer who became one of the defining aesthetic forces in this community,
+            sits on <a href="/teams/">Omarchy Core</a>, and helps steward <a
+              href="https://omarchyplugins.com/">the plugin ecosystem</a
+            >.
+          </p>
+        </article>
+
+        <article class="resident">
+          <img
+            class="resident__avatar"
+            src="/assets/images/air/oldjobobo.webp"
+            width="240"
+            height="240"
+            alt="OldJobobo"
+            loading="lazy"
+            decoding="async"
+          />
+          <h3 class="resident__name">
+            <a href="https://github.com/OldJobobo">OldJobobo</a>
+          </h3>
+          <p>
+            Three of the themes that ship with Omarchy are his &mdash; <a
+              href="/manual/themes/">Lumon, Miasma, and Retro 82</a
+            > &mdash; and another ten sit on <a href="/themes/">the extras page</a
+            >, from Batman to City-783 to Sakura Mochi. He works in whole palettes
+            rather than one-off colour schemes, which is why his themes hold together
+            across the terminal, Neovim, btop, and the shell instead of just looking
+            good in a screenshot.
+          </p>
+        </article>
+
+        <p class="air__note">Last seat by invitation</p>
+      </section>
+
+      <section class="air__section">
+        <h2>What it comes with</h2>
+
+        <ul class="air__perks">
+          <li>
+            <span><strong>$2,500/month</strong> for the full six months.</span>
+          </li>
+          <li>
+            <span
+              ><strong>Token account</strong> so the agents never need to stop.</span
+            >
+          </li>
+          <li>
+            <span
+              ><strong>Permanent recognition</strong> as AIR alumni when six months
+              are up.</span
+            >
+          </li>
+        </ul>
+      </section>
+    </div>
+  </main>
+</Layout>

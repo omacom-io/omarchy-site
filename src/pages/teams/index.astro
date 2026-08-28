@@ -3,7 +3,7 @@ import Layout from "@/layouts/Layout.astro";
 import Pre from "@/components/Pre.astro";
 import TeamMembers, { type Member } from "@/components/TeamMembers.astro";
 
-const members: Record<"core" | "security", Member[]> = {
+const members: Record<"core" | "security" | "rangers", Member[]> = {
   core: [
     {
       name: "DHH",
@@ -68,6 +68,12 @@ const members: Record<"core" | "security", Member[]> = {
       location: "Bangladesh",
     },
     {
+      name: "Sebastian Stange",
+      url: "https://x.com/bastidotnet",
+      avatar: "/assets/images/team/sebastian-stange.webp",
+      location: "Germany",
+    },
+    {
       name: "Ryan Hughes",
       url: "https://x.com/ryanrhughes",
       avatar: "/assets/images/team/ryan-hughes.webp",
@@ -78,6 +84,26 @@ const members: Record<"core" | "security", Member[]> = {
       url: "https://dhh.dk",
       avatar: "/assets/images/team/dhh.webp",
       location: "USA/Denmark",
+    },
+  ],
+  rangers: [
+    {
+      name: "Mihai",
+      url: "https://x.com/SandorhaziM",
+      avatar: "/assets/images/team/mihai.webp",
+      location: "Romania",
+    },
+    {
+      name: "Mateo Vaz",
+      url: "https://x.com/Mateo_VX",
+      avatar: "/assets/images/team/mateo-vaz.webp",
+      location: "Uruguay",
+    },
+    {
+      name: "Nira",
+      url: "https://x.com/niraletter",
+      avatar: "/assets/images/team/nira.webp",
+      location: "Nepal",
     },
   ],
 };
@@ -132,7 +158,13 @@ const members: Record<"core" | "security", Member[]> = {
           <p class="team__description">Helping others find their way</p>
         </header>
 
-        <p class="team__note">Details coming soon</p>
+        <TeamMembers members={members.rangers} />
+
+        <p class="team__note">
+          Want to help? Apply to <a href="mailto:rangers@omarchy.org"
+            >rangers@omarchy.org</a
+          >
+        </p>
       </section>
     </div>
   </main>

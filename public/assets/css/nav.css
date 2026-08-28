@@ -1,23 +1,34 @@
+/* One flex context for every button, so a row that can't fit them all spills
+   evenly. With a container per group, each group wrapped on its own and left a
+   single button stranded on a line of its own — 4, 1, 4, 1, 3 on a phone. */
 .nav {
-  display: grid;
+  display: flex;
+  flex-wrap: wrap;
   gap: var(--space-medium);
+  justify-content: center;
   margin-top: var(--space-large);
   padding-inline: var(--space-large);
 }
 
 .nav__buttons {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-medium);
-  justify-content: center;
+  display: contents;
 }
 
 
 
 @media(min-width: 64em) {
 
+  /* Wide enough for the groups to sit on their own lines as intended. */
   .nav {
+    display: grid;
     padding-inline: var(--space-xx-large);
+  }
+
+  .nav__buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-medium);
+    justify-content: center;
   }
 
 }
