@@ -375,7 +375,10 @@ class LogoEffect {
       if(advanced < frameCount) {
 
         paintFrame(this.metrics, this.frame, timestamp);
-        this.repeatTimer = window.setTimeout(() => {
+
+        // setPaused(false) re-enters tick after the effect has finished, so a
+        // second timer here would orphan the first one's id.
+        if(!this.repeatTimer) this.repeatTimer = window.setTimeout(() => {
 
           this.repeatTimer = 0;
           this.restart();
