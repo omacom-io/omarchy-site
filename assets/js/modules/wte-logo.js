@@ -4,7 +4,7 @@
 // /builds/latest/ path currently serves the player HTML).
 
 const WTE_CANVAS_URL = 'https://wte.csfh.dev/wte-canvas.js';
-const EFFECT = 'decrypt';
+const EFFECT = 'laseretch';
 const ART_COLUMNS = 81;
 const ART_ROWS = 10;
 const CELL_ASPECT = 2;
