@@ -1,0 +1,59 @@
+/* The artwork's vignette bottoms out at rgb(12 14 26) on all four edges, so the
+   page is painted that colour and the image's outermost pixels are dissolved
+   into it — otherwise the artwork reads as a dark rectangle on the site's
+   lighter night blue. */
+
+.server-body {
+  background: #0c0e1a;
+}
+
+.server {
+  justify-self: center;
+  max-width: 64em;
+  padding-inline: var(--space-large);
+  width: 100%;
+}
+
+.server a {
+  display: block;
+}
+
+.server img {
+  -webkit-mask-composite: source-in;
+  mask-composite: intersect;
+  mask-image:
+    linear-gradient(to right, transparent, #000 min(2.5rem, 6%), #000 calc(100% - min(2.5rem, 6%)), transparent),
+    linear-gradient(to bottom, transparent, #000 min(2.5rem, 6%), #000 calc(100% - min(2.5rem, 6%)), transparent);
+}
+
+/* Reads as part of the artwork rather than HTML pasted underneath it: the same
+   silver-chrome ramp as the logo's lettering, lit by the blue the glow is made
+   of. The negative margin pulls it up into the empty vignette below "Server
+   4.0". drop-shadow rather than text-shadow, so the glow sits behind the
+   gradient-filled glyphs instead of bleeding through them. */
+.server__coming {
+  color: #dbe3fb;
+  filter:
+    drop-shadow(0 0 0.35em rgba(var(--rgb-terminal-blue), 0.85))
+    drop-shadow(0 0 1.2em rgba(var(--rgb-terminal-blue), 0.5))
+  ;
+  font-family: var(--font-family);
+  font-size: var(--font-size-medium);
+  font-weight: 500;
+  letter-spacing: 0.5em;
+  margin-top: -1.5em;
+  text-align: center;
+  text-indent: 0.5em;
+  text-transform: uppercase;
+}
+
+@supports (background-clip: text) or (-webkit-background-clip: text) {
+
+  .server__coming {
+    -webkit-background-clip: text;
+    background-clip: text;
+    background-image: linear-gradient(to bottom, #ffffff 0%, #dae2f7 38%, #93a2c9 56%, #f4f8ff 100%);
+    color: transparent;
+  }
+
+}
