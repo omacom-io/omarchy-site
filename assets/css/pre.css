@@ -29,7 +29,7 @@ html.wte-home .pre__wte {
   position: absolute;
 }
 
-html.wte-home .pre wte-canvas {
+html.wte-home .pre__wte canvas {
   background: transparent;
   display: block;
   min-height: 0;

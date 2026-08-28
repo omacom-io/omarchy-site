@@ -1,11 +1,11 @@
-// Upgrade the homepage ASCII mark to a Web Text Effects canvas. The <pre>
-// stays in the document as the layout size and as the fallback. index.html
-// adds .wte-home before first paint so the green mark stays hidden while
-// the skin loads. wte.csfh.dev has no npm package; /wte-canvas.js is the
-// published web component (the /builds/latest/ path currently serves the
-// player HTML).
+// Play the homepage ASCII mark once with Web Text Effects laseretch.
+// <wte-canvas> always loops. Playback's onFinished control holds the last
+// frame instead. The <pre> stays as the layout size and as the fallback.
+// index.html adds .wte-home before first paint so the green mark stays
+// hidden while the skin loads.
 
-const WTE_CANVAS_URL = 'https://wte.csfh.dev/wte-canvas.js';
+const WTE_CANVAS_URL = 'https://wte.csfh.dev/builds/latest/wte-canvas.js';
+const WTE_WASM_URL = 'https://wte.csfh.dev/ttfx/0.3.2/ttfx.wasm';
 const EFFECT = 'laseretch';
 const ART_COLUMNS = 81;
 const ART_ROWS = 10;
@@ -51,6 +51,30 @@ function fitCanvas(canvas, host) {
   canvas.style.transform = `scale(${box.width / nativeWidth}, ${box.height / nativeHeight})`;
 }
 
+async function loadCanvasPlayback() {
+  const response = await fetch(WTE_CANVAS_URL);
+  if (!response.ok) {
+    throw new Error(`wte-canvas ${response.status}`);
+  }
+  const source = await response.text();
+  const spec = source.match(/from["'](\.\/assets\/playback-[A-Za-z0-9_-]+\.js)["']/);
+  if (spec == null) {
+    throw new Error('wte playback module not found');
+  }
+  const mod = await import(new URL(spec[1], response.url).href);
+  for (const value of Object.values(mod)) {
+    if (
+      typeof value === 'function' &&
+      value.prototype != null &&
+      typeof value.prototype.restart === 'function' &&
+      typeof value.prototype.stop === 'function'
+    ) {
+      return value;
+    }
+  }
+  throw new Error('CanvasPlayback not found');
+}
+
 function ready() {
   if (prefersReducedMotion()) return;
   if (window.location.pathname !== '/') return;
@@ -66,8 +90,8 @@ function ready() {
   }
 
   afterFonts()
-    .then(() => import(WTE_CANVAS_URL))
-    .then(() => {
+    .then(() => loadCanvasPlayback())
+    .then((CanvasPlayback) => {
       const box = pre.getBoundingClientRect();
       if (box.width < 8 || box.height < 8) {
         markStatic();
@@ -77,22 +101,35 @@ function ready() {
       const holder = document.createElement('span');
       holder.className = 'pre__wte';
 
-      const canvas = document.createElement('wte-canvas');
-      canvas.setAttribute('effect', EFFECT);
-      canvas.setAttribute('input', input);
+      const canvas = document.createElement('canvas');
       canvas.setAttribute('aria-hidden', 'true');
+      fitCanvas(canvas, pre);
+
+      const playback = new CanvasPlayback({
+        canvas,
+        width: () => canvas.clientWidth,
+        height: () => canvas.clientHeight,
+        connected: () => canvas.isConnected,
+        input: () => input,
+        effect: () => EFFECT,
+        wasmUrl: () => WTE_WASM_URL,
+        onFinished: () => {
+          canvas.dataset.wteFinished = '1';
+        },
+      });
 
       const onError = (event) => {
         const message = String(event.message ?? event.error ?? '');
         if (!/memory access out of bounds|RuntimeError/i.test(message)) return;
         window.removeEventListener('error', onError);
+        playback.stop();
         markStatic();
       };
       window.addEventListener('error', onError);
 
-      fitCanvas(canvas, pre);
       holder.append(canvas);
       link.append(holder);
+      void playback.restart();
     })
     .catch(() => {
       markStatic();
