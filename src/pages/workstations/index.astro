@@ -2,15 +2,23 @@
 import Pre from "@/components/Pre.astro";
 import Layout from "@/layouts/Layout.astro";
 import { workstationImages } from "@/lib/workstations";
+import type { SeoMeta } from "@/lib/seo";
+
+const seo = {
+  title: "Omarchy — Beautiful, Modern & Opinionated Linux by DHH",
+  description: "Beautiful, Modern & Opinionated Linux by DHH",
+  ogSiteName: "Omarchy",
+  socialTitle: "Omarchy",
+  socialDescription: "Beautiful, Modern & Opinionated Linux by DHH",
+  image: { url: "https://omarchy.org/assets/images/opengraph.png", alt: "Omarchy" },
+  ogUrl: "https://omarchy.org",
+  ogType: "website",
+  twitter: { card: "summary_large_image" },
+} satisfies SeoMeta;
 ---
 
 <Layout
-  title="Omarchy — Beautiful, Modern & Opinionated Linux by DHH"
-  description="Beautiful, Modern & Opinionated Linux by DHH"
-  ogTitle="Omarchy"
-  ogImage="https://omarchy.org/assets/images/opengraph.png"
-  ogImageAlt="Omarchy"
-  ogUrl="https://omarchy.org"
+  seo={seo}
   fontPreloads={[]}
   styles={[
     "button",

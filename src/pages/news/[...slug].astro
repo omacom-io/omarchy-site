@@ -2,13 +2,13 @@
 import type { GetStaticPaths } from "astro";
 import NewsMeta from "@/components/NewsMeta.astro";
 import NewsLayout from "@/layouts/NewsLayout.astro";
+import { blogPostingStructuredData, currentPageUrl } from "@/lib/seo";
 import {
   date,
   description,
   html,
   isoDate,
   newsPosts,
-  postPath,
   title,
   type Post,
 } from "@/lib/news";
@@ -21,42 +21,41 @@ export const getStaticPaths = (async () => {
 const { post } = Astro.props as { post: Post };
 const { author, author_url } = post.data;
 
-const canonicalUrl = `https://omarchy.org${postPath(post)}`;
+const canonicalUrl = currentPageUrl(Astro);
 const heading = title(post);
 const publishedAt = isoDate(date(post));
 const summary = description(post);
 ---
 
 <NewsLayout
-  pageTitle={`${heading} — Omarchy News`}
-  socialTitle={heading}
-  description={summary}
-  author={author}
-  canonicalUrl={canonicalUrl}
-  article
-  publishedAt={publishedAt}
-  jsonLd={{
-    "@context": "https://schema.org",
-    "@type": "BlogPosting",
-    headline: heading,
+  seo={{
+    title: `${heading} — Omarchy News`,
     description: summary,
-    datePublished: publishedAt,
-    author: {
-      "@type": author_url ? "Person" : "Organization",
-      name: author,
-      ...(author_url ? { url: author_url } : {}),
+    canonicalUrl,
+    ogSiteName: "Omarchy News",
+    socialTitle: heading,
+    socialDescription: summary,
+    image: {
+      url: "https://omarchy.org/assets/images/social.png",
+      width: "600",
+      height: "600",
+      alt: "Omarchy logo",
     },
-    publisher: {
-      "@type": "Organization",
-      name: "Omarchy",
-      logo: {
-        "@type": "ImageObject",
-        url: "https://omarchy.org/assets/images/favicon.png",
-      },
-    },
-    image: "https://omarchy.org/assets/images/favicon.png",
-    mainEntityOfPage: canonicalUrl,
+    ogUrl: canonicalUrl,
+    ogType: "article",
+    twitter: { card: "summary" },
+    author,
+    publishedTime: publishedAt,
+    structuredData: [blogPostingStructuredData({
+      headline: heading,
+      description: summary,
+      datePublished: publishedAt,
+      author,
+      authorUrl: author_url,
+      canonicalUrl,
+    })],
   }}
+  article
 >
   <article class="news-post">
     <header class="news-post__header">

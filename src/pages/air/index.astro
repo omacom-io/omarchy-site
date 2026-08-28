@@ -1,18 +1,18 @@
 ---
 import Layout from "@/layouts/Layout.astro";
 import Pre from "@/components/Pre.astro";
+import { pageSeo } from "@/lib/seo";
+
+const seo = pageSeo(Astro, {
+  title: "Omarchy AIR — Artist In Residence",
+  description: "A six-month residency for artists working on themes, plugins, and everything else that makes Omarchy beautiful.",
+  socialTitle: "Omarchy AIR",
+  image: "/assets/images/social/air.png",
+});
 ---
 
 <Layout
-  title="Omarchy AIR — Artist In Residence"
-  description="A six-month residency for artists working on themes, plugins, and everything else that makes Omarchy beautiful."
-  canonical="https://omarchy.org/air"
-  ogTitle="Omarchy AIR"
-  ogImage="https://omarchy.org/assets/images/social/air.png"
-  ogImageWidth="2400"
-  ogImageHeight="1260"
-  ogImageAlt="Omarchy logo"
-  ogUrl="https://omarchy.org/air"
+  seo={seo}
   fontPreloads={[]}
   styles={["header", "main", "pre", "air"]}
 >

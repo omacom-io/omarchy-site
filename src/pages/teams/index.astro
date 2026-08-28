@@ -2,6 +2,7 @@
 import Layout from "@/layouts/Layout.astro";
 import Pre from "@/components/Pre.astro";
 import TeamMembers, { type Member } from "@/components/TeamMembers.astro";
+import { pageSeo } from "@/lib/seo";
 
 const members: Record<"core" | "security" | "rangers", Member[]> = {
   core: [
@@ -107,18 +108,17 @@ const members: Record<"core" | "security" | "rangers", Member[]> = {
     },
   ],
 };
+
+const seo = pageSeo(Astro, {
+  title: "Omarchy — The Teams",
+  description: "The teams guiding Omarchy.",
+  socialTitle: "The Omarchy Teams",
+  image: "/assets/images/social/teams.png",
+});
 ---
 
 <Layout
-  title="Omarchy — The Teams"
-  description="The teams guiding Omarchy."
-  canonical="https://omarchy.org/teams"
-  ogTitle="The Omarchy Teams"
-  ogImage="https://omarchy.org/assets/images/social/teams.png"
-  ogImageWidth="2400"
-  ogImageHeight="1260"
-  ogImageAlt="Omarchy logo"
-  ogUrl="https://omarchy.org/teams"
+  seo={seo}
   fontPreloads={[]}
   styles={["header", "main", "pre", "teams"]}
 >

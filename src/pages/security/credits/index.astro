@@ -1,19 +1,18 @@
 ---
 import Layout from "@/layouts/Layout.astro";
 import Pre from "@/components/Pre.astro";
+import { pageSeo } from "@/lib/seo";
+
+const seo = pageSeo(Astro, {
+  title: "Security Credits — Omarchy",
+  description: "Thanking the people who reported security issues in Omarchy privately, and gave us the chance to fix them.",
+  socialTitle: "Security Credits",
+  image: "/assets/images/social/security-credits.png",
+});
 ---
 
 <Layout
-  title="Security Credits — Omarchy"
-  description="Thanking the people who reported security issues in Omarchy privately, and gave us the chance to fix them."
-  canonical="https://omarchy.org/security/credits"
-  ogTitle="Security Credits"
-  ogDescription="Thanking the people who reported security issues in Omarchy privately, and gave us the chance to fix them."
-  ogImage="https://omarchy.org/assets/images/social/security-credits.png"
-  ogImageWidth="2400"
-  ogImageHeight="1260"
-  ogImageAlt="Omarchy logo"
-  ogUrl="https://omarchy.org/security/credits"
+  seo={seo}
   fontPreloads={[]}
   styles={["header", "main", "pre", "teams"]}
 >

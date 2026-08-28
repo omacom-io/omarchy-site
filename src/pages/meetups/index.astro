@@ -2,18 +2,18 @@
 import Layout from "@/layouts/Layout.astro";
 import Pre from "@/components/Pre.astro";
 import LumaIcon from "@/components/icons/LumaIcon.astro";
+import { pageSeo } from "@/lib/seo";
+
+const seo = pageSeo(Astro, {
+  title: "Meetups — Omarchy",
+  description: "Omarchy meetups around the world, and the short list of guidelines for running one.",
+  socialTitle: "Omarchy meetups",
+  image: "/assets/images/social/meetups.png",
+});
 ---
 
 <Layout
-  title="Meetups — Omarchy"
-  description="Omarchy meetups around the world, and the short list of guidelines for running one."
-  canonical="https://omarchy.org/meetups"
-  ogTitle="Omarchy meetups"
-  ogImage="https://omarchy.org/assets/images/social/meetups.png"
-  ogImageWidth="2400"
-  ogImageHeight="1260"
-  ogImageAlt="Omarchy logo"
-  ogUrl="https://omarchy.org/meetups"
+  seo={seo}
   fontPreloads={[]}
   styles={["button", "header", "main", "pre", "meetups"]}
 >

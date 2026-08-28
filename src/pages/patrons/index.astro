@@ -1,6 +1,7 @@
 ---
 import Layout from "@/layouts/Layout.astro";
 import Pre from "@/components/Pre.astro";
+import { pageSeo } from "@/lib/seo";
 
 const members = [
   {
@@ -74,18 +75,17 @@ const members = [
     metaUrl: "https://37signals.com",
   },
 ];
+
+const seo = pageSeo(Astro, {
+  title: "Omacom Foundation — Omarchy",
+  description: "The foundation funding Omarchy.",
+  socialTitle: "Omacom Foundation",
+  image: "/assets/images/social/patrons.png",
+});
 ---
 
 <Layout
-  title="Omacom Foundation — Omarchy"
-  description="The foundation funding Omarchy."
-  canonical="https://omarchy.org/patrons"
-  ogTitle="Omacom Foundation"
-  ogImage="https://omarchy.org/assets/images/social/patrons.png"
-  ogImageWidth="2400"
-  ogImageHeight="1260"
-  ogImageAlt="Omarchy logo"
-  ogUrl="https://omarchy.org/patrons"
+  seo={seo}
   fontPreloads={[]}
   styles={["header", "main", "pre", "teams"]}
 >

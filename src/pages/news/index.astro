@@ -2,26 +2,40 @@
 import NewsMeta from "@/components/NewsMeta.astro";
 import NewsLayout from "@/layouts/NewsLayout.astro";
 import { date, description, formatDate, newsPosts, postPath, title } from "@/lib/news";
+import { currentPageUrl, type StructuredData } from "@/lib/seo";
 
 const posts = await newsPosts();
-const canonicalUrl = "https://omarchy.org/news";
+const canonicalUrl = currentPageUrl(Astro);
 const indexDescription =
   "Notes on the people, ideas, and releases shaping Omarchy.";
 ---
 
 <NewsLayout
-  pageTitle="Omarchy News"
-  socialTitle="Omarchy News"
-  description={indexDescription}
-  author="Omarchy"
-  canonicalUrl={canonicalUrl}
-  jsonLd={{
+  seo={{
+    title: "Omarchy News",
+    description: indexDescription,
+    canonicalUrl,
+    ogSiteName: "Omarchy News",
+    socialTitle: "Omarchy News",
+    socialDescription: indexDescription,
+    image: {
+      url: "https://omarchy.org/assets/images/social.png",
+      width: "600",
+      height: "600",
+      alt: "Omarchy logo",
+    },
+    ogUrl: canonicalUrl,
+    ogType: "website",
+    twitter: { card: "summary" },
+    author: "Omarchy",
+    structuredData: [{
     "@context": "https://schema.org",
     "@type": "Blog",
     name: "Omarchy News",
     description: indexDescription,
     url: canonicalUrl,
     publisher: { "@type": "Organization", name: "Omarchy" },
+    } satisfies StructuredData],
   }}
 >
   <section class="news-list" aria-label="News posts">

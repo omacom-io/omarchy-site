@@ -2,15 +2,23 @@
 import Pre from "@/components/Pre.astro";
 import Layout from "@/layouts/Layout.astro";
 import { themes } from "@/lib/themes";
+import type { SeoMeta } from "@/lib/seo";
+
+const seo = {
+  title: "Omarchy — The Extra Themes",
+  description: "Community themes for Omarchy — install them straight from the Omarchy menu.",
+  ogSiteName: "Omarchy",
+  socialTitle: "The Extra Themes",
+  socialDescription: "Community themes for Omarchy — install them straight from the Omarchy menu.",
+  image: { url: "https://omarchy.org/assets/images/opengraph.png" },
+  ogUrl: "https://omarchy.org/themes/",
+  ogType: "website",
+  twitter: false,
+} satisfies SeoMeta;
 ---
 
 <Layout
-  title="Omarchy — The Extra Themes"
-  description="Community themes for Omarchy — install them straight from the Omarchy menu."
-  ogTitle="The Extra Themes"
-  ogImage="https://omarchy.org/assets/images/opengraph.png"
-  ogUrl="https://omarchy.org/themes/"
-  twitter={false}
+  seo={seo}
   styles={[
     "footer",
     "header",

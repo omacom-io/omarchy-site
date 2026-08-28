@@ -1,19 +1,18 @@
 ---
 import Layout from "@/layouts/Layout.astro";
 import Pre from "@/components/Pre.astro";
+import { pageSeo } from "@/lib/seo";
+
+const seo = pageSeo(Astro, {
+  title: "Sponsorships — Omarchy",
+  description: "The open-source projects the Omacom Foundation sponsors: Hyprland, Quickshell, and mise.",
+  socialTitle: "Sponsorships",
+  image: "/assets/images/social/sponsorships.png",
+});
 ---
 
 <Layout
-  title="Sponsorships — Omarchy"
-  description="The open-source projects the Omacom Foundation sponsors: Hyprland, Quickshell, and mise."
-  canonical="https://omarchy.org/sponsorships"
-  ogTitle="Sponsorships"
-  ogDescription="The open-source projects the Omacom Foundation sponsors: Hyprland, Quickshell, and mise."
-  ogImage="https://omarchy.org/assets/images/social/sponsorships.png"
-  ogImageWidth="2400"
-  ogImageHeight="1260"
-  ogImageAlt="Omarchy logo"
-  ogUrl="https://omarchy.org/sponsorships"
+  seo={seo}
   fontPreloads={[]}
   styles={["header", "main", "pre", "sponsorships"]}
 >

@@ -1,18 +1,18 @@
 ---
 import Layout from "@/layouts/Layout.astro";
 import Pre from "@/components/Pre.astro";
+import { pageSeo } from "@/lib/seo";
+
+const seo = pageSeo(Astro, {
+  title: "Runs great on ancient hardware — Omarchy",
+  description: "Runs great on ancient hardware.",
+  socialTitle: "Runs great on ancient hardware",
+  image: "/assets/images/social/potato.png",
+});
 ---
 
 <Layout
-  title="Runs great on ancient hardware — Omarchy"
-  description="Runs great on ancient hardware."
-  canonical="https://omarchy.org/potato"
-  ogTitle="Runs great on ancient hardware"
-  ogImage="https://omarchy.org/assets/images/social/potato.png"
-  ogImageWidth="2400"
-  ogImageHeight="1260"
-  ogImageAlt="Omarchy logo"
-  ogUrl="https://omarchy.org/potato"
+  seo={seo}
   fontPreloads={[]}
   styles={["header", "main", "pre", "video"]}
 >

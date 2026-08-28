@@ -1,17 +1,24 @@
 ---
 import Layout from "@/layouts/Layout.astro";
+import { pageSeo } from "@/lib/seo";
+
+const seo = {
+  ...pageSeo(Astro, {
+    title: "Omarchy Server 4.0",
+    description: "Coming 2026",
+    image: "/assets/images/social/server.jpg",
+  }),
+  image: {
+    url: "https://omarchy.org/assets/images/social/server.jpg",
+    width: "2400",
+    height: "1260",
+    alt: "Omarchy Server 4.0",
+  },
+};
 ---
 
 <Layout
-  title="Omarchy Server 4.0"
-  description="Coming 2026"
-  canonical="https://omarchy.org/server"
-  ogTitle="Omarchy Server 4.0"
-  ogImage="https://omarchy.org/assets/images/social/server.jpg"
-  ogImageWidth="2400"
-  ogImageHeight="1260"
-  ogImageAlt="Omarchy Server 4.0"
-  ogUrl="https://omarchy.org/server"
+  seo={seo}
   fontPreloads={[]}
   styles={["main", "server"]}
   bodyClass="server-body"
