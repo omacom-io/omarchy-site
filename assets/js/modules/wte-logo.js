@@ -38,17 +38,41 @@ function afterFonts() {
   ]);
 }
 
-function fitCanvas(canvas, host) {
+function nativeGrid(host) {
   const box = host.getBoundingClientRect();
   const cell = Math.max(
     1,
     Math.floor(Math.min(box.width / ART_COLUMNS, box.height / (ART_ROWS * CELL_ASPECT))),
   );
-  const nativeWidth = cell * ART_COLUMNS;
-  const nativeHeight = cell * ART_ROWS * CELL_ASPECT;
-  canvas.style.width = `${nativeWidth}px`;
-  canvas.style.height = `${nativeHeight}px`;
+  return { width: cell * ART_COLUMNS, height: cell * ART_ROWS * CELL_ASPECT };
+}
+
+function scaleCanvas(canvas, host, nativeWidth, nativeHeight) {
+  const box = host.getBoundingClientRect();
+  if (box.width < 1 || box.height < 1) return;
   canvas.style.transform = `scale(${box.width / nativeWidth}, ${box.height / nativeHeight})`;
+}
+
+function watchSize(target, onChange) {
+  let frame = 0;
+  const schedule = () => {
+    if (frame !== 0) return;
+    frame = requestAnimationFrame(() => {
+      frame = 0;
+      onChange();
+    });
+  };
+  const observer = new ResizeObserver(schedule);
+  observer.observe(target);
+  window.addEventListener('resize', schedule);
+  return () => {
+    if (frame !== 0) {
+      cancelAnimationFrame(frame);
+      frame = 0;
+    }
+    observer.disconnect();
+    window.removeEventListener('resize', schedule);
+  };
 }
 
 async function loadCanvasPlayback() {
@@ -103,12 +127,15 @@ function ready() {
 
       const canvas = document.createElement('canvas');
       canvas.setAttribute('aria-hidden', 'true');
-      fitCanvas(canvas, pre);
+      const native = nativeGrid(pre);
+      canvas.style.width = `${native.width}px`;
+      canvas.style.height = `${native.height}px`;
+      scaleCanvas(canvas, pre, native.width, native.height);
 
       const playback = new CanvasPlayback({
         canvas,
-        width: () => canvas.clientWidth,
-        height: () => canvas.clientHeight,
+        width: () => native.width,
+        height: () => native.height,
         connected: () => canvas.isConnected,
         input: () => input,
         effect: () => EFFECT,
@@ -118,10 +145,15 @@ function ready() {
         },
       });
 
+      const stopWatching = watchSize(pre, () => {
+        scaleCanvas(canvas, pre, native.width, native.height);
+      });
+
       const onError = (event) => {
         const message = String(event.message ?? event.error ?? '');
         if (!/memory access out of bounds|RuntimeError/i.test(message)) return;
         window.removeEventListener('error', onError);
+        stopWatching();
         playback.stop();
         markStatic();
       };
