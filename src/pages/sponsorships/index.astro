@@ -3,6 +3,58 @@ import Layout from "@/layouts/Layout.astro";
 import Pre from "@/components/Pre.astro";
 import { pageSeo } from "@/lib/seo";
 
+type Sponsorship = {
+  id: string;
+  name: string;
+  terms: string;
+  logo: string;
+  body: string;
+  announcementUrl: string;
+  projectName: string;
+  projectUrl: string;
+  authorName: string;
+  authorUrl: string;
+};
+
+const sponsorships = [
+  {
+    id: "hyprland",
+    name: "Hyprland",
+    terms: "Exclusive",
+    logo: "/assets/images/logos/hyprland.svg",
+    body: "The tiling Wayland compositor that has been at the heart of Omarchy since day one, and one of its three core technologies. The sponsorship lets Vaxry work on it without having to think about commercial development or fundraising — and it freed the existing Hyprperks program to be released for everyone, for free. The deal runs three years, with an option for another two, and starts October 10.",
+    announcementUrl: "/news/2026/08/omacom-foundation-to-be-exclusive-hyprland-sponsor",
+    projectName: "Hyprland",
+    projectUrl: "https://hypr.land/",
+    authorName: "Vaxry",
+    authorUrl: "https://x.com/vaxryy",
+  },
+  {
+    id: "quickshell",
+    name: "Quickshell",
+    terms: "Premier",
+    logo: "/assets/images/logos/quickshell.svg",
+    body: "The desktop construction kit the Omarchy shell is built on: one long-running process drawing the bar, the menu, the notifications, the OSDs and the lock screen. It shipped in Quattro, and over a thousand plugins followed in the first week. Termed for three years out the gate.",
+    announcementUrl: "/news/2026/08/omacom-foundation-to-be-premier-quickshell-sponsor",
+    projectName: "Quickshell",
+    projectUrl: "https://quickshell.org/",
+    authorName: "outfoxxed",
+    authorUrl: "https://x.com/outfoxxedd",
+  },
+  {
+    id: "mise",
+    name: "mise",
+    terms: "Premier",
+    logo: "/assets/images/logos/mise.svg",
+    body: "The tool that manages the language runtimes and, just as importantly, ships every coding-agent CLI as a lazy-loading stub. A new harness is one command away instead of a packaging project — which is what keeps Omarchy moving at the pace agent tooling actually ships.",
+    announcementUrl: "/news/2026/08/omacom-foundation-to-be-premier-mise-sponsor",
+    projectName: "mise",
+    projectUrl: "https://mise.jdx.dev/",
+    authorName: "jdx",
+    authorUrl: "https://x.com/jdxcode",
+  },
+] satisfies Sponsorship[];
+
 const seo = pageSeo(Astro, {
   title: "Sponsorships — Omarchy",
   description: "The open-source projects the Omacom Foundation sponsors: Hyprland, Quickshell, and mise.",
@@ -24,100 +76,33 @@ const seo = pageSeo(Astro, {
 
   <main class="main">
     <div class="sponsorships">
-      <section class="sponsorship" id="hyprland">
-        <div class="sponsorship__logo">
-          <a href="https://hypr.land/"
-            ><img
-              src="/assets/images/logos/hyprland.svg"
-              alt="Hyprland"
-              loading="lazy"
-              decoding="async"
-            /></a
-          >
-        </div>
+      {
+        sponsorships.map((sponsorship) => (
+          <section class="sponsorship" id={sponsorship.id}>
+            <div class="sponsorship__logo">
+              <a href={sponsorship.projectUrl}
+                ><img
+                  src={sponsorship.logo}
+                  alt={sponsorship.name}
+                  loading="lazy"
+                  decoding="async"
+                /></a
+              >
+            </div>
 
-        <h2 class="sponsorship__name">Hyprland</h2>
-        <p class="sponsorship__terms">Exclusive</p>
+            <h2 class="sponsorship__name">{sponsorship.name}</h2>
+            <p class="sponsorship__terms">{sponsorship.terms}</p>
 
-        <p class="sponsorship__body">
-          The tiling Wayland compositor that has been at the heart of Omarchy
-          since day one, and one of its three core technologies. The sponsorship
-          lets Vaxry work on it without having to think about commercial
-          development or fundraising — and it freed the existing Hyprperks
-          program to be released for everyone, for free. The deal runs three
-          years, with an option for another two, and starts October 10.
-        </p>
+            <p class="sponsorship__body">{sponsorship.body}</p>
 
-        <p>
-          <a
-            href="/news/2026/08/omacom-foundation-to-be-exclusive-hyprland-sponsor"
-            >Read the announcement</a
-          > &middot; <a href="https://hypr.land/">Hyprland</a> by <a
-            href="https://x.com/vaxryy">Vaxry</a>
-        </p>
-      </section>
-
-      <section class="sponsorship" id="quickshell">
-        <div class="sponsorship__logo">
-          <a href="https://quickshell.org/"
-            ><img
-              src="/assets/images/logos/quickshell.svg"
-              alt="Quickshell"
-              loading="lazy"
-              decoding="async"
-            /></a
-          >
-        </div>
-
-        <h2 class="sponsorship__name">Quickshell</h2>
-        <p class="sponsorship__terms">Premier</p>
-
-        <p class="sponsorship__body">
-          The desktop construction kit the Omarchy shell is built on: one
-          long-running process drawing the bar, the menu, the notifications, the
-          OSDs and the lock screen. It shipped in Quattro, and over a thousand
-          plugins followed in the first week. Termed for three years out the
-          gate.
-        </p>
-
-        <p>
-          <a
-            href="/news/2026/08/omacom-foundation-to-be-premier-quickshell-sponsor"
-            >Read the announcement</a
-          > &middot; <a href="https://quickshell.org/">Quickshell</a> by <a
-            href="https://x.com/outfoxxedd">outfoxxed</a>
-        </p>
-      </section>
-
-      <section class="sponsorship" id="mise">
-        <div class="sponsorship__logo">
-          <a href="https://mise.jdx.dev/"
-            ><img
-              src="/assets/images/logos/mise.svg"
-              alt="mise"
-              loading="lazy"
-              decoding="async"
-            /></a
-          >
-        </div>
-
-        <h2 class="sponsorship__name">mise</h2>
-        <p class="sponsorship__terms">Premier</p>
-
-        <p class="sponsorship__body">
-          The tool that manages the language runtimes and, just as importantly,
-          ships every coding-agent CLI as a lazy-loading stub. A new harness is
-          one command away instead of a packaging project — which is what keeps
-          Omarchy moving at the pace agent tooling actually ships.
-        </p>
-
-        <p>
-          <a href="/news/2026/08/omacom-foundation-to-be-premier-mise-sponsor"
-            >Read the announcement</a
-          > &middot; <a href="https://mise.jdx.dev/">mise</a> by <a
-            href="https://x.com/jdxcode">jdx</a>
-        </p>
-      </section>
+            <p>
+              <a href={sponsorship.announcementUrl}>Read the announcement</a>{" "}
+              &middot;{" "}<a href={sponsorship.projectUrl}>{sponsorship.projectName}</a> by <a
+                href={sponsorship.authorUrl}>{sponsorship.authorName}</a>
+            </p>
+          </section>
+        ))
+      }
     </div>
   </main>
 </Layout>

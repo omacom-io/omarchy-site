@@ -3,6 +3,14 @@ import Layout from "@/layouts/Layout.astro";
 import Pre from "@/components/Pre.astro";
 import { pageSeo } from "@/lib/seo";
 
+type Patron = {
+  name: string;
+  twitter: string;
+  avatar: string;
+  meta: string;
+  metaUrl: string;
+};
+
 const members = [
   {
     name: "Tobi Lütke",
@@ -74,7 +82,7 @@ const members = [
     meta: "37signals",
     metaUrl: "https://37signals.com",
   },
-];
+] satisfies Patron[];
 
 const seo = pageSeo(Astro, {
   title: "Omacom Foundation — Omarchy",

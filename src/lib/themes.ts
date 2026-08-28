@@ -5,7 +5,7 @@ export interface Theme {
 }
 
 // Keep this order aligned with the legacy themes catalog.
-export const themes: Theme[] = [
+export const themes = [
   { name: "Aetheria", url: "https://github.com/JJDizz1L/aetheria", image: "/assets/themes/aetheria.webp" },
   { name: "Amberbyte", url: "https://github.com/tahfizhabib/omarchy-amberbyte-theme", image: "/assets/themes/amberbyte.webp" },
   { name: "Arc Blueberry", url: "https://github.com/vale-c/omarchy-arc-blueberry", image: "/assets/themes/arc-blueberry.webp" },
@@ -141,4 +141,4 @@ export const themes: Theme[] = [
   { name: "Vesper", url: "https://github.com/thmoee/omarchy-vesper-theme", image: "/assets/themes/vesper.webp" },
   { name: "VHS 80", url: "https://github.com/tahayvr/omarchy-vhs80-theme", image: "/assets/themes/vhs-80.webp" },
   { name: "Void", url: "https://github.com/vyrx-dev/omarchy-void-theme", image: "/assets/themes/void.webp" },
-];
+] satisfies Theme[];

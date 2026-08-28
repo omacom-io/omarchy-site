@@ -4,7 +4,7 @@ import Pre from "@/components/Pre.astro";
 import TeamMembers, { type Member } from "@/components/TeamMembers.astro";
 import { pageSeo } from "@/lib/seo";
 
-const members: Record<"core" | "security" | "rangers", Member[]> = {
+const members = {
   core: [
     {
       name: "DHH",
@@ -107,7 +107,7 @@ const members: Record<"core" | "security" | "rangers", Member[]> = {
       location: "Nepal",
     },
   ],
-};
+} satisfies Record<"core" | "security" | "rangers", Member[]>;
 
 const seo = pageSeo(Astro, {
   title: "Omarchy — The Teams",

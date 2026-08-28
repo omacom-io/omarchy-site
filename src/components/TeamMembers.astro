@@ -3,7 +3,7 @@ export type Member = {
     name: string;
     url: string;
     avatar: string;
-    location: string;
+    location?: string;
 };
 
 interface Props {
@@ -29,7 +29,7 @@ const { members } = Astro.props;
                 <h3 class="member__name">
                     <a href={member.url}>{member.name}</a>
                 </h3>
-                <p class="member__meta">{member.location}</p>
+                {member.location && <p class="member__meta">{member.location}</p>}
             </article>
         ))
     }
