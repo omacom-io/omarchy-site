@@ -14,11 +14,11 @@
   },
   "devDependencies": {
     "@astrojs/check": "0.9.10",
-    "astro": "7.2.4",
+    "astro": "7.2.8",
     "typescript": "6.0.3"
   },
-  "packageManager": "pnpm@11.20.0",
+  "packageManager": "pnpm@12.0.0",
   "engines": {
-    "node": ">=22.12.0"
+    "node": ">=24.20.0"
   }
 }
