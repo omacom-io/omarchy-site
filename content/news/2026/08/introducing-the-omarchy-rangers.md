@@ -2,7 +2,7 @@
 title: Introducing Omarchy Rangers
 date: 2026-08-27
 author: DHH
-author_url: https://x.com/dhh
+author_url: https://dhh.dk
 description: The first Omarchy Rangers are here to help people find their way, and applications are open.
 ---
 

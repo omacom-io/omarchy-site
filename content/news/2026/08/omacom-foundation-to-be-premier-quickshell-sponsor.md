@@ -2,7 +2,7 @@
 title: Omacom Foundation to be premier Quickshell sponsor
 date: 2026-08-24
 author: DHH
-author_url: https://x.com/dhh
+author_url: https://dhh.dk
 ---
 
 [More money in](/news/2026/08/omacom-foundation-funding-hits-10m), more money out! Our second major sponsorship from the Omacom Foundation is going to [outfoxxed](https://x.com/outfoxxedd) for his superb work on [Quickshell](https://quickshell.org/). It's only been part of the public release for a week, but it's already crystal clear that it was the missing, pivotal piece for us to truly achieve [The Malleable Computer](https://world.hey.com/dhh/the-malleable-computer-7c187a9b).

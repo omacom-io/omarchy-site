@@ -2,7 +2,7 @@
 title: Introducing Omarchy AIR
 date: 2026-08-28
 author: DHH
-author_url: https://x.com/dhh
+author_url: https://dhh.dk
 description: A six-month, funded residency for the artists who make Omarchy beautiful. The first two are HANCORE and OldJobobo.
 ---
 
