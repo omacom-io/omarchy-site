@@ -36,12 +36,44 @@
   transition: opacity var(--transition);
 }
 
+.pre--ttfx.is-ttfx-loading pre {
+  opacity: 0;
+  transition: none;
+}
+
 .pre--ttfx.is-ttfx-ready pre {
   opacity: 0;
 }
 
 .pre--ttfx.is-ttfx-ready .pre__ttfx-canvas {
   opacity: 1;
+}
+
+
+
+@keyframes reveal-ttfx-fallback {
+
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+
+}
+
+
+
+@media(prefers-reduced-motion: no-preference) {
+
+  /* This rule applies before the deferred module script can add its loading
+     class. If JavaScript never starts, reveal the fallback after the grace
+     period instead of leaving the logo permanently hidden. */
+  .pre--ttfx:not(.is-ttfx-loading):not(.is-ttfx-ready) pre {
+    animation: reveal-ttfx-fallback 0.15s ease-out 2s both;
+  }
+
 }
 
 

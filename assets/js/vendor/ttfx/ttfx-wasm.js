@@ -12,6 +12,19 @@ export class Session {
         wasm.__wbg_session_free(ptr, 0);
     }
     /**
+     * Advance several simulation frames and materialize only the newest one.
+     *
+     * Browsers normally display far fewer frames per second than the effect
+     * simulates. Capturing after every intermediate step needlessly rebuilds
+     * the terminal grid and copies frames that JavaScript never paints.
+     * @param {number} frame_count
+     * @returns {number}
+     */
+    advance(frame_count) {
+        const ret = wasm.session_advance(this.__wbg_ptr, frame_count);
+        return ret >>> 0;
+    }
+    /**
      * @returns {Uint32Array}
      */
     bg() {

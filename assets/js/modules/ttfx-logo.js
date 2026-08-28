@@ -6,7 +6,7 @@ import initTtfx, { Session, effectCatalog } from '../vendor/ttfx/ttfx-wasm.js';
  *   static <pre> text
  *          |
  *          v
- *   ttfx/WASM Session  -- step() -->  symbols + colors + style flags
+ *   ttfx/WASM Session -- advance() -> symbols + colors + style flags
  *                                          |
  *                                          v
  *                                      paintFrame()
@@ -22,10 +22,12 @@ import initTtfx, { Session, effectCatalog } from '../vendor/ttfx/ttfx-wasm.js';
 const EFFECT = 'laseretch';
 const EFFECT_PADDING_ROWS = 4;
 const FRAME_RATE = 120; // Virtual frame rate passed to the ttfx engine.
-const PLAYBACK_RATE = 3.5; // Simulation speed relative to the engine frame rate.
+const PLAYBACK_RATE = 2.5; // Roughly 5.2 seconds, matching the installer more closely.
+const MAX_FRAME_DELTA = 50; // Prefer smooth playback over large catch-up bursts.
 const REPEAT_DELAY = 5000;
 const LOGO_COLOR = '\u001b[38;2;158;206;106m';
 const ANSI_RESET = '\u001b[0m';
+const colorCache = new Map([[0, '#c8c8c8']]);
 
 /**
  * Special canvas shapes for Unicode block characters:
@@ -112,8 +114,12 @@ function configureCanvas(canvas, fallback, input) {
   var context = canvas.getContext('2d', { alpha: true });
   if(!context) throw new Error('2D canvas is unavailable');
   context.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
+  context.textAlign = 'center';
+  context.textBaseline = 'middle';
 
   var style = window.getComputedStyle(fallback);
+  var fontSize = parseFloat(style.fontSize);
+  var fontFamily = style.fontFamily;
 
   return {
     context: context,
@@ -121,8 +127,16 @@ function configureCanvas(canvas, fallback, input) {
     cssHeight: cssHeight,
     cellWidth: cellWidth,
     cellHeight: cellHeight,
-    fontFamily: style.fontFamily,
-    fontSize: parseFloat(style.fontSize),
+    fonts: [
+      `400 ${fontSize}px ${fontFamily}`,
+      `700 ${fontSize}px ${fontFamily}`,
+      `italic 400 ${fontSize}px ${fontFamily}`,
+      `italic 700 ${fontSize}px ${fontFamily}`,
+    ],
+    drawing: {
+      fill: null,
+      font: null,
+    },
     columns: source.columns,
     rows: rows,
   };
@@ -131,7 +145,27 @@ function configureCanvas(canvas, fallback, input) {
 
 function color(value) {
 
-  return value ? `#${(value & 0xffffff).toString(16).padStart(6, '0')}` : '#c8c8c8';
+  value ||= 0;
+
+  var cached = colorCache.get(value);
+
+  if(!cached) {
+
+    cached = `#${(value & 0xffffff).toString(16).padStart(6, '0')}`;
+    colorCache.set(value, cached);
+
+  }
+
+  return cached;
+
+}
+
+function setFill(metrics, fill) {
+
+  if(metrics.drawing.fill == fill) return;
+
+  metrics.context.fillStyle = fill;
+  metrics.drawing.fill = fill;
 
 }
 
@@ -141,9 +175,11 @@ function drawGlyph(context, symbol, x, y, metrics, fill, italic, bold) {
 
   if(blocks) {
 
-    context.fillStyle = fill;
+    setFill(metrics, fill);
 
-    blocks.forEach(([left, top, width, height]) => {
+    for(var block of blocks) {
+
+      var [left, top, width, height] = block;
 
       context.fillRect(
         x + left * metrics.cellWidth,
@@ -152,22 +188,23 @@ function drawGlyph(context, symbol, x, y, metrics, fill, italic, bold) {
         Math.max(1, height * metrics.cellHeight)
       );
 
-    });
+    }
 
     return;
 
   }
 
-  context.save();
-  context.beginPath();
-  context.rect(x, y, metrics.cellWidth, metrics.cellHeight);
-  context.clip();
-  context.font = `${italic ? 'italic ' : ''}${bold ? '700' : '400'} ${metrics.fontSize}px ${metrics.fontFamily}`;
-  context.textAlign = 'center';
-  context.textBaseline = 'middle';
-  context.fillStyle = fill;
+  var font = metrics.fonts[(italic ? 2 : 0) + (bold ? 1 : 0)];
+
+  if(metrics.drawing.font != font) {
+
+    context.font = font;
+    metrics.drawing.font = font;
+
+  }
+
+  setFill(metrics, fill);
   context.fillText(symbol, x + metrics.cellWidth / 2, y + metrics.cellHeight / 2);
-  context.restore();
 
 }
 
@@ -182,9 +219,11 @@ function paintFrame(metrics, frame, timestamp) {
 
   if(!frame || frame.width <= 0 || frame.height <= 0) return;
 
-  frame.symbols.forEach((symbol, index) => {
+  var cellCount = Math.min(frame.symbols.length, frame.width * frame.height);
 
-    if(index >= frame.width * frame.height) return;
+  for(var index = 0; index < cellCount; index++) {
+
+    var symbol = frame.symbols[index];
 
     var column = index % frame.width;
     var row = Math.floor(index / frame.width);
@@ -195,22 +234,22 @@ function paintFrame(metrics, frame, timestamp) {
 
     if(background) {
 
-      context.fillStyle = color(background);
+      setFill(metrics, color(background));
       context.fillRect(x, y, metrics.cellWidth, metrics.cellHeight);
 
     }
 
-    if(symbol == ' ' || flags & 32 || (flags & 16 && !blinkVisible)) return;
+    if(symbol == ' ' || flags & 32 || (flags & 16 && !blinkVisible)) continue;
 
     var foreground = color(frame.fg[index]);
 
     drawGlyph(context, symbol, x, y, metrics, foreground, Boolean(flags & 1), Boolean(flags & 2));
-    context.fillStyle = foreground;
+    setFill(metrics, foreground);
 
     if(flags & 4) context.fillRect(x, y + metrics.cellHeight - 1, metrics.cellWidth, 1);
     if(flags & 64) context.fillRect(x, y + Math.floor(metrics.cellHeight / 2), metrics.cellWidth, 1);
 
-  });
+  }
 
 }
 
@@ -264,8 +303,9 @@ class LogoEffect {
 
     if(this.session.step()) this.captureFrame();
 
-    this.container.classList.add('is-ttfx-ready');
     paintFrame(this.metrics, this.frame, performance.now());
+    this.container.classList.add('is-ttfx-ready');
+    this.container.classList.remove('is-ttfx-loading');
 
   }
 
@@ -314,23 +354,25 @@ class LogoEffect {
     this.animationFrame = 0;
     if(this.paused || !this.session) return;
 
-    // requestAnimationFrame still paints at the display refresh rate. At 3.5x,
-    // the accumulator advances several ttfx frames before painting the newest
-    // one, preserving the simulation while shortening its wall-clock duration.
+    // requestAnimationFrame still paints at the display refresh rate. WASM
+    // advances all due simulation frames as one batch, then materializes only
+    // the newest frame for the single canvas paint below.
     var frameDuration = 1000 / (FRAME_RATE * PLAYBACK_RATE);
 
-    this.accumulator += Math.min(timestamp - this.lastTimestamp, 100);
+    this.accumulator += Math.min(timestamp - this.lastTimestamp, MAX_FRAME_DELTA);
     this.lastTimestamp = timestamp;
 
-    while(this.accumulator >= frameDuration) {
+    var frameCount = Math.floor(this.accumulator / frameDuration);
 
-      this.accumulator -= frameDuration;
+    if(frameCount > 0) {
 
-      if(this.session.step()) {
+      this.accumulator -= frameCount * frameDuration;
 
-        this.captureFrame();
+      var advanced = this.session.advance(frameCount);
 
-      } else {
+      if(advanced > 0) this.captureFrame();
+
+      if(advanced < frameCount) {
 
         paintFrame(this.metrics, this.frame, timestamp);
         this.repeatTimer = window.setTimeout(() => {
@@ -377,7 +419,12 @@ async function ready() {
   var fallback = container.querySelector('pre');
   var canvas = container.querySelector('.pre__ttfx-canvas');
 
-  if(!fallback || !canvas) return;
+  if(!fallback || !canvas) {
+
+    container.classList.remove('is-ttfx-loading');
+    return;
+
+  }
 
   try {
 
@@ -418,6 +465,7 @@ async function ready() {
   } catch(error) {
 
     console.error('Unable to start the Omarchy logo effect.', error);
+    container.classList.remove('is-ttfx-loading');
     container.classList.remove('is-ttfx-ready');
 
   }
