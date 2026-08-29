@@ -8,6 +8,7 @@
 
 const WTE_CANVAS_URL = 'https://wte.csfh.dev/builds/v0.1.0/wte-canvas.js';
 const WTE_WASM_URL = 'https://wte.csfh.dev/ttfx/effects/laseretch.wasm';
+const LOCAL_WTE_WASM_URL = 'http://127.0.0.1:4173/ttfx/effects/laseretch.wasm';
 const EFFECT = 'laseretch';
 const ART_COLUMNS = 81;
 const ART_ROWS = 10;
@@ -16,6 +17,14 @@ const FONT_WAIT_MS = 1000;
 
 function prefersReducedMotion() {
   return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+}
+
+function wasmUrl() {
+  const host = window.location.hostname;
+  if (host === '127.0.0.1' || host === 'localhost') {
+    return LOCAL_WTE_WASM_URL;
+  }
+  return WTE_WASM_URL;
 }
 
 function artFromPre(pre) {
@@ -139,7 +148,7 @@ function ready() {
         connected: () => canvas.isConnected,
         input: () => input,
         effect: () => EFFECT,
-        wasmUrl: () => WTE_WASM_URL,
+        wasmUrl,
         onFinished() {},
       });
 
@@ -147,19 +156,25 @@ function ready() {
         scaleCanvas(canvas, pre, native.width, native.height);
       });
 
-      const onError = (event) => {
-        const message = String(event.message ?? event.error ?? '');
-        if (!/memory access out of bounds|RuntimeError/i.test(message)) return;
+      const fail = () => {
         window.removeEventListener('error', onError);
         stopWatching();
         playback.stop();
         markStatic();
       };
+
+      const onError = (event) => {
+        const message = String(event.message ?? event.error ?? '');
+        if (!/memory access out of bounds|RuntimeError|CompileError|WebAssembly/i.test(message)) {
+          return;
+        }
+        fail();
+      };
       window.addEventListener('error', onError);
 
       holder.append(canvas);
       link.append(holder);
-      void playback.restart();
+      void playback.restart().catch(fail);
     })
     .catch(() => {
       markStatic();
