@@ -30,4 +30,5 @@ checkout to build without hitting GitHub: `bin/build-manual ../omarchy/manual`.
 The same build writes `manual/search-index.json` — one entry per heading, so results link
 straight to the section that matched. `assets/js/modules/search.js` fetches it the first
 time someone reaches for the box in the header and matches in the browser; there is no
-search service and nothing to run. Press `/` anywhere in the manual to search.
+search service and nothing to run. Press `/` anywhere in the manual to search. On a
+chapter, use the left and right arrow keys to move to the previous or next chapter.
