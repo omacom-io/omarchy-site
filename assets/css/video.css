@@ -38,3 +38,56 @@
   }
 
 }
+
+
+/* Poster and play button standing in for the embed until someone clicks, so
+   nothing is fetched from YouTube on page load. */
+.video__facade {
+  aspect-ratio: 16/9;
+  background: var(--color-background-storm);
+  border: none;
+  border-radius: 0.4em;
+  cursor: pointer;
+  display: block;
+  overflow: hidden;
+  padding: 0;
+  position: relative;
+  width: 100%;
+}
+
+.video__facade img {
+  display: block;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition);
+  width: 100%;
+}
+
+.video__play {
+  inset: 0;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  position: absolute;
+}
+
+.video__play svg {
+  filter: drop-shadow(0 0.1em 0.5em rgba(var(--rgb-black), 0.5));
+  opacity: 0.85;
+  transition: opacity var(--transition);
+  width: min(14%, 6em);
+}
+
+
+
+@media(hover: hover) {
+
+  .video__facade:hover .video__play svg {
+    opacity: 1;
+  }
+
+  .video__facade:hover img {
+    transform: scale(1.02);
+  }
+
+}

@@ -2,6 +2,7 @@
 
 <html lang="en">
   <head>
+    <script>document.documentElement.classList.add('wte-home');</script>
     <title>Omarchy — Beautiful, Fun &amp; Opinionated Linux by DHH</title>
 
     <meta charset="utf-8">
@@ -48,7 +49,7 @@
     </div>
 
     <div class="pre">
-      <a href="/">
+      <a href="/" aria-label="Omarchy">
 <pre>
                  ▄▄▄
  ▄█████▄    ▄███████████▄    ▄███████   ▄███████   ▄███████   ▄█   █▄    ▄█   █▄
@@ -150,11 +151,23 @@
     <main class="main">
 
       <div class="video">
-        <iframe title="Omarchy introduction video" src="https://www.youtube-nocookie.com/embed/F7fe9pa8OeE" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <button class="video__facade" type="button" data-video="F7fe9pa8OeE"
+                data-title="Omarchy introduction video" aria-label="Play: Omarchy introduction video">
+          <img src="/assets/images/video/omarchy-quattro.webp" width="1280" height="720" alt="Omarchy Quattro by David Heinemeier Hansson" loading="lazy" decoding="async">
+          <span class="video__play" aria-hidden="true">
+            <svg viewBox="0 0 68 48"><path d="M66.5 7.7a8.6 8.6 0 0 0-6-6C55.2 0 34 0 34 0S12.8 0 7.5 1.7a8.6 8.6 0 0 0-6 6A89.7 89.7 0 0 0 0 24a89.7 89.7 0 0 0 1.5 16.3 8.6 8.6 0 0 0 6 6C12.8 48 34 48 34 48s21.2 0 26.5-1.7a8.6 8.6 0 0 0 6-6A89.7 89.7 0 0 0 68 24a89.7 89.7 0 0 0-1.5-16.3z" fill="#f00"/><path d="M27 34.3 44.8 24 27 13.7z" fill="#fff"/></svg>
+          </span>
+        </button>
       </div>
 
       <div class="video">
-        <iframe title="You need to switch to Linux RIGHT NOW!! by NetworkChuck" src="https://www.youtube-nocookie.com/embed/9SDkU5VDQEQ" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <button class="video__facade" type="button" data-video="9SDkU5VDQEQ"
+                data-title="You need to switch to Linux RIGHT NOW!! by NetworkChuck" aria-label="Play: You need to switch to Linux RIGHT NOW!! by NetworkChuck">
+          <img src="/assets/images/video/networkchuck.webp" width="1280" height="720" alt="You need to switch to Linux RIGHT NOW!! by NetworkChuck" loading="lazy" decoding="async">
+          <span class="video__play" aria-hidden="true">
+            <svg viewBox="0 0 68 48"><path d="M66.5 7.7a8.6 8.6 0 0 0-6-6C55.2 0 34 0 34 0S12.8 0 7.5 1.7a8.6 8.6 0 0 0-6 6A89.7 89.7 0 0 0 0 24a89.7 89.7 0 0 0 1.5 16.3 8.6 8.6 0 0 0 6 6C12.8 48 34 48 34 48s21.2 0 26.5-1.7a8.6 8.6 0 0 0 6-6A89.7 89.7 0 0 0 68 24a89.7 89.7 0 0 0-1.5-16.3z" fill="#f00"/><path d="M27 34.3 44.8 24 27 13.7z" fill="#fff"/></svg>
+          </span>
+        </button>
       </div>
 
     </main>
