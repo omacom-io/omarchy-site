@@ -116,7 +116,7 @@ async function loadCanvasPlayback() {
 
 function ready() {
   if (prefersReducedMotion()) return;
-  if (window.location.pathname !== '/') return;
+  if (!document.documentElement.classList.contains('wte-home')) return;
 
   const pre = document.querySelector('.pre a pre');
   const link = pre?.parentElement;
@@ -168,6 +168,7 @@ function ready() {
         window.removeEventListener('error', onError);
         stopWatching();
         playback.stop();
+        document.querySelector('.pre')?.classList.remove('pre--live');
         markStatic();
       };
 
@@ -182,6 +183,8 @@ function ready() {
 
       holder.append(canvas);
       link.append(holder);
+      // Cancel the CSS fallback reveal now that a canvas is actually up.
+      document.querySelector('.pre')?.classList.add('pre--live');
       void playback.restart().catch(fail);
     })
     .catch(() => {
