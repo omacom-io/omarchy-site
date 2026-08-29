@@ -157,7 +157,7 @@ function ready() {
         effect: () => EFFECT,
         wasmUrl,
         onFinished() {},
-        frameRate: () => 220,
+        frameRate: () => 240,
       });
 
       const stopWatching = watchSize(pre, () => {
