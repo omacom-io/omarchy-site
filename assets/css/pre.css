@@ -11,6 +11,64 @@
   text-decoration: none;
 }
 
+html.wte-home .pre a {
+  display: block;
+  max-width: 100%;
+  position: relative;
+  width: max-content;
+}
+
+/* Hidden up front so the still mark never flashes before the canvas takes
+   over. If the effect never starts — script blocked, module or wasm failed,
+   the page served from a path the script skips — this reveal fires on its own
+   and the mark comes back. logo.js cancels it once a canvas is really live. */
+html.wte-home .pre pre {
+  animation: wte-fallback 0s 2s forwards;
+  visibility: hidden;
+}
+
+@keyframes wte-fallback {
+  to {
+    visibility: visible;
+  }
+}
+
+html.wte-home .pre.pre--live pre {
+  animation: none;
+}
+
+html.wte-home .pre__wte {
+  display: block;
+  inset: 0;
+  overflow: hidden;
+  position: absolute;
+}
+
+html.wte-home .pre__wte canvas {
+  display: block;
+  mix-blend-mode: screen;
+  position: absolute;
+  transform-origin: 0 0;
+}
+
+html.wte-home .pre.pre--static pre {
+  visibility: visible;
+}
+
+html.wte-home .pre.pre--static .pre__wte {
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.wte-home .pre pre {
+    visibility: visible;
+  }
+
+  html.wte-home .pre__wte {
+    display: none;
+  }
+}
+
 .pre pre {
   color: var(--color-green);
   font-size: clamp(0.425rem, 1.25vw, 1rem);

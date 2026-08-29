@@ -1,8 +1,8 @@
 # Omarchy
 
-Beautiful, Modern & Opinionated Linux by DHH.
+Beautiful, Fun & Opinionated Linux by DHH.
 
-See https://github.com/basecamp/omarchy for more.
+See https://github.com/omacom/omarchy for more.
 
 ## News
 
@@ -17,7 +17,7 @@ pages under `news/` with:
 ## The Manual
 
 The pages under `manual/` are generated from the authoritative markdown chapters
-in the [omarchy repo](https://github.com/basecamp/omarchy/tree/HEAD/manual).
+in the [omarchy repo](https://github.com/omacom/omarchy/tree/HEAD/manual).
 Regenerate them (then commit the result) with:
 
     bin/build-manual
@@ -30,4 +30,5 @@ checkout to build without hitting GitHub: `bin/build-manual ../omarchy/manual`.
 The same build writes `manual/search-index.json` — one entry per heading, so results link
 straight to the section that matched. `assets/js/modules/search.js` fetches it the first
 time someone reaches for the box in the header and matches in the browser; there is no
-search service and nothing to run. Press `/` anywhere in the manual to search.
+search service and nothing to run. Press `/` anywhere in the manual to search. On a
+chapter, use the left and right arrow keys to move to the previous or next chapter.

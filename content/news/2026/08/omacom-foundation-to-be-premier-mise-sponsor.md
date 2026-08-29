@@ -2,7 +2,7 @@
 title: Omacom Foundation to be premier mise sponsor
 date: 2026-08-25
 author: DHH
-author_url: https://x.com/dhh
+author_url: https://dhh.dk
 ---
 
 Third sponsorship out the door! The Omacom Foundation is becoming a premier sponsor of [mise](https://mise.jdx.dev/), and thereby of [jdx](https://x.com/jdxcode), who has spent years building the tool that quietly makes managing different versions of Ruby, Node, Go a joy to manage, and gives all your agent tooling in upgrade channel that can keep up with the pace of shipping.

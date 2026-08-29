@@ -2,7 +2,7 @@
 title: Omacom Foundation launches with $8 million
 date: 2026-08-21
 author: DHH
-author_url: https://x.com/dhh
+author_url: https://dhh.dk
 ---
 
 It's time to dream big. Omarchy Quattro has given people a chance to experience what the malleable computer of the future looks like, and they like it (a lot!). It now feels like a moral obligation to make this future more broadly available and fundamentally change how people relate to their computers for the first time in what seems like forever.
