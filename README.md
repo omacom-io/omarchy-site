@@ -2,7 +2,7 @@
 
 Beautiful, Fun & Opinionated Linux by DHH.
 
-See https://github.com/basecamp/omarchy for more.
+See https://github.com/omacom/omarchy for more.
 
 ## News
 
@@ -17,7 +17,7 @@ pages under `news/` with:
 ## The Manual
 
 The pages under `manual/` are generated from the authoritative markdown chapters
-in the [omarchy repo](https://github.com/basecamp/omarchy/tree/HEAD/manual).
+in the [omarchy repo](https://github.com/omacom/omarchy/tree/HEAD/manual).
 Regenerate them (then commit the result) with:
 
     bin/build-manual
