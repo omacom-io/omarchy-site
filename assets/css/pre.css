@@ -30,9 +30,7 @@ html.wte-home .pre__wte {
 }
 
 html.wte-home .pre__wte canvas {
-  background: transparent;
   display: block;
-  min-height: 0;
   mix-blend-mode: screen;
   position: absolute;
   transform-origin: 0 0;

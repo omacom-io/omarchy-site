@@ -2,10 +2,12 @@
 // <wte-canvas> always loops. Playback's onFinished control holds the last
 // frame instead. The <pre> stays as the layout size and as the fallback.
 // index.html adds .wte-home before first paint so the green mark stays
-// hidden while the skin loads.
+// hidden while the skin loads. The skin is pinned to /builds/v0.1.0 so a
+// later skin API change does not reach this page. Wasm is the laseretch-only
+// build at /ttfx/effects/laseretch.wasm.
 
-const WTE_CANVAS_URL = 'https://wte.csfh.dev/builds/latest/wte-canvas.js';
-const WTE_WASM_URL = 'https://wte.csfh.dev/ttfx/0.3.2/ttfx.wasm';
+const WTE_CANVAS_URL = 'https://wte.csfh.dev/builds/v0.1.0/wte-canvas.js';
+const WTE_WASM_URL = 'https://wte.csfh.dev/ttfx/effects/laseretch.wasm';
 const EFFECT = 'laseretch';
 const ART_COLUMNS = 81;
 const ART_ROWS = 10;
@@ -64,14 +66,12 @@ function watchSize(target, onChange) {
   };
   const observer = new ResizeObserver(schedule);
   observer.observe(target);
-  window.addEventListener('resize', schedule);
   return () => {
     if (frame !== 0) {
       cancelAnimationFrame(frame);
       frame = 0;
     }
     observer.disconnect();
-    window.removeEventListener('resize', schedule);
   };
 }
 
@@ -140,9 +140,7 @@ function ready() {
         input: () => input,
         effect: () => EFFECT,
         wasmUrl: () => WTE_WASM_URL,
-        onFinished: () => {
-          canvas.dataset.wteFinished = '1';
-        },
+        onFinished() {},
       });
 
       const stopWatching = watchSize(pre, () => {
