@@ -12,10 +12,11 @@ function ready() {
 
     var page = pages[e.key];
 
-    if(page) {
+    // Object.prototype means a key like 'constructor' would look like a hit
+    if(page instanceof HTMLAnchorElement) {
 
       e.preventDefault();
-      window.location = page.href;
+      window.location.href = page.href;
 
     }
 
