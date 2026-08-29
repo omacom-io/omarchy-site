@@ -1,9 +1,9 @@
 import * as workstations from './modules/workstations.js';
-import * as wteLogo from './modules/wte-logo.js';
+import * as logo from './modules/logo.js';
 
 document.addEventListener('DOMContentLoaded', () => {
 
   workstations.ready();
-  wteLogo.ready();
+  logo.ready();
 
 });
