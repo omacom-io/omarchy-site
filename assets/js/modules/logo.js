@@ -16,8 +16,21 @@ function prefersReducedMotion() {
   return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 }
 
+let wasmBytes = null;
+
+async function loadWasm() {
+  const response = await fetch(WTE_WASM_URL);
+  if (!response.ok) {
+    throw new Error(`laseretch wasm ${response.status}`);
+  }
+  wasmBytes = await response.arrayBuffer();
+}
+
 function wasmUrl() {
-  return WTE_WASM_URL;
+  if (wasmBytes == null) {
+    throw new Error('laseretch wasm is not loaded');
+  }
+  return wasmBytes;
 }
 
 function artFromPre(pre) {
@@ -116,7 +129,8 @@ function ready() {
   }
 
   afterFonts()
-    .then(() => loadCanvasPlayback())
+    .then(loadWasm)
+    .then(loadCanvasPlayback)
     .then((CanvasPlayback) => {
       const box = pre.getBoundingClientRect();
       if (box.width < 8 || box.height < 8) {
@@ -143,6 +157,7 @@ function ready() {
         effect: () => EFFECT,
         wasmUrl,
         onFinished() {},
+        frameRate: () => 220,
       });
 
       const stopWatching = watchSize(pre, () => {
