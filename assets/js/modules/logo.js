@@ -118,9 +118,9 @@ function ready() {
   if (prefersReducedMotion()) return;
   if (!document.documentElement.classList.contains('wte-home')) return;
 
-  const pre = document.querySelector('.pre a pre');
-  const link = pre?.parentElement;
-  if (!(pre instanceof HTMLPreElement) || link == null) return;
+  const pre = document.querySelector('.quattro-logo pre');
+  const host = pre?.parentElement;
+  if (!(pre instanceof HTMLPreElement) || host == null) return;
 
   const input = artFromPre(pre);
   if (input.trim() === '') {
@@ -182,7 +182,7 @@ function ready() {
       window.addEventListener('error', onError);
 
       holder.append(canvas);
-      link.append(holder);
+      host.append(holder);
       // Cancel the CSS fallback reveal now that a canvas is actually up.
       document.querySelector('.pre')?.classList.add('pre--live');
       void playback.restart().catch(fail);
