@@ -1,8 +1,19 @@
 :root {
 
+  /* Palette roles, named after the Tokyo Night colors the site was built in. palettes.css
+     overrides them per theme, so anything painted with these follows the chosen theme.
+     --rgb-black and --rgb-white are physical colors — shadows and a caption chip that sits
+     on top of a screenshot — and stay put whatever the theme is. */
+
+  /* Was `light dark` on html, which followed the visitor's OS and put light scrollbars on
+     this dark page. The palette decides now: this is Tokyo Night's, and palettes.css sets
+     each theme's own. */
+  color-scheme: dark;
+
   --rgb-background-night: 26, 27, 38;
   --rgb-background-storm: 36, 40, 59;
   --rgb-black: 0, 0, 0;
+  --rgb-foreground-bright: 255, 255, 255;
   --rgb-green: 158, 206, 106;
   --rgb-terminal-black: 65, 72, 104;
   --rgb-terminal-blue: 122, 162, 247;
@@ -14,6 +25,7 @@
   --color-background-night: rgb(var(--rgb-background-night));
   --color-background-storm: rgb(var(--rgb-background-storm));
   --color-black: rgb(var(--rgb-black));
+  --color-foreground-bright: rgb(var(--rgb-foreground-bright));
   --color-green: rgb(var(--rgb-green));
   --color-terminal-black: rgb(var(--rgb-terminal-black));
   --color-terminal-blue: rgb(var(--rgb-terminal-blue));

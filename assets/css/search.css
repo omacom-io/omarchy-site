@@ -109,7 +109,7 @@
 }
 
 .search__result-title {
-  color: var(--color-white);
+  color: var(--color-foreground-bright);
   font-weight: 700;
 }
 

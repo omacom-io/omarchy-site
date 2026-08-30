@@ -172,7 +172,7 @@
 }
 
 .news-prose strong {
-  color: var(--color-white);
+  color: var(--color-foreground-bright);
   font-weight: 700;
 }
 
@@ -247,11 +247,11 @@
 @media(hover: hover) {
 
   .news-body a:hover {
-    color: var(--color-white);
+    color: var(--color-foreground-bright);
   }
 
   .news-card:hover .news-card__button {
-    color: var(--color-white);
+    color: var(--color-foreground-bright);
   }
 
 }

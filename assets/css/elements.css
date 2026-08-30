@@ -1,7 +1,6 @@
 html {
   font-size: 16px;
   scroll-behavior: smooth;
-  color-scheme: light dark;
 }
 
 html:has(dialog[open]) {
@@ -51,7 +50,7 @@ img {
 @media(hover: hover) {
 
   a:hover {
-    color: var(--color-white);
+    color: var(--color-foreground-bright);
   }
 
 }
