@@ -18,6 +18,11 @@
   text-wrap: pretty;
 }
 
+.header__subtext a,
+.header__subtext a:hover {
+  color: inherit;
+}
+
 
 
 @media(min-width: 64em) {
