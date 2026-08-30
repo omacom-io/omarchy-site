@@ -20,9 +20,18 @@ function embed(facade) {
   iframe.focus();
 }
 
+// A facade with data-video is upgraded to an inline player; without it, the
+// poster is just a link to YouTube and the click passes straight through.
 function ready() {
-  for (const facade of document.querySelectorAll('.video__facade')) {
-    facade.addEventListener('click', () => embed(facade), { once: true });
+  for (const facade of document.querySelectorAll('.video__facade[data-video]')) {
+    facade.addEventListener(
+      'click',
+      (event) => {
+        event.preventDefault();
+        embed(facade);
+      },
+      { once: true },
+    );
   }
 }
 

@@ -47,6 +47,8 @@
   background: var(--color-background-storm);
   border: none;
   border-radius: 0.4em;
+  color: inherit;
+  text-decoration: none;
   cursor: pointer;
   display: block;
   overflow: hidden;
@@ -88,6 +90,31 @@
 
   .video__facade:hover img {
     transform: scale(1.02);
+  }
+
+}
+
+
+
+/* Four community videos under the main one. */
+.video--grid {
+  display: grid;
+  gap: var(--space-medium);
+  grid-template-columns: 1fr;
+  margin-top: var(--space-large);
+}
+
+/* Smaller cells get a proportionally smaller play button. */
+.video--grid .video__play svg {
+  width: min(11%, 4em);
+}
+
+
+
+@media(min-width: 40em) {
+
+  .video--grid {
+    grid-template-columns: 1fr 1fr;
   }
 
 }
