@@ -51,9 +51,26 @@
 </pre>
     <noscript>
       <style>
-        html.screensaver .screensaver__art { display: grid; }
+        /* Mirror of the .screensaver--static ruleset: that class only exists
+           once JS adds it, so without JS the same styling applies from here. */
         html.screensaver .screensaver__canvas { display: none; }
-        html.screensaver { cursor: auto; }
+        html.screensaver, html.screensaver body { cursor: auto; }
+        html.screensaver .screensaver__art {
+          align-content: center;
+          color: var(--color-green, #9ece6a);
+          display: grid;
+          font-size: clamp(0.35rem, 1.1vw, 1rem);
+          height: 100%;
+          inset: 0;
+          justify-content: center;
+          letter-spacing: -0.0425em;
+          line-height: 1.09375;
+          margin: 0;
+          place-items: center;
+          position: fixed;
+          white-space: pre;
+          width: 100%;
+        }
       </style>
     </noscript>
   </body>
