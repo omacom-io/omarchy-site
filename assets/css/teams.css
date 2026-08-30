@@ -105,6 +105,36 @@
 
 
 
+/* Quiet enough to be found rather than announced. */
+.patrons__aside {
+  color: rgba(var(--rgb-terminal-white), 0.35);
+  font-size: var(--font-size-small);
+  font-style: italic;
+  text-align: center;
+}
+
+.patrons__aside a {
+  color: inherit;
+  font-weight: inherit;
+  text-decoration: none;
+}
+
+
+
+/* A quiet aside at the very bottom, quieter than the notes above it. */
+.teams__aside {
+  color: rgba(var(--rgb-terminal-white), 0.35);
+  font-size: var(--font-size-small);
+  text-align: center;
+}
+
+.teams__aside a {
+  color: inherit;
+  font-weight: inherit;
+}
+
+
+
 @media(min-width: 64em) {
 
   .teams {
