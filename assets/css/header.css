@@ -9,6 +9,15 @@
   text-align: center;
 }
 
+.header__subtext {
+  font-style: italic;
+  justify-self: center;
+  margin-top: var(--space-neutral);
+  max-width: 46em;
+  text-align: center;
+  text-wrap: pretty;
+}
+
 
 
 @media(min-width: 64em) {
