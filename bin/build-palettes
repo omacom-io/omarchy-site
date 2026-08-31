@@ -10,7 +10,8 @@
 # The site's own palette is Tokyo Night, hand-tuned brighter than the terminal theme it came
 # from, so it is pinned below and stays the default. Everything else is derived: a theme missing
 # a colour falls back to a near neighbour, one missing too many is skipped, and colours carrying
-# small text are nudged in lightness until they clear 4.5:1 against that theme's backgrounds.
+# small text are nudged in lightness until they clear 4.5:1 against that theme's backgrounds, and
+# the homepage mark is rotated towards each theme's accent.
 
 require "fileutils"
 require "tmpdir"
@@ -54,6 +55,15 @@ PINNED = {
 # can land on: the page itself, and the panel colour under code blocks and search results.
 CONTRAST_TOKENS = %w[terminal-blue terminal-cyan terminal-white foreground-bright green turquoise]
 MINIMUM_CONTRAST = 4.5
+
+# The homepage effect paints in its own colours and the wasm takes no palette, so the mark comes
+# out in Tokyo Night's blues whatever the page is wearing. Rotating the finished canvas by the
+# distance between Tokyo Night's accent and this theme's lands it in the right family instead —
+# green on Osaka Jade, warm on Ristretto. A rotation too small to notice isn't worth a rule, and
+# a grey accent has no hue to rotate towards, so both are skipped.
+MARK_BASE = "tokyo-night"
+MARK_MINIMUM_ROTATION = 10
+MARK_MINIMUM_SATURATION = 0.15
 
 Theme = Struct.new(:slug, :name, :mode, :rgb, keyword_init: true)
 
@@ -184,30 +194,50 @@ def render_css(themes)
 
     #{blocks.join("\n\n")}
 
-    #{render_light_mark(themes)}
+    #{render_mark(themes)}
   CSS
 end
 
 # The homepage mark is a canvas of bright strokes on solid black, blended with `screen` so the
 # black drops out. Screen only ever lightens, so over a light page the whole mark vanishes.
 # Inverting the canvas and multiplying is the same trick the other way up: white is what drops
-# out of a multiply, and the strokes darken instead of lightening. The hue-rotate puts the
-# colours back where the invert took them, so the mark reads as itself rather than its opposite.
-def render_light_mark(themes)
-  light = themes.select { |theme| theme.mode == "light" }
-  return "" if light.empty?
+# out of a multiply, and the strokes darken instead of lightening. Either way the hue-rotate
+# carries the mark into the theme's own colours, and on a light palette it also has to undo the
+# half-turn the invert put the hues through, which is what the extra 180 is doing.
+def render_mark(themes)
+  base_hue, = to_hsl(PINNED.fetch(MARK_BASE).fetch("terminal-blue"))
 
-  canvases = light.map { |theme| %(html.wte-home[data-omarchy-theme="#{theme.slug}"] .pre__wte canvas) }
+  blocks = themes.filter_map do |theme|
+    rotation = mark_rotation(theme.rgb, base_hue)
+    light = theme.mode == "light"
+    next if rotation.zero? && !light
+
+    declarations = [light ? "  filter: invert(1) hue-rotate(#{180 + rotation}deg);" : "  filter: hue-rotate(#{rotation}deg);"]
+    declarations << "  mix-blend-mode: multiply;" if light
+
+    <<~CSS.rstrip
+      html.wte-home[data-omarchy-theme="#{theme.slug}"] .pre__wte canvas {
+      #{declarations.join("\n")}
+      }
+    CSS
+  end
+
+  return "" if blocks.empty?
 
   <<~CSS.rstrip
     /* The mark is bright strokes on black, screened onto the page so the black drops out —
-       which only works over a dark one. On a light palette it is inverted and multiplied
-       instead, so white drops out and the strokes darken. hue-rotate puts the colours back. */
-    #{canvases.join(",\n")} {
-      filter: invert(1) hue-rotate(180deg);
-      mix-blend-mode: multiply;
-    }
+       which only works over a dark one. A light palette inverts and multiplies instead, and
+       every palette rotates the effect's own blues towards its accent. */
+    #{blocks.join("\n\n")}
   CSS
+end
+
+def mark_rotation(rgb, base_hue)
+  hue, saturation, = to_hsl(rgb["terminal-blue"])
+  return 0 if saturation < MARK_MINIMUM_SATURATION
+
+  delta = ((hue - base_hue + 540) % 360) - 180
+  delta.abs < MARK_MINIMUM_ROTATION ? 0 : delta.round
 end
 
 def render_js_list(themes)

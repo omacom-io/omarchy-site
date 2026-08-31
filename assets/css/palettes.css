@@ -287,12 +287,80 @@
 }
 
 /* The mark is bright strokes on black, screened onto the page so the black drops out —
-   which only works over a dark one. On a light palette it is inverted and multiplied
-   instead, so white drops out and the strokes darken. hue-rotate puts the colours back. */
-html.wte-home[data-omarchy-theme="catppuccin-latte"] .pre__wte canvas,
-html.wte-home[data-omarchy-theme="flexoki-light"] .pre__wte canvas,
-html.wte-home[data-omarchy-theme="lupine"] .pre__wte canvas,
-html.wte-home[data-omarchy-theme="rose-pine"] .pre__wte canvas,
+   which only works over a dark one. A light palette inverts and multiplies instead, and
+   every palette rotates the effect's own blues towards its accent. */
+html.wte-home[data-omarchy-theme="catppuccin-latte"] .pre__wte canvas {
+  filter: invert(1) hue-rotate(180deg);
+  mix-blend-mode: multiply;
+}
+
+html.wte-home[data-omarchy-theme="ethereal"] .pre__wte canvas {
+  filter: hue-rotate(16deg);
+}
+
+html.wte-home[data-omarchy-theme="everforest"] .pre__wte canvas {
+  filter: hue-rotate(-49deg);
+}
+
+html.wte-home[data-omarchy-theme="flexoki-light"] .pre__wte canvas {
+  filter: invert(1) hue-rotate(180deg);
+  mix-blend-mode: multiply;
+}
+
+html.wte-home[data-omarchy-theme="gruvbox"] .pre__wte canvas {
+  filter: hue-rotate(-54deg);
+}
+
+html.wte-home[data-omarchy-theme="hackerman"] .pre__wte canvas {
+  filter: hue-rotate(-88deg);
+}
+
+html.wte-home[data-omarchy-theme="kanagawa"] .pre__wte canvas {
+  filter: hue-rotate(-170deg);
+}
+
+html.wte-home[data-omarchy-theme="last-horizon"] .pre__wte canvas {
+  filter: hue-rotate(151deg);
+}
+
+html.wte-home[data-omarchy-theme="lumon"] .pre__wte canvas {
+  filter: hue-rotate(-20deg);
+}
+
+html.wte-home[data-omarchy-theme="lupine"] .pre__wte canvas {
+  filter: invert(1) hue-rotate(180deg);
+  mix-blend-mode: multiply;
+}
+
+html.wte-home[data-omarchy-theme="matte-black"] .pre__wte canvas {
+  filter: hue-rotate(175deg);
+}
+
+html.wte-home[data-omarchy-theme="miasma"] .pre__wte canvas {
+  filter: hue-rotate(-150deg);
+}
+
+html.wte-home[data-omarchy-theme="nord"] .pre__wte canvas {
+  filter: hue-rotate(-11deg);
+}
+
+html.wte-home[data-omarchy-theme="osaka-jade"] .pre__wte canvas {
+  filter: hue-rotate(-68deg);
+}
+
+html.wte-home[data-omarchy-theme="retro-82"] .pre__wte canvas {
+  filter: hue-rotate(166deg);
+}
+
+html.wte-home[data-omarchy-theme="ristretto"] .pre__wte canvas {
+  filter: hue-rotate(152deg);
+}
+
+html.wte-home[data-omarchy-theme="rose-pine"] .pre__wte canvas {
+  filter: invert(1) hue-rotate(148deg);
+  mix-blend-mode: multiply;
+}
+
 html.wte-home[data-omarchy-theme="white"] .pre__wte canvas {
   filter: invert(1) hue-rotate(180deg);
   mix-blend-mode: multiply;
