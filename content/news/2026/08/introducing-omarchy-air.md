@@ -14,7 +14,7 @@ Each residency comes with $2,500 a month for the full six months, a token accoun
 
 There are up to three seats available at any one time, and two of them are now taken for this first season.
 
-[HANCORE](https://github.com/HANCORE-linux) has two themes shipping with Omarchy — Solitude and Last Horizon — and another twenty on [the extras page](/themes/), more than anyone else has contributed: Batou, Oxo Carbon, Velvet Night, Rose of Dune, Shades of Jade, and it keeps going. He's a mechanical engineer who became one of the defining aesthetic forces in this community, sits on [Omarchy Core](/teams/), and helps steward [the plugin ecosystem](https://omarchyplugins.com/).
+[HANCORE](https://github.com/HANCORE-linux) has two themes shipping with Omarchy — Solitude and Last Horizon — and another twenty on [the extras page](/themes/), more than anyone else has contributed: Batou, Oxo Carbon, Velvet Night, Rose of Dune, Shades of Jade, and it keeps going. He's a mechanical engineer who became one of the defining aesthetic forces in this community, sits on [Omarchy Core](/teams/), and helps steward [the plugin ecosystem](https://plugins.omarchy.org/).
 
 [OldJobobo](https://github.com/OldJobobo) is responsible for three of the themes that ship with Omarchy — Lumon, Miasma, and Retro 82 — plus another ten on the extras page, from Batman to City-783 to Sakura Mochi. He works in whole palettes rather than one-off colour schemes, which is why his themes hold together across the terminal, Neovim, btop, and the shell instead of only looking good in a screenshot.
 
