@@ -1,0 +1,124 @@
+/* The shape the site's prose pages share: a centred column, an optional lede or
+   intro at the top, then sections divided by a rule. Each page keeps its own
+   stylesheet for what's actually its own — /brand's figures, /air's residents,
+   /sponsorships' logos — and scopes any deviation under its own class, which
+   stays on the container alongside .page.
+
+   /teams takes only the container; its sections run on a wider rhythm of their
+   own, so .team keeps its rules in teams.css. */
+
+.page {
+  display: grid;
+  gap: var(--space-xx-large);
+  justify-self: center;
+  max-width: 46em;
+  padding-inline: var(--space-large);
+  width: 100%;
+}
+
+/* Pages whose content needs the extra measure: /omakub, /sponsorships, /teams. */
+.page--wide {
+  max-width: 52em;
+}
+
+
+
+/* An italic standfirst above the first section, in place of a full intro block.
+   It takes no rule beneath it — the first section only draws one when something
+   section-shaped precedes it. */
+.page__lede {
+  font-style: italic;
+  text-align: center;
+  text-wrap: pretty;
+}
+
+.page__lede strong {
+  color: var(--color-terminal-white);
+}
+
+
+
+.page__intro {
+  display: grid;
+  gap: var(--space-neutral);
+  justify-items: center;
+  text-align: center;
+}
+
+.page__intro p {
+  max-width: 42em;
+  text-wrap: pretty;
+}
+
+.page__intro h2,
+.page__section h2 {
+  color: var(--color-terminal-white);
+  font-size: var(--font-size-medium);
+  font-weight: 700;
+  letter-spacing: 0.075em;
+  text-transform: uppercase;
+}
+
+/* The quiet line under an intro — a caveat, a file size, what subscribing signs
+   you up for. */
+.page__note {
+  color: rgba(var(--rgb-terminal-white), 0.6);
+  font-size: var(--font-size-small);
+}
+
+
+
+.page__section {
+  display: grid;
+  gap: var(--space-neutral);
+}
+
+/* The rule divides sections rather than opening them, so a page that starts on
+   a section gets no line above its first heading, and one that starts on a lede
+   keeps the lede attached to what follows. An intro block does take a rule
+   under it, which is why it's named here too. */
+.page__intro + .page__section,
+.page__section + .page__section {
+  border-top: var(--border-width) solid rgba(var(--rgb-terminal-black), 0.8);
+  padding-top: var(--space-xx-large);
+}
+
+.page__section--center {
+  justify-items: center;
+  text-align: center;
+}
+
+.page__section p,
+.page__section li {
+  text-wrap: pretty;
+}
+
+
+
+/* Opt-in, so an ordinary list in a section — /brand's downloads — isn't dragged
+   into the same shape. */
+.page__list {
+  display: grid;
+  gap: var(--space-medium);
+}
+
+.page__list li {
+  display: grid;
+  gap: var(--space-medium);
+  grid-template-columns: 1em 1fr;
+}
+
+.page__list li::before {
+  color: rgba(var(--rgb-terminal-white), 0.5);
+  content: "›";
+}
+
+
+
+@media(min-width: 64em) {
+
+  .page {
+    padding-inline: var(--space-xx-large);
+  }
+
+}

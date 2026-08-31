@@ -1,42 +1,7 @@
-.weekly {
-  display: grid;
-  gap: var(--space-xx-large);
-  justify-self: center;
-  max-width: 46em;
-  padding-inline: var(--space-large);
-  width: 100%;
-}
+/* Layout comes from page.css; this is only the subscribe form. */
 
-.weekly__intro {
-  display: grid;
-  gap: var(--space-neutral);
-  justify-items: center;
-  text-align: center;
-}
-
-.weekly__intro h2,
-.weekly__section h2 {
-  color: var(--color-terminal-white);
-  font-size: var(--font-size-medium);
-  font-weight: 700;
-  letter-spacing: 0.075em;
-  text-transform: uppercase;
-}
-
-.weekly__intro p {
-  max-width: 42em;
-  text-wrap: pretty;
-}
-
-.weekly__note {
-  color: rgba(var(--rgb-terminal-white), 0.6);
-  font-size: var(--font-size-small);
-}
-
-
-
-/* Subscribe — the email field carries the same height and radius as the button
-   beside it, so the pair reads as one control rather than two stacked shapes. */
+/* The email field carries the same height and radius as the button beside it,
+   so the pair reads as one control rather than two stacked shapes. */
 
 .weekly__form {
   display: grid;
@@ -89,36 +54,8 @@
 
 
 
-.weekly__section {
-  border-top: var(--border-width) solid rgba(var(--rgb-terminal-black), 0.8);
-  display: grid;
-  gap: var(--space-neutral);
-  padding-top: var(--space-xx-large);
-}
-
-.weekly__section p,
-.weekly__section li {
-  text-wrap: pretty;
-}
-
-.weekly__section ul {
-  display: grid;
-  gap: var(--space-medium);
-}
-
-.weekly__section li {
-  display: grid;
-  gap: var(--space-medium);
-  grid-template-columns: 1em 1fr;
-}
-
-.weekly__section li::before {
-  color: rgba(var(--rgb-terminal-white), 0.5);
-  content: "›";
-}
-
-
-
+/* Wide enough for the field and button to share a line; centred placeholder
+   text only reads right while the field is full width. */
 @media(min-width: 30em) {
 
   .weekly__controls {
@@ -127,16 +64,6 @@
 
   .weekly__input {
     text-align: left;
-  }
-
-}
-
-
-
-@media(min-width: 64em) {
-
-  .weekly {
-    padding-inline: var(--space-xx-large);
   }
 
 }
