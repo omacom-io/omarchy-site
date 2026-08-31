@@ -22,7 +22,7 @@
   --color-turquoise: rgb(var(--rgb-turquoise));
   --color-white: rgb(var(--rgb-white));
 
-  --border-color: rgb(var(--rgb-terminal-black) / 0.8);
+  --border-color: rgba(var(--rgb-terminal-black), 0.8);
   --border-width: max(1px, 0.0625em);
 
   --font-family: 'JetBrains Mono', monospace;

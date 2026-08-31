@@ -9,7 +9,7 @@
   --news-measure: 51.5rem;
   --news-space: 2.75rem;
   --news-space-tight: 0.5rem;
-  --news-border-color: rgb(var(--rgb-terminal-black) / 0.8);
+  --news-border-color: rgba(var(--rgb-terminal-black), 0.8);
   --news-border-width: max(1px, 0.0625em);
 
   background: var(--color-background-night);
