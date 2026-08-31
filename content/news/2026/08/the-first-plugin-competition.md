@@ -2,7 +2,7 @@
 title: The first plugin competition
 date: 2026-08-19
 author: DHH
-author_url: https://x.com/dhh
+author_url: https://dhh.dk
 ---
 
 The [Omarchy Plugin Marketplace](https://omarchyplugins.com/) is already home to over 500 plugins and growing very fast. We have a million ideas for how we can improve this setup, including with automated agent-powered security reviews, but let's not have perfect be the enemy of good and fun for now!

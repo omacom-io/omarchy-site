@@ -1,0 +1,80 @@
+<!doctype html>
+
+<html lang="en" class="screensaver">
+  <head>
+    <title>Screensaver — Omarchy</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, width=device-width">
+    <meta name="description" content="The Omarchy screensaver: ASCII art running through random terminal text effects.">
+    <meta name="theme-color" content="#000000">
+
+    <link rel="canonical" href="https://omarchy.org/screensaver">
+
+    <meta property="og:site_name" content="Omarchy">
+    <meta property="og:title" content="Screensaver">
+    <meta property="og:description" content="The Omarchy screensaver: ASCII art running through random terminal text effects.">
+    <meta property="og:image" content="https://omarchy.org/assets/images/social/screensaver.png">
+    <meta property="og:image:width" content="2400">
+    <meta property="og:image:height" content="1260">
+    <meta property="og:image:alt" content="The Omarchy wordmark mid-effect">
+    <meta property="og:url" content="https://omarchy.org/screensaver">
+    <meta property="og:type" content="website">
+
+    <meta name="twitter:title" content="Screensaver — Omarchy">
+    <meta name="twitter:description" content="The Omarchy screensaver: ASCII art running through random terminal text effects.">
+    <meta name="twitter:image" content="https://omarchy.org/assets/images/social/screensaver.png">
+    <meta name="twitter:image:alt" content="The Omarchy wordmark mid-effect">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <link rel="icon" href="/assets/images/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/assets/css/reset.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/fonts.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/screensaver.css">
+
+    <script src="/assets/js/modules/screensaver.js" type="module"></script>
+    <script defer data-domain="omarchy.org" src="https://plausible.io/js/script.js"></script>
+  </head>
+
+  <body>
+    <h1 class="screensaver__title">Omarchy screensaver. Press f for fullscreen.</h1>
+    <canvas class="screensaver__canvas" id="screensaver" aria-hidden="true"></canvas>
+    <pre class="screensaver__art" id="screensaver-art">
+                 ▄▄▄
+ ▄█████▄    ▄███████████▄    ▄███████   ▄███████   ▄███████   ▄█   █▄    ▄█   █▄
+███   ███  ███   ███   ███  ███   ███  ███   ███  ███   ███  ███   ███  ███   ███
+███   ███  ███   ███   ███  ███   ███  ███   ███  ███   █▀   ███   ███  ███   ███
+███   ███  ███   ███   ███ ▄███▄▄▄███ ▄███▄▄▄██▀  ███       ▄███▄▄▄███▄ ███▄▄▄███
+███   ███  ███   ███   ███ ▀███▀▀▀███ ▀███▀▀▀▀    ███      ▀▀███▀▀▀███  ▀▀▀▀▀▀███
+███   ███  ███   ███   ███  ███   ███ ██████████  ███   █▄   ███   ███  ▄██   ███
+███   ███  ███   ███   ███  ███   ███  ███   ███  ███   ███  ███   ███  ███   ███
+ ▀█████▀    ▀█   ███   █▀   ███   █▀   ███   ███  ███████▀   ███   █▀    ▀█████▀
+                                       ███   █▀
+</pre>
+    <noscript>
+      <style>
+        /* Mirror of the .screensaver--static ruleset: that class only exists
+           once JS adds it, so without JS the same styling applies from here. */
+        html.screensaver .screensaver__canvas { display: none; }
+        html.screensaver, html.screensaver body { cursor: auto; }
+        html.screensaver .screensaver__art {
+          align-content: center;
+          color: var(--color-green, #9ece6a);
+          display: grid;
+          font-size: clamp(0.35rem, 1.1vw, 1rem);
+          height: 100%;
+          inset: 0;
+          justify-content: center;
+          letter-spacing: -0.0425em;
+          line-height: 1.09375;
+          margin: 0;
+          place-items: center;
+          position: fixed;
+          white-space: pre;
+          width: 100%;
+        }
+      </style>
+    </noscript>
+  </body>
+</html>

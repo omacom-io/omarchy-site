@@ -1,33 +1,50 @@
 # Omarchy
 
-Beautiful, Modern & Opinionated Linux by DHH.
+Beautiful, Fun & Opinionated Linux by DHH.
 
-See https://github.com/basecamp/omarchy for more.
+See https://github.com/omacom/omarchy for more.
 
-## News
+## Adding your theme
 
-Add posts as Markdown under `content/news/YYYY/MM/post-slug.md`. A post may
-start with YAML front matter containing `title`, `date`, `author`, `author_url`,
-and `description`; only the title is required, either there or as the first `#`
-heading. Images stored beside the post are published with it. Regenerate the
-pages under `news/` with:
+Community themes are listed on [omarchy.org/themes](https://omarchy.org/themes/).
+To get yours on the page, open a pull request with two things.
 
-    bin/build-news
+**1. A screenshot.** Take a 16:9 shot of the theme on a real desktop, then
+convert it:
 
-## The Manual
+    magick preview.png -strip -resize '1200>' -quality 80 your-theme.webp
 
-The pages under `manual/` are generated from the authoritative markdown chapters
-in the [omarchy repo](https://github.com/basecamp/omarchy/tree/HEAD/manual).
-Regenerate them (then commit the result) with:
+Put the result in `assets/themes/`. Name the file after the theme, lowercase
+and hyphenated — `your-theme.webp`. Aim for 1200x675; keep it under about
+100KB so the page stays quick to load.
 
-    bin/build-manual
+**2. An entry.** Add a figure block to `themes/index.html`, in alphabetical
+order among the others:
 
-It needs `gem install kramdown kramdown-parser-gfm` and imagemagick on first run. Pass a local
-checkout to build without hitting GitHub: `bin/build-manual ../omarchy/manual`.
+```html
+<figure class="themes__theme">
+  <a href="https://github.com/you/your-theme"><img src="/assets/themes/your-theme.webp" alt="Your Theme theme" loading="lazy" decoding="async"></a>
+  <figcaption><a href="https://github.com/you/your-theme">Your Theme</a></figcaption>
+</figure>
+```
 
-## Search
+Both links point at the theme's own repository, which is where people
+install it from and where it needs to keep living.
 
-The same build writes `manual/search-index.json` — one entry per heading, so results link
-straight to the section that matched. `assets/js/modules/search.js` fetches it the first
-time someone reaches for the box in the header and matches in the browser; there is no
-search service and nothing to run. Press `/` anywhere in the manual to search.
+### The screenshot matters
+
+The page is a grid of screenshots — that image is the whole pitch for your
+theme, so give it the same care you gave the palette. Show a real session
+with a terminal and an editor in it, not an empty desktop. Use the theme's own
+wallpaper. Don't scale a small capture up, and don't include a cursor, a
+notification, or anything personal you'd rather not publish.
+
+Pull requests without a screenshot can't be merged, because there's nothing
+to put on the page.
+
+## Plugins
+
+Plugins aren't in this repository. They're listed on
+[omarchyplugins.com](https://omarchyplugins.com/) from the
+[marketplace repo](https://github.com/HANCORE-linux/omarchy-plugin-marketplace),
+which has its own submission guide.

@@ -80,13 +80,22 @@
         </section>
 
         <section class="security__section">
+          <h2>What is a vulnerability?</h2>
+          <p>We consider a bug a security vulnerability when it can be exploited to cross a meaningful security boundary: an untrusted or lower-privileged party gains access, permissions, or control they didn&rsquo;t already have.</p>
+
+          <p>Code that could be more robust but does not cross a security boundary is an improvement rather than a security vulnerability. We may still merge a proposed fix and credit the reporter in our release notes.</p>
+
+          <p>Eligibility for our <a href="/security/credits/">security credits</a> page depends on whether a report identifies a confirmed security vulnerability, not on its severity.</p>
+        </section>
+
+        <section class="security__section">
           <h2>What to include</h2>
           <p>Give us enough information to understand and reproduce the issue:</p>
 
           <ul>
             <li>The affected component and Omarchy version.</li>
-            <li>Steps to reproduce the vulnerability.</li>
-            <li>The impact and any proof of concept you have.</li>
+            <li>An explanation of what an attacker can do before and after exploitation.</li>
+            <li>Steps to reproduce the issue and any proof of concept.</li>
             <li>Your preferred contact details for follow-up.</li>
           </ul>
         </section>
@@ -107,12 +116,13 @@
 
         <section class="security__section">
           <h2>Credits</h2>
-          <p>Everyone who has reported a security issue privately and given us the chance to ship a fix is thanked on the <a href="/security/credits/">security credits</a> page.</p>
+          <p>Researchers who privately report a confirmed security vulnerability and give us the chance to ship a fix are thanked on the <a href="/security/credits/">security credits</a> page. Accepted improvements that don&rsquo;t cross a security boundary may still be credited in our release notes.</p>
+          <p>Credits link to each reporter&rsquo;s X profile and show their avatar. For duplicate reports, only the first reporter is eligible for credit.</p>
         </section>
 
         <section class="security__section">
           <h2>Regular bugs and support</h2>
-          <p>For anything that isn&rsquo;t a security vulnerability, please use the <a href="https://github.com/basecamp/omarchy/issues">Omarchy issue tracker</a>.</p>
+          <p>For anything that isn&rsquo;t a security vulnerability, please use the <a href="https://github.com/omacom/omarchy/issues">Omarchy issue tracker</a>.</p>
         </section>
 
       </div>
