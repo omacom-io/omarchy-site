@@ -199,7 +199,7 @@
 
 .news-prose blockquote {
   border-left: 0.25rem solid var(--news-border-color);
-  color: var(--color-terminal-cyan);
+  font-style: italic;
   margin-inline-start: 1.4em;
   padding-left: 1.25rem;
 }
