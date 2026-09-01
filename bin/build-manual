@@ -123,7 +123,7 @@ def build(source_dir)
 
   write_page File.join(manual_dir, "toc/index.html"), "toc",
     title: "Table of Contents",
-    description: "The complete manual for Omarchy — Beautiful, Fun & Opinionated Linux by DHH.",
+    description: "The complete manual for Omarchy — Beautiful, Fun & Agentic Linux by DHH.",
     path: "/manual/toc/",
     chapters: chapters
 
