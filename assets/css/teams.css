@@ -25,6 +25,15 @@
   text-align: center;
 }
 
+/* The section names are self-anchors; they should look exactly like the
+   plain headings they replace — no link colour, underline, or hover. */
+.team__name a,
+.team__name a:hover {
+  color: inherit;
+  font-weight: inherit;
+  text-decoration: none;
+}
+
 .team__name {
   color: var(--color-terminal-white);
   font-size: var(--font-size-medium);
