@@ -118,6 +118,12 @@ function ready() {
   if (prefersReducedMotion()) return;
   if (!document.documentElement.classList.contains('wte-home')) return;
 
+  // A restored theme shows the static mark; laseretch's colors are baked in.
+  if (document.documentElement.hasAttribute('data-theme')) {
+    markStatic();
+    return;
+  }
+
   const pre = document.querySelector('.pre a pre');
   const link = pre?.parentElement;
   if (!(pre instanceof HTMLPreElement) || link == null) return;

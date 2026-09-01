@@ -2,6 +2,7 @@
 
 <html lang="en">
   <head>
+    <script>try { const theme = localStorage.getItem('omarchy-theme'); if (theme != null && theme !== 'tokyo-night') document.documentElement.setAttribute('data-theme', theme); } catch {}</script>
     <title>Omarchy Server 4.0</title>
 
     <meta charset="utf-8">
@@ -34,6 +35,9 @@
     <link rel="stylesheet" type="text/css" href="/assets/css/elements.css">
     <link rel="stylesheet" type="text/css" href="/assets/css/main.css">
     <link rel="stylesheet" type="text/css" href="/assets/css/server.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/theme-switcher.css">
+
+    <script src="/assets/js/theme.js" type="module"></script>
 
     <script defer data-domain="omarchy.org" src="https://plausible.io/js/script.js"></script>
   </head>
@@ -47,5 +51,11 @@
         <p class="server__coming">Coming 2026</p>
       </div>
     </main>
+
+    <button class="theme-switcher" type="button" aria-label="Next theme">
+      <span class="theme-switcher__dot" aria-hidden="true"></span>
+      <span class="theme-switcher__name">tokyo-night</span>
+      <kbd aria-hidden="true">t</kbd>
+    </button>
   </body>
 </html>

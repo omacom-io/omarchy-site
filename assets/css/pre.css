@@ -79,6 +79,26 @@ html.wte-home .pre.pre--static .pre__wte {
   white-space: pre;
 }
 
+/* Themed pages paint the static mark like the gradient the laseretch
+   animation ends on: one solid band per art row, from the theme's accents. */
+[data-theme] .pre pre {
+  background-image: linear-gradient(
+    var(--color-turquoise) 0 10%,
+    color-mix(in srgb, var(--color-turquoise) 78%, var(--color-terminal-blue)) 10% 20%,
+    color-mix(in srgb, var(--color-turquoise) 56%, var(--color-terminal-blue)) 20% 30%,
+    color-mix(in srgb, var(--color-turquoise) 33%, var(--color-terminal-blue)) 30% 40%,
+    color-mix(in srgb, var(--color-turquoise) 11%, var(--color-terminal-blue)) 40% 50%,
+    color-mix(in srgb, var(--color-terminal-blue) 89%, var(--color-magenta)) 50% 60%,
+    color-mix(in srgb, var(--color-terminal-blue) 67%, var(--color-magenta)) 60% 70%,
+    color-mix(in srgb, var(--color-terminal-blue) 44%, var(--color-magenta)) 70% 80%,
+    color-mix(in srgb, var(--color-terminal-blue) 22%, var(--color-magenta)) 80% 90%,
+    var(--color-magenta) 90% 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
 
 
 @media(hover: hover) {

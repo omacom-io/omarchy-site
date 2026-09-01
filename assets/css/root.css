@@ -4,6 +4,7 @@
   --rgb-background-storm: 36, 40, 59;
   --rgb-black: 0, 0, 0;
   --rgb-green: 158, 206, 106;
+  --rgb-magenta: 187, 154, 247;
   --rgb-terminal-black: 65, 72, 104;
   --rgb-terminal-blue: 122, 162, 247;
   --rgb-terminal-cyan: 125, 207, 255;
@@ -15,6 +16,7 @@
   --color-background-storm: rgb(var(--rgb-background-storm));
   --color-black: rgb(var(--rgb-black));
   --color-green: rgb(var(--rgb-green));
+  --color-magenta: rgb(var(--rgb-magenta));
   --color-terminal-black: rgb(var(--rgb-terminal-black));
   --color-terminal-blue: rgb(var(--rgb-terminal-blue));
   --color-terminal-cyan: rgb(var(--rgb-terminal-cyan));
@@ -45,3 +47,237 @@
   --transition: 0.15s cubic-bezier(0.33, 1, 0.68, 1);
 
 }
+
+
+/* Theme switcher palettes, 1:1 from themes/<name>/colors.toml in the
+   omarchy repo. Tokyo Night stays the :root default above. */
+
+
+[data-theme="catppuccin"] {
+  --rgb-background-night: 22, 22, 34;
+  --rgb-background-storm: 30, 30, 46;
+  --rgb-green: 166, 227, 161;
+  --rgb-magenta: 245, 194, 231;
+  --rgb-terminal-black: 88, 91, 112;
+  --rgb-terminal-blue: 137, 180, 250;
+  --rgb-terminal-cyan: 148, 226, 213;
+  --rgb-terminal-white: 205, 214, 244;
+  --rgb-turquoise: 148, 226, 213;
+}
+
+[data-theme="catppuccin-latte"] {
+  --rgb-background-night: 227, 228, 232;
+  --rgb-background-storm: 239, 241, 245;
+  --rgb-green: 64, 160, 43;
+  --rgb-magenta: 234, 118, 203;
+  --rgb-terminal-black: 172, 176, 190;
+  --rgb-terminal-blue: 30, 102, 245;
+  --rgb-terminal-cyan: 23, 146, 153;
+  --rgb-terminal-white: 76, 79, 105;
+  --rgb-turquoise: 23, 146, 153;
+}
+
+[data-theme="ethereal"] {
+  --rgb-background-night: 4, 8, 22;
+  --rgb-background-storm: 6, 11, 30;
+  --rgb-green: 196, 207, 196;
+  --rgb-magenta: 200, 157, 193;
+  --rgb-terminal-black: 109, 125, 182;
+  --rgb-terminal-blue: 125, 130, 217;
+  --rgb-terminal-cyan: 163, 191, 209;
+  --rgb-terminal-white: 255, 206, 173;
+  --rgb-turquoise: 223, 234, 240;
+}
+
+[data-theme="everforest"] {
+  --rgb-background-night: 33, 39, 44;
+  --rgb-background-storm: 45, 53, 59;
+  --rgb-green: 167, 192, 128;
+  --rgb-magenta: 214, 153, 182;
+  --rgb-terminal-black: 71, 82, 88;
+  --rgb-terminal-blue: 127, 187, 179;
+  --rgb-terminal-cyan: 131, 192, 146;
+  --rgb-terminal-white: 211, 198, 170;
+  --rgb-turquoise: 131, 192, 146;
+}
+
+[data-theme="flexoki-light"] {
+  --rgb-background-night: 242, 239, 228;
+  --rgb-background-storm: 255, 252, 240;
+  --rgb-green: 135, 154, 57;
+  --rgb-magenta: 206, 93, 151;
+  --rgb-terminal-black: 183, 181, 172;
+  --rgb-terminal-blue: 32, 94, 166;
+  --rgb-terminal-cyan: 58, 169, 159;
+  --rgb-terminal-white: 16, 15, 15;
+  --rgb-turquoise: 58, 169, 159;
+}
+
+[data-theme="gruvbox"] {
+  --rgb-background-night: 30, 30, 30;
+  --rgb-background-storm: 40, 40, 40;
+  --rgb-green: 169, 182, 101;
+  --rgb-magenta: 211, 134, 155;
+  --rgb-terminal-black: 102, 92, 84;
+  --rgb-terminal-blue: 125, 174, 163;
+  --rgb-terminal-cyan: 137, 180, 130;
+  --rgb-terminal-white: 212, 190, 152;
+  --rgb-turquoise: 137, 180, 130;
+}
+
+[data-theme="hackerman"] {
+  --rgb-background-night: 8, 9, 16;
+  --rgb-background-storm: 11, 12, 22;
+  --rgb-green: 156, 247, 194;
+  --rgb-magenta: 134, 167, 223;
+  --rgb-terminal-black: 45, 52, 80;
+  --rgb-terminal-blue: 130, 251, 156;
+  --rgb-terminal-cyan: 124, 248, 247;
+  --rgb-terminal-white: 221, 247, 255;
+  --rgb-turquoise: 209, 255, 254;
+}
+
+[data-theme="kanagawa"] {
+  --rgb-background-night: 23, 23, 30;
+  --rgb-background-storm: 31, 31, 40;
+  --rgb-green: 152, 187, 108;
+  --rgb-magenta: 149, 127, 184;
+  --rgb-terminal-black: 84, 84, 109;
+  --rgb-terminal-blue: 220, 215, 186;
+  --rgb-terminal-cyan: 126, 156, 216;
+  --rgb-terminal-white: 220, 215, 186;
+  --rgb-turquoise: 122, 168, 159;
+}
+
+[data-theme="last-horizon"] {
+  --rgb-background-night: 9, 8, 9;
+  --rgb-background-storm: 12, 11, 12;
+  --rgb-green: 135, 169, 176;
+  --rgb-magenta: 196, 216, 226;
+  --rgb-terminal-black: 88, 78, 81;
+  --rgb-terminal-blue: 181, 151, 144;
+  --rgb-terminal-cyan: 165, 160, 182;
+  --rgb-terminal-white: 250, 252, 251;
+  --rgb-turquoise: 165, 160, 182;
+}
+
+[data-theme="lumon"] {
+  --rgb-background-night: 16, 27, 33;
+  --rgb-background-storm: 22, 36, 45;
+  --rgb-green: 134, 183, 216;
+  --rgb-magenta: 139, 201, 235;
+  --rgb-terminal-black: 48, 72, 96;
+  --rgb-terminal-blue: 139, 201, 235;
+  --rgb-terminal-cyan: 180, 228, 246;
+  --rgb-terminal-white: 214, 226, 238;
+  --rgb-turquoise: 209, 238, 248;
+}
+
+[data-theme="lupine"] {
+  --rgb-background-night: 236, 236, 236;
+  --rgb-background-storm: 250, 250, 250;
+  --rgb-green: 74, 47, 208;
+  --rgb-magenta: 138, 74, 215;
+  --rgb-terminal-black: 158, 158, 158;
+  --rgb-terminal-blue: 50, 100, 235;
+  --rgb-terminal-cyan: 12, 103, 222;
+  --rgb-terminal-white: 33, 33, 33;
+  --rgb-turquoise: 57, 134, 255;
+}
+
+[data-theme="matte-black"] {
+  --rgb-background-night: 13, 13, 13;
+  --rgb-background-storm: 18, 18, 18;
+  --rgb-green: 255, 193, 7;
+  --rgb-magenta: 211, 95, 95;
+  --rgb-terminal-black: 51, 51, 51;
+  --rgb-terminal-blue: 230, 142, 13;
+  --rgb-terminal-cyan: 245, 158, 11;
+  --rgb-terminal-white: 190, 190, 190;
+  --rgb-turquoise: 234, 234, 234;
+}
+
+[data-theme="miasma"] {
+  --rgb-background-night: 25, 25, 25;
+  --rgb-background-storm: 34, 34, 34;
+  --rgb-green: 95, 135, 95;
+  --rgb-magenta: 187, 119, 68;
+  --rgb-terminal-black: 102, 102, 102;
+  --rgb-terminal-blue: 120, 130, 75;
+  --rgb-terminal-cyan: 201, 165, 84;
+  --rgb-terminal-white: 194, 194, 176;
+  --rgb-turquoise: 201, 165, 84;
+}
+
+[data-theme="nord"] {
+  --rgb-background-night: 34, 39, 48;
+  --rgb-background-storm: 46, 52, 64;
+  --rgb-green: 163, 190, 140;
+  --rgb-magenta: 180, 142, 173;
+  --rgb-terminal-black: 76, 86, 106;
+  --rgb-terminal-blue: 129, 161, 193;
+  --rgb-terminal-cyan: 136, 192, 208;
+  --rgb-terminal-white: 216, 222, 233;
+  --rgb-turquoise: 143, 188, 187;
+}
+
+[data-theme="osaka-jade"] {
+  --rgb-background-night: 12, 21, 18;
+  --rgb-background-storm: 17, 28, 24;
+  --rgb-green: 99, 176, 122;
+  --rgb-magenta: 210, 104, 156;
+  --rgb-terminal-black: 83, 104, 91;
+  --rgb-terminal-blue: 80, 148, 117;
+  --rgb-terminal-cyan: 45, 213, 183;
+  --rgb-terminal-white: 193, 196, 151;
+  --rgb-turquoise: 140, 211, 203;
+}
+
+[data-theme="retro-82"] {
+  --rgb-background-night: 3, 18, 34;
+  --rgb-background-storm: 5, 24, 46;
+  --rgb-green: 2, 131, 145;
+  --rgb-magenta: 63, 143, 138;
+  --rgb-terminal-black: 42, 107, 120;
+  --rgb-terminal-blue: 250, 169, 104;
+  --rgb-terminal-cyan: 140, 191, 184;
+  --rgb-terminal-white: 246, 220, 172;
+  --rgb-turquoise: 140, 191, 184;
+}
+
+[data-theme="ristretto"] {
+  --rgb-background-night: 33, 27, 27;
+  --rgb-background-storm: 44, 37, 37;
+  --rgb-green: 200, 226, 146;
+  --rgb-magenta: 168, 169, 235;
+  --rgb-terminal-black: 114, 105, 106;
+  --rgb-terminal-blue: 243, 141, 112;
+  --rgb-terminal-cyan: 133, 218, 204;
+  --rgb-terminal-white: 230, 217, 219;
+  --rgb-turquoise: 155, 241, 225;
+}
+
+[data-theme="rose-pine"] {
+  --rgb-background-night: 237, 231, 225;
+  --rgb-background-storm: 250, 244, 237;
+  --rgb-green: 40, 105, 131;
+  --rgb-magenta: 144, 122, 169;
+  --rgb-terminal-black: 206, 202, 205;
+  --rgb-terminal-blue: 86, 148, 159;
+  --rgb-terminal-cyan: 215, 130, 126;
+  --rgb-terminal-white: 87, 82, 121;
+  --rgb-turquoise: 215, 130, 126;
+}
+
+[data-theme="solitude"] {
+  --rgb-background-night: 12, 14, 16;
+  --rgb-background-storm: 16, 19, 21;
+  --rgb-green: 159, 165, 169;
+  --rgb-magenta: 174, 174, 174;
+  --rgb-terminal-black: 75, 78, 85;
+  --rgb-terminal-blue: 121, 129, 134;
+  --rgb-terminal-cyan: 112, 112, 112;
+  --rgb-terminal-white: 202, 204, 204;
+  --rgb-turquoise: 201, 194, 180;
+}
+

@@ -2,6 +2,7 @@
 
 <html lang="en">
   <head>
+    <script>try { const theme = localStorage.getItem('omarchy-theme'); if (theme != null && theme !== 'tokyo-night') document.documentElement.setAttribute('data-theme', theme); } catch {}</script>
     <title>The first plugin competition — Omarchy News</title>
 
     <meta charset="utf-8">
@@ -38,6 +39,9 @@
     <link rel="stylesheet" href="/assets/css/header.css">
     <link rel="stylesheet" href="/assets/css/pre.css">
     <link rel="stylesheet" href="/assets/css/news.css">
+    <link rel="stylesheet" href="/assets/css/theme-switcher.css">
+
+    <script src="/assets/js/theme.js" type="module"></script>
 
     <script defer data-domain="omarchy.org" src="https://plausible.io/js/script.js"></script>
   </head>
@@ -90,5 +94,11 @@
         </div>
       </article>
     </main>
+
+    <button class="theme-switcher" type="button" aria-label="Next theme">
+      <span class="theme-switcher__dot" aria-hidden="true"></span>
+      <span class="theme-switcher__name">tokyo-night</span>
+      <kbd aria-hidden="true">t</kbd>
+    </button>
   </body>
 </html>

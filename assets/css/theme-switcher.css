@@ -1,0 +1,62 @@
+.theme-switcher {
+  align-items: center;
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  background: rgba(var(--rgb-background-storm), 0.85);
+  border: var(--border-width) solid rgba(var(--rgb-terminal-black), 0.8);
+  border-radius: 0.4em;
+  bottom: var(--space-medium);
+  color: var(--color-terminal-white);
+  cursor: pointer;
+  display: flex;
+  font-family: var(--font-family);
+  font-size: max(0.6875rem, calc(var(--font-size) * 0.8));
+  gap: 1ch;
+  line-height: 1;
+  padding: 0.6em 0.8em;
+  position: fixed;
+  right: var(--space-medium);
+  transition:
+    border-color var(--transition),
+    color var(--transition)
+  ;
+  z-index: 10;
+}
+
+.theme-switcher__dot {
+  background: var(--color-terminal-blue);
+  border-radius: 50%;
+  height: 0.6em;
+  transition: background var(--transition);
+  width: 0.6em;
+}
+
+.theme-switcher kbd {
+  border: var(--border-width) solid rgba(var(--rgb-terminal-black), 0.8);
+  border-bottom-width: calc(var(--border-width) * 2);
+  border-radius: 0.25em;
+  color: rgba(var(--rgb-terminal-white), 0.6);
+  font: inherit;
+  padding: 0.1em 0.4em;
+}
+
+
+
+@media(hover: hover) {
+
+  .theme-switcher:hover {
+    border-color: var(--color-turquoise);
+  }
+
+}
+
+
+
+/* No keyboard on a phone — tapping the chip cycles instead. */
+@media(pointer: coarse) {
+
+  .theme-switcher kbd {
+    display: none;
+  }
+
+}
