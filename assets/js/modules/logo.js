@@ -118,7 +118,7 @@ function ready() {
   if (prefersReducedMotion()) return;
   if (!document.documentElement.classList.contains('wte-home')) return;
 
-  const pre = document.querySelector('.quattro-logo pre');
+  const pre = document.querySelector('.quattro-logo pre, .pre a pre');
   const host = pre?.parentElement;
   if (!(pre instanceof HTMLPreElement) || host == null) return;
 
