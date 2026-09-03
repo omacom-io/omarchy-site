@@ -60,7 +60,7 @@ end
 def write_feed(posts)
   items = posts.map do |post|
     # Feed readers have no site origin, so make asset and link URLs absolute.
-    html = post.html.gsub(%r{(href|src)="/}, %(\\1="#{SITE_URL}/))
+    html = post.html.gsub(%r{(href|src)="/(?!/)}, %(\\1="#{SITE_URL}/))
     <<~ITEM
       <item>
         <title>#{h post.title}</title>
