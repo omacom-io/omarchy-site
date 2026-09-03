@@ -53,7 +53,6 @@ export const Route = createRootRoute({
     scripts: [{ children: themeInitScript }],
     links: [
       { rel: 'stylesheet', href: appCss },
-      { rel: 'icon', href: '/brand/omarchy-logo.svg', type: 'image/svg+xml' },
       // The wordmark is the largest thing above the fold on the home page.
       {
         rel: 'preload',
