@@ -157,7 +157,7 @@ function ExplorePage() {
       <div className="mt-4">
         {failed ? (
           <div className="ring-elevation flex min-h-96 flex-col items-center justify-center bg-surface p-8 text-center">
-            <p className="text-[15px] font-medium text-text">
+            <p className="font-sans text-[15px] font-medium text-text">
               The map data didn't load
             </p>
             <p className="mt-1.5 max-w-sm text-sm text-text-secondary [text-wrap:pretty]">

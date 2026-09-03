@@ -8,11 +8,14 @@ import {
 import type { PixelGrid } from '@/lib/pixel-grid'
 
 /** Snapping measures text, so it must only ever run against the real
- * webfont; a snap against fallback metrics lands on different cell lines
+ * webfonts; a snap against fallback metrics lands on different cell lines
  * and the correction reads as controls jumping around during load. */
-const interReady = () => {
+const facesReady = () => {
   try {
-    return document.fonts.check('16px Inter')
+    return (
+      document.fonts.check('16px "Geist Variable"') &&
+      document.fonts.check('16px "JetBrains Mono Variable"')
+    )
   } catch {
     return true
   }
@@ -28,7 +31,7 @@ const interReady = () => {
  * the way out. The bar's controls were marked and did exactly that; they take
  * their sizes from --pxc in plain CSS instead, which needs no measurement and
  * so cannot move. The
- * first snap runs in a layout effect before first paint when Inter is
+ * first snap runs in a layout effect before first paint when the webfonts are
  * cached, which is every visit after the first; on a cold cache the page
  * simply keeps its natural layout. Afterwards the only snaps are grid
  * events from the field, which fire inside its own pre-frame measure
@@ -45,7 +48,7 @@ export function PixelSnap() {
   const armed = useRef(false)
 
   useLayoutEffect(() => {
-    if (!interReady()) return
+    if (!facesReady()) return
     const slot = document.querySelector('[data-hero-wordmark]')
     if (!slot) return
     const r = slot.getBoundingClientRect()

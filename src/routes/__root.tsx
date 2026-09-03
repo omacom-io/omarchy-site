@@ -2,7 +2,10 @@ import { HeadContent, Scripts, createRootRoute } from '@tanstack/react-router'
 import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools'
 import { TanStackDevtools } from '@tanstack/react-devtools'
 
+import '@fontsource-variable/geist'
 import '@fontsource-variable/jetbrains-mono'
+import '@fontsource-variable/jetbrains-mono/wght-italic.css'
+import geistWoff2 from '@fontsource-variable/geist/files/geist-latin-wght-normal.woff2?url'
 import monoWoff2 from '@fontsource-variable/jetbrains-mono/files/jetbrains-mono-latin-wght-normal.woff2?url'
 
 import appCss from '../styles.css?url'
@@ -60,25 +63,7 @@ export const Route = createRootRoute({
       },
       {
         rel: 'preload',
-        href: '/fonts/Inter-4.1/extras/woff-hinted/Inter-Regular.woff2',
-        as: 'font',
-        type: 'font/woff2',
-        crossOrigin: 'anonymous',
-      },
-      {
-        rel: 'preload',
-        href: '/fonts/Inter-4.1/extras/woff-hinted/Inter-Medium.woff2',
-        as: 'font',
-        type: 'font/woff2',
-        crossOrigin: 'anonymous',
-      },
-      // Preloaded like the other two, because font-display: optional only
-      // uses a face that arrived in time. Discovered late, SemiBold would sit
-      // out the whole load and leave every section heading in the fallback
-      // while the body around it was in Inter.
-      {
-        rel: 'preload',
-        href: '/fonts/Inter-4.1/extras/woff-hinted/Inter-SemiBold.woff2',
+        href: geistWoff2,
         as: 'font',
         type: 'font/woff2',
         crossOrigin: 'anonymous',

@@ -249,7 +249,7 @@ export function SearchPalette() {
                         its heading and names its chapter, everything else
                         leads with its title and names its author or date. */}
                     <span className="flex items-baseline gap-2">
-                      <span className="truncate text-sm font-medium text-text">
+                      <span className="truncate font-sans text-sm font-medium text-text">
                         {hit.kind === 'manual'
                           ? (hit.heading ?? hit.title)
                           : hit.title}

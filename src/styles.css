@@ -1,57 +1,8 @@
 @import 'tailwindcss';
 @import 'tw-animate-css';
 
-/* Inter, self-hosted from public/fonts (hinted static weights) */
-/* block, not swap or optional. Preloaded above and served from the same
-   origin, so in practice this waits on a fetch of a few milliseconds and then
-   paints in Inter.
-
-   swap paints in the fallback first and re-flows when Inter lands, and both
-   the headline and the copy under it are text-wrap: balance, so that re-picks
-   their line breaks and the block moves under the reader. optional avoids
-   that but decides per load: miss its ~100ms window - which a revalidating
-   dev server does regularly - and the whole page renders in the fallback,
-   so the same heading is one width on one refresh and another on the next.
-   block is the only one of the three that renders one typeface, once. Its
-   cost is that a genuinely slow load shows nothing rather than something for
-   up to three seconds, after which the fallback comes in anyway. */
-@font-face {
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 400;
-  font-display: block;
-  src: url('/fonts/Inter-4.1/extras/woff-hinted/Inter-Regular.woff2')
-    format('woff2');
-}
-@font-face {
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 500;
-  font-display: block;
-  src: url('/fonts/Inter-4.1/extras/woff-hinted/Inter-Medium.woff2')
-    format('woff2');
-}
-@font-face {
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 600;
-  font-display: block;
-  src: url('/fonts/Inter-4.1/extras/woff-hinted/Inter-SemiBold.woff2')
-    format('woff2');
-}
-
-/* Metric-compatible stand-in shown while Inter loads: Arial scaled to
-   Inter's advance widths, so text wraps identically before and after the
-   swap and nothing on the page moves when the webfont lands. */
-@font-face {
-  font-family: 'Inter Fallback';
-  src: local('Arial');
-  font-display: swap;
-  size-adjust: 107.64%;
-  ascent-override: 90.49%;
-  descent-override: 22.56%;
-  line-gap-override: 0%;
-}
+/* Typefaces: Fontsource, imported from src/routes/__root.tsx.
+   Geist Variable for headings. JetBrains Mono Variable for the rest. */
 
 /*
  * Omarchy design tokens. Terminal-native, sharp-cornered.
@@ -61,7 +12,7 @@
  */
 
 @theme inline {
-  --font-sans: 'Inter', 'Inter Fallback', ui-sans-serif, system-ui, sans-serif;
+  --font-sans: 'Geist Variable', ui-sans-serif, system-ui, sans-serif;
   --font-mono:
     'JetBrains Mono Variable', ui-monospace, 'SFMono-Regular', Menlo, monospace;
 
@@ -409,6 +360,7 @@ html,
 body,
 #app {
   min-height: 100%;
+  font-family: var(--font-mono);
 }
 
 /* The sticky bar's full height: its own row, plus whatever the device keeps
@@ -429,7 +381,7 @@ body {
   padding-inline: env(safe-area-inset-left) env(safe-area-inset-right);
   background: var(--color-bg);
   color: var(--color-text);
-  font-family: var(--font-sans);
+  font-family: var(--font-mono);
   font-synthesis: none;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -474,7 +426,11 @@ textarea,
 
 h1,
 h2,
-h3 {
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-sans);
   text-wrap: balance;
 }
 
@@ -788,6 +744,7 @@ h3 {
 }
 .prose th {
   color: var(--color-text);
+  font-family: var(--font-sans);
   font-weight: 600;
   background: var(--color-surface);
 }
@@ -862,6 +819,7 @@ h3 {
 }
 .ported .team__name {
   margin: 0;
+  font-family: var(--font-sans);
   font-size: 1.25rem;
 }
 .ported .team__description {
@@ -905,6 +863,7 @@ h3 {
 }
 .ported .member__name {
   margin: 0.7em 0 0;
+  font-family: var(--font-sans);
   font-size: 15px;
   font-weight: 500;
   letter-spacing: 0;
@@ -953,6 +912,7 @@ h3 {
 }
 .ported .resident__name {
   margin: 0;
+  font-family: var(--font-sans);
 }
 .ported .resident p {
   max-width: none;
@@ -1005,6 +965,7 @@ h3 {
 }
 .ported .sponsorship__name {
   margin: 0;
+  font-family: var(--font-sans);
 }
 .ported .sponsorship__terms {
   font-family: var(--font-mono);
@@ -1054,6 +1015,7 @@ h3 {
 .ported .rule__name {
   margin: 0;
   color: var(--color-text);
+  font-family: var(--font-sans);
   font-weight: 500;
   font-size: 14px;
 }
@@ -1242,6 +1204,7 @@ h3 {
 }
 .docs .troubleshooting-list dt {
   color: var(--color-text);
+  font-family: var(--font-sans);
   font-weight: 600;
   margin-top: 1em;
 }

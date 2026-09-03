@@ -307,7 +307,9 @@ export function ExploreMap({
             'ring-elevation pointer-events-none absolute bottom-3 left-3 max-w-xs bg-surface p-3.5',
           )}
         >
-          <p className="text-sm font-medium text-text">{hovered.name}</p>
+          <p className="font-sans text-sm font-medium text-text">
+            {hovered.name}
+          </p>
           <p className="mt-0.5 font-mono text-xs text-text-muted">
             {hovered.author ?? 'unknown'} - {hovered.category}
             {hovered.stars > 0 ? ` - ${hovered.stars}★` : ''}

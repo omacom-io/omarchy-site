@@ -271,7 +271,7 @@ export function SiteFooter() {
           <div className="grid grid-cols-2 gap-10 sm:grid-cols-4">
             {columns.map((col) => (
               <nav key={col.title} data-quiet aria-label={col.title}>
-                <h2 className="font-mono text-xs tracking-widest text-text-muted uppercase">
+                <h2 className="font-sans text-xs tracking-widest text-text-muted uppercase">
                   {col.title}
                 </h2>
                 <ul className="mt-3.5 flex flex-col gap-2.5">

@@ -348,7 +348,7 @@ function PluginsPage() {
         </div>
       ) : total === 0 ? (
         <div className="ring-elevation mt-6 flex min-h-72 flex-col items-center justify-center bg-surface p-8 text-center">
-          <p className="text-[15px] font-medium text-text">
+          <p className="font-sans text-[15px] font-medium text-text">
             Nothing matches that filter
           </p>
           <p className="mt-1.5 max-w-sm text-sm text-text-secondary [text-wrap:pretty]">

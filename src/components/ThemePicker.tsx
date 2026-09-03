@@ -263,7 +263,7 @@ export function ThemePicker() {
           >
             <BrushIcon className="mt-0.5 size-5 shrink-0 text-brand" />
             <span>
-              <span className="block text-sm font-medium text-text">
+              <span className="block font-sans text-sm font-medium text-text">
                 Change the theme
               </span>
               <span className="mt-1 block text-[13px] leading-relaxed text-text-secondary">
@@ -487,7 +487,7 @@ export function ThemePicker() {
           closing ? `${exit} fade-out-0` : `${enter} fade-in-0 delay-40`,
         )}
       >
-        <span className="block text-2xl font-semibold tracking-tight text-text">
+        <span className="block font-sans text-2xl font-semibold tracking-tight text-text">
           {SITE_THEMES[index].name}
         </span>
       </button>

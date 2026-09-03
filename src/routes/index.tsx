@@ -606,7 +606,7 @@ function Home() {
                       >
                         {post.dateStr}
                       </time>
-                      <span className="text-[15px] font-medium text-text transition-colors duration-150 ease-out group-hover:text-brand">
+                      <span className="font-sans text-[15px] font-medium text-text transition-colors duration-150 ease-out group-hover:text-brand">
                         {post.title}
                       </span>
                       <span className="text-sm text-text-secondary [text-wrap:pretty]">
@@ -676,7 +676,7 @@ function Home() {
                   {/* Underlined from the start in nothing, so the hover is a
                       colour arriving rather than a line, and the whole card
                       carries it - the same as on the teams page. */}
-                  <span className="mt-2.5 block text-sm font-medium text-text underline decoration-transparent underline-offset-[3px] transition-colors duration-150 ease-out group-hover:decoration-brand">
+                  <span className="mt-2.5 block font-sans text-sm font-medium text-text underline decoration-transparent underline-offset-[3px] transition-colors duration-150 ease-out group-hover:decoration-brand">
                     {member.name}
                   </span>
                   <span className="block font-mono text-xs text-text-muted">
@@ -749,13 +749,13 @@ function DhhQuote() {
     <figure className="mt-12 max-w-md border border-border-subtle bg-surface p-7">
       <div
         aria-hidden="true"
-        className="h-10 text-6xl leading-none font-bold text-brand"
+        className="h-10 font-sans text-6xl leading-none font-bold text-brand"
       >
         &ldquo;
       </div>
       {/* Balanced, so the break lands at the comma between the two clauses
           instead of stranding "you should" on a line. */}
-      <blockquote className="text-xl leading-snug font-medium text-text [text-wrap:balance]">
+      <blockquote className="font-sans text-xl leading-snug font-medium text-text [text-wrap:balance]">
         When you can vibe code whatever app comes to your mind, you should be
         able to vibe code your operating system.
       </blockquote>
@@ -773,7 +773,7 @@ function DhhQuote() {
           className="size-12 shrink-0 border border-border-subtle object-cover"
         />
         <span className="flex flex-col leading-snug">
-          <span className="text-[15px] font-medium text-text">
+          <span className="font-sans text-[15px] font-medium text-text">
             David Heinemeier Hansson
           </span>
           <span className="text-[13px] text-text-muted">

@@ -476,7 +476,7 @@ export function VideoCarousel({
                   </span>
                 ) : null}
                 <span className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent p-5 pt-12">
-                  <span className="block text-base font-medium text-white">
+                  <span className="block font-sans text-base font-medium text-white">
                     {video.title}
                   </span>
                   <span className="mt-0.5 block font-mono text-[13px] text-white/70">
