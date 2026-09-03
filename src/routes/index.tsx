@@ -23,7 +23,7 @@ import { ThemeCard } from '@/components/ThemeCard'
 import { VideoCarousel } from '@/components/VideoCarousel'
 import { Button } from '@/components/ui/button'
 import { useHashLink } from '@/lib/hash-scroll'
-import { getNewsIndex, getSearchIndex } from '@/lib/content'
+import { getNewsIndex } from '@/lib/content'
 import { getPluginHighlights } from '@/lib/plugins'
 import teams from '@/data/teams.json'
 import themes from '@/data/themes.json'
@@ -36,13 +36,9 @@ export const Route = createFileRoute('/')({
   // morning is on the home page this morning. Both are cached server-side,
   // so a cold isolate is the only one that waits on either.
   loader: async () => {
-    // The search index rides along for the same reason the plugins page
-    // invokes the catalogue: the palette fetches it from the browser, and the
-    // build only writes a static function's file when something runs it.
     const [highlights, news] = await Promise.all([
       getPluginHighlights(),
       getNewsIndex(),
-      getSearchIndex(),
     ])
     return { ...highlights, news }
   },

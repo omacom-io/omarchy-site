@@ -21,6 +21,7 @@ import {
   SelectValue,
 } from '@/components/ui/select'
 import { cn } from '@/lib/utils'
+import { getSearchIndex } from '@/lib/content'
 import { seo } from '@/lib/seo'
 
 const sortOptions: Array<{ value: PluginSort; label: string }> = [
@@ -73,7 +74,11 @@ export const Route = createFileRoute('/plugins/')({
     // build's cache when something runs it during the prerender, and the
     // browser can only fetch a file that exists. Running it here writes the
     // file; leaving it out of the loader data keeps 0.9MB out of the page.
-    const [overview] = await Promise.all([getPluginsOverview(), getCatalogue()])
+    const [overview] = await Promise.all([
+      getPluginsOverview(),
+      getCatalogue(),
+      getSearchIndex(),
+    ])
     return overview
   },
   head: () =>

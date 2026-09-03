@@ -176,6 +176,6 @@ export const getPluginHighlights = createServerFn({ method: 'GET' })
         .sort((a, b) => b.stars - a.stars)
         .slice(0, 6),
       stats,
-    )
+    ).map(toCatalogueEntry)
     return { top, total: all.length }
   })
