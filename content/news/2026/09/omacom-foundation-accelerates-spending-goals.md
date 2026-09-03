@@ -15,3 +15,5 @@ With [$13 million already committed](/news/2026/09/omacom-foundation-reaches-13-
 That money goes to the [open-source projects](/sponsorships/) Omarchy is built on. To the [artists](/air/) who make it beautiful. To the [developers](/news/2026/09/omacom-foundation-hires-krzysztof-wilczynski) who make it fast, compatible, and secure. To competitions, grants, and infrastructure. To everything it takes to fulfill the Linux on the Desktop prophecy.
 
 The money is not the point. The mission is. But it sure helps to have both!
+
+Want to be part of it? [Become a patron](https://donate.omarchy.org) through our new open patronage. And if you're interested in the Founding Patron or Distinguished Patron options, for individuals or corporations alike, write [david@omarchy.org](mailto:david@omarchy.org).
