@@ -1,0 +1,85 @@
+.sponsorships {
+  display: grid;
+  gap: var(--space-xx-large);
+  justify-self: center;
+  max-width: 52em;
+  padding-inline: var(--space-large);
+  width: 100%;
+}
+
+.sponsorship {
+  display: grid;
+  gap: var(--space-neutral);
+  justify-items: center;
+  text-align: center;
+}
+
+.sponsorship + .sponsorship {
+  border-top: var(--border-width) solid rgba(var(--rgb-terminal-black), 0.8);
+  padding-top: var(--space-xx-large);
+}
+
+/* The three marks have very different proportions, so they're boxed to a common
+   height and left to find their own width inside it. */
+.sponsorship__logo {
+  align-items: center;
+  display: flex;
+  height: 5em;
+  justify-content: center;
+}
+
+/* The anchor has to carry the height, or the image's 100% has nothing to
+   resolve against once it's wrapped. */
+.sponsorship__logo a {
+  display: block;
+  height: 100%;
+}
+
+.sponsorship__logo img {
+  height: 100%;
+  transition: opacity var(--transition);
+  width: auto;
+}
+
+.sponsorship__name {
+  color: var(--color-terminal-white);
+  font-size: var(--font-size-medium);
+  font-weight: 700;
+  letter-spacing: 0.075em;
+  text-transform: uppercase;
+}
+
+.sponsorship__terms {
+  color: rgba(var(--rgb-terminal-white), 0.6);
+  font-size: var(--font-size-small);
+  /* Pulled up out of the section's rhythm so it reads as part of the name. */
+  margin-top: calc(var(--space-neutral) * -0.7);
+}
+
+.sponsorship p {
+  text-wrap: pretty;
+}
+
+.sponsorship__body {
+  max-width: 40em;
+}
+
+
+
+@media(hover: hover) {
+
+  .sponsorship__logo a:hover img {
+    opacity: 0.75;
+  }
+
+}
+
+
+
+@media(min-width: 64em) {
+
+  .sponsorships {
+    padding-inline: var(--space-xx-large);
+  }
+
+}

@@ -25,6 +25,15 @@
   text-align: center;
 }
 
+/* The section names are self-anchors; they should look exactly like the
+   plain headings they replace — no link colour, underline, or hover. */
+.team__name a,
+.team__name a:hover {
+  color: inherit;
+  font-weight: inherit;
+  text-decoration: none;
+}
+
 .team__name {
   color: var(--color-terminal-white);
   font-size: var(--font-size-medium);
@@ -101,6 +110,36 @@
     flex-basis: calc((100% - 2 * var(--space-medium)) / 3);
   }
 
+}
+
+
+
+/* Quiet enough to be found rather than announced. */
+.patrons__aside {
+  color: rgba(var(--rgb-terminal-white), 0.35);
+  font-size: var(--font-size-small);
+  font-style: italic;
+  text-align: center;
+}
+
+.patrons__aside a {
+  color: inherit;
+  font-weight: inherit;
+  text-decoration: none;
+}
+
+
+
+/* A quiet aside at the very bottom, quieter than the notes above it. */
+.teams__aside {
+  color: rgba(var(--rgb-terminal-white), 0.35);
+  font-size: var(--font-size-small);
+  text-align: center;
+}
+
+.teams__aside a {
+  color: inherit;
+  font-weight: inherit;
 }
 
 

@@ -13,6 +13,7 @@ CONTENT_TYPES = {
   ".css" => "text/css", ".gif" => "image/gif", ".html" => "text/html", ".ico" => "image/x-icon",
   ".jpeg" => "image/jpeg", ".jpg" => "image/jpeg", ".js" => "text/javascript", ".json" => "application/json",
   ".mp4" => "video/mp4", ".png" => "image/png", ".svg" => "image/svg+xml", ".txt" => "text/plain",
+  ".wasm" => "application/wasm",
   ".webm" => "video/webm", ".webp" => "image/webp", ".woff2" => "font/woff2", ".xml" => "application/xml"
 }
 

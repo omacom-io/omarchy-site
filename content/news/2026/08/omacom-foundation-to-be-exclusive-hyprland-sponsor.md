@@ -2,7 +2,7 @@
 title: Omacom Foundation to be exclusive Hyprland sponsor
 date: 2026-08-21
 author: DHH
-author_url: https://x.com/dhh
+author_url: https://dhh.dk
 ---
 
 What better way to start spending some of the treasure we [just raised for the Omacom Foundation](/news/2026/08/omacom-foundation-launches-with-8-million) than on the most cracked Linux kid in Poland: [Vaxry](https://x.com/vaxryy)!

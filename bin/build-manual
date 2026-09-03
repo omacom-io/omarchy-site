@@ -2,7 +2,7 @@
 # Regenerates manual/ from the authoritative markdown chapters in the omarchy repo,
 # rendered through the ERB templates in templates/.
 #
-#   bin/build-manual                     # fetch manual/*.md from basecamp/omarchy (default branch)
+#   bin/build-manual                     # fetch manual/*.md from omacom/omarchy (default branch)
 #   bin/build-manual ../omarchy/manual   # build from a local checkout
 
 begin
@@ -21,7 +21,7 @@ require "tmpdir"
 SITE_ROOT = File.expand_path("..", __dir__)
 THEME_PREVIEW_REF = %r{\]\(\.\./themes/([\w-]+)/(preview(?:-unlock)?)\.png\)}
 TEMPLATE_DIR = File.join(SITE_ROOT, "templates")
-SOURCE_TARBALL = "https://github.com/basecamp/omarchy/archive/HEAD.tar.gz"
+SOURCE_TARBALL = "https://github.com/omacom/omarchy/archive/HEAD.tar.gz"
 
 # Rendered headings, which carry the anchor links and split chapters into search entries
 HEADING = %r{<h([2-6]) id="([^"]+)">(.*?)</h\1>}m
@@ -123,7 +123,7 @@ def build(source_dir)
 
   write_page File.join(manual_dir, "toc/index.html"), "toc",
     title: "Table of Contents",
-    description: "The complete manual for Omarchy — Beautiful, Modern & Opinionated Linux by DHH.",
+    description: "The complete manual for Omarchy — Beautiful, Fun & Agentic Linux by DHH.",
     path: "/manual/toc/",
     chapters: chapters
 

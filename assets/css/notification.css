@@ -13,6 +13,15 @@
 
 
 
+/* The anchor clears its own underline, and <s> takes its line-through from the
+   UA stylesheet alone — which WebKit drops for descendants of an element that
+   set text-decoration: none. Declaring it here doesn't depend on the default. */
+.notification s {
+  text-decoration: line-through;
+}
+
+
+
 @media(hover: hover) {
 
   .notification a:hover {

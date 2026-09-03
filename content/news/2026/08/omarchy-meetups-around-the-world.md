@@ -2,7 +2,7 @@
 title: Omarchy meetups around the world
 date: 2026-08-24
 author: DHH
-author_url: https://x.com/dhh
+author_url: https://dhh.dk
 description: Find an Omarchy meetup near you or start one yourself and add it to the global calendar.
 ---
 

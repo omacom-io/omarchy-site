@@ -2,7 +2,7 @@
 title: Omacom Foundation funding hits $10m
 date: 2026-08-24
 author: DHH
-author_url: https://x.com/dhh
+author_url: https://dhh.dk
 description: Drew Houston and Peter Steinberger join the Omacom Foundation as Founding Patrons, taking total funding to $10 million.
 ---
 

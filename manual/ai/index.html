@@ -204,6 +204,8 @@
 
 <p>The watching is on by default. Turn it off under <em>Trigger &gt; Toggle &gt; Crash Capture</em> (or with <code>omarchy toggle crash-capture</code>) and the notifications stop; <code>omarchy agent crash &lt;pid&gt;</code> still works by hand.</p>
 
+<p>Crashes can also be silenced one program at a time, which is what the diagnosis offers you at the end. <code>omarchy crash mute hyprland</code> stops the notifications for that program only, <code>omarchy crash mute hyprland off</code> brings them back, and <code>omarchy crash mute</code> on its own lists what you’ve muted. It takes the binary’s path as happily as its name, so <code>omarchy crash mute /usr/bin/hyprland</code> does the same thing. Quote a name with a space in it, as in <code>omarchy crash mute 'Some App'</code>. Everything else still notifies, and the muted program still crashes — this hides the reminder, it doesn’t fix anything.</p>
+
 <h3 id="desktop-apps">Desktop apps <a class="manual__heading-link" href="#desktop-apps" aria-label="Link to this section">#</a></h3>
 
 <p>The <em>Install &gt; AI</em> menu also carries a couple of graphical AI apps: the ChatGPT desktop app, and Grok Bot for chatting with xAI’s models.</p>
