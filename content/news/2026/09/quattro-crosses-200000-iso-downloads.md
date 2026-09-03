@@ -1,6 +1,6 @@
 ---
 title: Omarchy Quattro crosses 200,000 ISO downloads
-date: 2026-09-02
+date: 2026-09-02 12:29 -0400
 author: DHH
 author_url: https://dhh.dk
 description: Two hundred thousand Quattro ISOs in under 19 days, downloads from 215 countries and territories, and a date for the first million.

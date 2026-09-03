@@ -1,6 +1,6 @@
 ---
 title: Omacom Foundation to be premier mise sponsor
-date: 2026-08-25
+date: 2026-08-25 20:28 +0200
 author: DHH
 author_url: https://dhh.dk
 ---

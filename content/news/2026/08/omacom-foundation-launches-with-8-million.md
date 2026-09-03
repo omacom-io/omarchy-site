@@ -1,6 +1,6 @@
 ---
-title: Omacom Foundation launches with $13 million
-date: 2026-08-21
+title: Omacom Foundation launches with $14.95 million
+date: 2026-08-21 17:57 +0200
 author: DHH
 author_url: https://dhh.dk
 ---
@@ -38,6 +38,16 @@ And these Distinguished Corporate Patrons are each contributing $100,000 a year 
 - [1Password](https://1password.com)
 - [37signals](https://37signals.com)
 
+This Founding Token Patron is contributing $1.5 million in tokens to the mission:
+
+- [Meta Superintelligence Labs](https://www.meta.com/superintelligence/)
+
+And these Distinguished Token Patrons are each contributing $150,000 in tokens:
+
+- [Anthropic](https://www.anthropic.com)
+- [Fireworks](https://fireworks.ai)
+- [OpenAI](https://openai.com)
+
 This is a ridiculous sum of money, so I intend to make sure it lasts a long time, and that we make the most of it. But just as important as the incredible cushion is the vote of confidence delivered by these pledges.
 
 We're going to make the prophecy of The Year of Linux on the Desktop come true. All the pieces are now in place. Time to go all in!
@@ -49,3 +59,5 @@ We're going to make the prophecy of The Year of Linux on the Desktop come true. 
 *UPDATE: 1Password and 37signals [joined as Distinguished Corporate Patrons on August 31](/news/2026/08/1password-and-37signals-become-distinguished-corporate-patrons).*
 
 *UPDATE: Ryan, Ed, Adrien, and Max [joined as Distinguished Patrons on September 2](/news/2026/09/omacom-foundation-reaches-13-million).*
+
+*UPDATE: Meta Superintelligence Labs, Anthropic, OpenAI, and Fireworks [joined as Token Patrons on September 3](/news/2026/09/omacom-foundation-secures-tokens-from-leading-labs).*

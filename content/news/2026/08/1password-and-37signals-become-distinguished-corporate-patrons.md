@@ -1,6 +1,6 @@
 ---
 title: 1Password and 37signals become Distinguished Corporate Patrons
-date: 2026-08-31
+date: 2026-08-31 15:20 +0200
 author: DHH
 author_url: https://dhh.dk
 description: The first two Distinguished Corporate Patrons each pledge $100,000 a year for three years, taking the Omacom Foundation to $12.6 million.
