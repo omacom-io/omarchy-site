@@ -1,5 +1,5 @@
 ---
-title: Omacom Foundation launches with $12.6 million
+title: Omacom Foundation launches with $13 million
 date: 2026-08-21
 author: DHH
 author_url: https://dhh.dk
@@ -26,6 +26,13 @@ These twelve Founding Patrons are each contributing $1 million to this mission:
 - [Yunjie Dai](https://x.com/xdanger), cofounder of [TapTap](https://www.taptap.io)
 - Yours truly
 
+These Distinguished Patrons are each contributing $100,000 to the mission:
+
+- [Ryan R. Hughes](https://x.com/ryanrhughes), partner at [Oodle](https://heyoodle.com/)
+- [Ed Huang](https://x.com/dxhuang), cofounder and CTO of [PingCAP](https://www.pingcap.com)
+- [Adrien Treccani](https://www.linkedin.com/in/atreccani/), founder of [Metaco](https://ripple.com/products/custody/)
+- [Max Schoening](https://x.com/mschoening), Head of Product at [Notion](https://www.notion.com)
+
 And these Distinguished Corporate Patrons are each contributing $100,000 a year for three years:
 
 - [1Password](https://1password.com)
@@ -40,3 +47,5 @@ We're going to make the prophecy of The Year of Linux on the Desktop come true. 
 *UPDATE: Brian and Yunjie [joined as Founding Patrons on August 31](/news/2026/08/omacom-foundation-welcomes-brian-armstrong-and-yunjie-dai).*
 
 *UPDATE: 1Password and 37signals [joined as Distinguished Corporate Patrons on August 31](/news/2026/08/1password-and-37signals-become-distinguished-corporate-patrons).*
+
+*UPDATE: Ryan, Ed, Adrien, and Max [joined as Distinguished Patrons on September 2](/news/2026/09/omacom-foundation-reaches-13-million).*
