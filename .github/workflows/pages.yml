@@ -1,8 +1,12 @@
 name: Deploy to GitHub Pages
 
-# The site is plain static files, so there's nothing to build — this just
-# uploads the repo and deploys it. It replaces the legacy branch-based
-# builder, which queues on shared infrastructure and offers no progress.
+# The site is rendered into a folder of static files, then that folder is
+# uploaded and deployed - the same shape as before, with one build step in
+# front of the upload. The build reads this repository's own files: the
+# news the Ruby build rendered, the manual, the themes page, the assets,
+# the installer scripts. Nothing is fetched from the network to build the
+# site; the plugin catalogue is a committed snapshot refreshed on its own
+# schedule (see refresh-content.yml).
 
 on:
   push:
@@ -30,11 +34,26 @@ jobs:
     steps:
       - uses: actions/checkout@v7
 
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - run: npm ci
+
+      # port the site's files -> render every page -> lay the site's own
+      # static files over the result. dist/client is the whole site.
+      - run: npm run build
+
       - uses: actions/configure-pages@v6
 
       - uses: actions/upload-pages-artifact@v5
         with:
-          path: .
+          path: dist/client
           include-hidden-files: true
 
       - id: deployment
