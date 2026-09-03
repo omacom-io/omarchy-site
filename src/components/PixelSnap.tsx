@@ -7,20 +7,6 @@ import {
 } from '@/lib/pixel-grid'
 import type { PixelGrid } from '@/lib/pixel-grid'
 
-/** Snapping measures text, so it must only ever run against the real
- * webfonts; a snap against fallback metrics lands on different cell lines
- * and the correction reads as controls jumping around during load. */
-const facesReady = () => {
-  try {
-    return (
-      document.fonts.check('16px "Geist Variable"') &&
-      document.fonts.check('16px "JetBrains Mono Variable"')
-    )
-  } catch {
-    return true
-  }
-}
-
 /**
  * Aligns [data-px-snap] elements to the hero field's lattice, under one
  * hard rule: a snap happens before a frame paints or not at all.
@@ -48,13 +34,24 @@ export function PixelSnap() {
   const armed = useRef(false)
 
   useLayoutEffect(() => {
-    if (!facesReady()) return
-    const slot = document.querySelector('[data-hero-wordmark]')
-    if (!slot) return
-    const r = slot.getBoundingClientRect()
-    if (r.width < 1) return
-    snapToGrid({ x: r.left, y: r.top, cw: r.width / 81, ch: r.height / 19 })
-    armed.current = true
+    // Lives in the document shell, outside every route error boundary.
+    // A throw here takes the page with it, so the snap is allowed to no-op.
+    try {
+      const fonts = document.fonts
+      const ready =
+        !fonts?.check ||
+        (fonts.check('16px "Geist Variable"') &&
+          fonts.check('16px "JetBrains Mono Variable"'))
+      if (!ready) return
+      const slot = document.querySelector('[data-hero-wordmark]')
+      if (!slot) return
+      const r = slot.getBoundingClientRect()
+      if (r.width < 1) return
+      snapToGrid({ x: r.left, y: r.top, cw: r.width / 81, ch: r.height / 19 })
+      armed.current = true
+    } catch {
+      /* no snap this load */
+    }
   }, [])
 
   useEffect(() => {

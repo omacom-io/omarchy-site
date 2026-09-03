@@ -1,4 +1,9 @@
-import { HeadContent, Scripts, createRootRoute } from '@tanstack/react-router'
+import {
+  HeadContent,
+  Link,
+  Scripts,
+  createRootRoute,
+} from '@tanstack/react-router'
 import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools'
 import { TanStackDevtools } from '@tanstack/react-devtools'
 
@@ -59,6 +64,9 @@ export const Route = createRootRoute({
         href: '/brand/omarchy-wordmark.svg',
         as: 'image',
         type: 'image/svg+xml',
+        // mask-image fetches CORS-anonymous; a preload without this is a
+        // different credentials mode and the browser discards it.
+        crossOrigin: 'anonymous',
       },
       {
         rel: 'preload',
@@ -76,9 +84,33 @@ export const Route = createRootRoute({
       },
     ],
   }),
+  errorComponent: RootError,
   notFoundComponent: NotFoundHero,
   shellComponent: RootDocument,
 })
+
+function RootError({ error }: { error: unknown }) {
+  const message =
+    error instanceof Error ? error.message : 'The page failed to render.'
+  return (
+    <main className="mx-auto max-w-xl px-4 py-24 sm:px-6">
+      <h1 className="text-3xl font-semibold tracking-tight text-text">
+        Something broke
+      </h1>
+      <p className="mt-3 text-[15px] leading-relaxed text-text-secondary [text-wrap:pretty]">
+        {message}
+      </p>
+      <p className="mt-8">
+        <Link
+          to="/"
+          className="text-sm font-medium text-brand underline decoration-border-strong underline-offset-3 hover:decoration-brand"
+        >
+          Back home
+        </Link>
+      </p>
+    </main>
+  )
+}
 
 function RootDocument({ children }: { children: React.ReactNode }) {
   return (
