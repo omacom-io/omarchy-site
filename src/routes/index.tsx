@@ -772,8 +772,8 @@ function DhhQuote() {
           decoding="async"
           className="size-12 shrink-0 border border-border-subtle object-cover"
         />
-        <span className="flex flex-col leading-snug">
-          <span className="font-sans text-[15px] font-medium text-text">
+        <span className="flex flex-col font-mono leading-snug">
+          <span className="text-[15px] font-medium text-text">
             David Heinemeier Hansson
           </span>
           <span className="text-[13px] text-text-muted">
