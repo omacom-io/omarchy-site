@@ -400,29 +400,21 @@ function Home() {
               <DhhQuote />
             </div>
 
-            <ol className="flex flex-col">
-              {pillars.map((pillar, i) => (
+            <ul className="flex flex-col">
+              {pillars.map((pillar) => (
                 <li
                   key={pillar.title}
-                  // Baseline, not top: the numeral is 14px mono and the title
-                  // 18px, so aligning the boxes left the digits riding above
-                  // the words. This sits them on the same line.
-                  className="grid grid-cols-[2.5rem_1fr] items-baseline gap-x-4 border-t border-border-subtle py-8 first:border-t-0 first:pt-0 last:pb-0"
+                  className="border-t border-border-subtle py-8 first:border-t-0 first:pt-0 last:pb-0"
                 >
-                  <span className="font-mono text-sm text-brand tabular-nums">
-                    {String(i + 1).padStart(2, '0')}
-                  </span>
-                  <div>
-                    <h3 className="text-lg font-medium tracking-tight text-text">
-                      {pillar.title}
-                    </h3>
-                    <p className="mt-3 text-[15px] leading-relaxed text-text-secondary [text-wrap:pretty]">
-                      {pillar.body}
-                    </p>
-                  </div>
+                  <h3 className="text-lg font-medium tracking-tight text-text">
+                    {pillar.title}
+                  </h3>
+                  <p className="mt-3 text-[15px] leading-relaxed text-text-secondary [text-wrap:pretty]">
+                    {pillar.body}
+                  </p>
                 </li>
               ))}
-            </ol>
+            </ul>
           </div>
         </div>
 
