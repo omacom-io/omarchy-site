@@ -165,7 +165,7 @@ export function ExploreMap({
       }
 
       // Cluster labels once zoomed out enough to need orientation
-      ctx!.font = `600 ${13 / view.scale}px "JetBrains Mono Variable", monospace`
+      ctx!.font = `600 ${13 / view.scale}px "JetBrains Mono Variable"`
       ctx!.textAlign = 'center'
       ctx!.fillStyle = LABEL
       for (const cluster of data.clusters) {

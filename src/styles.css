@@ -12,9 +12,8 @@
  */
 
 @theme inline {
-  --font-sans: 'Geist Variable', ui-sans-serif, system-ui, sans-serif;
-  --font-mono:
-    'JetBrains Mono Variable', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+  --font-sans: 'Geist Variable';
+  --font-mono: 'JetBrains Mono Variable';
 
   --color-bg-deep: var(--t-bg-deep);
   --color-bg: var(--t-bg);
