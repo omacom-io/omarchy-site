@@ -86,6 +86,19 @@
 
 /* Post list — HEY World's cards: centred dateline and title, left-aligned excerpt. */
 
+/* Matches the header's h1 type, pulled up close beneath it. */
+.news-feed {
+  color: var(--color-terminal-blue);
+  font-family: var(--font-family);
+  font-size: var(--font-size);
+  margin-block: calc(var(--news-space-tight) - var(--news-space)) calc(var(--news-space) / 2);
+  text-align: center;
+}
+
+.news-feed a {
+  color: inherit;
+}
+
 .news-list {
   display: grid;
   gap: 1.25em;
