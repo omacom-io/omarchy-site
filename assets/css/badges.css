@@ -1,0 +1,88 @@
+.badges {
+  display: grid;
+  gap: var(--space-xx-large);
+  justify-self: center;
+  max-width: 52em;
+  padding-inline: var(--space-large);
+  width: 100%;
+}
+
+.badges__lede {
+  font-style: italic;
+  text-align: center;
+  text-wrap: pretty;
+}
+
+.badge {
+  display: grid;
+  gap: var(--space-neutral);
+  justify-items: center;
+  text-align: center;
+}
+
+.badge + .badge {
+  border-top: var(--border-width) solid rgba(var(--rgb-terminal-black), 0.8);
+  padding-top: var(--space-xx-large);
+}
+
+.badge__art {
+  display: block;
+  max-width: 20em;
+  width: 100%;
+}
+
+.badge__art img {
+  display: block;
+  height: auto;
+  transition: opacity var(--transition);
+  width: 100%;
+}
+
+.badge__name {
+  color: var(--color-terminal-white);
+  font-size: var(--font-size-medium);
+  font-weight: 700;
+  letter-spacing: 0.075em;
+  text-transform: uppercase;
+}
+
+.badge__tier {
+  color: rgba(var(--rgb-terminal-white), 0.6);
+  font-size: var(--font-size-small);
+  /* Pulled up out of the section's rhythm so it reads as part of the name. */
+  margin-top: calc(var(--space-neutral) * -0.7);
+}
+
+.badge p {
+  text-wrap: pretty;
+}
+
+.badge__body {
+  max-width: 40em;
+}
+
+.badges__outro {
+  justify-self: center;
+  text-align: center;
+  text-wrap: pretty;
+}
+
+
+
+@media(hover: hover) {
+
+  .badge__art:hover img {
+    opacity: 0.75;
+  }
+
+}
+
+
+
+@media(min-width: 64em) {
+
+  .badges {
+    padding-inline: var(--space-xx-large);
+  }
+
+}
