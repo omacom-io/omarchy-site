@@ -2,7 +2,9 @@ import { Link } from '@tanstack/react-router'
 import { OmarchyWordmark } from '@/components/Brand'
 import { PixelBackdrop } from '@/components/HeroShader'
 import {
+  BasecampMark,
   CloudflareMark,
+  HeyMark,
   ThirtySevenSignalsMark,
 } from '@/components/PartnerLogos'
 import { OPEN_PICKER_EVENT } from '@/lib/theme'
@@ -125,10 +127,12 @@ export function SiteFooter() {
                 </a>
                 , makers of{' '}
                 <a href="https://basecamp.com" className={creditLink}>
+                  <BasecampMark className="mr-[5px] inline-block h-4 w-auto align-[-0.28em]" />
                   Basecamp
                 </a>{' '}
                 and{' '}
                 <a href="https://hey.com" className={creditLink}>
+                  <HeyMark className="mr-[5px] inline-block h-4 w-auto align-[-0.28em]" />
                   HEY
                 </a>
               </p>
