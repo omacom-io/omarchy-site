@@ -57,7 +57,7 @@ const focusRing =
 
 const footerLink = `text-text-secondary transition-colors duration-150 ease-out hover:text-text ${focusRing}`
 
-const creditLink = `transition-[filter] duration-150 ease-out hover:brightness-125 ${focusRing}`
+const creditLink = `text-text-secondary transition-colors duration-150 ease-out hover:text-text ${focusRing}`
 
 export function SiteFooter() {
   return (
@@ -116,23 +116,17 @@ export function SiteFooter() {
                 Incubated at{' '}
                 <a
                   href="https://37signals.com"
-                  className={`inline-flex items-center gap-[3px] pl-px align-middle text-partner-37signals ${creditLink}`}
+                  className={`inline-flex items-center gap-[3px] pl-px align-middle ${creditLink}`}
                 >
                   <ThirtySevenSignalsMark className="size-4 shrink-0" />
                   37signals
                 </a>
                 , makers of{' '}
-                <a
-                  href="https://basecamp.com"
-                  className={`text-partner-basecamp ${creditLink}`}
-                >
+                <a href="https://basecamp.com" className={`${creditLink}`}>
                   Basecamp
                 </a>{' '}
                 and{' '}
-                <a
-                  href="https://hey.com"
-                  className={`text-partner-hey ${creditLink}`}
-                >
+                <a href="https://hey.com" className={`${creditLink}`}>
                   HEY
                 </a>
               </p>
@@ -140,7 +134,7 @@ export function SiteFooter() {
                 Sponsored hosting by{' '}
                 <a
                   href="https://cloudflare.com"
-                  className={`inline-flex items-center gap-[5px] pl-px align-middle text-partner-cloudflare ${creditLink}`}
+                  className={`inline-flex items-center gap-[5px] pl-px align-middle ${creditLink}`}
                 >
                   <CloudflareMark className="h-3 w-auto shrink-0" />
                   Cloudflare
