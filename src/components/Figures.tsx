@@ -1,4 +1,5 @@
 import { Link } from '@tanstack/react-router'
+import { AnimatePresence, motion, useReducedMotion } from 'motion/react'
 import { useEffect, useRef, useState } from 'react'
 import type { ReactNode } from 'react'
 import { BankIcon, DownloadIcon, GithubIcon } from '@/components/icons'
@@ -22,6 +23,21 @@ const shortDate = (iso: string) =>
     day: 'numeric',
     timeZone: 'UTC',
   })
+
+/** The Monday of the week a column stands for, `back` weeks before the day
+ *  these figures were last checked. */
+function weekOf(checked: string, back: number) {
+  const d = new Date(`${checked}T00:00:00Z`)
+  d.setUTCDate(d.getUTCDate() - back * 7)
+  // With the year: a year of weeks reaches back into the last one, and
+  // "Sep 12" on its own reads as this month.
+  return d.toLocaleDateString('en-US', {
+    month: 'short',
+    day: 'numeric',
+    year: 'numeric',
+    timeZone: 'UTC',
+  })
+}
 
 const daysBetween = (a: string, b: string) =>
   Math.round((Date.parse(b) - Date.parse(a)) / 86_400_000)
@@ -133,6 +149,94 @@ const meta = 'mt-3 font-mono text-xs text-text-muted'
 const more =
   'mt-4 inline-block text-[13px] font-medium text-brand underline decoration-transparent underline-offset-[3px] transition-colors duration-150 ease-out hover:decoration-brand focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring'
 
+/**
+ * The week under the pointer, named once. Fifty-two tooltips that each
+ * appeared and left again made the chart flicker as the pointer crossed it;
+ * this is one label that slides to the column it describes and stays for as
+ * long as the pointer is over the chart, so moving along the year reads as
+ * one continuous thing rather than fifty-two.
+ */
+function WeekHover({
+  weeks,
+  checked,
+}: {
+  weeks: Array<number>
+  checked: string
+}) {
+  const [at, setAt] = useState<number | null>(null)
+  const [width, setWidth] = useState(0)
+  const [labelWidth, setLabelWidth] = useState(0)
+  const row = useRef<HTMLDivElement>(null)
+  const reducedMotion = useReducedMotion()
+
+  useEffect(() => {
+    const el = row.current
+    if (!el) return
+    const sizes = new ResizeObserver(([entry]) =>
+      setWidth(entry.contentRect.width),
+    )
+    sizes.observe(el)
+    return () => sizes.disconnect()
+  }, [])
+
+  const count = at === null ? 0 : weeks[at]
+  // The column's centre, held inside the chart: the first weeks and the last
+  // would otherwise carry the label off the edge of the card.
+  const centre = at === null ? 0 : (width / weeks.length) * (at + 0.5)
+  const half = labelWidth / 2
+  const x = Math.min(Math.max(centre, half), Math.max(half, width - half))
+
+  return (
+    <div
+      ref={row}
+      className="absolute inset-0"
+      onPointerLeave={() => setAt(null)}
+    >
+      <div className="flex h-full">
+        {weeks.map((_, i) => (
+          <span
+            key={i}
+            onPointerEnter={() => setAt(i)}
+            className="flex-1 transition-colors duration-100 ease-out hover:bg-text/10"
+          />
+        ))}
+      </div>
+
+      <AnimatePresence>
+        {at !== null && width > 0 ? (
+          <motion.div
+            // Laid out from the chart's left edge and moved with a transform,
+            // so the slide costs nothing but compositing.
+            ref={(node) => {
+              if (node) setLabelWidth(node.offsetWidth)
+            }}
+            className="ring-elevation pointer-events-none absolute bottom-full left-0 mb-2 w-max bg-surface px-3 py-2 font-mono"
+            initial={{ opacity: 0, y: 4, x, translateX: '-50%' }}
+            animate={{ opacity: 1, y: 0, x, translateX: '-50%' }}
+            exit={{ opacity: 0, y: 4 }}
+            transition={
+              reducedMotion
+                ? { duration: 0 }
+                : {
+                    x: { type: 'spring', duration: 0.35, bounce: 0 },
+                    opacity: { duration: 0.12 },
+                    y: { duration: 0.16 },
+                  }
+            }
+          >
+            <span className="block text-[13px] text-text">
+              {count.toLocaleString('en-US')} commit{count === 1 ? '' : 's'}
+            </span>
+            <span className="block text-[11px] text-text-muted">
+              week of {weekOf(checked, weeks.length - 1 - at)}
+            </span>
+          </motion.div>
+        ) : null}
+      </AnimatePresence>
+    </div>
+  )
+}
+
 export function Figures() {
   const { foundation, downloads, github } = momentum
   const first = foundation.steps[0]
@@ -160,9 +264,11 @@ export function Figures() {
           raised for the Omacom Foundation in{' '}
           {daysBetween(first.date, last.date)} days
         </span>
-        {/* One bar per announcement, each a link to the post it quotes. */}
+        {/* One bar per announcement, each a link to the post it quotes, the
+            latest at the top: a figure card is read from its number down, and
+            the number is where the last bar ends. */}
         <div className="figure-chart mt-4 font-mono text-xs leading-relaxed whitespace-pre">
-          {foundation.steps.map((step) => (
+          {[...foundation.steps].reverse().map((step) => (
             <Link
               key={step.post}
               to={step.post}
@@ -217,13 +323,19 @@ export function Figures() {
           {github.forks.toLocaleString('en-US')} forks · {github.contributors}{' '}
           contributors
         </p>
-        {/* One column per week, the last 52, scaled to the busiest week. */}
-        <pre
-          aria-hidden="true"
-          className="figure-chart mt-4 overflow-hidden font-mono text-[min(0.875rem,3.15cqw)] leading-[0.92] text-brand"
-        >
-          {commitRows(github.weeks)}
-        </pre>
+        {/* One column per week, the last 52, scaled to the busiest week.
+            The chart is drawn as text, so the weeks are not elements to hover;
+            a row of targets sits over it instead, one per column, each
+            naming its week and its count. */}
+        <div className="relative mt-4">
+          <pre
+            aria-hidden="true"
+            className="figure-chart overflow-hidden font-mono text-[min(0.875rem,3.15cqw)] leading-[0.92] text-brand"
+          >
+            {commitRows(github.weeks)}
+          </pre>
+          <WeekHover weeks={github.weeks} checked={momentum.checked} />
+        </div>
         <p className={meta}>
           {github.commitsYear.toLocaleString('en-US')} commits in the last 52
           weeks · checked {shortDate(momentum.checked)}
