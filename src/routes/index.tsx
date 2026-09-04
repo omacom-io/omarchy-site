@@ -100,32 +100,6 @@ const videos = [
   },
 ]
 
-/** The whole case, deduplicated. A separate list further down the page used
- *  to make the same points a second time, down to a heading with the same
- *  words in both. */
-const pillars = [
-  {
-    title: 'Opinionated from the first boot',
-    body: 'Arch Linux and Hyprland, configured the way a craftsman would set up their own machine. Tiling windows, beautiful terminals, and sane defaults. No weekend of ricing required.',
-  },
-  {
-    title: 'Malleable for the age of agents',
-    body: 'Omarchy ships skills that teach any coding agent how the system is put together, so you can ask for a change in your own words and the agent edits the real thing. They are plain files, so they work with whichever harness you already run.',
-  },
-  {
-    title: 'No second tier',
-    body: 'The shell you change is the shell Omarchy is built from. There is no private layer the maintainers get and you do not, so your version of the panel is as real as the one that shipped.',
-  },
-  {
-    title: 'Crashes file their own reports',
-    body: 'When an app dies you get an offer to diagnose it. The agent reads the crash, works out whether Omarchy is at fault, and prepares the bug report for you to send.',
-  },
-  {
-    title: 'Everything is a plugin',
-    body: 'Bars, widgets, overlays, services: a change worth keeping becomes a plugin, and a plugin worth sharing lands in the marketplace. Three days after Quattro shipped there were 330 of them.',
-  },
-]
-
 /** Core is the team the home page shows; the rest are one click away. The copy
  *  deliberately counts nobody: the roster changes, and a headcount in prose is
  *  the kind of number that quietly goes wrong between content refreshes. */
@@ -344,14 +318,18 @@ function Home() {
 
       {/* The case for Omarchy, in one section: what it is, what that buys
           you, what it looks like in use, and how to get it. These were four
-          separate sections that mostly restated each other, and the pillars
-          and the agent list had a point with the same title in both. The
-          install is deliberately thin here; the manual is the install
-          guide, and this is a landing page. */}
+          separate sections that mostly restated each other. A column of five
+          pillars used to run beside this one, restating in a list what these
+          few sentences and the quote already say; the page introduces the
+          idea here and lets the manual do the explaining. The install is
+          deliberately thin here too: this is a landing page. */}
       <section>
         <div className="mx-auto max-w-6xl px-4 py-28 sm:px-6">
-          <div className="grid gap-14 lg:grid-cols-[1fr_1fr] lg:gap-20">
-            <div className="lg:sticky lg:top-28 lg:self-start">
+          {/* The words on the left, the quote across from them: with the
+              column of pillars gone, a single column left the right half of
+              the page empty. */}
+          <div className="grid gap-14 lg:grid-cols-[1.35fr_1fr] lg:gap-20">
+            <div>
               {/* Unattributed on purpose: this is the site's own voice, not
                   a quotation set apart from it. */}
               {/* The line is a quotation of the campaign it names, so it
@@ -373,14 +351,14 @@ function Home() {
                   </span>
                 </a>
               </h2>
-              <p className="mt-6 max-w-md text-[15px] leading-relaxed text-text-secondary [text-wrap:pretty]">
+              <p className="mt-6 max-w-[35.5rem] text-[15px] leading-relaxed text-text-secondary [text-wrap:pretty]">
                 Linux on the desktop has always asked for a weekend before it
                 gave anything back: a window manager to pick, a terminal to
                 theme, a hundred small decisions between you and a machine you
                 like using. Omarchy answers those decisions with taste, and then
                 leaves every one of them open.
               </p>
-              <p className="mt-5 max-w-md text-[15px] leading-relaxed text-text-secondary [text-wrap:pretty]">
+              <p className="mt-5 max-w-[35.5rem] text-[15px] leading-relaxed text-text-secondary [text-wrap:pretty]">
                 The name says as much. Oma is for omakase, chef's choice: the
                 chef picks the courses, and you are still free to send anything
                 back.
@@ -390,24 +368,14 @@ function Home() {
                   quotation marks, a name under it. The accent bar down the
                   left was generic blockquote furniture, and it read as a
                   rule the rest of the page does not use. */}
-              <DhhQuote />
             </div>
 
-            <ul className="flex flex-col">
-              {pillars.map((pillar) => (
-                <li
-                  key={pillar.title}
-                  className="border-t border-border-subtle py-8 first:border-t-0 first:pt-0 last:pb-0"
-                >
-                  <h3 className="text-lg font-medium tracking-tight text-text">
-                    {pillar.title}
-                  </h3>
-                  <p className="mt-3 text-[15px] leading-relaxed text-text-secondary [text-wrap:pretty]">
-                    {pillar.body}
-                  </p>
-                </li>
-              ))}
-            </ul>
+            {/* Sat under the words before, so it keeps a top margin for
+                that; beside them it has none, and it holds the page's right
+                edge rather than floating in the middle of the column. */}
+            <div className="lg:justify-self-end lg:self-center lg:[&>figure]:-mt-[3px]">
+              <DhhQuote />
+            </div>
           </div>
         </div>
 
@@ -612,9 +580,9 @@ function Home() {
               <SectionActions>{allNews}</SectionActions>
             </div>
 
-            {/* Sticky beside the news list, the way the case beside the
-                pillars is: the list is long, the card is one thing, and it
-                should still be there when you reach the bottom of the list. */}
+            {/* Sticky beside the news list: the list is long, the card is
+                one thing, and it should still be there when you reach the
+                bottom of the list. */}
             <aside className="ring-elevation h-fit bg-surface p-6 lg:sticky lg:top-28 lg:self-start">
               <BankIcon className="size-5 text-brand" />
               <h2 className="mt-4 text-[15px] font-medium text-text">
