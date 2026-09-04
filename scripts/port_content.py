@@ -34,7 +34,6 @@ from html import unescape
 from pathlib import Path
 
 OUT = Path(__file__).resolve().parent.parent / 'src' / 'data'
-PUBLIC = Path(__file__).resolve().parent.parent / 'public'
 
 PAGES = [
     'air', 'foundation', 'meetups', 'patrons', 'security', 'security/credits',
@@ -108,33 +107,6 @@ def extract_title(src: str) -> str:
 
 
 
-def local_avatar(url: str) -> str:
-    """Prefers public/team/<file> over the upstream URL when we have a copy.
-
-    Most of the upstream avatars are circular crops with transparent corners,
-    which is not what this site wants, so square replacements are dropped
-    into public/team under the person's own name. Any extension matches, so
-    a replacement does not have to be re-encoded to keep the name it had.
-    Anyone we have no local copy of keeps hot-linking upstream, so a new
-    team member still shows up.
-    """
-    stem = url.rsplit('/', 1)[-1].rsplit('.', 1)[0]
-    for local in sorted((PUBLIC / 'team').glob(f'{stem}.*')):
-        return f'/team/{local.name}'
-    return url
-
-
-def localise_team_avatars(html: str) -> str:
-    """Points the ported teams page at the same local avatars the home page
-    uses. Without this the page kept the upstream circular crops while the
-    home page showed square replacements of the same people."""
-    return re.sub(
-        r'src="(https://omarchy\.org/assets/images/team/[^"]+)"',
-        lambda m: 'src="%s"' % local_avatar(m.group(1)),
-        html,
-    )
-
-
 def parse_teams(html: str) -> list[dict]:
     """Turns the ported teams page into structured teams and members.
 
@@ -162,7 +134,7 @@ def parse_teams(html: str) -> list[dict]:
                 'name': html_mod.unescape(person.group(2).strip()),
                 'meta': html_mod.unescape((meta.group(1) if meta else '').strip()),
                 'href': person.group(1),
-                'avatar': local_avatar(avatar.group(1)) if avatar else None,
+                'avatar': avatar.group(1) if avatar else None,
             })
         teams.append({
             'id': team_id,
@@ -265,7 +237,7 @@ def main() -> None:
         src = (repo / slug / 'index.html').read_text()
         pages[slug] = {
             'title': extract_title(src),
-            'html': localise_team_avatars(clean(extract_main(src))),
+            'html': clean(extract_main(src)),
         }
     (OUT / 'pages.json').write_text(json.dumps(pages))
     print(f'pages.json: {len(pages)} pages')

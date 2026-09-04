@@ -191,7 +191,7 @@ export function ThemePicker() {
         const img = new Image()
         img.fetchPriority = 'low'
         img.decoding = 'async'
-        img.src = `/theme-previews/${theme.id}.png`
+        img.src = `/assets/images/theme-previews/${theme.id}.png`
         // Not every browser has decode(), whatever lib.dom promises.
         // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
         img.decode?.().catch(() => {})
@@ -415,7 +415,7 @@ export function ThemePicker() {
                       slides sideways inside the frame to present its middle
                       in that sliver rather than a bare edge. */}
                     <img
-                      src={`/theme-previews/${theme.id}.png`}
+                      src={`/assets/images/theme-previews/${theme.id}.png`}
                       alt={`${theme.name} theme preview`}
                       width={1800}
                       height={1012}
@@ -429,7 +429,7 @@ export function ThemePicker() {
                         if (img.dataset.retried) return
                         img.dataset.retried = ''
                         window.setTimeout(() => {
-                          img.src = `/theme-previews/${theme.id}.png?retry`
+                          img.src = `/assets/images/theme-previews/${theme.id}.png?retry`
                         }, 1000)
                       }}
                       className="w-full select-none object-cover transition-[transform,filter] duration-300 ease-out"

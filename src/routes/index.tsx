@@ -757,7 +757,7 @@ function DhhQuote() {
             the photo's bright ground floated loose on the panel without the
             hairline seating it. */}
         <img
-          src="/team/dhh.webp"
+          src="/assets/images/team/dhh.webp"
           alt=""
           width={48}
           height={48}
