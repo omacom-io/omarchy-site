@@ -1344,6 +1344,25 @@ h6 {
   }
 }
 
+/* ----------------------------------------------------------------- figures */
+
+/* The charts beside the news draw left to right once their card is on
+   screen; the numbers count up in the component on the same cue. */
+.figure-chart {
+  clip-path: inset(0 100% 0 0);
+}
+.figure-live .figure-chart {
+  clip-path: inset(0);
+  transition: clip-path 1.2s cubic-bezier(0.21, 0.47, 0.32, 0.98);
+}
+@media (prefers-reduced-motion: reduce) {
+  .figure-chart,
+  .figure-live .figure-chart {
+    clip-path: none;
+    transition: none;
+  }
+}
+
 /* -------------------------------------------------------------- hero intro */
 
 @keyframes hero-rise {

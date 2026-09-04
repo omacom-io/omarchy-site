@@ -2,7 +2,6 @@ import { Link, createFileRoute } from '@tanstack/react-router'
 import { useEffect, useState } from 'react'
 import {
   ArrowRightIcon,
-  BankIcon,
   BrushIcon,
   CalendarIcon,
   ConsoleIcon,
@@ -16,6 +15,7 @@ import { HeroNavGhost } from '@/components/SiteHeader'
 import { HeroShader } from '@/components/HeroShader'
 import { InstallCommand } from '@/components/InstallCommand'
 import { CardRail } from '@/components/CardRail'
+import { Figures } from '@/components/Figures'
 import { TypewriterTail } from '@/components/TypewriterTail'
 import { PluginCard } from '@/components/PluginCard'
 import { SectionActions, SectionHeading } from '@/components/SectionHeading'
@@ -582,7 +582,7 @@ function Home() {
                 action={allNews}
               />
               <ul className="mt-8 divide-y divide-border-subtle">
-                {news.slice(0, 4).map((post) => (
+                {news.slice(0, 6).map((post) => (
                   <li key={post.slug}>
                     <Link
                       to="/news/$year/$month/$slug/"
@@ -612,28 +612,9 @@ function Home() {
               <SectionActions>{allNews}</SectionActions>
             </div>
 
-            {/* Sticky beside the news list, the way the case beside the
-                pillars is: the list is long, the card is one thing, and it
-                should still be there when you reach the bottom of the list. */}
-            <aside className="ring-elevation h-fit bg-surface p-6 lg:sticky lg:top-28 lg:self-start">
-              <BankIcon className="size-5 text-brand" />
-              <h2 className="mt-4 text-[15px] font-medium text-text">
-                The Omacom Foundation
-              </h2>
-              <p className="mt-2 text-sm leading-relaxed text-text-secondary [text-wrap:pretty]">
-                Launched with $10 million to fund the open-source ecosystem
-                Omarchy stands on, including sponsorships for Hyprland,
-                Quickshell, and mise.
-              </p>
-              <Button
-                variant="secondary"
-                className="mt-4"
-                nativeButton={false}
-                render={<Link to="/$/" params={{ _splat: 'foundation' }} />}
-              >
-                About the foundation
-              </Button>
-            </aside>
+            {/* The project in numbers, beside the news the numbers come
+                from. Three cards, each counting up once as it arrives. */}
+            <Figures />
           </div>
         </div>
       </section>

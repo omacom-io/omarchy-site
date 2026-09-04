@@ -1,0 +1,45 @@
+{
+  "checked": "2026-09-04",
+  "github": {
+    "stars": 37853,
+    "forks": 3996,
+    "contributors": 444,
+    "commitsYear": 3941,
+    "weeks": [
+      77, 98, 18, 15, 71, 121, 86, 48, 40, 51, 95, 31, 9, 22, 35, 18, 35, 107,
+      17, 14, 37, 51, 23, 195, 83, 30, 44, 27, 51, 21, 18, 38, 77, 125, 196,
+      263, 437, 142, 42, 30, 15, 35, 57, 9, 78, 230, 121, 70, 178, 38, 135, 37
+    ]
+  },
+  "foundation": {
+    "total": 13,
+    "steps": [
+      {
+        "date": "2026-08-21",
+        "amount": 8,
+        "post": "/news/2026/08/omacom-foundation-launches-with-8-million/"
+      },
+      {
+        "date": "2026-08-24",
+        "amount": 10,
+        "post": "/news/2026/08/omacom-foundation-funding-hits-10m/"
+      },
+      {
+        "date": "2026-08-31",
+        "amount": 12.6,
+        "post": "/news/2026/08/1password-and-37signals-become-distinguished-corporate-patrons/"
+      },
+      {
+        "date": "2026-09-02",
+        "amount": 13,
+        "post": "/news/2026/09/omacom-foundation-reaches-13-million/"
+      }
+    ]
+  },
+  "downloads": {
+    "total": 200000,
+    "days": 18,
+    "countries": 215,
+    "post": "/news/2026/09/quattro-crosses-200000-iso-downloads/"
+  }
+}
