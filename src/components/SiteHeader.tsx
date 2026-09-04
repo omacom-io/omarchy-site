@@ -3,6 +3,7 @@ import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import type { RefObject } from 'react'
 import {
   BrushIcon,
+  DownloadIcon,
   GithubIcon,
   MenuBarsIcon,
   SearchIcon,
@@ -411,6 +412,16 @@ export function SiteHeader() {
     window.addEventListener('keydown', onKey)
     return () => window.removeEventListener('keydown', onKey)
   }, [menuOpen])
+  // Anything that floats over the page needs to know the sheet is up, so it
+  // can stand aside rather than land on the links.
+  useEffect(() => {
+    const root = document.documentElement
+    if (menuOpen) root.dataset.navMenu = 'open'
+    else delete root.dataset.navMenu
+    return () => {
+      delete root.dataset.navMenu
+    }
+  }, [menuOpen])
   const bar = useRef<HTMLDivElement>(null)
   // The ramp runs for the whole of the home page, not only while the hero is
   // still in view. Past the hero its own geometry already resolves to a full
@@ -604,7 +615,7 @@ export function SiteHeader() {
               setMenuOpen(false)
               window.dispatchEvent(new CustomEvent(OPEN_SEARCH_EVENT))
             }}
-            className="flex items-center gap-2.5 py-3 text-left text-[15px] text-text-secondary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+            className="mt-2 flex items-center gap-2.5 border-t border-border-subtle py-3 pt-4 text-left text-[15px] text-text-secondary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
           >
             <SearchIcon className="size-5" />
             Search Omarchy
@@ -630,16 +641,17 @@ export function SiteHeader() {
               }}
               render={<Link to="/" hash="install" />}
             >
+              <DownloadIcon className="size-5" />
               Install
             </Button>
             <Button
               variant="outline"
-              size="icon"
-              aria-label="Omarchy on GitHub"
+              className="flex-1"
               nativeButton={false}
               render={<a href="https://github.com/omacom/omarchy" />}
             >
               <GithubIcon className="size-5" />
+              GitHub
             </Button>
           </div>
         </nav>

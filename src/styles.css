@@ -1367,6 +1367,13 @@ h6 {
 .notice-in {
   animation: notice-in 300ms ease-out both;
 }
+/* The first-visit theme hint sits top right, which on a phone is exactly
+   where the open menu puts its links. The menu is the newer intent and it
+   carries a "Change the theme" row of its own, so the hint steps out of the
+   way and comes back when the sheet closes. */
+[data-nav-menu='open'] .notice-in {
+  display: none;
+}
 @media (prefers-reduced-motion: reduce) {
   .notice-in {
     animation: none;
