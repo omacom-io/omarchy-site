@@ -471,15 +471,24 @@ export function SiteHeader() {
           // On the bar rather than the header, so both the surface it paints
           // and the height the hooks measure include the strip above it.
           paddingTop: 'env(safe-area-inset-top)',
-          // Fully opaque once it has a surface, and in the section's own
-          // colour, so the bar stops reading as a panel over the page and
-          // starts reading as the top of whatever is under it. A translucent
-          // fill would let the copy scrolling beneath tint it and give the
-          // match away; there is nothing to blur behind an opaque layer
-          // either, so the filter that used to sit here is gone.
+          // The section's own colour, so the bar reads as the top of whatever
+          // is under it rather than as a panel over it, at 90% with the page
+          // blurred behind: enough to feel like glass, not enough for the
+          // copy scrolling under it to tint the fill.
+          //
+          // Mixed in sRGB, not oklch. Mixing a colour with `transparent` in a
+          // polar space leaves the hue powerless, and a hue of none renders
+          // as 0, which is red: the bar turned maroon over every section
+          // whose ground took that path.
           backgroundColor: menuOpen
             ? undefined
-            : 'color-mix(in oklch, var(--nav-ground, var(--color-bg)) calc(var(--nav-surface, 0) * 100%), transparent)',
+            : 'color-mix(in srgb, var(--nav-ground, var(--color-bg)) calc(var(--nav-surface, 0) * 90%), transparent)',
+          // The blur arrives with the fill and leaves with it. Over the hero
+          // the bar has no surface at all, and a blur there smeared the
+          // pixels behind letters that are meant to sit on them cleanly.
+          backdropFilter: menuOpen
+            ? undefined
+            : 'blur(calc(var(--nav-surface, 0) * 12px))',
         }}
       >
         <div className="mx-auto flex h-14 max-w-6xl items-center gap-3 px-4 sm:px-6">
