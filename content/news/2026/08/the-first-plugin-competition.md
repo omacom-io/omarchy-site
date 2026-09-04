@@ -5,7 +5,7 @@ author: DHH
 author_url: https://dhh.dk
 ---
 
-The [Omarchy Plugin Marketplace](https://omarchyplugins.com/) is already home to over 500 plugins and growing very fast. We have a million ideas for how we can improve this setup, including with automated agent-powered security reviews, but let's not have perfect be the enemy of good and fun for now!
+The [Omarchy Plugin Marketplace](https://plugins.omarchy.org/) is already home to over 500 plugins and growing very fast. We have a million ideas for how we can improve this setup, including with automated agent-powered security reviews, but let's not have perfect be the enemy of good and fun for now!
 
 So in celebration of this huge outburst of creativity, we'll be hosting the first plugin competition using [the four grand](https://x.com/dhh/status/2088362620617425277) that I received from yapping endlessly about Omarchy on X last week.
 
