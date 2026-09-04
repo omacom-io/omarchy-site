@@ -113,7 +113,7 @@ export function SiteFooter() {
 
             {/* Who is behind it and who carries it: attribution belongs with
                 the identity, not down in the fine print with the legal. */}
-            <div className="mt-5 flex flex-col gap-2 text-[13px] text-text-muted [text-wrap:pretty]">
+            <div className="mt-4 flex flex-col gap-4 text-[13px] text-text-muted [text-wrap:pretty]">
               <p data-quiet>
                 Incubated at{' '}
                 {/* The link stays plain inline text, so its words sit on the
