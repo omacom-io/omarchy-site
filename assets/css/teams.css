@@ -1,10 +1,7 @@
+/* Container comes from page.css; the team blocks run on a wider rhythm than
+   .page__section, so they keep their own spacing and heading below. */
 .teams {
-  display: grid;
   gap: var(--space-xxx-large);
-  justify-self: center;
-  max-width: 52em;
-  padding-inline: var(--space-large);
-  width: 100%;
 }
 
 
@@ -140,14 +137,4 @@
 .teams__aside a {
   color: inherit;
   font-weight: inherit;
-}
-
-
-
-@media(min-width: 64em) {
-
-  .teams {
-    padding-inline: var(--space-xx-large);
-  }
-
 }

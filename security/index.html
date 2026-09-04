@@ -36,7 +36,7 @@
     <link rel="stylesheet" type="text/css" href="/assets/css/header.css">
     <link rel="stylesheet" type="text/css" href="/assets/css/main.css">
     <link rel="stylesheet" type="text/css" href="/assets/css/pre.css">
-    <link rel="stylesheet" type="text/css" href="/assets/css/security.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/page.css">
 
     <script defer data-domain="omarchy.org" src="https://plausible.io/js/script.js"></script>
   </head>
@@ -65,9 +65,9 @@
 
     <main class="main">
 
-      <div class="security">
+      <div class="page">
 
-        <section class="security__intro">
+        <section class="page__intro">
           <h2>Report a vulnerability</h2>
           <p>If you believe you&rsquo;ve found a security vulnerability in Omarchy, please tell the <a href="/teams/#security">Omarchy Security Team</a> privately so we have an opportunity to investigate and fix it before it is made public.</p>
 
@@ -76,10 +76,10 @@
             <span>security@omarchy.org</span>
           </a>
 
-          <p class="security__warning">Please don&rsquo;t report potential vulnerabilities publicly in GitHub Issues, Discord, or social media before they&rsquo;ve been resolved.</p>
+          <p class="page__note">Please don&rsquo;t report potential vulnerabilities publicly in GitHub Issues, Discord, or social media before they&rsquo;ve been resolved.</p>
         </section>
 
-        <section class="security__section">
+        <section class="page__section">
           <h2>What is a vulnerability?</h2>
           <p>We consider a bug a security vulnerability when it can be exploited to cross a meaningful security boundary: an untrusted or lower-privileged party gains access, permissions, or control they didn&rsquo;t already have.</p>
 
@@ -88,11 +88,11 @@
           <p>Eligibility for our <a href="/security/credits/">security credits</a> page depends on whether a report identifies a confirmed security vulnerability, not on its severity.</p>
         </section>
 
-        <section class="security__section">
+        <section class="page__section">
           <h2>What to include</h2>
           <p>Give us enough information to understand and reproduce the issue:</p>
 
-          <ul>
+          <ul class="page__list">
             <li>The affected component and Omarchy version.</li>
             <li>An explanation of what an attacker can do before and after exploitation.</li>
             <li>Steps to reproduce the issue and any proof of concept.</li>
@@ -100,11 +100,11 @@
           </ul>
         </section>
 
-        <section class="security__section">
+        <section class="page__section">
           <h2>Responsible disclosure</h2>
           <p>Please act in good faith while investigating and reporting vulnerabilities:</p>
 
-          <ul>
+          <ul class="page__list">
             <li>Only test systems and accounts you own or have explicit permission to test.</li>
             <li>Avoid privacy violations, disruption, data destruction, and service degradation.</li>
             <li>Don&rsquo;t exploit a vulnerability beyond what is needed to demonstrate it.</li>
@@ -114,13 +114,13 @@
           <p>We&rsquo;ll review your report and keep you informed as we&rsquo;re able while we work toward a resolution.</p>
         </section>
 
-        <section class="security__section">
+        <section class="page__section">
           <h2>Credits</h2>
           <p>Researchers who privately report a confirmed security vulnerability and give us the chance to ship a fix are thanked on the <a href="/security/credits/">security credits</a> page. Accepted improvements that don&rsquo;t cross a security boundary may still be credited in our release notes.</p>
           <p>Credits link to each reporter&rsquo;s X profile and show their avatar. For duplicate reports, only the first reporter is eligible for credit.</p>
         </section>
 
-        <section class="security__section">
+        <section class="page__section">
           <h2>Regular bugs and support</h2>
           <p>For anything that isn&rsquo;t a security vulnerability, please use the <a href="https://github.com/omacom/omarchy/issues">Omarchy issue tracker</a>.</p>
         </section>

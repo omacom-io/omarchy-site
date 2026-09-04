@@ -1,0 +1,69 @@
+/* Layout comes from page.css; this is only the subscribe form. */
+
+/* The email field carries the same height and radius as the button beside it,
+   so the pair reads as one control rather than two stacked shapes. */
+
+.weekly__form {
+  display: grid;
+  max-width: 28em;
+  width: 100%;
+}
+
+.weekly__controls {
+  display: grid;
+  gap: var(--space-medium);
+}
+
+.weekly__input {
+  background: rgba(var(--rgb-background-storm), 0.74);
+  border: var(--border-width) solid var(--border-color);
+  border-radius: 0.4em;
+  color: var(--color-terminal-white);
+  font: inherit;
+  height: 2.9em;
+  padding-inline: var(--space-medium);
+  text-align: center;
+  transition:
+    border-color var(--transition),
+    box-shadow var(--transition)
+  ;
+  width: 100%;
+}
+
+.weekly__input::placeholder {
+  color: rgba(var(--rgb-terminal-white), 0.4);
+}
+
+.weekly__input:focus {
+  border-color: var(--color-terminal-cyan);
+  box-shadow: 0 0 0 0.2rem rgba(var(--rgb-terminal-cyan), 0.14);
+  outline: none;
+}
+
+.weekly__form .button {
+  justify-content: center;
+}
+
+/* Spam trap the mailer checks server-side. Off-screen rather than hidden, so a
+   bot filling every field still trips it. */
+.weekly__honeypot {
+  left: -9999px;
+  position: absolute;
+  top: -9999px;
+}
+
+
+
+/* Wide enough for the field and button to share a line; centred placeholder
+   text only reads right while the field is full width. */
+@media(min-width: 30em) {
+
+  .weekly__controls {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+
+  .weekly__input {
+    text-align: left;
+  }
+
+}

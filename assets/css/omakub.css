@@ -1,18 +1,4 @@
-.omakub {
-  display: grid;
-  gap: var(--space-xx-large);
-  justify-self: center;
-  max-width: 52em;
-  padding-inline: var(--space-large);
-  width: 100%;
-}
-
-.omakub__intro {
-  display: grid;
-  gap: var(--space-neutral);
-  justify-items: center;
-  text-align: center;
-}
+/* Layout comes from page.css. */
 
 .omakub__hero {
   border: var(--border-width) solid rgba(var(--rgb-terminal-black), 0.8);
@@ -20,30 +6,6 @@
   height: auto;
   max-width: 36em;
   width: 100%;
-}
-
-.omakub__intro p {
-  max-width: 42em;
-  text-wrap: pretty;
-}
-
-.omakub__section {
-  border-top: var(--border-width) solid rgba(var(--rgb-terminal-black), 0.8);
-  display: grid;
-  gap: var(--space-neutral);
-  padding-top: var(--space-xx-large);
-}
-
-.omakub__section h2 {
-  color: var(--color-terminal-white);
-  font-size: var(--font-size-medium);
-  font-weight: 700;
-  letter-spacing: 0.075em;
-  text-transform: uppercase;
-}
-
-.omakub__section p {
-  text-wrap: pretty;
 }
 
 .omakub__figure {
@@ -62,12 +24,4 @@
   color: rgba(var(--rgb-terminal-white), 0.6);
   font-size: var(--font-size-small);
   text-align: center;
-}
-
-@media(min-width: 64em) {
-
-  .omakub {
-    padding-inline: var(--space-xx-large);
-  }
-
 }
