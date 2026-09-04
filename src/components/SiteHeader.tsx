@@ -670,10 +670,14 @@ export function HeroNavGhost() {
               <GithubIcon className="size-5" />
             </span>
             {/* Install holds its own colours, so the ghost only holds its
-                place - same box, same type metrics, nothing painted. */}
+                place - same box, same type metrics, nothing painted. The
+                border is part of the box: the real button wears a 1px
+                transparent one, and without it here the ghost's icons sat
+                2px to the right of the real ones, so every swap between
+                the two layers read as a wiggle. */}
             <span
               aria-hidden="true"
-              className="ml-3 inline-flex h-8 items-center px-4 text-sm font-medium lg:h-[calc(var(--pxr)*3)]"
+              className="ml-3 inline-flex h-8 items-center border border-transparent px-4 text-sm font-medium lg:h-[calc(var(--pxr)*3)]"
               style={{ color: 'transparent' }}
             >
               Install
