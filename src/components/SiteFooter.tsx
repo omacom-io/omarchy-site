@@ -52,7 +52,12 @@ const columns = [
   },
 ] as const
 
-const creditLink = 'transition-[filter] duration-150 ease-out hover:brightness-125'
+const focusRing =
+  'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring'
+
+const footerLink = `text-text-secondary transition-colors duration-150 ease-out hover:text-text ${focusRing}`
+
+const creditLink = `transition-[filter] duration-150 ease-out hover:brightness-125 ${focusRing}`
 
 export function SiteFooter() {
   return (
@@ -84,7 +89,7 @@ export function SiteFooter() {
                 window.dispatchEvent(new CustomEvent(OPEN_PICKER_EVENT))
               }
               data-quiet
-              className="group block cursor-pointer"
+              className={`group block cursor-pointer ${focusRing}`}
             >
               <OmarchyWordmark className="h-6 w-auto text-brand transition-colors duration-150 ease-out group-hover:text-(--t-field-hover)" />
             </button>
@@ -94,10 +99,7 @@ export function SiteFooter() {
             >
               <span className="block">
                 Beautiful, fun &amp; opinionated Linux by{' '}
-                <a
-                  href="https://dhh.dk"
-                  className="text-text-secondary hover:text-text"
-                >
+                <a href="https://dhh.dk" className={footerLink}>
                   DHH
                 </a>
                 .
@@ -160,22 +162,16 @@ export function SiteFooter() {
                         <Link
                           to="/$/"
                           params={{ _splat: link.splat }}
-                          className="text-sm text-text-secondary transition-colors duration-150 ease-out hover:text-text"
+                          className={`text-sm ${footerLink}`}
                         >
                           {link.label}
                         </Link>
                       ) : 'to' in link ? (
-                        <Link
-                          to={link.to}
-                          className="text-sm text-text-secondary transition-colors duration-150 ease-out hover:text-text"
-                        >
+                        <Link to={link.to} className={`text-sm ${footerLink}`}>
                           {link.label}
                         </Link>
                       ) : (
-                        <a
-                          href={link.href}
-                          className="text-sm text-text-secondary transition-colors duration-150 ease-out hover:text-text"
-                        >
+                        <a href={link.href} className={`text-sm ${footerLink}`}>
                           {link.label}
                         </a>
                       )}
@@ -190,20 +186,13 @@ export function SiteFooter() {
         {/* The fine print, and only the fine print. */}
         <div className="mt-12 flex flex-col gap-2 border-t border-border-subtle pt-6 text-[13px] text-text-muted sm:flex-row sm:items-center sm:justify-between">
           <p data-quiet>
-            <Link
-              to="/$/"
-              params={{ _splat: 'brand' }}
-              className="text-text-secondary hover:text-text"
-            >
+            <Link to="/$/" params={{ _splat: 'brand' }} className={footerLink}>
               Omarchy is a pending trademark
             </Link>
           </p>
           <p data-quiet>
             Partner inquiries:{' '}
-            <a
-              href="mailto:david@omarchy.org"
-              className="text-text-secondary hover:text-text"
-            >
+            <a href="mailto:david@omarchy.org" className={footerLink}>
               david@omarchy.org
             </a>
           </p>
