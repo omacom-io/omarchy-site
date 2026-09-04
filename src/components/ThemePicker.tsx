@@ -465,29 +465,30 @@ export function ThemePicker() {
         />
       </div>
 
-      {/* The name plate, which is also the plainest way to take the theme
-          you are looking at: the front card keeps it and closes too, but the
-          name is what you are reading when you decide, and on a phone it is
-          the one target that is never half-covered by a neighbouring card.
-          Hover matches the arrows rather than the deck, because it sits with
-          them as chrome around the pictures.
-
-          Theme background, theme text, centered under the
-          deck. Fixed width rather than sized to the name, so it holds still
-          while you walk the deck instead of breathing in and out with the
-          length of each theme's name. It used to run the deck's full width,
-          which made a short word look marooned in a very long box. */}
+      {/* The name is the plainest way to take the theme you are looking at:
+          the front card keeps it and closes too, but the name is what you
+          are reading when you decide, and on a phone it is the one target
+          that is never half-covered by a neighbouring card. No plate: a
+          filled box sat on top of the preview. A stroke in the page ground
+          keeps the letters readable on the dimmer, including White, whose
+          text is otherwise black on black. */}
       <button
         type="button"
         tabIndex={-1}
         aria-label={`Keep ${SITE_THEMES[index].name}`}
         onClick={close}
         className={cn(
-          'relative mt-1.5 w-[min(72vw,17rem)] cursor-pointer border border-border-subtle bg-bg py-3.5 text-center transition-colors duration-150 ease-out hover:bg-surface-2',
+          'relative mt-1.5 cursor-pointer px-4 py-3.5 text-center transition-[filter] duration-150 ease-out hover:brightness-125',
           closing ? `${exit} fade-out-0` : `${enter} fade-in-0 delay-40`,
         )}
       >
-        <span className="block font-sans text-2xl font-semibold tracking-tight text-text">
+        <span
+          className="block font-sans text-2xl font-semibold tracking-tight text-text"
+          style={{
+            WebkitTextStroke: '2px var(--color-bg)',
+            paintOrder: 'stroke fill',
+          }}
+        >
           {SITE_THEMES[index].name}
         </span>
       </button>
