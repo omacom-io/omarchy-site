@@ -96,7 +96,7 @@
 
 
 
-/* Four community videos under the main one. */
+/* Community videos under the main one. */
 .video--grid {
   display: grid;
   gap: var(--space-medium);
