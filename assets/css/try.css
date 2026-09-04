@@ -1,0 +1,77 @@
+body {
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+
+.try {
+  align-content: center;
+  display: grid;
+  flex: 1;
+  gap: var(--space-x-large);
+  justify-items: center;
+  padding: var(--space-large);
+}
+
+.try__title {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+.try__logo {
+  display: block;
+  width: clamp(18rem, 72vw, 52rem);
+}
+
+.try__logo img {
+  display: block;
+}
+
+.try__actions {
+  display: grid;
+  gap: var(--space-medium);
+  grid-template-columns: 1fr;
+  width: min(100%, 34rem);
+}
+
+.try__actions .button {
+  justify-content: center;
+  min-height: 3.25rem;
+  text-align: center;
+}
+
+.try a:focus-visible {
+  outline: 0.15em solid var(--color-turquoise);
+  outline-offset: 0.3em;
+}
+
+
+
+@media(min-width: 40em) {
+
+  .try {
+    gap: var(--space-xx-large);
+  }
+
+  .try__actions {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+}
+
+
+
+@media(prefers-reduced-motion: reduce) {
+
+  .try .button,
+  .try a {
+    transition: none;
+  }
+
+}
