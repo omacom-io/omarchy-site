@@ -1,0 +1,74 @@
+.vendors {
+  display: grid;
+  gap: var(--space-xx-large);
+  justify-self: center;
+  max-width: 52em;
+  padding-inline: var(--space-large);
+  width: 100%;
+}
+
+.vendors__intro {
+  margin-inline: auto;
+  max-width: 40em;
+  text-align: center;
+  text-wrap: pretty;
+}
+
+.vendor {
+  border-top: var(--border-width) solid rgba(var(--rgb-terminal-black), 0.8);
+  display: grid;
+  gap: var(--space-neutral);
+  justify-items: center;
+  padding-top: var(--space-xx-large);
+  text-align: center;
+}
+
+.vendor__name {
+  color: var(--color-terminal-white);
+  font-size: var(--font-size-medium);
+  font-weight: 700;
+  letter-spacing: 0.075em;
+  text-transform: uppercase;
+}
+
+/* Pulled up out of the section's rhythm so it reads as part of the name. */
+.vendor__location {
+  color: rgba(var(--rgb-terminal-white), 0.6);
+  font-size: var(--font-size-small);
+  margin-top: calc(var(--space-neutral) * -0.7);
+}
+
+.vendor p {
+  text-wrap: pretty;
+}
+
+.vendor__body {
+  max-width: 40em;
+}
+
+/* Sits where the buy link sits on the other cards, so a vendor without a link
+   yet doesn't leave the row looking unfinished. */
+.vendor__soon {
+  color: rgba(var(--rgb-terminal-white), 0.6);
+}
+
+/* Outside .vendors, so it carries its own gap — .main sets none. */
+.vendors__note {
+  color: rgba(var(--rgb-terminal-white), 0.6);
+  justify-self: center;
+  margin-top: var(--space-xx-large);
+  max-width: 40em;
+  padding-inline: var(--space-large);
+  text-align: center;
+  text-wrap: pretty;
+}
+
+
+
+@media(min-width: 64em) {
+
+  .vendors {
+    padding-inline: var(--space-xx-large);
+  }
+
+}
