@@ -304,11 +304,6 @@ function Home() {
               </span>
             </p>
 
-            {/* The row is centred on the same axis as the wordmark, so its
-                left edge falls on a cell line whenever it is an odd number of
-                cells wide. The buttons are 14 and 15; a two-cell gap makes
-                31, and both edges land on the lattice with nothing measured
-                and nothing to correct after the fact. */}
             <div
               data-hero-stagger
               data-hero-cta
@@ -318,10 +313,12 @@ function Home() {
               {/* Both stay fully opaque, hover included: the default hover
                   drops the fill to 80% and the outline variant is a tinted
                   translucent panel, which lets the field show through the
-                  one place on the site with a moving background. */}
+                  one place on the site with a moving background. Height
+                  still tracks the lattice; width follows the label so the
+                  padding is not eaten by a cell count. */}
               <Button
                 size="lg"
-                className="lg:h-[calc(var(--pxr)*4)] lg:w-[calc(var(--pxc)*14)]"
+                className="lg:h-[calc(var(--pxr)*4)]"
                 nativeButton={false}
                 onClick={installLink}
                 render={<Link to="/" hash="install" />}
@@ -332,7 +329,7 @@ function Home() {
               <Button
                 size="lg"
                 variant="outline"
-                className="lg:h-[calc(var(--pxr)*4)] lg:w-[calc(var(--pxc)*15)]"
+                className="lg:h-[calc(var(--pxr)*4)]"
                 nativeButton={false}
                 onClick={watchLink}
                 render={<Link to="/" hash="watch" />}
