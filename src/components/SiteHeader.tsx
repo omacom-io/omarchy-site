@@ -443,7 +443,7 @@ export function SiteHeader() {
 
   const install = (
     <Button
-      className="relative h-8 px-3 before:absolute before:-inset-y-1.5 lg:h-[calc(var(--pxr)*3)] lg:w-[calc(var(--pxc)*6)]"
+      className="relative h-8 px-4 before:absolute before:-inset-y-1.5 lg:h-[calc(var(--pxr)*3)]"
       nativeButton={false}
       onClick={installLink}
       render={<Link to="/" hash="install" />}
@@ -673,7 +673,7 @@ export function HeroNavGhost() {
                 place - same box, same type metrics, nothing painted. */}
             <span
               aria-hidden="true"
-              className="ml-3 h-8 px-3 text-sm font-medium lg:h-[calc(var(--pxr)*3)] lg:w-[calc(var(--pxc)*6)]"
+              className="ml-3 inline-flex h-8 items-center px-4 text-sm font-medium lg:h-[calc(var(--pxr)*3)]"
               style={{ color: 'transparent' }}
             >
               Install
