@@ -200,6 +200,20 @@ export function DownloadIcon(props: IconProps) {
   )
 }
 
+/** IconUsb from the square outlined set. */
+export function UsbIcon(props: IconProps) {
+  return (
+    <svg {...base(props)}>
+      <path
+        d="M10 5.75V7.25M14 5.75V7.25M3.75 10.25H20.25V21.25H3.75V10.25ZM5.75 2.75H18.25V10.25H5.75V2.75Z"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="square"
+      />
+    </svg>
+  )
+}
+
 export function PlayIcon(props: IconProps) {
   return (
     <svg {...base(props)}>

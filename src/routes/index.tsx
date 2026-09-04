@@ -8,6 +8,7 @@ import {
   ConsoleIcon,
   DiscordIcon,
   DownloadIcon,
+  UsbIcon,
   PlayIcon,
   StoreIcon,
 } from '@/components/icons'
@@ -405,22 +406,23 @@ function Home() {
 
           {/* A fork in the road reads as two things you pick between, so they
               are cards, the same ones the plugins, themes and community use.
-              The action sits on mt-auto in each: the cards stretch to a shared
-              height, so both land on the same line however the blurbs wrap,
-              with none of the subgrid this needed when it was bare text. */}
+              Both blurbs run to two lines and both notes to one, so the thing
+              you press sits on the same line in each. It was the copy that
+              knocked them apart: four lines of blurb on one side against two
+              on the other left a hole under the short one, and a note that
+              wrapped where the other did not put the button 19px below the
+              command box it is meant to match. */}
           <div className="mt-10 grid gap-4 md:grid-cols-2">
             <div className="ring-elevation flex min-w-0 flex-col bg-surface p-6">
               <div className="flex items-center gap-2.5">
-                <DownloadIcon className="size-5 text-brand" />
+                <UsbIcon className="size-5 text-brand" />
                 <h4 className="text-lg font-medium tracking-tight text-text">
                   Start from scratch
                 </h4>
               </div>
               <p className="mt-3 text-[15px] leading-relaxed text-text-secondary [text-wrap:pretty]">
-                Write the ISO to any USB stick and answer five questions. It
-                takes the whole drive and hands back a finished, encrypted
-                desktop in under a minute, with nothing to know about Linux
-                beforehand.
+                Write the ISO to a USB stick and answer five questions. It hands
+                back a finished desktop.
               </p>
               <div className="mt-auto pt-6">
                 <Button
@@ -451,8 +453,7 @@ function Home() {
               <div className="mt-auto pt-6">
                 <InstallCommand command={INSTALL_COMMAND} />
                 <p className="mt-2.5 text-[13px] text-text-muted">
-                  The same script the ISO uses. Read it first, the way you would
-                  with any other.
+                  The same script the ISO uses. Read it before running.
                 </p>
               </div>
             </div>
