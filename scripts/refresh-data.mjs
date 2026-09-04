@@ -160,7 +160,11 @@ const gh = (p, init) =>
 const repoRes = await gh('')
 if (!repoRes.ok) throw new Error(`repo → ${repoRes.status}`)
 const repo = await repoRes.json()
-const contributorsRes = await gh('/contributors?per_page=1')
+// anon=1 counts the authors whose commits carry an email GitHub cannot
+// match to an account. They are contributors, and they are in the count the
+// repository's own page shows: without this the site said 444 where GitHub
+// said 510.
+const contributorsRes = await gh('/contributors?per_page=1&anon=1')
 const lastPage = /page=(\d+)>; rel="last"/.exec(
   contributorsRes.headers.get('link') ?? '',
 )
@@ -171,6 +175,26 @@ for (let attempt = 0; attempt < 5 && weeks.length === 0; attempt++) {
   else await new Promise((r) => setTimeout(r, 3000))
 }
 if (weeks.length === 52 && lastPage) {
+  // Stars, forks and contributors only go up. A fall means the answer was
+  // odd rather than the project shrinking - a partial contributor list, a
+  // cached response - and the figures would go out on the site as fact. Say
+  // so loudly; the run still writes, because a real fall is possible and a
+  // refresh that refuses to write ages worse than one that warns.
+  const before = momentum.github
+  const now = {
+    stars: repo.stargazers_count,
+    forks: repo.forks_count,
+    contributors: Number(lastPage[1]),
+  }
+  for (const [key, value] of Object.entries(now)) {
+    if (value < before[key]) {
+      console.warn(
+        `momentum.json: ${key} fell from ${before[key]} to ${value} - check ` +
+          'the API answer before this is deployed',
+      )
+    }
+  }
+
   momentum.checked = new Date().toISOString().slice(0, 10)
   momentum.github = {
     stars: repo.stargazers_count,
@@ -189,7 +213,11 @@ if (weeks.length === 52 && lastPage) {
     `momentum.json: ${momentum.github.stars} stars, ${momentum.github.commitsYear} commits`,
   )
 } else {
-  console.log(
-    'momentum.json: commit stats not ready, kept the previous figures',
+  // GitHub computes the weekly stats on demand and answers 202 until they
+  // are ready. Warn rather than log: the figures on the site are then as
+  // old as the last good run, and nothing else in the output says so.
+  console.warn(
+    'momentum.json: the commit stats never arrived, so the previous figures ' +
+      `stand (checked ${momentum.checked})`,
   )
 }
