@@ -263,16 +263,8 @@ function useNavSurface(
         ? [...sections]
         : [...document.querySelectorAll<HTMLElement>('main')]
 
-      // The footer is a ground like any other, and last in document order so
-      // it wins where it overlaps. Only while it is in normal flow, though: a
-      // pinned one is stuck to the window, so its box says where it is being
-      // drawn rather than where it lives, and a range taken from that would
-      // claim scroll positions nowhere near it. It is also never under the
-      // bar in that state, since it is pinned precisely because it fits.
       const footer = document.querySelector<HTMLElement>('footer')
-      if (footer && getComputedStyle(footer).position !== 'sticky') {
-        nodes.push(footer)
-      }
+      if (footer) nodes.push(footer)
 
       grounds = nodes
         .filter((node) => !node.hasAttribute('data-hero-sentinel'))

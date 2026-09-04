@@ -926,14 +926,7 @@ export function HeroPixelField({
       },
       { rootMargin: '64px' },
     )
-    // Pinned to the bottom of the window, the footer's field is technically
-    // in view for the whole page, and would have drawn at 40fps behind the
-    // copy the entire way down. What matters is whether it has been revealed,
-    // which is what the sentinel at the end of the page marks.
-    visibility.observe(
-      (isHero ? null : document.querySelector('[data-reveal-sentinel]')) ??
-        host,
-    )
+    visibility.observe(host)
 
     if (finePointer) {
       window.addEventListener('pointermove', onPointerMove, { passive: true })

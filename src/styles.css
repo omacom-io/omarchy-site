@@ -566,11 +566,6 @@ h6 {
   background: var(--t-field-crest);
 }
 
-/* Stuck to the bottom of the window from the first scroll, with the page
-   sliding over it on its own opaque ground, so reaching the end of a page
-   opens the footer rather than pushing it up into view. The class is applied
-   from JS only while the footer is shorter than the window: pinned when it is
-   not, its own top edge would sit permanently above the top of the screen. */
 /* The typewriter's caret. A block, not a hairline: this is a site about a
    terminal, and it is set in a heading big enough to carry one. It holds
    steady while the keys are moving and blinks where the hands are still,
@@ -606,26 +601,6 @@ h6 {
   .typed-caret {
     display: none;
   }
-}
-
-.footer-pinned {
-  position: sticky;
-  bottom: 0;
-}
-
-/* The footer comes into focus as it opens - the field and the copy together,
-   since one of them arriving sharp while the other resolved read as two
-   different surfaces. Nothing moves: the footer is a plate the page slides
-   off, and sliding its contents as well only argued with that.
-
-   The footer's own background sits outside this, so the ground stays the one
-   colour throughout and it is the pixels on it that fade up. --reveal is 0
-   while the footer is covered and 1 once it is fully uncovered; both are 1,
-   so this is inert, wherever the footer is not pinned or the reader asked for
-   less motion. */
-.footer-pinned .footer-rise {
-  opacity: calc(0.2 + 0.8 * var(--reveal, 1));
-  filter: blur(var(--reveal-blur, 0px));
 }
 
 /* Insets a full-bleed rail so its slides land exactly on the content column

@@ -1,5 +1,4 @@
 import { Link } from '@tanstack/react-router'
-import { useEffect, useRef } from 'react'
 import { OmarchyWordmark } from '@/components/Brand'
 import { PixelBackdrop } from '@/components/HeroShader'
 import {
@@ -54,130 +53,8 @@ const columns = [
 ] as const
 
 export function SiteFooter() {
-  const footer = useRef<HTMLElement>(null)
-
-  useEffect(() => {
-    const el = footer.current
-    if (!el) return
-    const sentinel = document.querySelector<HTMLElement>(
-      '[data-reveal-sentinel]',
-    )
-    const still = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    let height = 0
-    let pinned = false
-    let idle = 0
-    /** Where the scroll says the reveal is, and where it has eased to. */
-    let target = 0
-    let shown = 0
-    let frame = 0
-
-    /** 0 while the page still covers the footer, 1 once it is all uncovered. */
-    const progress = () => {
-      if (!sentinel || height <= 0) return 1
-      const view = document.documentElement.clientHeight
-      const covered = sentinel.getBoundingClientRect().top
-      return Math.min(1, Math.max(0, (view - covered) / height))
-    }
-
-    const paint = () => {
-      const p = pinned && !still ? shown : 1
-      el.style.setProperty('--reveal', p.toFixed(4))
-      // Rounded to a quarter of a pixel. A blur radius that changes by an
-      // arbitrary fraction on every frame re-rasterises the footer for a
-      // difference nobody can see; a quarter pixel out of five is twenty
-      // steps, which no eye reads as steps.
-      const blur = Math.round((1 - p) * 5 * 4) / 4
-      el.style.setProperty('--reveal-blur', `${blur.toFixed(2)}px`)
-    }
-
-    /**
-     * The reveal is eased in time, not read straight off the scroll.
-     *
-     * The whole of it happens across the footer's own height - about four
-     * notches of a mouse wheel - so taken literally it arrives in four jumps,
-     * which is what made it read as a handful of fixed states rather than a
-     * fade. Chasing the target instead lets a coarse input still produce a
-     * continuous ramp, and costs nothing on a trackpad, where the target
-     * moves smoothly and this simply follows it.
-     */
-    const tick = () => {
-      const gap = target - shown
-      if (Math.abs(gap) < 0.0005) {
-        shown = target
-        frame = 0
-        paint()
-        return
-      }
-      shown += gap * 0.25
-      paint()
-      frame = requestAnimationFrame(tick)
-    }
-
-    const chase = () => {
-      target = pinned && !still ? progress() : 1
-      if (!frame) frame = requestAnimationFrame(tick)
-    }
-
-    // Pinned only where it fits. A footer taller than the window would keep
-    // its own top edge permanently above it, which is a phone in portrait and
-    // a short window on a narrow desktop - measured rather than guessed at
-    // with a breakpoint, since the height depends on how the columns wrap.
-    const measure = () => {
-      height = el.getBoundingClientRect().height
-      pinned = height <= document.documentElement.clientHeight - 24
-      el.classList.toggle('footer-pinned', pinned)
-      // A resize is not a reveal: land on the new value rather than easing to
-      // it, or the footer fades while the window is being dragged.
-      target = pinned && !still ? progress() : 1
-      shown = target
-      paint()
-    }
-
-    // Left part way open, it goes the rest of the way itself once the scroll
-    // stops, rather than resting at whatever fraction a flick happened to end
-    // on. The smooth scroll feeds this handler too, so it simply finds itself
-    // at a boundary next time round and does nothing.
-    //
-    // Weighted towards opening rather than split down the middle: under a
-    // third of the way reads as not having gone, and anything past that as
-    // having meant to. Half asked for a deliberate push every time.
-    const SHUT_BELOW = 0.3
-    const settle = () => {
-      if (!pinned || still || !sentinel) return
-      const p = progress()
-      if (p <= 0.02 || p >= 0.98) return
-      const view = document.documentElement.clientHeight
-      const top =
-        window.scrollY +
-        sentinel.getBoundingClientRect().top -
-        view +
-        (p < SHUT_BELOW ? 0 : height)
-      window.scrollTo({ top, behavior: 'smooth' })
-    }
-
-    const onScroll = () => {
-      chase()
-      window.clearTimeout(idle)
-      idle = window.setTimeout(settle, 140)
-    }
-
-    measure()
-    const sizes = new ResizeObserver(measure)
-    sizes.observe(el)
-    window.addEventListener('scroll', onScroll, { passive: true })
-    window.addEventListener('resize', measure)
-    return () => {
-      cancelAnimationFrame(frame)
-      window.clearTimeout(idle)
-      sizes.disconnect()
-      window.removeEventListener('scroll', onScroll)
-      window.removeEventListener('resize', measure)
-    }
-  }, [])
-
   return (
     <footer
-      ref={footer}
       className="relative isolate overflow-hidden border-t border-border-subtle"
       style={{
         // The field paints this itself; declared here so the ground is

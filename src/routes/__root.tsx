@@ -146,29 +146,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
       <body>
         <div className="flex min-h-dvh flex-col">
           <SiteHeader />
-          {/* The page rides over the footer rather than pushing it ahead: the
-              footer is stuck to the bottom of the window the whole way down,
-              and this is what hides it, so it needs a ground of its own
-              rather than the one the canvas paints behind everything. The
-              sentinel marks where the reveal begins, for anything that wants
-              to know whether the footer is actually on screen. */}
-          {/* At least a window tall, even when the page is not: this layer is
-              also the lid on the pinned footer, and a short page - the
-              foundation, a thin manual chapter - would otherwise leave the
-              footer showing through under its content from the moment it
-              loads, before the reader has scrolled anywhere. */}
-          <div className="relative z-10 min-h-dvh flex-1 bg-bg">
-            {children}
-            {/* Pinned to the layer's bottom edge rather than left in flow:
-                the layer can be stretched taller than its content on a short
-                page, and the reveal begins where the layer ends, not where
-                the content ran out. */}
-            <div
-              data-reveal-sentinel
-              aria-hidden="true"
-              className="absolute inset-x-0 bottom-0"
-            />
-          </div>
+          <div className="relative z-10 min-h-dvh flex-1 bg-bg">{children}</div>
           <SiteFooter />
         </div>
         <ThemePicker />
