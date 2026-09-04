@@ -336,7 +336,11 @@ export function Figures() {
           </pre>
           <WeekHover weeks={github.weeks} checked={momentum.checked} />
         </div>
-        <p className={meta}>
+        {/* Two pixels further down than the notes on the other cards, which
+            puts the same clear space under this one: those sit under text,
+            which carries its own room below the letters, and this sits under
+            blocks that fill their line to the last pixel. */}
+        <p className={`${meta} mt-[14px]`}>
           {github.commitsYear.toLocaleString('en-US')} commits in the last 52
           weeks
         </p>
