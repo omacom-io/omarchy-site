@@ -149,6 +149,9 @@
 
 /* Raw, aggressive, zero-radius. Every rounded-* utility resolves to square. */
 @theme {
+  /* The reading column: how wide the words run on a manual page, a news
+     post, a plugin's docs. Everything in a page's prose is held to it. */
+  --measure: 48rem;
   --radius-xs: 0px;
   --radius-sm: 0px;
   --radius-md: 0px;
@@ -537,6 +540,13 @@ h6 {
   scroll-margin-top: var(--nav-h);
 }
 
+/* A chapter's own headings land where its title does, the page's 3rem below
+   the bar, rather than pinned against it. The manual only: elsewhere a jump
+   still arrives at the bar. */
+.manual-chapter [id] {
+  scroll-margin-top: calc(var(--nav-h) + 3rem);
+}
+
 /* Theme switches must not animate: every color would tween independently */
 .no-transitions,
 .no-transitions * {
@@ -680,7 +690,36 @@ h6 {
   font-size: 15px;
   line-height: 1.65;
   color: var(--color-text-secondary);
-  max-width: 65ch;
+}
+/* The reading measure is on the text, not on the block. A paragraph stops at
+   72 characters, which is as long as a monospace line stays comfortable; a
+   screenshot, a code block or a table is not read line by line and takes the
+   whole column, so the column does not sit a third empty beside the text. */
+.prose
+  > :where(
+    p,
+    ul,
+    ol,
+    dl,
+    h1,
+    h2,
+    h3,
+    h4,
+    blockquote,
+    hr,
+    pre,
+    table,
+    figure,
+    img,
+    video,
+    iframe
+  ) {
+  /* One measure for everything: the same width a news post reads at,
+     centred in the column. Paragraphs, headings, tables, code blocks and
+     screenshots all start and end on the same two lines. The elements are
+     named rather than taken as every child, so the ported pages that lay
+     their records out as grids keep the width they set for themselves. */
+  max-width: var(--measure);
 }
 .prose h2,
 .prose h3 {
@@ -860,6 +899,31 @@ h6 {
 .prose iframe {
   max-width: 100%;
   border: 0;
+}
+
+/* Centred in the column. Last in this section on purpose: every rule above
+   sets its element's margins with a shorthand, which resets the inline
+   margins this needs. */
+.prose
+  > :is(
+    p,
+    ul,
+    ol,
+    dl,
+    h1,
+    h2,
+    h3,
+    h4,
+    blockquote,
+    hr,
+    pre,
+    table,
+    figure,
+    img,
+    video,
+    iframe
+  ) {
+  margin-inline: auto;
 }
 
 /* --------------------------------------- ported structural page layouts */
