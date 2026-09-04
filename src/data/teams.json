@@ -8,37 +8,37 @@
     "name": "DHH",
     "meta": "USA/Denmark",
     "href": "https://dhh.dk",
-    "avatar": "/team/dhh.webp"
+    "avatar": "/assets/images/team/dhh.webp"
    },
    {
     "name": "Ryan Hughes",
     "meta": "USA",
     "href": "https://x.com/ryanrhughes",
-    "avatar": "/team/ryan-hughes.jpg"
+    "avatar": "/assets/images/team/ryan-hughes.webp"
    },
    {
     "name": "Tobi L\u00fctke",
     "meta": "Canada",
     "href": "https://x.com/tobi",
-    "avatar": "/team/tobi-lutke.jpg"
+    "avatar": "/assets/images/team/tobi-lutke.webp"
    },
    {
     "name": "Bjarne \u00d8verli",
     "meta": "Norway",
     "href": "https://x.com/iamdothash",
-    "avatar": "/team/bjarne-overli.jpg"
+    "avatar": "/assets/images/team/bjarne-overli.webp"
    },
    {
     "name": "HANCORE",
     "meta": "Germany",
     "href": "https://github.com/HANCORE-linux",
-    "avatar": "/team/hancore.png"
+    "avatar": "/assets/images/team/hancore.webp"
    },
    {
     "name": "Spencer Bull",
     "meta": "USA",
     "href": "https://x.com/SpencerGBull",
-    "avatar": "/team/spencer-bull.jpg"
+    "avatar": "/assets/images/team/spencer-bull.webp"
    },
    {
     "name": "Krzysztof Wilczy\u0144ski",
@@ -57,43 +57,43 @@
     "name": "Adrian Rangel",
     "meta": "Mexico",
     "href": "https://x.com/acrogenesis",
-    "avatar": "/team/adrian-rangel.webp"
+    "avatar": "/assets/images/team/adrian-rangel.webp"
    },
    {
     "name": "Mehmet \u0130nce",
     "meta": "UK",
     "href": "https://x.com/mdisec",
-    "avatar": "/team/mehmet-ince.webp"
+    "avatar": "/assets/images/team/mehmet-ince.webp"
    },
    {
     "name": "Erik Melton",
     "meta": "Norway",
     "href": "https://x.com/meltonaerik",
-    "avatar": "/team/erik-melton.webp"
+    "avatar": "/assets/images/team/erik-melton.webp"
    },
    {
     "name": "Sayem Chowdhury",
     "meta": "Bangladesh",
     "href": "https://x.com/Sayem314",
-    "avatar": "/team/sayem-chowdhury.webp"
+    "avatar": "/assets/images/team/sayem-chowdhury.webp"
    },
    {
     "name": "Sebastian Stange",
     "meta": "Germany",
     "href": "https://x.com/bastidotnet",
-    "avatar": "/team/sebastian-stange.webp"
+    "avatar": "/assets/images/team/sebastian-stange.webp"
    },
    {
     "name": "Ryan Hughes",
     "meta": "USA",
     "href": "https://x.com/ryanrhughes",
-    "avatar": "/team/ryan-hughes.jpg"
+    "avatar": "/assets/images/team/ryan-hughes.webp"
    },
    {
     "name": "DHH",
     "meta": "USA/Denmark",
     "href": "https://dhh.dk",
-    "avatar": "/team/dhh.webp"
+    "avatar": "/assets/images/team/dhh.webp"
    }
   ]
  },
@@ -106,19 +106,19 @@
     "name": "Mihai",
     "meta": "Romania",
     "href": "https://x.com/SandorhaziM",
-    "avatar": "/team/mihai.webp"
+    "avatar": "/assets/images/team/mihai.webp"
    },
    {
     "name": "Mateo Vaz",
     "meta": "Uruguay",
     "href": "https://x.com/Mateo_VX",
-    "avatar": "/team/mateo-vaz.webp"
+    "avatar": "/assets/images/team/mateo-vaz.webp"
    },
    {
     "name": "Nira",
     "meta": "Nepal",
     "href": "https://x.com/niraletter",
-    "avatar": "/team/nira.webp"
+    "avatar": "/assets/images/team/nira.webp"
    }
   ]
  }
