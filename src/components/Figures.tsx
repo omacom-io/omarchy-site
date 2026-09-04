@@ -338,7 +338,7 @@ export function Figures() {
         </div>
         <p className={meta}>
           {github.commitsYear.toLocaleString('en-US')} commits in the last 52
-          weeks · checked {shortDate(momentum.checked)}
+          weeks
         </p>
         <a href="https://github.com/omacom/omarchy" className={more}>
           The repo
