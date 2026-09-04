@@ -1460,6 +1460,91 @@ h6 {
   }
 }
 
+/* ----------------------------------------------------------- team clusters */
+
+/* The faces sit at their open spacing and are drawn together by a transform.
+   Hovering one lifts it to the top and parts the stack around it: everything
+   after it slides right, everything before it slides left, and the rest of
+   the overlap stays as it was. The same happens to a face picked by tap. The
+   team's name fans the whole cluster out. */
+.team-cluster {
+  --team-time: 320ms;
+  --team-ease: cubic-bezier(0.33, 1, 0.68, 1);
+}
+.team-faces {
+  margin-right: calc((var(--n) - 1) * -20px);
+  transition: margin-right var(--team-time) var(--team-ease);
+}
+.team-face {
+  --shift: 0px;
+  z-index: var(--z);
+  transform: translateX(calc(var(--i) * -20px + var(--shift)));
+  transition: transform var(--team-time) var(--team-ease);
+}
+.team-face a {
+  transition:
+    scale var(--team-time) var(--team-ease),
+    box-shadow 150ms ease-out,
+    color 150ms ease-out;
+}
+.team-face[data-picked] {
+  z-index: 60;
+}
+.team-face[data-picked] a {
+  scale: 1.15;
+}
+.team-face[data-picked] ~ .team-face {
+  --shift: 14px;
+}
+.team-face:has(~ .team-face[data-picked]) {
+  --shift: -14px;
+}
+@media (hover: hover) {
+  .team-face:hover {
+    z-index: 60;
+  }
+  .team-face:hover a {
+    scale: 1.15;
+  }
+  .team-face:hover ~ .team-face {
+    --shift: 14px;
+  }
+  .team-face:has(~ .team-face:hover) {
+    --shift: -14px;
+  }
+}
+/* The first face stays put, so the row keeps its left edge. Listed after
+   the parting rules, which it has to outrank. */
+.team-faces > .team-face:first-child {
+  --shift: 0px;
+}
+.team-cluster[data-open] .team-faces {
+  margin-right: 0;
+}
+.team-cluster[data-open] .team-face {
+  transform: none;
+}
+/* The name under the cluster fades in, and again when it changes hands. */
+.team-named {
+  animation: team-named 200ms ease-out both;
+}
+@keyframes team-named {
+  from {
+    opacity: 0;
+    translate: 0 2px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .team-faces,
+  .team-face,
+  .team-face a {
+    transition: none;
+  }
+  .team-named {
+    animation: none;
+  }
+}
+
 /* -------------------------------------------------------------- hero intro */
 
 @keyframes hero-rise {

@@ -20,13 +20,13 @@ import { Figures } from '@/components/Figures'
 import { TypewriterTail } from '@/components/TypewriterTail'
 import { PluginCard } from '@/components/PluginCard'
 import { SectionActions, SectionHeading } from '@/components/SectionHeading'
+import { TeamClusters } from '@/components/TeamClusters'
 import { ThemeCard } from '@/components/ThemeCard'
 import { VideoCarousel } from '@/components/VideoCarousel'
 import { Button } from '@/components/ui/button'
 import { useHashLink } from '@/lib/hash-scroll'
 import { getNewsIndex } from '@/lib/content'
 import { getPluginHighlights } from '@/lib/plugins'
-import teams from '@/data/teams.json'
 import themes from '@/data/themes.json'
 import release from '@/data/version.json'
 import { SITE_DESCRIPTION, seo } from '@/lib/seo'
@@ -100,11 +100,6 @@ const videos = [
     thumb: 'https://omarchy.org/assets/images/video/alex-finn.webp',
   },
 ]
-
-/** Core is the team the home page shows; the rest are one click away. The copy
- *  deliberately counts nobody: the roster changes, and a headcount in prose is
- *  the kind of number that quietly goes wrong between content refreshes. */
-const core = teams.find((t) => t.id === 'core') ?? teams[0]
 
 const communityCards = [
   {
@@ -589,8 +584,8 @@ function Home() {
       </section>
 
       {/* the teams, between the project and the people around it: this is
-          who steers it. Core is the one shown; the other two are a click
-          away rather than sixteen more faces on a landing page. */}
+          who steers it. All three on one line as clusters of faces, rather
+          than Core alone as a grid of cards. */}
       <section className="border-t border-border-subtle">
         <div className="mx-auto max-w-6xl px-4 py-24 sm:px-6">
           <SectionHeading
@@ -598,37 +593,7 @@ function Home() {
             description="Omarchy Core sets the direction, the Security team keeps your system safe, and the Rangers help others find their way."
             action={allTeams}
           />
-          <ul className="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
-            {core.members.map((member) => (
-              <li key={member.name}>
-                <a
-                  href={member.href || undefined}
-                  className="group block focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
-                >
-                  {member.avatar ? (
-                    <img
-                      src={member.avatar}
-                      alt=""
-                      width={240}
-                      height={240}
-                      loading="lazy"
-                      decoding="async"
-                      className="img-outlined aspect-square w-full object-cover"
-                    />
-                  ) : null}
-                  {/* Underlined from the start in nothing, so the hover is a
-                      colour arriving rather than a line, and the whole card
-                      carries it - the same as on the teams page. */}
-                  <span className="mt-2.5 block font-sans text-sm font-medium text-text underline decoration-transparent underline-offset-[3px] transition-colors duration-150 ease-out group-hover:decoration-brand">
-                    {member.name}
-                  </span>
-                  <span className="block font-mono text-xs text-text-muted">
-                    {member.meta}
-                  </span>
-                </a>
-              </li>
-            ))}
-          </ul>
+          <TeamClusters />
           <SectionActions>{allTeams}</SectionActions>
         </div>
       </section>
