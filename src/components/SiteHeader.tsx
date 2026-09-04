@@ -2,7 +2,7 @@ import { Link, useLocation } from '@tanstack/react-router'
 import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import type { RefObject } from 'react'
 import { GithubIcon, MenuBarsIcon, SearchIcon } from '@/components/icons'
-import { OmarchyMark } from '@/components/Brand'
+import { OmarchyMarkDrawn } from '@/components/Brand'
 import { Button } from '@/components/ui/button'
 import { useHashLink, useTopLink } from '@/lib/hash-scroll'
 import { THEME_EVENT, groundOf } from '@/lib/theme'
@@ -422,9 +422,9 @@ export function SiteHeader() {
       to="/"
       aria-label="Omarchy home"
       onClick={homeLink}
-      className="flex items-center"
+      className="mark-draw-trigger flex items-center"
     >
-      <OmarchyMark className="size-[22px] shrink-0 text-brand lg:size-[calc(var(--pxc)*2)]" />
+      <OmarchyMarkDrawn className="size-[22px] shrink-0 text-brand lg:size-[calc(var(--pxc)*2)]" />
     </Link>
   )
 

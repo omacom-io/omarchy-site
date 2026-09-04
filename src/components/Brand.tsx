@@ -1,4 +1,5 @@
 import { NOT_FOUND_HEIGHT, NOT_FOUND_WIDTH } from '@/data/not-found-bitmap'
+import { cn } from '@/lib/utils'
 
 /**
  * The brand marks, drawn in currentColor so they follow the active theme:
@@ -25,6 +26,31 @@ export function OmarchyMark({ className }: { className?: string }) {
         fill="currentColor"
         d={OMARCHY_MARK_PATH}
       />
+    </svg>
+  )
+}
+
+/**
+ * The same glyph as five strokes, so the header can draw it on hover: the
+ * frame, the two stems, and the inner spiral in one sweep out to its tail.
+ * Every path is normalised to a length of 1 for the dash animation, which
+ * lives in styles.css under "nav mark".
+ */
+export function OmarchyMarkDrawn({ className }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 1200 1200"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="80"
+      aria-hidden="true"
+      className={cn('mark-draw', className)}
+    >
+      <path pathLength={1} d="M640 1160H40V40H1160V1160H720" />
+      <path pathLength={1} d="M600 40V200" />
+      <path pathLength={1} d="M640 200H200V1000H1000V200H880" />
+      <path pathLength={1} d="M600 1160V1040" />
+      <path pathLength={1} d="M40 600H200" />
     </svg>
   )
 }
