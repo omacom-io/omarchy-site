@@ -36,10 +36,14 @@ export const HINT_KEY = 'omarchy-theme-hint-seen'
  * Pre-paint script injected into <head>: stamps <html data-theme> from
  * localStorage before first paint, so there is never a flash of the wrong
  * theme. Unknown or missing values fall back to Tokyo Night.
+ *
+ * The tab icon is created here too, outside React. paintFavicon() replaces
+ * that same tagged link; it must not touch a <link> React owns, or React
+ * later tries to removeChild a node whose parent is already gone.
  */
 export const themeInitScript = `(function(){try{var t=localStorage.getItem('${THEME_KEY}');var ok=${JSON.stringify(
   SITE_THEMES.map((t) => t.id),
-)};document.documentElement.dataset.theme=ok.indexOf(t)>=0?t:'${DEFAULT_THEME}'}catch(e){document.documentElement.dataset.theme='${DEFAULT_THEME}'}})()`
+)};document.documentElement.dataset.theme=ok.indexOf(t)>=0?t:'${DEFAULT_THEME}'}catch(e){document.documentElement.dataset.theme='${DEFAULT_THEME}'}if(!document.querySelector('link[rel="icon"][data-theme-icon]')){var l=document.createElement('link');l.rel='icon';l.type='image/svg+xml';l.href='/brand/omarchy-logo.svg';l.setAttribute('data-theme-icon','');document.head.appendChild(l)}})()`
 
 export function readTheme(): string {
   try {
@@ -55,9 +59,11 @@ export function readTheme(): string {
  * Redraws the tab icon in the active theme's accent, the same way the marks
  * in the header and footer follow it. The glyph ships as a file baked in
  * Tokyo Night green, which only that one theme could wear, so this replaces
- * the link with the same path painted in the current color. Browsers cache
- * a favicon by its element, not its URL, so the link is replaced outright
- * rather than re-pointed.
+ * the tagged link with the same path painted in the current color. Browsers
+ * cache a favicon by its element, not its URL, so the link is replaced
+ * outright rather than re-pointed. Only [data-theme-icon] is touched: a
+ * React-owned <link rel="icon"> pulled out of <head> crashes the next
+ * commit with removeChild on a null parent.
  */
 export function paintFavicon() {
   const brand = getComputedStyle(document.documentElement)
@@ -68,8 +74,11 @@ export function paintFavicon() {
   const link = document.createElement('link')
   link.rel = 'icon'
   link.type = 'image/svg+xml'
+  link.setAttribute('data-theme-icon', '')
   link.href = `data:image/svg+xml,${encodeURIComponent(svg)}`
-  document.querySelectorAll('link[rel="icon"]').forEach((old) => old.remove())
+  document
+    .querySelectorAll('link[rel="icon"][data-theme-icon]')
+    .forEach((old) => old.remove())
   document.head.appendChild(link)
 }
 

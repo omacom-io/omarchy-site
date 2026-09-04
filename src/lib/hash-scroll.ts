@@ -42,9 +42,7 @@ export function useHashLink(hash: string) {
     if (!target) return
 
     event.preventDefault()
-    // Capped where the footer's reveal begins, like every other anchor jump;
-    // it also honours the scroll-margin-top that holds the section clear of
-    // the bar.
+    // Honours the scroll-margin-top that holds the section clear of the bar.
     claimNextHashScroll()
     scrollToAnchor(target, true)
     // Replaced, not pushed: pressing the same button three times should not

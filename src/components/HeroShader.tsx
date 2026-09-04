@@ -1,6 +1,8 @@
-import { HeroPixelField } from './HeroPixelField'
+import { useEffect, useState } from 'react'
 import type { FieldGlyph } from './HeroPixelField'
 import { cn } from '@/lib/utils'
+
+type Field = typeof import('./HeroPixelField').HeroPixelField
 
 type Props = {
   onPainted?: () => void
@@ -10,23 +12,44 @@ type Props = {
   onGlyphPress?: () => void
 }
 
+function usePixelField() {
+  const [Field, setField] = useState<Field | null>(null)
+  useEffect(() => {
+    let cancelled = false
+    void import('./HeroPixelField').then((mod) => {
+      if (!cancelled) setField(() => mod.HeroPixelField)
+    })
+    return () => {
+      cancelled = true
+    }
+  }, [])
+  return Field
+}
+
 /**
  * The hero backdrop. Both the drifting pixel field and the wordmark are
  * painted by one canvas on a single shared grid, so they stay aligned at
  * every viewport size. No WebGPU, no second layer, no resampling: the
  * wordmark is drawn as the bitmap it already is.
+ *
+ * The canvas module is loaded on the client after first paint. It is large
+ * and runs a rAF loop; shipping it with the shell made a reload wait on it
+ * before CSS and type had settled.
  */
 export function HeroShader({ onPainted, glyph, onGlyphPress }: Props) {
+  const Field = usePixelField()
   return (
     <div
       aria-hidden="true"
       className="pointer-events-none absolute inset-0 select-none"
     >
-      <HeroPixelField
-        onPainted={onPainted}
-        glyph={glyph}
-        onGlyphPress={onGlyphPress}
-      />
+      {Field ? (
+        <Field
+          onPainted={onPainted}
+          glyph={glyph}
+          onGlyphPress={onGlyphPress}
+        />
+      ) : null}
     </div>
   )
 }
@@ -37,6 +60,7 @@ export function HeroShader({ onPainted, glyph, onGlyphPress }: Props) {
  * the hero's surface under it. The host must be positioned and clipped.
  */
 export function PixelBackdrop({ className }: { className?: string }) {
+  const Field = usePixelField()
   return (
     <div
       aria-hidden="true"
@@ -45,7 +69,7 @@ export function PixelBackdrop({ className }: { className?: string }) {
         className,
       )}
     >
-      <HeroPixelField variant="field" />
+      {Field ? <Field variant="field" /> : null}
     </div>
   )
 }

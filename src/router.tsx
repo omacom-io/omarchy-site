@@ -9,17 +9,14 @@ export function getRouter() {
     // prerendered folder that way; every link and match follows suit.
     trailingSlash: 'always',
     scrollRestoration: true,
-    // Hash scrolling is owned by watchHashScrolls below, which caps every
-    // jump where the footer's reveal begins; two scrollers racing for the
-    // same landing is how the loser's position wins.
+    // Hash scrolling is owned by watchHashScrolls below; two scrollers
+    // racing for the same landing is how the loser's position wins.
     defaultHashScrollIntoView: false,
     defaultPreload: 'intent',
     defaultPreloadStaleTime: 0,
   })
 
-  // Hash scrolls near the end of a page clamp into the footer's reveal;
-  // this pulls them back out. Scroll is a window concern, so the server
-  // has no part in it.
+  // Scroll is a window concern, so the server has no part in it.
   if (typeof document !== 'undefined') watchHashScrolls(router)
 
   return router

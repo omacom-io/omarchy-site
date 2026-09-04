@@ -123,12 +123,7 @@ export function NotFoundHero() {
               <Button
                 size="lg"
                 variant="outline"
-                // Seventeen cells, not the hero's fifteen: the same width
-                // around a longer label was crushing the icon against the
-                // left edge - the fixed width is narrower than the content
-                // and the overflow comes out of the padding. Odd, so the
-                // button's edges land on the lattice while it is centred.
-                className="lg:h-[calc(var(--pxr)*4)] lg:w-[calc(var(--pxc)*17)]"
+                className="lg:h-[calc(var(--pxr)*4)]"
                 nativeButton={false}
                 onClick={home}
                 render={<Link to="/" />}

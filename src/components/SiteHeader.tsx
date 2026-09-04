@@ -263,16 +263,8 @@ function useNavSurface(
         ? [...sections]
         : [...document.querySelectorAll<HTMLElement>('main')]
 
-      // The footer is a ground like any other, and last in document order so
-      // it wins where it overlaps. Only while it is in normal flow, though: a
-      // pinned one is stuck to the window, so its box says where it is being
-      // drawn rather than where it lives, and a range taken from that would
-      // claim scroll positions nowhere near it. It is also never under the
-      // bar in that state, since it is pinned precisely because it fits.
       const footer = document.querySelector<HTMLElement>('footer')
-      if (footer && getComputedStyle(footer).position !== 'sticky') {
-        nodes.push(footer)
-      }
+      if (footer) nodes.push(footer)
 
       grounds = nodes
         .filter((node) => !node.hasAttribute('data-hero-sentinel'))
@@ -451,7 +443,7 @@ export function SiteHeader() {
 
   const install = (
     <Button
-      className="relative h-8 px-3 before:absolute before:-inset-y-1.5 lg:h-[calc(var(--pxr)*3)] lg:w-[calc(var(--pxc)*6)]"
+      className="relative h-8 px-4 before:absolute before:-inset-y-1.5 lg:h-[calc(var(--pxr)*3)]"
       nativeButton={false}
       onClick={installLink}
       render={<Link to="/" hash="install" />}
@@ -681,7 +673,7 @@ export function HeroNavGhost() {
                 place - same box, same type metrics, nothing painted. */}
             <span
               aria-hidden="true"
-              className="ml-3 h-8 px-3 text-sm font-medium lg:h-[calc(var(--pxr)*3)] lg:w-[calc(var(--pxc)*6)]"
+              className="ml-3 inline-flex h-8 items-center px-4 text-sm font-medium lg:h-[calc(var(--pxr)*3)]"
               style={{ color: 'transparent' }}
             >
               Install

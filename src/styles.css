@@ -1,56 +1,83 @@
 @import 'tailwindcss';
 @import 'tw-animate-css';
 
-/* Inter, self-hosted from public/fonts (hinted static weights) */
-/* block, not swap or optional. Preloaded above and served from the same
-   origin, so in practice this waits on a fetch of a few milliseconds and then
-   paints in Inter.
-
-   swap paints in the fallback first and re-flows when Inter lands, and both
-   the headline and the copy under it are text-wrap: balance, so that re-picks
-   their line breaks and the block moves under the reader. optional avoids
-   that but decides per load: miss its ~100ms window - which a revalidating
-   dev server does regularly - and the whole page renders in the fallback,
-   so the same heading is one width on one refresh and another on the next.
-   block is the only one of the three that renders one typeface, once. Its
-   cost is that a genuinely slow load shows nothing rather than something for
-   up to three seconds, after which the fallback comes in anyway. */
+/* Typefaces from Fontsource. Latin and latin-ext only: the site is English
+   with a few European names (Lütke, Øverli). The full packages also ship
+   Cyrillic, Greek and Vietnamese, which the homepage was downloading for
+   nothing. swap, not block: block hid every heading and every line of copy
+   until the face arrived, which made a reload feel like a hang. The latin
+   files are preloaded in __root.tsx. */
 @font-face {
-  font-family: 'Inter';
+  font-family: 'Geist Variable';
   font-style: normal;
-  font-weight: 400;
-  font-display: block;
-  src: url('/fonts/Inter-4.1/extras/woff-hinted/Inter-Regular.woff2')
-    format('woff2');
-}
-@font-face {
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 500;
-  font-display: block;
-  src: url('/fonts/Inter-4.1/extras/woff-hinted/Inter-Medium.woff2')
-    format('woff2');
-}
-@font-face {
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 600;
-  font-display: block;
-  src: url('/fonts/Inter-4.1/extras/woff-hinted/Inter-SemiBold.woff2')
-    format('woff2');
-}
-
-/* Metric-compatible stand-in shown while Inter loads: Arial scaled to
-   Inter's advance widths, so text wraps identically before and after the
-   swap and nothing on the page moves when the webfont lands. */
-@font-face {
-  font-family: 'Inter Fallback';
-  src: local('Arial');
   font-display: swap;
-  size-adjust: 107.64%;
-  ascent-override: 90.49%;
-  descent-override: 22.56%;
-  line-gap-override: 0%;
+  font-weight: 100 900;
+  src: url('../node_modules/@fontsource-variable/geist/files/geist-latin-ext-wght-normal.woff2')
+    format('woff2-variations');
+  unicode-range:
+    U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304,
+    U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB,
+    U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Geist Variable';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 100 900;
+  src: url('../node_modules/@fontsource-variable/geist/files/geist-latin-wght-normal.woff2')
+    format('woff2-variations');
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
+    U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212,
+    U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'JetBrains Mono Variable';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 100 800;
+  src: url('../node_modules/@fontsource-variable/jetbrains-mono/files/jetbrains-mono-latin-ext-wght-normal.woff2')
+    format('woff2-variations');
+  unicode-range:
+    U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304,
+    U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB,
+    U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'JetBrains Mono Variable';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 100 800;
+  src: url('../node_modules/@fontsource-variable/jetbrains-mono/files/jetbrains-mono-latin-wght-normal.woff2')
+    format('woff2-variations');
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
+    U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212,
+    U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'JetBrains Mono Variable';
+  font-style: italic;
+  font-display: swap;
+  font-weight: 100 800;
+  src: url('../node_modules/@fontsource-variable/jetbrains-mono/files/jetbrains-mono-latin-ext-wght-italic.woff2')
+    format('woff2-variations');
+  unicode-range:
+    U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304,
+    U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB,
+    U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'JetBrains Mono Variable';
+  font-style: italic;
+  font-display: swap;
+  font-weight: 100 800;
+  src: url('../node_modules/@fontsource-variable/jetbrains-mono/files/jetbrains-mono-latin-wght-italic.woff2')
+    format('woff2-variations');
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
+    U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212,
+    U+2215, U+FEFF, U+FFFD;
 }
 
 /*
@@ -61,9 +88,8 @@
  */
 
 @theme inline {
-  --font-sans: 'Inter', 'Inter Fallback', ui-sans-serif, system-ui, sans-serif;
-  --font-mono:
-    'JetBrains Mono Variable', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+  --font-sans: 'Geist Variable', sans-serif;
+  --font-mono: 'JetBrains Mono Variable', monospace;
 
   --color-bg-deep: var(--t-bg-deep);
   --color-bg: var(--t-bg);
@@ -79,6 +105,13 @@
 
   --color-brand-fill: var(--t-brand);
   --color-brand-ink: var(--t-brand-ink);
+
+  /* Footer credits. Official hues on dark themes; White deepens them so
+     13px type still reads on the light field. */
+  --color-partner-37signals: var(--t-partner-37signals);
+  --color-partner-basecamp: var(--t-partner-basecamp);
+  --color-partner-hey: var(--t-partner-hey);
+  --color-partner-cloudflare: var(--t-partner-cloudflare);
 
   /* Tokyo Night companion hues, used sparingly for category accents */
   --color-tn-blue: oklch(0.719 0.132 264.2);
@@ -173,6 +206,10 @@
   --t-hdr-ink: #1a1c24;
   --t-hdr-surface-2: #32364f;
   --t-hdr-surface: #2d3044;
+  --t-partner-37signals: #ec4443;
+  --t-partner-basecamp: #ffd60a;
+  --t-partner-hey: #8b6cff;
+  --t-partner-cloudflare: #f38020;
 }
 
 [data-theme='white'] {
@@ -210,6 +247,10 @@
   --t-hdr-ink: #000000;
   --t-hdr-surface-2: #000000;
   --t-hdr-surface: #000000;
+  --t-partner-37signals: #c53030;
+  --t-partner-basecamp: #b45309;
+  --t-partner-hey: #5522fa;
+  --t-partner-cloudflare: #c2410c;
 }
 
 [data-theme='catppuccin'] {
@@ -409,6 +450,7 @@ html,
 body,
 #app {
   min-height: 100%;
+  font-family: var(--font-mono);
 }
 
 /* The sticky bar's full height: its own row, plus whatever the device keeps
@@ -429,7 +471,7 @@ body {
   padding-inline: env(safe-area-inset-left) env(safe-area-inset-right);
   background: var(--color-bg);
   color: var(--color-text);
-  font-family: var(--font-sans);
+  font-family: var(--font-mono);
   font-synthesis: none;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -474,7 +516,11 @@ textarea,
 
 h1,
 h2,
-h3 {
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-sans);
   text-wrap: balance;
 }
 
@@ -535,11 +581,6 @@ h3 {
   background: var(--t-field-crest);
 }
 
-/* Stuck to the bottom of the window from the first scroll, with the page
-   sliding over it on its own opaque ground, so reaching the end of a page
-   opens the footer rather than pushing it up into view. The class is applied
-   from JS only while the footer is shorter than the window: pinned when it is
-   not, its own top edge would sit permanently above the top of the screen. */
 /* The typewriter's caret. A block, not a hairline: this is a site about a
    terminal, and it is set in a heading big enough to carry one. It holds
    steady while the keys are moving and blinks where the hands are still,
@@ -575,26 +616,6 @@ h3 {
   .typed-caret {
     display: none;
   }
-}
-
-.footer-pinned {
-  position: sticky;
-  bottom: 0;
-}
-
-/* The footer comes into focus as it opens - the field and the copy together,
-   since one of them arriving sharp while the other resolved read as two
-   different surfaces. Nothing moves: the footer is a plate the page slides
-   off, and sliding its contents as well only argued with that.
-
-   The footer's own background sits outside this, so the ground stays the one
-   colour throughout and it is the pixels on it that fade up. --reveal is 0
-   while the footer is covered and 1 once it is fully uncovered; both are 1,
-   so this is inert, wherever the footer is not pinned or the reader asked for
-   less motion. */
-.footer-pinned .footer-rise {
-  opacity: calc(0.2 + 0.8 * var(--reveal, 1));
-  filter: blur(var(--reveal-blur, 0px));
 }
 
 /* Insets a full-bleed rail so its slides land exactly on the content column
@@ -788,6 +809,7 @@ h3 {
 }
 .prose th {
   color: var(--color-text);
+  font-family: var(--font-sans);
   font-weight: 600;
   background: var(--color-surface);
 }
@@ -862,6 +884,7 @@ h3 {
 }
 .ported .team__name {
   margin: 0;
+  font-family: var(--font-sans);
   font-size: 1.25rem;
 }
 .ported .team__description {
@@ -905,6 +928,7 @@ h3 {
 }
 .ported .member__name {
   margin: 0.7em 0 0;
+  font-family: var(--font-sans);
   font-size: 15px;
   font-weight: 500;
   letter-spacing: 0;
@@ -953,6 +977,7 @@ h3 {
 }
 .ported .resident__name {
   margin: 0;
+  font-family: var(--font-sans);
 }
 .ported .resident p {
   max-width: none;
@@ -1005,6 +1030,7 @@ h3 {
 }
 .ported .sponsorship__name {
   margin: 0;
+  font-family: var(--font-sans);
 }
 .ported .sponsorship__terms {
   font-family: var(--font-mono);
@@ -1054,6 +1080,7 @@ h3 {
 .ported .rule__name {
   margin: 0;
   color: var(--color-text);
+  font-family: var(--font-sans);
   font-weight: 500;
   font-size: 14px;
 }
@@ -1242,6 +1269,7 @@ h3 {
 }
 .docs .troubleshooting-list dt {
   color: var(--color-text);
+  font-family: var(--font-sans);
   font-weight: 600;
   margin-top: 1em;
 }

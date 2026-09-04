@@ -9,8 +9,8 @@ import type { SVGProps } from 'react'
 
 type LogoProps = SVGProps<SVGSVGElement>
 
-/** 37signals, drawn in currentColor: the supplied mark is solid black, which
- *  would disappear on five of the six themes. */
+/** 37signals, drawn in currentColor so the credit link can paint it in the
+ *  brand red. */
 export function ThirtySevenSignalsMark(props: LogoProps) {
   return (
     <svg viewBox="0 0 16 16" fill="none" aria-hidden="true" {...props}>
@@ -23,13 +23,11 @@ export function ThirtySevenSignalsMark(props: LogoProps) {
   )
 }
 
-/** Cloudflare, monochrome. Its two oranges next to a line of muted 13px text
- *  read as an advertisement rather than as a credit, and they were the one
- *  thing in the footer that ignored the theme. The two shapes do not overlap,
- *  so a single colour still draws the cloud and its arc. The supplied mark
- *  also carries a white shape behind the cloud, meant for a white page and
- *  reading as a bite out of the logo on a dark one; it is dropped rather than
- *  filled, since nothing shows through it. */
+/** Cloudflare, one fill. The two shapes do not overlap, so a single colour
+ *  still draws the cloud and its arc. The credit link supplies the orange.
+ *  The supplied mark also carries a white shape behind the cloud, meant for
+ *  a white page and reading as a bite out of the logo on a dark one; it is
+ *  dropped rather than filled, since nothing shows through it. */
 export function CloudflareMark(props: LogoProps) {
   return (
     <svg

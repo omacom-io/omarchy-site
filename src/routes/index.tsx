@@ -23,7 +23,7 @@ import { ThemeCard } from '@/components/ThemeCard'
 import { VideoCarousel } from '@/components/VideoCarousel'
 import { Button } from '@/components/ui/button'
 import { useHashLink } from '@/lib/hash-scroll'
-import { getNewsIndex, getSearchIndex } from '@/lib/content'
+import { getNewsIndex } from '@/lib/content'
 import { getPluginHighlights } from '@/lib/plugins'
 import teams from '@/data/teams.json'
 import themes from '@/data/themes.json'
@@ -36,13 +36,9 @@ export const Route = createFileRoute('/')({
   // morning is on the home page this morning. Both are cached server-side,
   // so a cold isolate is the only one that waits on either.
   loader: async () => {
-    // The search index rides along for the same reason the plugins page
-    // invokes the catalogue: the palette fetches it from the browser, and the
-    // build only writes a static function's file when something runs it.
     const [highlights, news] = await Promise.all([
       getPluginHighlights(),
       getNewsIndex(),
-      getSearchIndex(),
     ])
     return { ...highlights, news }
   },
@@ -250,7 +246,7 @@ function Home() {
         }
         style={{ background: 'var(--t-field-bg)' }}
       >
-        <HeroShader onPainted={() => setTimeout(() => setPainted(true), 950)} />
+        <HeroShader onPainted={() => setPainted(true)} />
 
         {/* The bar's labels, blended against the canvas. They have to live in
             here to reach it: the real header is sticky, and a sticky element
@@ -308,11 +304,6 @@ function Home() {
               </span>
             </p>
 
-            {/* The row is centred on the same axis as the wordmark, so its
-                left edge falls on a cell line whenever it is an odd number of
-                cells wide. The buttons are 14 and 15; a two-cell gap makes
-                31, and both edges land on the lattice with nothing measured
-                and nothing to correct after the fact. */}
             <div
               data-hero-stagger
               data-hero-cta
@@ -322,10 +313,12 @@ function Home() {
               {/* Both stay fully opaque, hover included: the default hover
                   drops the fill to 80% and the outline variant is a tinted
                   translucent panel, which lets the field show through the
-                  one place on the site with a moving background. */}
+                  one place on the site with a moving background. Height
+                  still tracks the lattice; width follows the label so the
+                  padding is not eaten by a cell count. */}
               <Button
                 size="lg"
-                className="lg:h-[calc(var(--pxr)*4)] lg:w-[calc(var(--pxc)*14)]"
+                className="lg:h-[calc(var(--pxr)*4)]"
                 nativeButton={false}
                 onClick={installLink}
                 render={<Link to="/" hash="install" />}
@@ -336,7 +329,7 @@ function Home() {
               <Button
                 size="lg"
                 variant="outline"
-                className="lg:h-[calc(var(--pxr)*4)] lg:w-[calc(var(--pxc)*15)]"
+                className="lg:h-[calc(var(--pxr)*4)]"
                 nativeButton={false}
                 onClick={watchLink}
                 render={<Link to="/" hash="watch" />}
@@ -400,29 +393,21 @@ function Home() {
               <DhhQuote />
             </div>
 
-            <ol className="flex flex-col">
-              {pillars.map((pillar, i) => (
+            <ul className="flex flex-col">
+              {pillars.map((pillar) => (
                 <li
                   key={pillar.title}
-                  // Baseline, not top: the numeral is 14px mono and the title
-                  // 18px, so aligning the boxes left the digits riding above
-                  // the words. This sits them on the same line.
-                  className="grid grid-cols-[2.5rem_1fr] items-baseline gap-x-4 border-t border-border-subtle py-8 first:border-t-0 first:pt-0 last:pb-0"
+                  className="border-t border-border-subtle py-8 first:border-t-0 first:pt-0 last:pb-0"
                 >
-                  <span className="font-mono text-sm text-brand tabular-nums">
-                    {String(i + 1).padStart(2, '0')}
-                  </span>
-                  <div>
-                    <h3 className="text-lg font-medium tracking-tight text-text">
-                      {pillar.title}
-                    </h3>
-                    <p className="mt-3 text-[15px] leading-relaxed text-text-secondary [text-wrap:pretty]">
-                      {pillar.body}
-                    </p>
-                  </div>
+                  <h3 className="text-lg font-medium tracking-tight text-text">
+                    {pillar.title}
+                  </h3>
+                  <p className="mt-3 text-[15px] leading-relaxed text-text-secondary [text-wrap:pretty]">
+                    {pillar.body}
+                  </p>
                 </li>
               ))}
-            </ol>
+            </ul>
           </div>
         </div>
 
@@ -614,7 +599,7 @@ function Home() {
                       >
                         {post.dateStr}
                       </time>
-                      <span className="text-[15px] font-medium text-text transition-colors duration-150 ease-out group-hover:text-brand">
+                      <span className="font-sans text-[15px] font-medium text-text transition-colors duration-150 ease-out group-hover:text-brand">
                         {post.title}
                       </span>
                       <span className="text-sm text-text-secondary [text-wrap:pretty]">
@@ -684,7 +669,7 @@ function Home() {
                   {/* Underlined from the start in nothing, so the hover is a
                       colour arriving rather than a line, and the whole card
                       carries it - the same as on the teams page. */}
-                  <span className="mt-2.5 block text-sm font-medium text-text underline decoration-transparent underline-offset-[3px] transition-colors duration-150 ease-out group-hover:decoration-brand">
+                  <span className="mt-2.5 block font-sans text-sm font-medium text-text underline decoration-transparent underline-offset-[3px] transition-colors duration-150 ease-out group-hover:decoration-brand">
                     {member.name}
                   </span>
                   <span className="block font-mono text-xs text-text-muted">
@@ -757,13 +742,13 @@ function DhhQuote() {
     <figure className="mt-12 max-w-md border border-border-subtle bg-surface p-7">
       <div
         aria-hidden="true"
-        className="h-10 text-6xl leading-none font-bold text-brand"
+        className="h-10 font-sans text-6xl leading-none font-bold text-brand"
       >
         &ldquo;
       </div>
       {/* Balanced, so the break lands at the comma between the two clauses
           instead of stranding "you should" on a line. */}
-      <blockquote className="text-xl leading-snug font-medium text-text [text-wrap:balance]">
+      <blockquote className="font-sans text-xl leading-snug font-medium text-text [text-wrap:balance]">
         When you can vibe code whatever app comes to your mind, you should be
         able to vibe code your operating system.
       </blockquote>
@@ -780,7 +765,7 @@ function DhhQuote() {
           decoding="async"
           className="size-12 shrink-0 border border-border-subtle object-cover"
         />
-        <span className="flex flex-col leading-snug">
+        <span className="flex flex-col font-mono leading-snug">
           <span className="text-[15px] font-medium text-text">
             David Heinemeier Hansson
           </span>

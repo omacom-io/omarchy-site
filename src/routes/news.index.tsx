@@ -46,7 +46,7 @@ function NewsPage() {
                 >
                   {post.dateStr}
                 </time>
-                <span className="flex items-baseline gap-1.5 text-lg font-medium text-text transition-colors duration-150 ease-out group-hover:text-brand">
+                <span className="flex items-baseline gap-1.5 font-sans text-lg font-medium text-text transition-colors duration-150 ease-out group-hover:text-brand">
                   {post.title}
                   <ArrowRightIcon className="size-5 shrink-0 self-center text-text-muted transition-[color,translate] duration-150 ease-out group-hover:translate-x-0.5 group-hover:text-brand" />
                 </span>

@@ -21,6 +21,7 @@ import {
   SelectValue,
 } from '@/components/ui/select'
 import { cn } from '@/lib/utils'
+import { getSearchIndex } from '@/lib/content'
 import { seo } from '@/lib/seo'
 
 const sortOptions: Array<{ value: PluginSort; label: string }> = [
@@ -73,7 +74,11 @@ export const Route = createFileRoute('/plugins/')({
     // build's cache when something runs it during the prerender, and the
     // browser can only fetch a file that exists. Running it here writes the
     // file; leaving it out of the loader data keeps 0.9MB out of the page.
-    const [overview] = await Promise.all([getPluginsOverview(), getCatalogue()])
+    const [overview] = await Promise.all([
+      getPluginsOverview(),
+      getCatalogue(),
+      getSearchIndex(),
+    ])
     return overview
   },
   head: () =>
@@ -348,7 +353,7 @@ function PluginsPage() {
         </div>
       ) : total === 0 ? (
         <div className="ring-elevation mt-6 flex min-h-72 flex-col items-center justify-center bg-surface p-8 text-center">
-          <p className="text-[15px] font-medium text-text">
+          <p className="font-sans text-[15px] font-medium text-text">
             Nothing matches that filter
           </p>
           <p className="mt-1.5 max-w-sm text-sm text-text-secondary [text-wrap:pretty]">

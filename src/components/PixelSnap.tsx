@@ -7,17 +7,6 @@ import {
 } from '@/lib/pixel-grid'
 import type { PixelGrid } from '@/lib/pixel-grid'
 
-/** Snapping measures text, so it must only ever run against the real
- * webfont; a snap against fallback metrics lands on different cell lines
- * and the correction reads as controls jumping around during load. */
-const interReady = () => {
-  try {
-    return document.fonts.check('16px Inter')
-  } catch {
-    return true
-  }
-}
-
 /**
  * Aligns [data-px-snap] elements to the hero field's lattice, under one
  * hard rule: a snap happens before a frame paints or not at all.
@@ -28,7 +17,7 @@ const interReady = () => {
  * the way out. The bar's controls were marked and did exactly that; they take
  * their sizes from --pxc in plain CSS instead, which needs no measurement and
  * so cannot move. The
- * first snap runs in a layout effect before first paint when Inter is
+ * first snap runs in a layout effect before first paint when the webfonts are
  * cached, which is every visit after the first; on a cold cache the page
  * simply keeps its natural layout. Afterwards the only snaps are grid
  * events from the field, which fire inside its own pre-frame measure
@@ -45,13 +34,24 @@ export function PixelSnap() {
   const armed = useRef(false)
 
   useLayoutEffect(() => {
-    if (!interReady()) return
-    const slot = document.querySelector('[data-hero-wordmark]')
-    if (!slot) return
-    const r = slot.getBoundingClientRect()
-    if (r.width < 1) return
-    snapToGrid({ x: r.left, y: r.top, cw: r.width / 81, ch: r.height / 19 })
-    armed.current = true
+    // Lives in the document shell, outside every route error boundary.
+    // A throw here takes the page with it, so the snap is allowed to no-op.
+    try {
+      const fonts = document.fonts
+      const ready =
+        !fonts?.check ||
+        (fonts.check('16px "Geist Variable"') &&
+          fonts.check('16px "JetBrains Mono Variable"'))
+      if (!ready) return
+      const slot = document.querySelector('[data-hero-wordmark]')
+      if (!slot) return
+      const r = slot.getBoundingClientRect()
+      if (r.width < 1) return
+      snapToGrid({ x: r.left, y: r.top, cw: r.width / 81, ch: r.height / 19 })
+      armed.current = true
+    } catch {
+      /* no snap this load */
+    }
   }, [])
 
   useEffect(() => {

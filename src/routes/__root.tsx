@@ -1,10 +1,15 @@
-import { HeadContent, Scripts, createRootRoute } from '@tanstack/react-router'
-import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools'
-import { TanStackDevtools } from '@tanstack/react-devtools'
+import { useEffect, useState, type ReactNode } from 'react'
+import {
+  HeadContent,
+  Link,
+  Scripts,
+  createRootRoute,
+} from '@tanstack/react-router'
 
-import '@fontsource-variable/jetbrains-mono'
+import geistWoff2 from '@fontsource-variable/geist/files/geist-latin-wght-normal.woff2?url'
 import monoWoff2 from '@fontsource-variable/jetbrains-mono/files/jetbrains-mono-latin-wght-normal.woff2?url'
 
+import '../styles.css'
 import appCss from '../styles.css?url'
 import { themeInitScript } from '@/lib/theme'
 import { OG_IMAGE, SITE_DESCRIPTION } from '@/lib/seo'
@@ -50,35 +55,19 @@ export const Route = createRootRoute({
     scripts: [{ children: themeInitScript }],
     links: [
       { rel: 'stylesheet', href: appCss },
-      { rel: 'icon', href: '/brand/omarchy-logo.svg', type: 'image/svg+xml' },
       // The wordmark is the largest thing above the fold on the home page.
       {
         rel: 'preload',
         href: '/brand/omarchy-wordmark.svg',
         as: 'image',
         type: 'image/svg+xml',
-      },
-      {
-        rel: 'preload',
-        href: '/fonts/Inter-4.1/extras/woff-hinted/Inter-Regular.woff2',
-        as: 'font',
-        type: 'font/woff2',
+        // mask-image fetches CORS-anonymous; a preload without this is a
+        // different credentials mode and the browser discards it.
         crossOrigin: 'anonymous',
       },
       {
         rel: 'preload',
-        href: '/fonts/Inter-4.1/extras/woff-hinted/Inter-Medium.woff2',
-        as: 'font',
-        type: 'font/woff2',
-        crossOrigin: 'anonymous',
-      },
-      // Preloaded like the other two, because font-display: optional only
-      // uses a face that arrived in time. Discovered late, SemiBold would sit
-      // out the whole load and leave every section heading in the fallback
-      // while the body around it was in Inter.
-      {
-        rel: 'preload',
-        href: '/fonts/Inter-4.1/extras/woff-hinted/Inter-SemiBold.woff2',
+        href: geistWoff2,
         as: 'font',
         type: 'font/woff2',
         crossOrigin: 'anonymous',
@@ -92,9 +81,61 @@ export const Route = createRootRoute({
       },
     ],
   }),
+  errorComponent: RootError,
   notFoundComponent: NotFoundHero,
   shellComponent: RootDocument,
 })
+
+function RootError({ error }: { error: unknown }) {
+  const message =
+    error instanceof Error ? error.message : 'The page failed to render.'
+  return (
+    <main className="mx-auto max-w-xl px-4 py-24 sm:px-6">
+      <h1 className="text-3xl font-semibold tracking-tight text-text">
+        Something broke
+      </h1>
+      <p className="mt-3 text-[15px] leading-relaxed text-text-secondary [text-wrap:pretty]">
+        {message}
+      </p>
+      <p className="mt-8">
+        <Link
+          to="/"
+          className="text-sm font-medium text-brand underline decoration-border-strong underline-offset-3 hover:decoration-brand"
+        >
+          Back home
+        </Link>
+      </p>
+    </main>
+  )
+}
+
+function DevTools() {
+  const [tools, setTools] = useState<ReactNode>(null)
+  useEffect(() => {
+    let cancelled = false
+    void Promise.all([
+      import('@tanstack/react-devtools'),
+      import('@tanstack/react-router-devtools'),
+    ]).then(([devtools, router]) => {
+      if (cancelled) return
+      setTools(
+        <devtools.TanStackDevtools
+          config={{ position: 'bottom-right' }}
+          plugins={[
+            {
+              name: 'Tanstack Router',
+              render: <router.TanStackRouterDevtoolsPanel />,
+            },
+          ]}
+        />,
+      )
+    })
+    return () => {
+      cancelled = true
+    }
+  }, [])
+  return tools
+}
 
 function RootDocument({ children }: { children: React.ReactNode }) {
   return (
@@ -105,45 +146,13 @@ function RootDocument({ children }: { children: React.ReactNode }) {
       <body>
         <div className="flex min-h-dvh flex-col">
           <SiteHeader />
-          {/* The page rides over the footer rather than pushing it ahead: the
-              footer is stuck to the bottom of the window the whole way down,
-              and this is what hides it, so it needs a ground of its own
-              rather than the one the canvas paints behind everything. The
-              sentinel marks where the reveal begins, for anything that wants
-              to know whether the footer is actually on screen. */}
-          {/* At least a window tall, even when the page is not: this layer is
-              also the lid on the pinned footer, and a short page - the
-              foundation, a thin manual chapter - would otherwise leave the
-              footer showing through under its content from the moment it
-              loads, before the reader has scrolled anywhere. */}
-          <div className="relative z-10 min-h-dvh flex-1 bg-bg">
-            {children}
-            {/* Pinned to the layer's bottom edge rather than left in flow:
-                the layer can be stretched taller than its content on a short
-                page, and the reveal begins where the layer ends, not where
-                the content ran out. */}
-            <div
-              data-reveal-sentinel
-              aria-hidden="true"
-              className="absolute inset-x-0 bottom-0"
-            />
-          </div>
+          <div className="relative z-10 min-h-dvh flex-1 bg-bg">{children}</div>
           <SiteFooter />
         </div>
         <ThemePicker />
         <SearchPalette />
         <PixelSnap />
-        {import.meta.env.DEV ? (
-          <TanStackDevtools
-            config={{ position: 'bottom-right' }}
-            plugins={[
-              {
-                name: 'Tanstack Router',
-                render: <TanStackRouterDevtoolsPanel />,
-              },
-            ]}
-          />
-        ) : null}
+        {import.meta.env.DEV ? <DevTools /> : null}
         <Scripts />
       </body>
     </html>
