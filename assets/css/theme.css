@@ -1,0 +1,86 @@
+/* The swatches deliberately use rgb(var(--rgb-*)) rather than the --color-* aliases: the
+   aliases resolve against :root, while the raw tokens resolve on the button itself, which is
+   what lets each swatch paint in its own palette while the page stays in the chosen one. */
+
+.theme-bar {
+  align-items: center;
+  border-top: var(--border-width) solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-small);
+  margin-inline: auto;
+  max-width: 90em;
+  padding: var(--space-neutral) var(--space-large) var(--space-large);
+  width: 100%;
+}
+
+.theme-bar__themes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-small);
+  justify-content: center;
+}
+
+.theme-bar__theme {
+  background: none;
+  border: none;
+  border-radius: 0.3em;
+  cursor: pointer;
+  display: block;
+  outline-offset: 0.2em;
+  padding: 0;
+  transition: transform var(--transition);
+}
+
+.theme-bar__swatch {
+  background: linear-gradient(
+    135deg,
+    rgb(var(--rgb-background-night)) 0 45%,
+    rgb(var(--rgb-terminal-blue)) 45% 65%,
+    rgb(var(--rgb-turquoise)) 65% 82%,
+    rgb(var(--rgb-green)) 82% 100%
+  );
+  border: var(--border-width) solid rgb(var(--rgb-terminal-black));
+  border-radius: 0.3em;
+  display: block;
+  /* 1.6em tracks the type scale, but the floor keeps the tap target usable on a phone,
+     where the root font size bottoms out at 10px */
+  height: max(1.6em, 24px);
+  width: max(1.6em, 24px);
+}
+
+.theme-bar__theme[aria-pressed="true"],
+.theme-bar__theme:focus-visible {
+  outline: max(2px, 0.125em) solid var(--color-turquoise);
+}
+
+.theme-bar__name {
+  color: var(--color-terminal-white);
+  font-size: var(--font-size-small);
+  min-height: 1.4em;
+  text-align: center;
+}
+
+
+
+@media(hover: hover) {
+
+  .theme-bar__theme:hover {
+    transform: scale(1.15);
+  }
+
+}
+
+
+
+@media(prefers-reduced-motion: reduce) {
+
+  .theme-bar__theme {
+    transition: none;
+  }
+
+  .theme-bar__theme:hover {
+    transform: none;
+  }
+
+}

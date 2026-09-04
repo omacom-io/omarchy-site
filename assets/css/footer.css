@@ -112,7 +112,7 @@
   .footer__icon:hover svg,
   .footer__icon:focus strong,
   .footer__icon:hover strong {
-    color: var(--color-white);
+    color: var(--color-foreground-bright);
   }
 
 }

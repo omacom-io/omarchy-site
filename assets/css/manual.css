@@ -47,7 +47,7 @@
 }
 
 .manual__content h1 {
-  color: var(--color-white);
+  color: var(--color-foreground-bright);
   font-size: 175%;
   font-weight: 700;
   line-height: 1.2;
@@ -57,7 +57,7 @@
 .manual__content h2,
 .manual__content h3,
 .manual__content h4 {
-  color: var(--color-white);
+  color: var(--color-foreground-bright);
   font-weight: 700;
   line-height: 1.3;
   margin-block: 1.75em 0.75em;
@@ -162,7 +162,7 @@
 }
 
 .manual__content th {
-  color: var(--color-white);
+  color: var(--color-foreground-bright);
   font-weight: 700;
 }
 
@@ -274,11 +274,11 @@
   }
 
   .manual__toc a:hover {
-    color: var(--color-white);
+    color: var(--color-foreground-bright);
   }
 
   .manual__toc a[aria-current="page"] {
-    color: var(--color-white);
+    color: var(--color-foreground-bright);
     font-weight: 700;
   }
 
