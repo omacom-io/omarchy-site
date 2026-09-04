@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as SplatRouteImport } from './routes/$'
 import { Route as R404RouteImport } from './routes/404'
+import { Route as ManualRouteImport } from './routes/manual'
 import { Route as ThemesRouteImport } from './routes/themes'
 import { Route as ManualIndexRouteImport } from './routes/manual.index'
 import { Route as ManualSlugRouteImport } from './routes/manual.$slug'
@@ -38,20 +39,25 @@ const R404Route = R404RouteImport.update({
   path: '/404',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ManualRoute = ManualRouteImport.update({
+  id: '/manual',
+  path: '/manual',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ThemesRoute = ThemesRouteImport.update({
   id: '/themes',
   path: '/themes',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ManualIndexRoute = ManualIndexRouteImport.update({
-  id: '/manual/',
-  path: '/manual/',
-  getParentRoute: () => rootRouteImport,
+  id: '/',
+  path: '/',
+  getParentRoute: () => ManualRoute,
 } as any)
 const ManualSlugRoute = ManualSlugRouteImport.update({
-  id: '/manual/$slug',
-  path: '/manual/$slug',
-  getParentRoute: () => rootRouteImport,
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => ManualRoute,
 } as any)
 const NewsIndexRoute = NewsIndexRouteImport.update({
   id: '/news/',
@@ -93,6 +99,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/$': typeof SplatRoute
   '/404': typeof R404Route
+  '/manual': typeof ManualRouteWithChildren
   '/themes': typeof ThemesRoute
   '/manual/$slug': typeof ManualSlugRoute
   '/plugins/$pluginId': typeof PluginsPluginIdRoute
@@ -124,6 +131,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/$': typeof SplatRoute
   '/404': typeof R404Route
+  '/manual': typeof ManualRouteWithChildren
   '/themes': typeof ThemesRoute
   '/manual/$slug': typeof ManualSlugRoute
   '/plugins/$pluginId': typeof PluginsPluginIdRoute
@@ -141,6 +149,7 @@ export interface FileRouteTypes {
     | '/'
     | '/$'
     | '/404'
+    | '/manual'
     | '/themes'
     | '/manual/$slug'
     | '/plugins/$pluginId'
@@ -171,6 +180,7 @@ export interface FileRouteTypes {
     | '/'
     | '/$'
     | '/404'
+    | '/manual'
     | '/themes'
     | '/manual/$slug'
     | '/plugins/$pluginId'
@@ -187,13 +197,12 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   SplatRoute: typeof SplatRoute
   R404Route: typeof R404Route
+  ManualRoute: typeof ManualRouteWithChildren
   ThemesRoute: typeof ThemesRoute
-  ManualSlugRoute: typeof ManualSlugRoute
   PluginsPluginIdRoute: typeof PluginsPluginIdRoute
   PluginsDevelopRoute: typeof PluginsDevelopRoute
   PluginsExploreRoute: typeof PluginsExploreRoute
   PluginsPublishRoute: typeof PluginsPublishRoute
-  ManualIndexRoute: typeof ManualIndexRoute
   NewsIndexRoute: typeof NewsIndexRoute
   PluginsIndexRoute: typeof PluginsIndexRoute
   NewsYearMonthSlugRoute: typeof NewsYearMonthSlugRoute
@@ -222,6 +231,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof R404RouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/manual': {
+      id: '/manual'
+      path: '/manual'
+      fullPath: '/manual'
+      preLoaderRoute: typeof ManualRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/themes': {
       id: '/themes'
       path: '/themes'
@@ -231,17 +247,17 @@ declare module '@tanstack/react-router' {
     }
     '/manual/': {
       id: '/manual/'
-      path: '/manual'
+      path: '/'
       fullPath: '/manual/'
       preLoaderRoute: typeof ManualIndexRouteImport
-      parentRoute: typeof rootRouteImport
+      parentRoute: typeof ManualRoute
     }
     '/manual/$slug': {
       id: '/manual/$slug'
-      path: '/manual/$slug'
+      path: '/$slug'
       fullPath: '/manual/$slug'
       preLoaderRoute: typeof ManualSlugRouteImport
-      parentRoute: typeof rootRouteImport
+      parentRoute: typeof ManualRoute
     }
     '/news/': {
       id: '/news/'
@@ -295,17 +311,29 @@ declare module '@tanstack/react-router' {
   }
 }
 
+interface ManualRouteChildren {
+  ManualSlugRoute: typeof ManualSlugRoute
+  ManualIndexRoute: typeof ManualIndexRoute
+}
+
+const ManualRouteChildren: ManualRouteChildren = {
+  ManualSlugRoute: ManualSlugRoute,
+  ManualIndexRoute: ManualIndexRoute,
+}
+
+const ManualRouteWithChildren =
+  ManualRoute._addFileChildren(ManualRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   SplatRoute: SplatRoute,
   R404Route: R404Route,
+  ManualRoute: ManualRouteWithChildren,
   ThemesRoute: ThemesRoute,
-  ManualSlugRoute: ManualSlugRoute,
   PluginsPluginIdRoute: PluginsPluginIdRoute,
   PluginsDevelopRoute: PluginsDevelopRoute,
   PluginsExploreRoute: PluginsExploreRoute,
   PluginsPublishRoute: PluginsPublishRoute,
-  ManualIndexRoute: ManualIndexRoute,
   NewsIndexRoute: NewsIndexRoute,
   PluginsIndexRoute: PluginsIndexRoute,
   NewsYearMonthSlugRoute: NewsYearMonthSlugRoute,

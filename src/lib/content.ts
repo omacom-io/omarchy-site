@@ -38,6 +38,20 @@ function foldHeadingLinks(html: string) {
   )
 }
 
+/**
+ * Just the chapter list. The manual's layout route loads this once and keeps
+ * the sidebar mounted across every chapter, so the list is not rebuilt (and
+ * its scrollbar does not restart its fade) when the route swaps between the
+ * manual's opening page and a chapter.
+ */
+export const getManualToc = createServerFn({ method: 'GET' })
+  .middleware([staticFunctionMiddleware])
+  .handler(async () => {
+    const mod = await import('../data/manual.json')
+    const chapters = mod.default as Array<ManualChapter>
+    return chapters.map(({ slug, title }) => ({ slug, title }))
+  })
+
 export const getManualChapter = createServerFn({ method: 'GET' })
   .middleware([staticFunctionMiddleware])
   .validator((slug: string) => slug)
