@@ -427,7 +427,7 @@ export function VideoCarousel({
                 title={`${video.title} by ${video.channel}`}
                 allow="autoplay; encrypted-media; picture-in-picture"
                 allowFullScreen
-                loading={i === 0 ? 'eager' : 'lazy'}
+                loading="lazy"
                 className="img-outlined aspect-video w-full"
               />
             ) : (
@@ -450,7 +450,8 @@ export function VideoCarousel({
                   alt=""
                   width={1280}
                   height={720}
-                  loading={i === 0 ? 'eager' : 'lazy'}
+                  loading="lazy"
+                  fetchPriority="low"
                   decoding="async"
                   draggable={false}
                   className="img-outlined aspect-video w-full object-cover"

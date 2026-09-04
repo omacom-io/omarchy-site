@@ -246,7 +246,7 @@ function Home() {
         }
         style={{ background: 'var(--t-field-bg)' }}
       >
-        <HeroShader onPainted={() => setTimeout(() => setPainted(true), 950)} />
+        <HeroShader onPainted={() => setPainted(true)} />
 
         {/* The bar's labels, blended against the canvas. They have to live in
             here to reach it: the real header is sticky, and a sticky element

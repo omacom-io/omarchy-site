@@ -11,6 +11,26 @@ import viteReact from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 
 /**
+ * The checkout still has the old site's index.html at the project root, with
+ * a <link> for every file under assets/css. Vite treats that HTML as an
+ * entry and pulls those stylesheets into every page's SSR CSS, including
+ * ten extra JetBrains Mono files and a second reset. Mark them external so
+ * they stay files the old pages can request, not modules the redesign loads.
+ */
+function ignoreLegacySiteCss(): Plugin {
+  return {
+    name: 'ignore-legacy-site-css',
+    enforce: 'pre',
+    resolveId(source) {
+      const id = source.split('?')[0].replace(/\\/g, '/')
+      if (id.includes('/assets/css/') && id.endsWith('.css')) {
+        return { id, external: true }
+      }
+    },
+  }
+}
+
+/**
  * In development, the files the build would copy in from the omarchy-site
  * checkout - the theme screenshots, the manual's images, the photos beside
  * news posts, the installer scripts - are served from that checkout
@@ -94,6 +114,7 @@ const config = defineConfig({
   server: { host: true },
   resolve: { tsconfigPaths: true },
   plugins: [
+    ignoreLegacySiteCss(),
     siteFiles(),
     devtools(),
     tailwindcss(),

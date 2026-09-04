@@ -4,13 +4,13 @@
 /* Typefaces from Fontsource. Latin and latin-ext only: the site is English
    with a few European names (Lütke, Øverli). The full packages also ship
    Cyrillic, Greek and Vietnamese, which the homepage was downloading for
-   nothing. block, not swap: swap paints a fallback then reflows when the
-   face lands, and headings use text-wrap: balance, so the line breaks jump.
-   The latin files are preloaded in __root.tsx. */
+   nothing. swap, not block: block hid every heading and every line of copy
+   until the face arrived, which made a reload feel like a hang. The latin
+   files are preloaded in __root.tsx. */
 @font-face {
   font-family: 'Geist Variable';
   font-style: normal;
-  font-display: block;
+  font-display: swap;
   font-weight: 100 900;
   src: url('../node_modules/@fontsource-variable/geist/files/geist-latin-ext-wght-normal.woff2')
     format('woff2-variations');
@@ -22,7 +22,7 @@
 @font-face {
   font-family: 'Geist Variable';
   font-style: normal;
-  font-display: block;
+  font-display: swap;
   font-weight: 100 900;
   src: url('../node_modules/@fontsource-variable/geist/files/geist-latin-wght-normal.woff2')
     format('woff2-variations');
@@ -34,7 +34,7 @@
 @font-face {
   font-family: 'JetBrains Mono Variable';
   font-style: normal;
-  font-display: block;
+  font-display: swap;
   font-weight: 100 800;
   src: url('../node_modules/@fontsource-variable/jetbrains-mono/files/jetbrains-mono-latin-ext-wght-normal.woff2')
     format('woff2-variations');
@@ -46,7 +46,7 @@
 @font-face {
   font-family: 'JetBrains Mono Variable';
   font-style: normal;
-  font-display: block;
+  font-display: swap;
   font-weight: 100 800;
   src: url('../node_modules/@fontsource-variable/jetbrains-mono/files/jetbrains-mono-latin-wght-normal.woff2')
     format('woff2-variations');
@@ -58,7 +58,7 @@
 @font-face {
   font-family: 'JetBrains Mono Variable';
   font-style: italic;
-  font-display: block;
+  font-display: swap;
   font-weight: 100 800;
   src: url('../node_modules/@fontsource-variable/jetbrains-mono/files/jetbrains-mono-latin-ext-wght-italic.woff2')
     format('woff2-variations');
@@ -70,7 +70,7 @@
 @font-face {
   font-family: 'JetBrains Mono Variable';
   font-style: italic;
-  font-display: block;
+  font-display: swap;
   font-weight: 100 800;
   src: url('../node_modules/@fontsource-variable/jetbrains-mono/files/jetbrains-mono-latin-wght-italic.woff2')
     format('woff2-variations');
@@ -88,8 +88,8 @@
  */
 
 @theme inline {
-  --font-sans: 'Geist Variable';
-  --font-mono: 'JetBrains Mono Variable';
+  --font-sans: 'Geist Variable', sans-serif;
+  --font-mono: 'JetBrains Mono Variable', monospace;
 
   --color-bg-deep: var(--t-bg-deep);
   --color-bg: var(--t-bg);

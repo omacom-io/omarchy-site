@@ -1,15 +1,15 @@
+import { useEffect, useState, type ReactNode } from 'react'
 import {
   HeadContent,
   Link,
   Scripts,
   createRootRoute,
 } from '@tanstack/react-router'
-import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools'
-import { TanStackDevtools } from '@tanstack/react-devtools'
 
 import geistWoff2 from '@fontsource-variable/geist/files/geist-latin-wght-normal.woff2?url'
 import monoWoff2 from '@fontsource-variable/jetbrains-mono/files/jetbrains-mono-latin-wght-normal.woff2?url'
 
+import '../styles.css'
 import appCss from '../styles.css?url'
 import { themeInitScript } from '@/lib/theme'
 import { OG_IMAGE, SITE_DESCRIPTION } from '@/lib/seo'
@@ -109,6 +109,34 @@ function RootError({ error }: { error: unknown }) {
   )
 }
 
+function DevTools() {
+  const [tools, setTools] = useState<ReactNode>(null)
+  useEffect(() => {
+    let cancelled = false
+    void Promise.all([
+      import('@tanstack/react-devtools'),
+      import('@tanstack/react-router-devtools'),
+    ]).then(([devtools, router]) => {
+      if (cancelled) return
+      setTools(
+        <devtools.TanStackDevtools
+          config={{ position: 'bottom-right' }}
+          plugins={[
+            {
+              name: 'Tanstack Router',
+              render: <router.TanStackRouterDevtoolsPanel />,
+            },
+          ]}
+        />,
+      )
+    })
+    return () => {
+      cancelled = true
+    }
+  }, [])
+  return tools
+}
+
 function RootDocument({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning>
@@ -146,17 +174,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
         <ThemePicker />
         <SearchPalette />
         <PixelSnap />
-        {import.meta.env.DEV ? (
-          <TanStackDevtools
-            config={{ position: 'bottom-right' }}
-            plugins={[
-              {
-                name: 'Tanstack Router',
-                render: <TanStackRouterDevtoolsPanel />,
-              },
-            ]}
-          />
-        ) : null}
+        {import.meta.env.DEV ? <DevTools /> : null}
         <Scripts />
       </body>
     </html>
