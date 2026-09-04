@@ -469,9 +469,12 @@ export function ThemePicker() {
           the front card keeps it and closes too, but the name is what you
           are reading when you decide, and on a phone it is the one target
           that is never half-covered by a neighbouring card. No plate: a
-          filled box sat on top of the preview. A stroke in the page ground
-          keeps the letters readable on the dimmer, including White, whose
-          text is otherwise black on black. */}
+          filled box sat on top of the preview. The name is set in the
+          theme's own two inks, and the dimmer decides which is which: the
+          lighter one fills the letters and the darker one edges them. On a
+          dark theme that is text on ground; on Rosé Pine and White it is
+          the page's cream or white, edged in the theme's text colour, since
+          dark letters would sink into the dimmer. */}
       <button
         type="button"
         tabIndex={-1}
@@ -483,9 +486,14 @@ export function ThemePicker() {
         )}
       >
         <span
-          className="block font-sans text-2xl font-semibold tracking-tight text-text"
+          className="block font-sans text-2xl font-semibold tracking-tight"
           style={{
-            WebkitTextStroke: '2px var(--color-bg)',
+            color: SITE_THEMES[index].light
+              ? 'var(--color-bg)'
+              : 'var(--color-text)',
+            WebkitTextStroke: SITE_THEMES[index].light
+              ? '2px var(--color-text)'
+              : '2px var(--color-bg)',
             paintOrder: 'stroke fill',
           }}
         >

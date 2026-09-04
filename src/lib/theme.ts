@@ -10,6 +10,8 @@ import { OMARCHY_MARK_PATH } from '@/components/Brand'
 export type SiteTheme = {
   id: string
   name: string
+  /** A light page: the theme's background is the lighter of its two inks. */
+  light?: true
 }
 
 export const SITE_THEMES: SiteTheme[] = [
@@ -17,8 +19,8 @@ export const SITE_THEMES: SiteTheme[] = [
   { id: 'catppuccin', name: 'Catppuccin' },
   { id: 'gruvbox', name: 'Gruvbox' },
   { id: 'matte-black', name: 'Matte Black' },
-  { id: 'rose-pine', name: 'Rosé Pine' },
-  { id: 'white', name: 'White' },
+  { id: 'rose-pine', name: 'Rosé Pine', light: true },
+  { id: 'white', name: 'White', light: true },
 ]
 
 export const DEFAULT_THEME = 'tokyo-night'
