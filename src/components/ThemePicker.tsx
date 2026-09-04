@@ -56,21 +56,9 @@ export function ThemePicker() {
   // window is a strip across the middle of it.
   const portrait = useIsNarrow()
   const [open, setOpen] = useState(false)
-  // Held for the length of the backdrop's fade-out, so closing has time to
-  // be seen. The dialog primitive gets this for free from its data-closed
-  // state; this picker mounts and unmounts itself, so it keeps the frame
-  // up for the hundred milliseconds the fade takes.
-  const [closing, setClosing] = useState(false)
-  // Everything here moves as one unit, and only by fading: the backdrop
-  // first, then the deck, the name plate and the arrows together on one
-  // beat, 220ms out of an ease-out curve on the way in and a quieter 160ms
-  // ease-in on the way out. Nothing scales or slides - a deck growing next
-  // to a plate that holds still made the plate look like the one moving.
-  // Off entirely for anyone who asked for less motion.
-  const enter =
-    'animate-in fill-mode-both animation-duration-220 ease-[cubic-bezier(0.32,0.72,0,1)] motion-reduce:animate-none'
-  const exit =
-    'animate-out fill-mode-both animation-duration-160 ease-[cubic-bezier(0.4,0,1,1)] motion-reduce:animate-none'
+  // The picker arrives and leaves in one frame. A theme is something you
+  // flick through, and a fade on each end put a beat between the keystroke
+  // and the answer - long enough, pressed twice in a row, to feel like lag.
   const [index, setIndex] = useState(0)
   const [hint, setHint] = useState(false)
   const dialogRef = useRef<HTMLDivElement>(null)
@@ -99,20 +87,13 @@ export function ThemePicker() {
   }, [markHintSeen])
 
   const close = useCallback(() => {
-    setClosing((already) => {
-      if (already) return already
-      window.setTimeout(() => {
-        setOpen(false)
-        setClosing(false)
-        // Focus goes back to whatever opened the picker, but the ring only
-        // comes back if it was there to begin with. Choosing a theme with
-        // Enter is a keypress, so without this the browser decides the
-        // restored focus is keyboard-driven and paints a ring on a logo the
-        // mouse user who clicked it is not even looking at.
-        restoreFocus.current?.focus({ focusVisible: restoreRing.current })
-      }, 160)
-      return true
-    })
+    setOpen(false)
+    // Focus goes back to whatever opened the picker, but the ring only
+    // comes back if it was there to begin with. Choosing a theme with
+    // Enter is a keypress, so without this the browser decides the
+    // restored focus is keyboard-driven and paints a ring on a logo the
+    // mouse user who clicked it is not even looking at.
+    restoreFocus.current?.focus({ focusVisible: restoreRing.current })
   }, [])
 
   /** Where a finger went down, and how far it has travelled since. */
@@ -329,7 +310,6 @@ export function ThemePicker() {
         onClick={close}
         className={cn(
           'absolute inset-0 isolate bg-black/55 supports-backdrop-filter:backdrop-blur-xs',
-          closing ? `${exit} fade-out-0` : `${enter} fade-in-0`,
         )}
       />
 
@@ -338,7 +318,6 @@ export function ThemePicker() {
       <div
         className={cn(
           'pointer-events-none relative flex w-full items-center justify-center',
-          closing ? `${exit} fade-out-0` : `${enter} fade-in-0 delay-40`,
         )}
       >
         {SITE_THEMES.map((theme, i) => {
@@ -482,7 +461,6 @@ export function ThemePicker() {
         onClick={close}
         className={cn(
           'relative mt-1.5 cursor-pointer px-4 py-3.5 text-center transition-[filter] duration-150 ease-out hover:brightness-125',
-          closing ? `${exit} fade-out-0` : `${enter} fade-in-0 delay-40`,
         )}
       >
         <span
@@ -510,7 +488,6 @@ export function ThemePicker() {
         }}
         className={cn(
           'absolute left-3 top-1/2 flex size-11 cursor-pointer -translate-y-1/2 items-center justify-center border border-border-subtle bg-bg text-text transition-colors duration-150 ease-out hover:bg-surface-2 sm:left-6',
-          closing ? `${exit} fade-out-0` : `${enter} fade-in-0 delay-40`,
         )}
       >
         <ChevronLeftIcon className="size-5" />
@@ -524,7 +501,6 @@ export function ThemePicker() {
         }}
         className={cn(
           'absolute right-3 top-1/2 flex size-11 cursor-pointer -translate-y-1/2 items-center justify-center border border-border-subtle bg-bg text-text transition-colors duration-150 ease-out hover:bg-surface-2 sm:right-6',
-          closing ? `${exit} fade-out-0` : `${enter} fade-in-0 delay-40`,
         )}
       >
         <ChevronRightIcon className="size-5" />
