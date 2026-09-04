@@ -387,6 +387,12 @@
   --t-hdr-ink: #000000;
   --t-hdr-surface-2: #000000;
   --t-hdr-surface: #000000;
+  /* A light ground, so the partner marks take the darkened set White uses;
+     the brand yellow the dark themes inherit is 1.3:1 on this cream. */
+  --t-partner-37signals: #c53030;
+  --t-partner-basecamp: #b45309;
+  --t-partner-hey: #5522fa;
+  --t-partner-cloudflare: #c2410c;
 }
 
 /* The explore galaxy draws a dark starfield whatever the theme; this scope
