@@ -1,11 +1,16 @@
 import { Link, useLocation } from '@tanstack/react-router'
 import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import type { RefObject } from 'react'
-import { GithubIcon, MenuBarsIcon, SearchIcon } from '@/components/icons'
+import {
+  BrushIcon,
+  GithubIcon,
+  MenuBarsIcon,
+  SearchIcon,
+} from '@/components/icons'
 import { OmarchyMarkDrawn } from '@/components/Brand'
 import { Button } from '@/components/ui/button'
 import { useHashLink, useTopLink } from '@/lib/hash-scroll'
-import { THEME_EVENT, groundOf } from '@/lib/theme'
+import { OPEN_PICKER_EVENT, THEME_EVENT, groundOf } from '@/lib/theme'
 import { OPEN_SEARCH_EVENT } from '@/lib/search'
 import { useIsNarrow } from '@/lib/use-media-query'
 import { cn } from '@/lib/utils'
@@ -434,10 +439,25 @@ export function SiteHeader() {
       size="icon"
       aria-label="Search Omarchy"
       data-nav-glyph
-      className="relative h-8 w-10 text-text-secondary transition-[background-color,transform] hover:text-text before:absolute before:-inset-1 lg:h-[calc(var(--pxr)*3)]"
+      className="relative h-8 w-8 text-text-secondary transition-[background-color,transform] hover:text-text before:absolute before:-inset-1 lg:h-[calc(var(--pxr)*3)] lg:w-[calc(var(--pxr)*3)]"
       onClick={() => window.dispatchEvent(new CustomEvent(OPEN_SEARCH_EVENT))}
     >
       <SearchIcon className="size-5" />
+    </Button>
+  )
+
+  /** The same brush the picker's own hint card shows, so the thing that
+   *  teaches the shortcut and the thing that opens it are one mark. */
+  const theme = (
+    <Button
+      variant="ghost"
+      size="icon"
+      aria-label="Change the theme"
+      data-nav-glyph
+      className="relative h-8 w-8 text-text-secondary transition-[background-color,transform] hover:text-text before:absolute before:-inset-1 lg:h-[calc(var(--pxr)*3)] lg:w-[calc(var(--pxr)*3)]"
+      onClick={() => window.dispatchEvent(new CustomEvent(OPEN_PICKER_EVENT))}
+    >
+      <BrushIcon className="size-5" />
     </Button>
   )
 
@@ -508,20 +528,21 @@ export function SiteHeader() {
           </nav>
 
           <div className="ml-auto flex items-center gap-2.5">
-            <div className="hidden items-center sm:flex">
+            <div className="hidden items-center gap-1 sm:flex">
               {search}
+              {theme}
               <Button
                 variant="ghost"
                 size="icon"
                 aria-label="Omarchy on GitHub"
                 data-nav-glyph
-                className="relative h-8 w-10 text-text-secondary transition-[background-color,transform] hover:text-text before:absolute before:-inset-1 lg:h-[calc(var(--pxr)*3)]"
+                className="relative h-8 w-8 text-text-secondary transition-[background-color,transform] hover:text-text before:absolute before:-inset-1 lg:h-[calc(var(--pxr)*3)] lg:w-[calc(var(--pxr)*3)]"
                 nativeButton={false}
                 render={<a href="https://github.com/omacom/omarchy" />}
               >
                 <GithubIcon className="size-5" />
               </Button>
-              <span className="ml-3 flex">{install}</span>
+              <span className="ml-2 flex">{install}</span>
             </div>
             <Button
               variant="ghost"
@@ -587,6 +608,17 @@ export function SiteHeader() {
           >
             <SearchIcon className="size-5" />
             Search Omarchy
+          </button>
+          <button
+            type="button"
+            onClick={() => {
+              setMenuOpen(false)
+              window.dispatchEvent(new CustomEvent(OPEN_PICKER_EVENT))
+            }}
+            className="flex items-center gap-2.5 py-3 text-left text-[15px] text-text-secondary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+          >
+            <BrushIcon className="size-5" />
+            Change the theme
           </button>
           <div className="mt-2 flex items-center gap-2.5 border-t border-border-subtle pt-4 pb-2">
             <Button
@@ -669,13 +701,16 @@ export function HeroNavGhost() {
 
         <span className="ml-auto flex items-center gap-2.5">
           <span
-            className="hidden items-center sm:flex"
+            className="hidden items-center gap-1 sm:flex"
             style={{ color: 'var(--t-hdr-text-2)' }}
           >
-            <span className="flex h-8 w-10 items-center justify-center lg:h-[calc(var(--pxr)*3)]">
+            <span className="flex h-8 w-8 items-center justify-center lg:h-[calc(var(--pxr)*3)] lg:w-[calc(var(--pxr)*3)]">
               <SearchIcon className="size-5" />
             </span>
-            <span className="flex h-8 w-10 items-center justify-center lg:h-[calc(var(--pxr)*3)]">
+            <span className="flex h-8 w-8 items-center justify-center lg:h-[calc(var(--pxr)*3)] lg:w-[calc(var(--pxr)*3)]">
+              <BrushIcon className="size-5" />
+            </span>
+            <span className="flex h-8 w-8 items-center justify-center lg:h-[calc(var(--pxr)*3)] lg:w-[calc(var(--pxr)*3)]">
               <GithubIcon className="size-5" />
             </span>
             {/* Install holds its own colours, so the ghost only holds its
@@ -686,7 +721,7 @@ export function HeroNavGhost() {
                 the two layers read as a wiggle. */}
             <span
               aria-hidden="true"
-              className="ml-3 inline-flex h-8 items-center border border-transparent px-4 text-sm font-medium lg:h-[calc(var(--pxr)*3)]"
+              className="ml-2 inline-flex h-8 items-center border border-transparent px-4 text-sm font-medium lg:h-[calc(var(--pxr)*3)]"
               style={{ color: 'transparent' }}
             >
               Install
