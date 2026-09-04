@@ -52,6 +52,8 @@ const columns = [
   },
 ] as const
 
+const creditLink = 'transition-[filter] duration-150 ease-out hover:brightness-125'
+
 export function SiteFooter() {
   return (
     <footer
@@ -112,7 +114,7 @@ export function SiteFooter() {
                 Incubated at{' '}
                 <a
                   href="https://37signals.com"
-                  className="inline-flex items-center gap-[3px] pl-px align-middle text-text-secondary hover:text-text"
+                  className={`inline-flex items-center gap-[3px] pl-px align-middle text-partner-37signals ${creditLink}`}
                 >
                   <ThirtySevenSignalsMark className="size-4 shrink-0" />
                   37signals
@@ -120,14 +122,14 @@ export function SiteFooter() {
                 , makers of{' '}
                 <a
                   href="https://basecamp.com"
-                  className="text-text-secondary hover:text-text"
+                  className={`text-partner-basecamp ${creditLink}`}
                 >
                   Basecamp
                 </a>{' '}
                 and{' '}
                 <a
                   href="https://hey.com"
-                  className="text-text-secondary hover:text-text"
+                  className={`text-partner-hey ${creditLink}`}
                 >
                   HEY
                 </a>
@@ -136,7 +138,7 @@ export function SiteFooter() {
                 Sponsored hosting by{' '}
                 <a
                   href="https://cloudflare.com"
-                  className="inline-flex items-center gap-[5px] pl-px align-middle text-text-secondary hover:text-text"
+                  className={`inline-flex items-center gap-[5px] pl-px align-middle text-partner-cloudflare ${creditLink}`}
                 >
                   <CloudflareMark className="h-3 w-auto shrink-0" />
                   Cloudflare

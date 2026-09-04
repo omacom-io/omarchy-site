@@ -106,6 +106,13 @@
   --color-brand-fill: var(--t-brand);
   --color-brand-ink: var(--t-brand-ink);
 
+  /* Footer credits. Official hues on dark themes; White deepens them so
+     13px type still reads on the light field. */
+  --color-partner-37signals: var(--t-partner-37signals);
+  --color-partner-basecamp: var(--t-partner-basecamp);
+  --color-partner-hey: var(--t-partner-hey);
+  --color-partner-cloudflare: var(--t-partner-cloudflare);
+
   /* Tokyo Night companion hues, used sparingly for category accents */
   --color-tn-blue: oklch(0.719 0.132 264.2);
   --color-tn-purple: oklch(0.751 0.134 299.5);
@@ -199,6 +206,10 @@
   --t-hdr-ink: #1a1c24;
   --t-hdr-surface-2: #32364f;
   --t-hdr-surface: #2d3044;
+  --t-partner-37signals: #ec4443;
+  --t-partner-basecamp: #ffd60a;
+  --t-partner-hey: #8b6cff;
+  --t-partner-cloudflare: #f38020;
 }
 
 [data-theme='white'] {
@@ -236,6 +247,10 @@
   --t-hdr-ink: #000000;
   --t-hdr-surface-2: #000000;
   --t-hdr-surface: #000000;
+  --t-partner-37signals: #c53030;
+  --t-partner-basecamp: #b45309;
+  --t-partner-hey: #5522fa;
+  --t-partner-cloudflare: #c2410c;
 }
 
 [data-theme='catppuccin'] {
