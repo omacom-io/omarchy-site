@@ -469,8 +469,11 @@ export function VideoCarousel({
                         and a single shadow lifts the whole of it off the
                         thumbnail. At 75px a cell is exactly 5px, and nothing
                         scales on hover, which would land the mark's edges
-                        between pixels. */}
-                    <span className="relative flex size-[75px] cursor-pointer items-center justify-center text-brand drop-shadow-[0_1px_6px_rgb(0_0_0/0.7)] transition-colors duration-150 ease-out group-hover:text-[color-mix(in_oklch,var(--color-brand),white_25%)]">
+                        between pixels. At rest the badge sits a little faded
+                        into the still, and hovering the thumbnail brings it
+                        back to full colour; on touch, where nothing hovers,
+                        it stays at full. */}
+                    <span className="relative flex size-[75px] cursor-pointer items-center justify-center text-brand drop-shadow-[0_1px_6px_rgb(0_0_0/0.7)] transition-opacity duration-200 ease-out [@media(hover:hover)]:opacity-60 [@media(hover:hover)]:group-hover:opacity-100 [@media(hover:hover)]:group-focus-visible:opacity-100">
                       <OmarchyMark className="absolute inset-0 size-full" />
                       <PlayIcon className="relative size-[25px]" />
                     </span>
