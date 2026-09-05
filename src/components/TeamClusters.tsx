@@ -111,8 +111,13 @@ export function TeamClusters() {
                         setPicked(isPicked ? null : key)
                       }}
                       className={
+                        // The brand ring is an outline drawn inward, over
+                        // the photo's edge: a ring outside it left a dark
+                        // hairline between the two.
                         'block size-11 overflow-hidden rounded-full ring-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring ' +
-                        (isPicked ? 'ring-brand' : 'ring-bg hover:ring-brand')
+                        (isPicked
+                          ? 'ring-bg outline-2 -outline-offset-2 outline-brand'
+                          : 'ring-bg hover:outline-2 hover:-outline-offset-2 hover:outline-brand')
                       }
                     >
                       {member.avatar ? (
