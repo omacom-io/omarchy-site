@@ -86,6 +86,35 @@ const SPECTRUM_FLOOR = 0.08
 const IDLE_MS = 2500
 /** How bright the wandering glow is, against a real cursor's. */
 const WANDER_STRENGTH = 0.7
+/**
+ * The word at rest wears the gradient the laser leaves it with: ttfx's
+ * own ending, white at the top through cyan to purple at the foot, as it
+ * lands on the theme's five inks row by row. Fixed here as the bands it
+ * makes, so every theme wears the same bands and the server-rendered word
+ * can wear them too (see the hero's OmarchyWordmark).
+ */
+const LASER_BANDS = [
+  'crest',
+  'crest',
+  'crest',
+  'crest',
+  'crest',
+  'hover',
+  'hover',
+  'lit',
+  'lit',
+  'lit',
+  'lit',
+  'mid',
+  'mid',
+  'mid',
+  'dim',
+  'dim',
+  'dim',
+  'dim',
+  'dim',
+] as const
+
 /** How much of a band's height a beat adds, and how fast that fades. */
 const BEAT_REACH = 0.8
 const BEAT_DECAY = 0.84
@@ -310,6 +339,17 @@ export function HeroPixelField({
     // Re-read the palette when the theme changes; the next frame paints in
     // the new colors. Reduced motion repaints once, immediately.
     let palette = readPalette()
+    /** The resting ink of each row of the word, in this theme. A word of
+     *  another height (the 404's) takes the bands in proportion. */
+    let restInks: string[] = []
+    const buildRestInks = () => {
+      restInks = []
+      for (let row = 0; row < glyph.height; row++) {
+        const band = Math.floor((row / glyph.height) * LASER_BANDS.length)
+        restInks.push(palette[LASER_BANDS[band]])
+      }
+    }
+    buildRestInks()
 
     // The music: it is moving from the first paint, muted, off the track's
     // timeline, and live once the sound is on. The bands are smoothed with
@@ -323,6 +363,7 @@ export function HeroPixelField({
 
     const onTheme = () => {
       palette = readPalette()
+      buildRestInks()
       if (reducedMotion) draw(lastDraw)
     }
     window.addEventListener(THEME_EVENT, onTheme)
@@ -825,9 +866,9 @@ export function HeroPixelField({
         const y = Math.round(yTop)
         const rowHeight = Math.round(yTop + wmCH) - y
 
-        // At rest the whole row can go out as a few spans.
+        // At rest the whole row can go out as a few spans, in its own ink.
         if (stamps.length === 0 && !cursorOnWordmark && logoHover < 0.01) {
-          ctx.fillStyle = palette.lit
+          ctx.fillStyle = restInks[row]
           let run = 0
           for (let col = 0; col <= glyph.width; col++) {
             if (bits[col] === '1') {
@@ -876,7 +917,7 @@ export function HeroPixelField({
               ? palette.crest
               : crest > 0.12
                 ? palette.hover
-                : palette.lit
+                : restInks[row]
           ctx.fillRect(x, y, Math.round(xLeft + wmCW) - x, rowHeight)
         }
       }

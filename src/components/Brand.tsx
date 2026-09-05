@@ -58,6 +58,8 @@ export function OmarchyMarkDrawn({ className }: { className?: string }) {
 type WordmarkProps = {
   className?: string
   label?: string
+  /** A CSS background-image to wear instead of the flat currentColor. */
+  background?: string
   'data-hero-wordmark'?: boolean
 }
 
@@ -66,7 +68,12 @@ type WordmarkProps = {
  * keeps one source of truth for the 211 rects while letting the fill be a
  * theme token.
  */
-export function OmarchyWordmark({ className, label, ...rest }: WordmarkProps) {
+export function OmarchyWordmark({
+  className,
+  label,
+  background,
+  ...rest
+}: WordmarkProps) {
   return (
     <div
       role={label ? 'img' : undefined}
@@ -76,6 +83,7 @@ export function OmarchyWordmark({ className, label, ...rest }: WordmarkProps) {
       style={{
         aspectRatio: '4131 / 950',
         backgroundColor: 'currentColor',
+        backgroundImage: background,
         maskImage: 'url(/brand/omarchy-wordmark.svg)',
         maskRepeat: 'no-repeat',
         maskSize: '100% 100%',
