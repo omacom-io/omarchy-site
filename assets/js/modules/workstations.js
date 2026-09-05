@@ -34,14 +34,20 @@ function ready() {
 
     });
 
+    function escape(text) {
+      return String(text).replace(/[&<>"']/g, function(ch) {
+        return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[ch];
+      });
+    }
+
     function open(element) {
 
       var elementImg = element.querySelector('img');
       var elementFigcaption = element.querySelector('figcaption');
 
-      var figureImgSrc = elementImg.src;
-      var figureImgAlt = elementImg.alt;
-      var figureFigcaption = elementFigcaption ? elementFigcaption.textContent : '';
+      var figureImgSrc = escape(elementImg.src);
+      var figureImgAlt = escape(elementImg.alt);
+      var figureFigcaption = elementFigcaption ? escape(elementFigcaption.textContent) : '';
 
       modalContainer.innerHTML = `
         <div class="workstations__image workstations__image--modal">
