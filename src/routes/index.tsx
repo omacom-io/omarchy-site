@@ -235,10 +235,9 @@ function Home() {
         style={{ background: 'var(--t-field-bg)' }}
       >
         <HeroShader onPainted={() => setPainted(true)} />
-        {/* The effect panel: always on the dev server, and on the live
-            preview only for an address that asks (?etch=...), while the
-            effects are being tried. Temporary, like the rest of the etch. */}
-        {import.meta.env.DEV || etchAsked ? <EtchPicker /> : null}
+        {/* The effect panel, only for an address that asks (?etch=...), so
+            the dev server shows the same page as the live one. */}
+        {etchAsked ? <EtchPicker /> : null}
 
         {/* The bar's labels, blended against the canvas. They have to live in
             here to reach it: the real header is sticky, and a sticky element
