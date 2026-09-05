@@ -6,11 +6,11 @@ import { BankIcon, DownloadIcon, GithubIcon } from '@/components/icons'
 import momentum from '@/data/momentum.json'
 
 /**
- * The project in numbers, beside the news it comes from: the foundation's
- * funding as one bar per announcement, the ISO downloads, and the
- * repository's stars and a year of weekly commits. The github block is
- * refreshed on the catalogue's schedule; the rest quotes the posts it
- * links to. The numbers count up once, when the card comes into view.
+ * The project in numbers, a row of three cards: the foundation's funding as
+ * one bar per announcement, the ISO downloads, and the repository's stars
+ * and a year of weekly commits. The github block is refreshed on the
+ * catalogue's schedule; the rest quotes the posts it links to. The numbers
+ * count up once, when the card comes into view.
  */
 
 const STEP_WIDTH = 22
@@ -130,7 +130,7 @@ function Card({
     <div
       ref={innerRef}
       className={
-        '@container ring-elevation bg-surface p-6' +
+        '@container ring-elevation flex flex-col bg-surface p-6' +
         (live ? ' figure-live' : '')
       }
     >
@@ -145,9 +145,11 @@ const number =
 const label = 'mt-1 block text-sm text-text-secondary'
 const meta = 'mt-3 font-mono text-xs text-text-muted'
 // Underlined in nothing until hovered, the way the news titles and the
-// team names are: the hover is a colour arriving, not a line.
+// team names are: the hover is a colour arriving, not a line. Pushed to the
+// foot of the card, so the three links in a row share a baseline whatever
+// each card holds above them.
 const more =
-  'mt-4 inline-block text-[13px] font-medium text-brand underline decoration-transparent underline-offset-[3px] transition-colors duration-150 ease-out hover:decoration-brand focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring'
+  'mt-auto self-start pt-4 text-[13px] font-medium text-brand underline decoration-transparent underline-offset-[3px] transition-colors duration-150 ease-out hover:decoration-brand focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring'
 
 /**
  * The week under the pointer, named once. Fifty-two tooltips that each
@@ -246,7 +248,7 @@ export function Figures() {
   const repo = useInView()
 
   return (
-    <div className="flex flex-col gap-4">
+    <div className="mt-10 grid gap-4 md:grid-cols-3">
       <Card
         icon={<BankIcon className="size-5 text-brand" />}
         live={funding.inView}
@@ -266,8 +268,11 @@ export function Figures() {
         </span>
         {/* One bar per announcement, each a link to the post it quotes, the
             latest at the top: a figure card is read from its number down, and
-            the number is where the last bar ends. */}
-        <div className="figure-chart mt-4 font-mono text-xs leading-relaxed whitespace-pre">
+            the number is where the last bar ends. The row is date, bars and
+            amount, 37 characters at most; like the commit chart it sizes to
+            the card, so a third of the page at the md breakpoint still holds
+            the widest row. */}
+        <div className="figure-chart mt-4 font-mono text-[min(0.75rem,4.4cqw)] leading-relaxed whitespace-pre">
           {[...foundation.steps].reverse().map((step) => (
             <Link
               key={step.post}
@@ -304,6 +309,36 @@ export function Figures() {
         <span className={label}>ISO downloads in {downloads.days} days</span>
         <p className={meta}>
           from {downloads.countries} countries and territories
+        </p>
+        {/* The milestones the project announced, one bar each, the latest on
+            top, drawn the same way as the funding: the two cards read as a
+            pair. Each links to its post. */}
+        <div className="figure-chart mt-4 font-mono text-[min(0.75rem,4.4cqw)] leading-relaxed whitespace-pre">
+          {[...downloads.steps].reverse().map((step) => (
+            <Link
+              key={step.post}
+              to={step.post}
+              className="group block focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+            >
+              <span className="text-text-muted">
+                {shortDate(step.date).padEnd(7)}
+              </span>
+              <span className="text-brand">
+                {'█'.repeat(
+                  Math.round((STEP_WIDTH * step.count) / downloads.total),
+                )}
+              </span>
+              <span className="text-text-muted transition-colors duration-150 ease-out group-hover:text-text">
+                {'  ' + step.count / 1000 + 'k'}
+              </span>
+            </Link>
+          ))}
+        </div>
+        {/* The rate is worked out from the total and the days rather than
+            copied from the post, so it stays right when either moves. */}
+        <p className={meta}>
+          one every {Math.round((downloads.days * 86400) / downloads.total)}{' '}
+          seconds, on average
         </p>
         <Link to={downloads.post} className={more}>
           The numbers

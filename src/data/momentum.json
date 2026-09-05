@@ -40,6 +40,18 @@
     "total": 200000,
     "days": 18,
     "countries": 215,
-    "post": "/news/2026/09/quattro-crosses-200000-iso-downloads/"
+    "post": "/news/2026/09/quattro-crosses-200000-iso-downloads/",
+    "steps": [
+      {
+        "date": "2026-08-28",
+        "count": 100000,
+        "post": "/news/2026/08/100000-downloads-in-a-week/"
+      },
+      {
+        "date": "2026-09-02",
+        "count": 200000,
+        "post": "/news/2026/09/quattro-crosses-200000-iso-downloads/"
+      }
+    ]
   }
 }
