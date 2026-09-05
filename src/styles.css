@@ -1,0 +1,2202 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+
+/* Typefaces from Fontsource. Latin and latin-ext only: the site is English
+   with a few European names (Lütke, Øverli). The full packages also ship
+   Cyrillic, Greek and Vietnamese, which the homepage was downloading for
+   nothing. swap, not block: block hid every heading and every line of copy
+   until the face arrived, which made a reload feel like a hang. The latin
+   files are preloaded in __root.tsx. */
+@font-face {
+  font-family: 'Geist Variable';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 100 900;
+  src: url('../node_modules/@fontsource-variable/geist/files/geist-latin-ext-wght-normal.woff2')
+    format('woff2-variations');
+  unicode-range:
+    U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304,
+    U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB,
+    U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Geist Variable';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 100 900;
+  src: url('../node_modules/@fontsource-variable/geist/files/geist-latin-wght-normal.woff2')
+    format('woff2-variations');
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
+    U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212,
+    U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'JetBrains Mono Variable';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 100 800;
+  src: url('../node_modules/@fontsource-variable/jetbrains-mono/files/jetbrains-mono-latin-ext-wght-normal.woff2')
+    format('woff2-variations');
+  unicode-range:
+    U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304,
+    U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB,
+    U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'JetBrains Mono Variable';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 100 800;
+  src: url('../node_modules/@fontsource-variable/jetbrains-mono/files/jetbrains-mono-latin-wght-normal.woff2')
+    format('woff2-variations');
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
+    U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212,
+    U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'JetBrains Mono Variable';
+  font-style: italic;
+  font-display: swap;
+  font-weight: 100 800;
+  src: url('../node_modules/@fontsource-variable/jetbrains-mono/files/jetbrains-mono-latin-ext-wght-italic.woff2')
+    format('woff2-variations');
+  unicode-range:
+    U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304,
+    U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB,
+    U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'JetBrains Mono Variable';
+  font-style: italic;
+  font-display: swap;
+  font-weight: 100 800;
+  src: url('../node_modules/@fontsource-variable/jetbrains-mono/files/jetbrains-mono-latin-wght-italic.woff2')
+    format('woff2-variations');
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
+    U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212,
+    U+2215, U+FEFF, U+FFFD;
+}
+
+/*
+ * Omarchy design tokens. Terminal-native, sharp-cornered.
+ * The palette is whichever Omarchy theme is active (Tokyo Night by default);
+ * Super + Ctrl + Shift + Space opens the same theme picker Omarchy has. Every
+ * --t-* token below resolves per theme.
+ */
+
+@theme inline {
+  --font-sans: 'Geist Variable', sans-serif;
+  --font-mono: 'JetBrains Mono Variable', monospace;
+
+  --color-bg-deep: var(--t-bg-deep);
+  --color-bg: var(--t-bg);
+  --color-surface: var(--t-surface);
+  --color-surface-2: var(--t-surface-2);
+  --color-border-subtle: var(--t-border-subtle);
+  --color-border-strong: var(--t-border-strong);
+  --color-text: var(--t-text);
+  --color-text-secondary: var(--t-text-secondary);
+  --color-text-muted: var(--t-text-muted);
+  --color-brand: var(--t-brand);
+  --color-brand-soft: var(--t-brand-soft);
+
+  --color-brand-fill: var(--t-brand);
+  --color-brand-ink: var(--t-brand-ink);
+
+  /* Footer credits. Official hues on dark themes; White deepens them so
+     13px type still reads on the light field. */
+
+  /* Tokyo Night companion hues, used sparingly for category accents */
+  --color-tn-blue: oklch(0.719 0.132 264.2);
+  --color-tn-purple: oklch(0.751 0.134 299.5);
+  --color-tn-cyan: oklch(0.82 0.105 235.7);
+  --color-tn-orange: oklch(0.787 0.137 50.6);
+  --color-tn-red: oklch(0.723 0.159 10.3);
+  --color-tn-yellow: oklch(0.784 0.106 75.4);
+
+  /* shadcn token bridge */
+  --color-background: var(--t-bg);
+  --color-foreground: var(--t-text);
+  --color-card: var(--t-surface);
+  --color-card-foreground: var(--t-text);
+  --color-popover: var(--t-surface);
+  --color-popover-foreground: var(--t-text);
+  --color-primary: var(--t-brand);
+  --color-primary-foreground: var(--t-brand-ink);
+  --color-accent: var(--t-surface-2);
+  --color-accent-foreground: var(--t-text);
+  --color-secondary: var(--t-surface-2);
+  --color-secondary-foreground: var(--t-text);
+  --color-muted: var(--t-surface-2);
+  --color-muted-foreground: var(--t-text-secondary);
+  --color-destructive: oklch(0.723 0.159 10.3);
+  --color-border: var(--t-border-subtle);
+  --color-input: var(--t-border-strong);
+  /* The focus ring rides the accent, not the muted text color it used to.
+     A focus indicator has to clear 3:1 against what sits behind it, and the
+     muted grays missed that on four of the six themes: on Tokyo Night the
+     ring was dimmer than the body text it sat beside (2.8:1 against the
+     page, where the accent reaches 9.4:1). */
+  --color-ring: var(--t-brand);
+}
+
+/* Raw, aggressive, zero-radius. Every rounded-* utility resolves to square. */
+@theme {
+  /* The reading column: how wide the words run on a manual page, a news
+     post, a plugin's docs. Everything in a page's prose is held to it. */
+  --measure: 48rem;
+  --radius-xs: 0px;
+  --radius-sm: 0px;
+  --radius-md: 0px;
+  --radius-lg: 0px;
+  --radius-xl: 0px;
+  --radius-2xl: 0px;
+  --radius-3xl: 0px;
+  --radius-4xl: 0px;
+
+  /* z-index scale: no arbitrary values anywhere else */
+  --z-nav: 100;
+  --z-dropdown: 200;
+  --z-modal: 300;
+  --z-tooltip: 400;
+}
+
+/* ------------------------------------------------------------- theme values */
+
+/*
+ * Site themes: the six built-in Omarchy themes, every base value verbatim
+ * from omacom/omarchy themes/<id>/colors.toml. Only the in-between steps
+ * (surfaces, the hero field's dim/mid, hover/crest) are mixes of those
+ * values. Tokyo Night is the default; Super + Ctrl + Shift + Space picks.
+ */
+
+:root,
+[data-theme='tokyo-night'] {
+  --t-bg-deep: #13141c;
+  --t-bg: #1a1b26;
+  --t-surface: #1f2230;
+  --t-surface-2: #24283b;
+  --t-border-subtle: #24283b;
+  --t-border-strong: #414868;
+  --t-text: #c0caf5;
+  --t-text-secondary: #a9b1d6;
+  --t-text-muted: #8b93b8;
+  --t-brand: #9ece6a;
+  --t-brand-soft: #9ece6a1f;
+  --t-brand-ink: #0c0e10;
+  --t-elevation: 0 0 0 1px oklch(1 0 0 / 0.07);
+  --t-elevation-hover: 0 0 0 1px oklch(1 0 0 / 0.13);
+  --t-img-outline: rgb(255 255 255 / 0.1);
+  --t-scroll-thumb: rgb(255 255 255 / 0.14);
+  --t-selection: #292e42;
+  --t-field-bg: #0e0e14;
+  --t-field-dim: #39482e;
+  --t-field-mid: #678549;
+  --t-field-lit: #9ece6a;
+  --t-field-hover: #bbdd97;
+  --t-field-crest: #daecc6;
+  color-scheme: dark;
+  --t-hdr-text: #ced8ff;
+  --t-hdr-text-2: #b7bfea;
+  --t-hdr-brand: #acdc7e;
+  --t-hdr-ink: #1a1c24;
+  --t-hdr-surface-2: #32364f;
+  --t-hdr-surface: #2d3044;
+}
+
+[data-theme='white'] {
+  --t-bg-deep: #f5f5f5;
+  --t-bg: #ffffff;
+  --t-surface: #ffffff;
+  --t-surface-2: #f5f5f5;
+  --t-border-subtle: #e8e8e8;
+  --t-border-strong: #c0c0c0;
+  --t-text: #000000;
+  --t-text-secondary: #383838;
+  --t-text-muted: #4a4a4a;
+  --t-brand: #6e6e6e;
+  --t-brand-soft: #6e6e6e1f;
+  --t-brand-ink: #ffffff;
+  --t-elevation:
+    0 0 0 1px oklch(0 0 0 / 0.06), 0 1px 3px oklch(0 0 0 / 0.05),
+    0 4px 10px -4px oklch(0 0 0 / 0.05);
+  --t-elevation-hover:
+    0 0 0 1px oklch(0 0 0 / 0.09), 0 1px 3px oklch(0 0 0 / 0.07),
+    0 4px 10px -4px oklch(0 0 0 / 0.08);
+  --t-img-outline: rgb(0 0 0 / 0.1);
+  --t-scroll-thumb: rgb(0 0 0 / 0.18);
+  --t-selection: #c0c0c0;
+  --t-field-bg: #e8e8e8;
+  --t-field-dim: #c3c3c3;
+  --t-field-mid: #9c9c9c;
+  --t-field-lit: #6e6e6e;
+  --t-field-hover: #565656;
+  --t-field-crest: #3c3c3c;
+  color-scheme: light;
+  --t-hdr-text: #e8e8e8;
+  --t-hdr-text-2: #b0b0b0;
+  --t-hdr-brand: #7a7a7a;
+  --t-hdr-ink: #000000;
+  --t-hdr-surface-2: #000000;
+  --t-hdr-surface: #000000;
+}
+
+[data-theme='catppuccin'] {
+  --t-bg-deep: #161622;
+  --t-bg: #1e1e2e;
+  --t-surface: #282839;
+  --t-surface-2: #313244;
+  --t-border-subtle: #313244;
+  --t-border-strong: #585b70;
+  --t-text: #cdd6f4;
+  --t-text-secondary: #cdd6f4;
+  --t-text-muted: #9399b2;
+  --t-brand: #89b4fa;
+  --t-brand-soft: #89b4fa1f;
+  --t-brand-ink: #0c0e10;
+  --t-elevation: 0 0 0 1px oklch(1 0 0 / 0.07);
+  --t-elevation-hover: 0 0 0 1px oklch(1 0 0 / 0.13);
+  --t-img-outline: rgb(255 255 255 / 0.1);
+  --t-scroll-thumb: rgb(255 255 255 / 0.14);
+  --t-selection: #45475a;
+  --t-field-bg: #101019;
+  --t-field-dim: #34415c;
+  --t-field-mid: #5b76a4;
+  --t-field-lit: #89b4fa;
+  --t-field-hover: #accafc;
+  --t-field-crest: #d2e2fd;
+  color-scheme: dark;
+  --t-hdr-text: #dde6ff;
+  --t-hdr-text-2: #dde6ff;
+  --t-hdr-brand: #99c4ff;
+  --t-hdr-ink: #1c1e29;
+  --t-hdr-surface-2: #41425d;
+  --t-hdr-surface: #383852;
+}
+
+[data-theme='gruvbox'] {
+  --t-bg-deep: #1e1e1e;
+  --t-bg: #282828;
+  --t-surface: #32302f;
+  --t-surface-2: #3c3836;
+  --t-border-subtle: #3c3836;
+  --t-border-strong: #665c54;
+  --t-text: #d4be98;
+  --t-text-secondary: #d4be98;
+  --t-text-muted: #a89984;
+  --t-brand: #7daea3;
+  --t-brand-soft: #7daea31f;
+  --t-brand-ink: #0c0e10;
+  --t-elevation: 0 0 0 1px oklch(1 0 0 / 0.07);
+  --t-elevation-hover: 0 0 0 1px oklch(1 0 0 / 0.13);
+  --t-img-outline: rgb(255 255 255 / 0.1);
+  --t-scroll-thumb: rgb(255 255 255 / 0.14);
+  --t-selection: #504945;
+  --t-field-bg: #161616;
+  --t-field-dim: #354440;
+  --t-field-mid: #56746d;
+  --t-field-lit: #7daea3;
+  --t-field-hover: #a4c6bf;
+  --t-field-crest: #cee0dc;
+  color-scheme: dark;
+  --t-hdr-text: #ead4ae;
+  --t-hdr-text-2: #ead4ae;
+  --t-hdr-brand: #93c4b9;
+  --t-hdr-ink: #222426;
+  --t-hdr-surface-2: #524e4c;
+  --t-hdr-surface: #484645;
+}
+
+[data-theme='matte-black'] {
+  --t-bg-deep: #0d0d0d;
+  --t-bg: #121212;
+  --t-surface: #181818;
+  --t-surface-2: #1e1e1e;
+  --t-border-subtle: #1e1e1e;
+  --t-border-strong: #333333;
+  --t-text: #eaeaea;
+  --t-text-secondary: #bebebe;
+  --t-text-muted: #8a8a8a;
+  --t-brand: #e68e0d;
+  --t-brand-soft: #e68e0d1f;
+  --t-brand-ink: #0c0e10;
+  --t-elevation: 0 0 0 1px oklch(1 0 0 / 0.07);
+  --t-elevation-hover: 0 0 0 1px oklch(1 0 0 / 0.13);
+  --t-img-outline: rgb(255 255 255 / 0.1);
+  --t-scroll-thumb: rgb(255 255 255 / 0.14);
+  --t-selection: #2a2a2a;
+  --t-field-bg: #090909;
+  --t-field-dim: #4b310a;
+  --t-field-mid: #925b0b;
+  --t-field-lit: #e68e0d;
+  --t-field-hover: #eeb056;
+  --t-field-crest: #f6d4a3;
+  color-scheme: dark;
+  --t-hdr-text: #f3f3f3;
+  --t-hdr-text-2: #c7c7c7;
+  --t-hdr-brand: #ef9716;
+  --t-hdr-ink: #151719;
+  --t-hdr-surface-2: #272727;
+  --t-hdr-surface: #212121;
+}
+
+[data-theme='rose-pine'] {
+  --t-bg-deep: #ede7e1;
+  --t-bg: #faf4ed;
+  --t-surface: #faf4ed;
+  --t-surface-2: #ede7e1;
+  --t-border-subtle: #e1dbd5;
+  --t-border-strong: #cecacd;
+  --t-text: #575279;
+  --t-text-secondary: #5e587d;
+  --t-text-muted: #676284;
+  --t-brand: #56949f;
+  --t-brand-soft: #56949f1f;
+  --t-brand-ink: #ffffff;
+  --t-elevation:
+    0 0 0 1px oklch(0 0 0 / 0.06), 0 1px 3px oklch(0 0 0 / 0.05),
+    0 4px 10px -4px oklch(0 0 0 / 0.05);
+  --t-elevation-hover:
+    0 0 0 1px oklch(0 0 0 / 0.09), 0 1px 3px oklch(0 0 0 / 0.07),
+    0 4px 10px -4px oklch(0 0 0 / 0.08);
+  --t-img-outline: rgb(0 0 0 / 0.1);
+  --t-scroll-thumb: rgb(0 0 0 / 0.18);
+  --t-selection: #dfdad9;
+  --t-field-bg: #e1dbd5;
+  --t-field-dim: #b7c6c5;
+  --t-field-mid: #8bafb4;
+  --t-field-lit: #56949f;
+  --t-field-hover: #43737c;
+  --t-field-crest: #2f5157;
+  color-scheme: light;
+  --t-hdr-text: #8a895c;
+  --t-hdr-text-2: #838358;
+  --t-hdr-brand: #8b4736;
+  --t-hdr-ink: #000000;
+  --t-hdr-surface-2: #000000;
+  --t-hdr-surface: #000000;
+}
+
+[data-theme='catppuccin-latte'] {
+  --t-bg-deep: #e3e4e8;
+  --t-bg: #eff1f5;
+  --t-surface: #eff1f5;
+  --t-surface-2: #e3e4e8;
+  --t-border-subtle: #d7d8dc;
+  --t-border-strong: #acb0be;
+  --t-text: #4c4f69;
+  --t-text-secondary: #53556f;
+  --t-text-muted: #5c5f77;
+  --t-brand: #1e66f5;
+  --t-brand-soft: #1e66f51f;
+  --t-brand-ink: #ffffff;
+  --t-elevation:
+    0 0 0 1px oklch(0 0 0 / 0.06), 0 1px 3px oklch(0 0 0 / 0.05),
+    0 4px 10px -4px oklch(0 0 0 / 0.05);
+  --t-elevation-hover:
+    0 0 0 1px oklch(0 0 0 / 0.09), 0 1px 3px oklch(0 0 0 / 0.07),
+    0 4px 10px -4px oklch(0 0 0 / 0.08);
+  --t-img-outline: rgb(0 0 0 / 0.1);
+  --t-scroll-thumb: rgb(0 0 0 / 0.18);
+  --t-selection: #ccd0da;
+  --t-field-bg: #d7d8dc;
+  --t-field-dim: #a0b6e4;
+  --t-field-mid: #6491ec;
+  --t-field-lit: #1e66f5;
+  --t-field-hover: #1750bf;
+  --t-field-crest: #103887;
+  color-scheme: light;
+  --t-hdr-text: #8b8973;
+  --t-hdr-text-2: #84836d;
+  --t-hdr-brand: #b97200;
+  --t-hdr-ink: #000000;
+  --t-hdr-surface-2: #000000;
+  --t-hdr-surface: #000000;
+  --t-partner-37signals: #c53030;
+  --t-partner-basecamp: #b45309;
+  --t-partner-hey: #5522fa;
+  --t-partner-cloudflare: #c2410c;
+}
+
+[data-theme='ethereal'] {
+  --t-bg-deep: #040816;
+  --t-bg: #060b1e;
+  --t-surface: #0c122c;
+  --t-surface-2: #131a3a;
+  --t-border-subtle: #131a3a;
+  --t-border-strong: #6d7db6;
+  --t-text: #ffcead;
+  --t-text-secondary: #ffcead;
+  --t-text-muted: #b6a6b2;
+  --t-brand: #7d82d9;
+  --t-brand-soft: #7d82d91f;
+  --t-brand-ink: #0c0e10;
+  --t-elevation: 0 0 0 1px oklch(1 0 0 / 0.07);
+  --t-elevation-hover: 0 0 0 1px oklch(1 0 0 / 0.13);
+  --t-img-outline: rgb(255 255 255 / 0.1);
+  --t-scroll-thumb: rgb(255 255 255 / 0.14);
+  --t-selection: #252e56;
+  --t-field-bg: #030610;
+  --t-field-dim: #282b4c;
+  --t-field-mid: #4f538d;
+  --t-field-lit: #7d82d9;
+  --t-field-hover: #a4a8e4;
+  --t-field-crest: #ced0f1;
+  color-scheme: dark;
+  --t-hdr-text: #ffd4bd;
+  --t-hdr-text-2: #ffd4bd;
+  --t-hdr-brand: #8088e9;
+  --t-hdr-ink: #0f1420;
+  --t-hdr-surface-2: #16204a;
+  --t-hdr-surface: #10183c;
+}
+
+[data-theme='everforest'] {
+  --t-bg-deep: #21272c;
+  --t-bg: #2d353b;
+  --t-surface: #303a40;
+  --t-surface-2: #343f44;
+  --t-border-subtle: #343f44;
+  --t-border-strong: #475258;
+  --t-text: #d3c6aa;
+  --t-text-secondary: #d3c6aa;
+  --t-text-muted: #918f84;
+  --t-brand: #7fbbb3;
+  --t-brand-soft: #7fbbb31f;
+  --t-brand-ink: #0c0e10;
+  --t-elevation: 0 0 0 1px oklch(1 0 0 / 0.07);
+  --t-elevation-hover: 0 0 0 1px oklch(1 0 0 / 0.13);
+  --t-img-outline: rgb(255 255 255 / 0.1);
+  --t-scroll-thumb: rgb(255 255 255 / 0.14);
+  --t-selection: #3d484d;
+  --t-field-bg: #181d20;
+  --t-field-dim: #374c4c;
+  --t-field-mid: #587f7b;
+  --t-field-lit: #7fbbb3;
+  --t-field-hover: #a5cfca;
+  --t-field-crest: #cee5e2;
+  color-scheme: dark;
+  --t-hdr-text: #ebe3ca;
+  --t-hdr-text-2: #ebe3ca;
+  --t-hdr-brand: #97d8d3;
+  --t-hdr-ink: #242b30;
+  --t-hdr-surface-2: #4c5c64;
+  --t-hdr-surface: #485760;
+}
+
+[data-theme='flexoki-light'] {
+  --t-bg-deep: #f2efe4;
+  --t-bg: #fffcf0;
+  --t-surface: #fffcf0;
+  --t-surface-2: #f2efe4;
+  --t-border-subtle: #e5e2d8;
+  --t-border-strong: #b7b5ac;
+  --t-text: #100f0f;
+  --t-text-secondary: #454340;
+  --t-text-muted: #555450;
+  --t-brand: #205ea6;
+  --t-brand-soft: #205ea61f;
+  --t-brand-ink: #ffffff;
+  --t-elevation:
+    0 0 0 1px oklch(0 0 0 / 0.06), 0 1px 3px oklch(0 0 0 / 0.05),
+    0 4px 10px -4px oklch(0 0 0 / 0.05);
+  --t-elevation-hover:
+    0 0 0 1px oklch(0 0 0 / 0.09), 0 1px 3px oklch(0 0 0 / 0.07),
+    0 4px 10px -4px oklch(0 0 0 / 0.08);
+  --t-img-outline: rgb(0 0 0 / 0.1);
+  --t-scroll-thumb: rgb(0 0 0 / 0.18);
+  --t-selection: #cecdc3;
+  --t-field-bg: #e5e2d8;
+  --t-field-dim: #aabac9;
+  --t-field-mid: #6b90b9;
+  --t-field-lit: #205ea6;
+  --t-field-hover: #194981;
+  --t-field-crest: #12345b;
+  color-scheme: light;
+  --t-hdr-text: #d5d3c9;
+  --t-hdr-text-2: #a09f98;
+  --t-hdr-brand: #c58432;
+  --t-hdr-ink: #000000;
+  --t-hdr-surface-2: #000000;
+  --t-hdr-surface: #000000;
+  --t-partner-37signals: #c53030;
+  --t-partner-basecamp: #b45309;
+  --t-partner-hey: #5522fa;
+  --t-partner-cloudflare: #c2410c;
+}
+
+[data-theme='hackerman'] {
+  --t-bg-deep: #080910;
+  --t-bg: #0b0c16;
+  --t-surface: #10121f;
+  --t-surface-2: #151828;
+  --t-border-subtle: #151828;
+  --t-border-strong: #2d3450;
+  --t-text: #ddf7ff;
+  --t-text-secondary: #ddf7ff;
+  --t-text-muted: #a4b2ca;
+  --t-brand: #82fb9c;
+  --t-brand-soft: #82fb9c1f;
+  --t-brand-ink: #0c0e10;
+  --t-elevation: 0 0 0 1px oklch(1 0 0 / 0.07);
+  --t-elevation-hover: 0 0 0 1px oklch(1 0 0 / 0.13);
+  --t-img-outline: rgb(255 255 255 / 0.1);
+  --t-scroll-thumb: rgb(255 255 255 / 0.14);
+  --t-selection: #1f253a;
+  --t-field-bg: #06060c;
+  --t-field-dim: #2b5037;
+  --t-field-mid: #539e65;
+  --t-field-lit: #82fb9c;
+  --t-field-hover: #a8fcba;
+  --t-field-crest: #d0fdd9;
+  color-scheme: dark;
+  --t-hdr-text: #e3fdff;
+  --t-hdr-text-2: #e3fdff;
+  --t-hdr-brand: #88ffa8;
+  --t-hdr-ink: #12141c;
+  --t-hdr-surface-2: #1b1e34;
+  --t-hdr-surface: #16182b;
+}
+
+[data-theme='kanagawa'] {
+  --t-bg-deep: #17171e;
+  --t-bg: #1f1f28;
+  --t-surface: #202838;
+  --t-surface-2: #223249;
+  --t-border-subtle: #223249;
+  --t-border-strong: #54546d;
+  --t-text: #dcd7ba;
+  --t-text-secondary: #dcd7ba;
+  --t-text-muted: #a7a492;
+  --t-brand: #dcd7ba;
+  --t-brand-soft: #dcd7ba1f;
+  --t-brand-ink: #0c0e10;
+  --t-elevation: 0 0 0 1px oklch(1 0 0 / 0.07);
+  --t-elevation-hover: 0 0 0 1px oklch(1 0 0 / 0.13);
+  --t-img-outline: rgb(255 255 255 / 0.1);
+  --t-scroll-thumb: rgb(255 255 255 / 0.14);
+  --t-selection: #363646;
+  --t-field-bg: #111116;
+  --t-field-dim: #4e4c47;
+  --t-field-mid: #8f8c7c;
+  --t-field-lit: #dcd7ba;
+  --t-field-hover: #e6e3cf;
+  --t-field-crest: #f2f0e5;
+  color-scheme: dark;
+  --t-hdr-text: #ede8d0;
+  --t-hdr-text-2: #ede8d0;
+  --t-hdr-brand: #ede8d0;
+  --t-hdr-ink: #1d1f26;
+  --t-hdr-surface-2: #33435f;
+  --t-hdr-surface: #323a4e;
+}
+
+[data-theme='last-horizon'] {
+  --t-bg-deep: #090809;
+  --t-bg: #0c0b0c;
+  --t-surface: #0c0b0c;
+  --t-surface-2: #0c0b0c;
+  --t-border-subtle: #0c0b0c;
+  --t-border-strong: #584e51;
+  --t-text: #fafcfb;
+  --t-text-secondary: #e2dddc;
+  --t-text-muted: #a9a5a6;
+  --t-brand: #b59790;
+  --t-brand-soft: #b597901f;
+  --t-brand-ink: #0c0e10;
+  --t-elevation: 0 0 0 1px oklch(1 0 0 / 0.07);
+  --t-elevation-hover: 0 0 0 1px oklch(1 0 0 / 0.13);
+  --t-img-outline: rgb(255 255 255 / 0.1);
+  --t-scroll-thumb: rgb(255 255 255 / 0.14);
+  --t-selection: #584e51;
+  --t-field-bg: #060606;
+  --t-field-dim: #3a322f;
+  --t-field-mid: #72605c;
+  --t-field-lit: #b59790;
+  --t-field-hover: #cbb6b1;
+  --t-field-crest: #e3d7d5;
+  color-scheme: dark;
+  --t-hdr-text: #ffffff;
+  --t-hdr-text-2: #e8e3e2;
+  --t-hdr-brand: #bb9d96;
+  --t-hdr-ink: #121416;
+  --t-hdr-surface-2: #121112;
+  --t-hdr-surface: #121112;
+}
+
+[data-theme='lumon'] {
+  --t-bg-deep: #101b21;
+  --t-bg: #16242d;
+  --t-surface: #182836;
+  --t-surface-2: #1b2d40;
+  --t-border-subtle: #1b2d40;
+  --t-border-strong: #304860;
+  --t-text: #f2fcff;
+  --t-text-secondary: #d6e2ee;
+  --t-text-muted: #a0c1d8;
+  --t-brand: #8bc9eb;
+  --t-brand-soft: #8bc9eb1f;
+  --t-brand-ink: #0c0e10;
+  --t-elevation: 0 0 0 1px oklch(1 0 0 / 0.07);
+  --t-elevation-hover: 0 0 0 1px oklch(1 0 0 / 0.13);
+  --t-img-outline: rgb(255 255 255 / 0.1);
+  --t-scroll-thumb: rgb(255 255 255 / 0.14);
+  --t-selection: #243d56;
+  --t-field-bg: #0b1216;
+  --t-field-dim: #314956;
+  --t-field-mid: #5a839a;
+  --t-field-lit: #8bc9eb;
+  --t-field-hover: #aed9f1;
+  --t-field-crest: #d3eaf7;
+  color-scheme: dark;
+  --t-hdr-text: #fdffff;
+  --t-hdr-text-2: #e1f4ff;
+  --t-hdr-brand: #96dbff;
+  --t-hdr-ink: #172026;
+  --t-hdr-surface-2: #263f56;
+  --t-hdr-surface: #243a4c;
+}
+
+[data-theme='lupine'] {
+  --t-bg-deep: #ececec;
+  --t-bg: #fafafa;
+  --t-surface: #fafafa;
+  --t-surface-2: #ececec;
+  --t-border-subtle: #dedede;
+  --t-border-strong: #9e9e9e;
+  --t-text: #000000;
+  --t-text-secondary: #212121;
+  --t-text-muted: #484848;
+  --t-brand: #3264eb;
+  --t-brand-soft: #3264eb1f;
+  --t-brand-ink: #ffffff;
+  --t-elevation:
+    0 0 0 1px oklch(0 0 0 / 0.06), 0 1px 3px oklch(0 0 0 / 0.05),
+    0 4px 10px -4px oklch(0 0 0 / 0.05);
+  --t-elevation-hover:
+    0 0 0 1px oklch(0 0 0 / 0.09), 0 1px 3px oklch(0 0 0 / 0.07),
+    0 4px 10px -4px oklch(0 0 0 / 0.08);
+  --t-img-outline: rgb(0 0 0 / 0.1);
+  --t-scroll-thumb: rgb(0 0 0 / 0.18);
+  --t-selection: #d0d0d0;
+  --t-field-bg: #dedede;
+  --t-field-dim: #aab9e2;
+  --t-field-mid: #7392e6;
+  --t-field-lit: #3264eb;
+  --t-field-hover: #274eb7;
+  --t-field-crest: #1c3781;
+  color-scheme: light;
+  --t-hdr-text: #dedede;
+  --t-hdr-text-2: #bdbdbd;
+  --t-hdr-brand: #ac7a00;
+  --t-hdr-ink: #000000;
+  --t-hdr-surface-2: #000000;
+  --t-hdr-surface: #000000;
+  --t-partner-37signals: #c53030;
+  --t-partner-basecamp: #b45309;
+  --t-partner-hey: #5522fa;
+  --t-partner-cloudflare: #c2410c;
+}
+
+[data-theme='miasma'] {
+  --t-bg-deep: #191919;
+  --t-bg: #222222;
+  --t-surface: #272727;
+  --t-surface-2: #2c2c2c;
+  --t-border-subtle: #2c2c2c;
+  --t-border-strong: #666666;
+  --t-text: #c2c2b0;
+  --t-text-secondary: #c2c2b0;
+  --t-text-muted: #8c8c82;
+  --t-brand: #78824b;
+  --t-brand-soft: #78824b1f;
+  --t-brand-ink: #0c0e10;
+  --t-elevation: 0 0 0 1px oklch(1 0 0 / 0.07);
+  --t-elevation-hover: 0 0 0 1px oklch(1 0 0 / 0.13);
+  --t-img-outline: rgb(255 255 255 / 0.1);
+  --t-scroll-thumb: rgb(255 255 255 / 0.14);
+  --t-selection: #383838;
+  --t-field-bg: #121212;
+  --t-field-dim: #313423;
+  --t-field-mid: #515735;
+  --t-field-lit: #78824b;
+  --t-field-hover: #a0a881;
+  --t-field-crest: #ccd0bb;
+  color-scheme: dark;
+  --t-hdr-text: #d4d4c2;
+  --t-hdr-text-2: #d4d4c2;
+  --t-hdr-brand: #8a945d;
+  --t-hdr-ink: #1e2022;
+  --t-hdr-surface-2: #3e3e3e;
+  --t-hdr-surface: #393939;
+}
+
+[data-theme='nord'] {
+  --t-bg-deep: #222730;
+  --t-bg: #2e3440;
+  --t-surface: #343b49;
+  --t-surface-2: #3b4252;
+  --t-border-subtle: #3b4252;
+  --t-border-strong: #4c566a;
+  --t-text: #d8dee9;
+  --t-text-secondary: #d8dee9;
+  --t-text-muted: #9fa7b4;
+  --t-brand: #81a1c1;
+  --t-brand-soft: #81a1c11f;
+  --t-brand-ink: #0c0e10;
+  --t-elevation: 0 0 0 1px oklch(1 0 0 / 0.07);
+  --t-elevation-hover: 0 0 0 1px oklch(1 0 0 / 0.13);
+  --t-img-outline: rgb(255 255 255 / 0.1);
+  --t-scroll-thumb: rgb(255 255 255 / 0.14);
+  --t-selection: #434c5e;
+  --t-field-bg: #191c23;
+  --t-field-dim: #384452;
+  --t-field-mid: #596e85;
+  --t-field-lit: #81a1c1;
+  --t-field-hover: #a7bdd4;
+  --t-field-crest: #cfdbe7;
+  color-scheme: dark;
+  --t-hdr-text: #f1faff;
+  --t-hdr-text-2: #f1faff;
+  --t-hdr-brand: #9abde4;
+  --t-hdr-ink: #252a33;
+  --t-hdr-surface-2: #545e75;
+  --t-hdr-surface: #4e576c;
+}
+
+[data-theme='osaka-jade'] {
+  --t-bg-deep: #0c1512;
+  --t-bg: #111c18;
+  --t-surface: #1a2a22;
+  --t-surface-2: #23372b;
+  --t-border-subtle: #23372b;
+  --t-border-strong: #53685b;
+  --t-text: #f7e8b2;
+  --t-text-secondary: #c1c497;
+  --t-text-muted: #969978;
+  --t-brand: #509475;
+  --t-brand-soft: #5094751f;
+  --t-brand-ink: #0c0e10;
+  --t-elevation: 0 0 0 1px oklch(1 0 0 / 0.07);
+  --t-elevation-hover: 0 0 0 1px oklch(1 0 0 / 0.13);
+  --t-img-outline: rgb(255 255 255 / 0.1);
+  --t-scroll-thumb: rgb(255 255 255 / 0.14);
+  --t-selection: #32473b;
+  --t-field-bg: #090f0d;
+  --t-field-dim: #1e372c;
+  --t-field-mid: #35614d;
+  --t-field-lit: #509475;
+  --t-field-hover: #84b49e;
+  --t-field-crest: #bcd6cb;
+  color-scheme: dark;
+  --t-hdr-text: #fff7bf;
+  --t-hdr-text-2: #cad3a4;
+  --t-hdr-brand: #59a382;
+  --t-hdr-ink: #151d1d;
+  --t-hdr-surface-2: #2c4638;
+  --t-hdr-surface: #23382e;
+}
+
+[data-theme='retro-82'] {
+  --t-bg-deep: #031222;
+  --t-bg: #05182e;
+  --t-surface: #081e37;
+  --t-surface-2: #0a2540;
+  --t-border-subtle: #0a2540;
+  --t-border-strong: #2a6b78;
+  --t-text: #f6dcac;
+  --t-text-secondary: #f6dcac;
+  --t-text-muted: #9ab69b;
+  --t-brand: #faa968;
+  --t-brand-soft: #faa9681f;
+  --t-brand-ink: #0c0e10;
+  --t-elevation: 0 0 0 1px oklch(1 0 0 / 0.07);
+  --t-elevation-hover: 0 0 0 1px oklch(1 0 0 / 0.13);
+  --t-img-outline: rgb(255 255 255 / 0.1);
+  --t-scroll-thumb: rgb(255 255 255 / 0.14);
+  --t-selection: #134e5a;
+  --t-field-bg: #020c17;
+  --t-field-dim: #4c3b2f;
+  --t-field-mid: #9c6d49;
+  --t-field-lit: #faa968;
+  --t-field-hover: #fcc395;
+  --t-field-crest: #fddec6;
+  color-scheme: dark;
+  --t-hdr-text: #f8e8c3;
+  --t-hdr-text-2: #f8e8c3;
+  --t-hdr-brand: #fcb57f;
+  --t-hdr-ink: #0e1a27;
+  --t-hdr-surface-2: #0c3157;
+  --t-hdr-surface: #0a2a4e;
+}
+
+[data-theme='ristretto'] {
+  --t-bg-deep: #211b1b;
+  --t-bg: #2c2525;
+  --t-surface: #342a28;
+  --t-surface-2: #3d2f2a;
+  --t-border-subtle: #3d2f2a;
+  --t-border-strong: #72696a;
+  --t-text: #e6d9db;
+  --t-text-secondary: #e6d9db;
+  --t-text-muted: #aca1a2;
+  --t-brand: #f38d70;
+  --t-brand-soft: #f38d701f;
+  --t-brand-ink: #0c0e10;
+  --t-elevation: 0 0 0 1px oklch(1 0 0 / 0.07);
+  --t-elevation-hover: 0 0 0 1px oklch(1 0 0 / 0.13);
+  --t-img-outline: rgb(255 255 255 / 0.1);
+  --t-scroll-thumb: rgb(255 255 255 / 0.14);
+  --t-selection: #403e41;
+  --t-field-bg: #181414;
+  --t-field-dim: #5a3830;
+  --t-field-mid: #a05f4d;
+  --t-field-lit: #f38d70;
+  --t-field-hover: #f7af9b;
+  --t-field-crest: #fad4c9;
+  color-scheme: dark;
+  --t-hdr-text: #feedef;
+  --t-hdr-text-2: #feedef;
+  --t-hdr-brand: #ffa184;
+  --t-hdr-ink: #242224;
+  --t-hdr-surface-2: #55433e;
+  --t-hdr-surface: #4c3e3c;
+}
+
+[data-theme='solitude'] {
+  --t-bg-deep: #0c0e10;
+  --t-bg: #101315;
+  --t-surface: #101315;
+  --t-surface-2: #101315;
+  --t-border-subtle: #101315;
+  --t-border-strong: #4b4e55;
+  --t-text: #cacccc;
+  --t-text-secondary: #a5aeb4;
+  --t-text-muted: #8a8d90;
+  --t-brand: #798186;
+  --t-brand-soft: #7981861f;
+  --t-brand-ink: #0c0e10;
+  --t-elevation: 0 0 0 1px oklch(1 0 0 / 0.07);
+  --t-elevation-hover: 0 0 0 1px oklch(1 0 0 / 0.13);
+  --t-img-outline: rgb(255 255 255 / 0.1);
+  --t-scroll-thumb: rgb(255 255 255 / 0.14);
+  --t-selection: #343d41;
+  --t-field-bg: #080a0b;
+  --t-field-dim: #2a2e30;
+  --t-field-mid: #4e5457;
+  --t-field-lit: #798186;
+  --t-field-hover: #a1a7aa;
+  --t-field-crest: #cccfd1;
+  color-scheme: dark;
+  --t-hdr-text: #d2d6d7;
+  --t-hdr-text-2: #adb8bf;
+  --t-hdr-brand: #818b91;
+  --t-hdr-ink: #14181b;
+  --t-hdr-surface-2: #181d20;
+  --t-hdr-surface: #181d20;
+}
+
+[data-theme='vantablack'] {
+  --t-bg-deep: #090909;
+  --t-bg: #000000;
+  --t-surface: #0d0d0d;
+  --t-surface-2: #1a1a1a;
+  --t-border-subtle: #1a1a1a;
+  --t-border-strong: #7a7a7a;
+  --t-text: #ffffff;
+  --t-text-secondary: #ffffff;
+  --t-text-muted: #a8a8a8;
+  --t-brand: #8d8d8d;
+  --t-brand-soft: #8d8d8d1f;
+  --t-brand-ink: #0c0e10;
+  --t-elevation: 0 0 0 1px oklch(1 0 0 / 0.07);
+  --t-elevation-hover: 0 0 0 1px oklch(1 0 0 / 0.13);
+  --t-img-outline: rgb(255 255 255 / 0.1);
+  --t-scroll-thumb: rgb(255 255 255 / 0.14);
+  --t-selection: #1a1a1a;
+  --t-field-bg: #070707;
+  --t-field-dim: #2f2f2f;
+  --t-field-mid: #5a5a5a;
+  --t-field-lit: #8d8d8d;
+  --t-field-hover: #afafaf;
+  --t-field-crest: #d4d4d4;
+  color-scheme: dark;
+  --t-hdr-text: #ffffff;
+  --t-hdr-text-2: #ffffff;
+  --t-hdr-brand: #949494;
+  --t-hdr-ink: #131517;
+  --t-hdr-surface-2: #212121;
+  --t-hdr-surface: #141414;
+}
+
+
+/* The explore galaxy draws a dark starfield whatever the theme; this scope
+   pins the Tokyo Night dark tokens for everything inside it. */
+.dark-scope {
+  --t-bg-deep: #13141c;
+  --t-bg: #1a1b26;
+  --t-surface: #1f2230;
+  --t-surface-2: #24283b;
+  --t-border-subtle: #24283b;
+  --t-border-strong: #414868;
+  --t-text: #c0caf5;
+  --t-text-secondary: #a9b1d6;
+  --t-text-muted: #8b93b8;
+  --t-brand: #9ece6a;
+  --t-brand-soft: #9ece6a1f;
+  --t-elevation: 0 0 0 1px oklch(1 0 0 / 0.07);
+  --t-elevation-hover: 0 0 0 1px oklch(1 0 0 / 0.13);
+  --t-img-outline: rgb(255 255 255 / 0.1);
+  --t-scroll-thumb: rgb(255 255 255 / 0.14);
+  color-scheme: dark;
+}
+
+/* ---------------------------------------------------------------- base */
+
+* {
+  box-sizing: border-box;
+}
+
+/* Deliberately not `scroll-behavior: smooth`. Set globally it also animates
+   the browser's own jump to an anchor on load, so opening or refreshing a
+   /#install URL scrolled the whole page down in front of the reader instead
+   of simply being there. The links that want a smooth scroll ask for one. */
+
+/* One focus ring for the whole site, in the theme's accent. Utilities still
+   win over this (they sit in a later layer), so a component can still say
+   something different; this is only what everything else gets instead of
+   the browser's own blue. It has to name --t-brand rather than the ring
+   token: --color-ring lives in @theme inline, which Tailwind resolves at
+   build time and never emits as a custom property.
+
+   Scroll containers land here too. A horizontally scrolling region is
+   focusable in its own right so it can be scrolled from the keyboard, and
+   without this the video rail, the theme rail and the install command each
+   drew a stock blue box around themselves. */
+@layer base {
+  :focus-visible {
+    outline: 2px solid var(--t-brand);
+    outline-offset: 2px;
+  }
+}
+
+/* Inside a horizontal rail, an outline drawn outward is cut off top and
+   bottom by the scroll container, so the ring around a focused slide came
+   out with only its sides showing. Drawing it inward keeps all four edges. */
+.rail-bare :focus-visible {
+  outline-offset: -2px;
+}
+
+html,
+body,
+#app {
+  min-height: 100%;
+  font-family: var(--font-mono);
+}
+
+/* The sticky bar's full height: its own row, plus whatever the device keeps
+   above it once the page covers the notch. The hero offsets itself by this to
+   sit under the bar, and the menu sheet hangs off the bottom of it. */
+:root {
+  --nav-h: calc(3.5rem + env(safe-area-inset-top, 0px));
+}
+
+body {
+  margin: 0;
+  /* The page covers the whole screen, notch included (viewport-fit=cover in
+     the viewport meta), so that scrolling runs up behind the status bar
+     instead of stopping at a fixed band below it. The inset the browser used
+     to apply for us is applied here instead, once, for everything inside -
+     in portrait it is zero, and in landscape it is what keeps a line of text
+     out from under the notch. */
+  padding-inline: env(safe-area-inset-left) env(safe-area-inset-right);
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-mono);
+  font-synthesis: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* The bar has no surface of its own over the home hero, and it renders its
+   normal colours there: it looked identical whether or not it was blended,
+   because a sticky element forms its own stacking context and mix-blend-mode
+   inside one has no backdrop to blend against. The --t-hdr-* tokens below
+   were the pre-compensation that blend needed; they are kept for a future
+   attempt that puts the bar inside the hero's stacking context. */
+/* The hero field's cell size, derived in pure CSS: the wordmark slot is
+   88% of the padded container capped at 896px, split into 81 columns,
+   which is exactly the lattice the canvas draws. Elements sized with
+   --pxc multiples fit the grid with no runtime measurement at all. The
+   header and the hero section are both containers of the same width, so
+   the value agrees across them. */
+.pixel-container {
+  container-type: inline-size;
+}
+.pixel-container > * {
+  --pxc: calc(min((100cqw - 48px) * 0.88, 896px) / 81);
+  /* Rows are 50/51 of a column: the wordmark's units are 51x50. */
+  --pxr: calc(var(--pxc) * 50 / 51);
+}
+
+/* No 300ms double-tap-zoom wait on anything you can press */
+a,
+button,
+input,
+select,
+textarea,
+[role='button'] {
+  touch-action: manipulation;
+}
+
+::selection {
+  background: var(--t-selection);
+  color: var(--color-text);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-sans);
+  text-wrap: balance;
+}
+
+/* Sticky-bar offset for in-page anchors, kept on the bar's own height rather
+   than a number that once matched it. At 88px an anchor landed 32px below the
+   bar, so every jump arrived showing a strip of the section before it. */
+[id] {
+  scroll-margin-top: var(--nav-h);
+}
+
+/* A chapter's own headings land where its title does, the page's 3rem below
+   the bar, rather than pinned against it. The manual only: elsewhere a jump
+   still arrives at the bar. */
+.manual-chapter [id] {
+  scroll-margin-top: calc(var(--nav-h) + 3rem);
+}
+
+/* Theme switches must not animate: every color would tween independently */
+.no-transitions,
+.no-transitions * {
+  transition: none !important;
+}
+
+/* Images carry a 1px inset outline: pure black/white at 10%, theme-flipped */
+.img-outlined {
+  outline: 1px solid var(--t-img-outline);
+  outline-offset: -1px;
+}
+
+/* Elevation: white ring in dark mode, layered shadow stack in light */
+.ring-elevation {
+  box-shadow: var(--t-elevation);
+}
+.ring-elevation-hover {
+  transition-property: box-shadow, background-color;
+  transition-duration: 150ms;
+  transition-timing-function: ease-out;
+}
+.ring-elevation-hover:hover {
+  box-shadow: var(--t-elevation-hover);
+}
+
+/* Scrollbars inside a pane, dressed like the video rail's: a subtle track with
+   the theme's accent riding it. The page's own scrollbar is never touched -
+   only small scrollers like this one and the manual's chapter list. */
+.scroll-accent {
+  scrollbar-width: thin;
+  scrollbar-color: var(--t-brand)
+    color-mix(in oklch, var(--t-border-subtle) 50%, transparent);
+}
+.scroll-accent::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+.scroll-accent::-webkit-scrollbar-track {
+  background: color-mix(in oklch, var(--t-border-subtle) 50%, transparent);
+}
+.scroll-accent::-webkit-scrollbar-thumb {
+  background: var(--t-brand);
+}
+.scroll-accent::-webkit-scrollbar-thumb:hover {
+  background: var(--t-field-hover);
+}
+.scroll-accent::-webkit-scrollbar-thumb:active {
+  background: var(--t-field-crest);
+}
+
+/* The typewriter's caret. A block, not a hairline: this is a site about a
+   terminal, and it is set in a heading big enough to carry one. It holds
+   steady while the keys are moving and blinks where the hands are still,
+   which is what a real caret does. */
+.typed-caret {
+  display: inline-block;
+  /* A bar, the width a caret is at any size, rather than a half-character
+     block: at a heading's weight the block read as another letter. Tall
+     enough to clear the cap line and dip under the baseline, which is where a
+     text cursor actually sits - but still inside the font's own ascent and
+     descent, so it cannot open up the line it is on. */
+  width: 0.1em;
+  height: 1em;
+  margin-left: 0.1em;
+  vertical-align: -0.16em;
+  background: var(--color-brand);
+  animation: typed-blink 1.06s step-end infinite;
+}
+[data-typing='1'] .typed-caret {
+  animation: none;
+}
+@keyframes typed-blink {
+  0%,
+  50% {
+    opacity: 1;
+  }
+  50.01%,
+  100% {
+    opacity: 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .typed-caret {
+    display: none;
+  }
+}
+
+/* Insets a full-bleed rail so its slides land exactly on the content column
+   above them, and its neighbours peek out in the page margins. One place for
+   the geometry, so a rail and the heading over it cannot drift apart - they
+   used to, by 8px, on the narrow layout where the column's padding drops to
+   1rem and the rail's did not.
+
+   In the components layer so a rail that turns back into a grid on wide
+   screens can drop the padding with a plain sm:px-0. */
+@layer components {
+  .rail-column {
+    padding-inline: max(1rem, calc((100% - min(100% - 2rem, 69rem)) / 2));
+  }
+
+  @media (width >= 40rem) {
+    .rail-column {
+      padding-inline: max(1.5rem, calc((100% - min(100% - 3rem, 69rem)) / 2));
+    }
+  }
+}
+
+/* While the bar has no surface, its labels are painted by the blended ghost
+   inside the hero instead, and these stand aside. Never both at once: two
+   copies of a word, one blended and one not, read as hollow, embossed text
+   rather than as a label. */
+[data-nav-blend] nav[aria-label='Main'] a,
+[data-nav-blend] [data-nav-glyph],
+[data-nav-blend] [data-nav-toggle] {
+  color: transparent;
+}
+
+/* And no chip while they are blended. The ghost's colour is compensated
+   against the field behind the bar; a chip is not the field, so a label
+   painted through one comes out near enough black. Hovering hands the labels
+   back to the real layer anyway - this is only here so that the two can never
+   be seen in the same frame. */
+[data-nav-blend] nav[aria-label='Main'] a:hover,
+[data-nav-blend] [data-nav-glyph]:hover,
+[data-nav-blend] [data-nav-toggle]:hover {
+  background-color: transparent;
+}
+
+/* A full-bleed rail's own scrollbar would run the whole window width. These
+   hide it so the rail can draw one inside the content column instead. */
+.rail-bare {
+  scrollbar-width: none;
+}
+.rail-bare::-webkit-scrollbar {
+  display: none;
+}
+
+/* ------------------------------------------------------- ported page prose */
+
+.prose {
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--color-text-secondary);
+}
+/* The reading measure is on the text, not on the block. A paragraph stops at
+   72 characters, which is as long as a monospace line stays comfortable; a
+   screenshot, a code block or a table is not read line by line and takes the
+   whole column, so the column does not sit a third empty beside the text. */
+.prose
+  > :where(
+    p,
+    ul,
+    ol,
+    dl,
+    h1,
+    h2,
+    h3,
+    h4,
+    blockquote,
+    hr,
+    pre,
+    table,
+    figure,
+    img,
+    video,
+    iframe
+  ) {
+  /* One measure for everything: the same width a news post reads at,
+     centred in the column. Paragraphs, headings, tables, code blocks and
+     screenshots all start and end on the same two lines. The elements are
+     named rather than taken as every child, so the ported pages that lay
+     their records out as grids keep the width they set for themselves. */
+  max-width: var(--measure);
+}
+.prose h2,
+.prose h3 {
+  color: var(--color-text);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin: 2em 0 0.6em;
+}
+.prose h2 {
+  font-size: 1.25rem;
+}
+.prose h3 {
+  font-size: 1.05rem;
+}
+/* A heading is its own link: the whole title is the target, and the hash that
+   used to sit permanently after every one of them is a mark inside it, shown
+   only when the heading is pointed at or focused.
+
+   The underline is left entirely to `.prose a` above, which is already the
+   treatment the hero's byline uses - drawn from the start in border-strong
+   and easing to brand on hover. Overriding it here with none-then-underline
+   made the line appear on hover rather than change colour, and set a colour
+   the rule underneath disagreed with, so it flashed one and settled on the
+   other. Only the offset is set, for type this much larger.
+
+   inline-block keeps the hash out of the title's underline: a decoration does
+   not draw across an atomic inline box. */
+.prose :is(h2, h3) > .manual__heading-link {
+  text-underline-offset: 4px;
+}
+.manual__hash {
+  display: inline-block;
+  margin-left: 0.35em;
+  color: var(--color-text-muted);
+  opacity: 0;
+  transition: opacity 150ms ease-out;
+}
+.manual__heading-link:hover .manual__hash,
+.manual__heading-link:focus-visible .manual__hash {
+  opacity: 1;
+}
+
+.prose p {
+  margin: 0 0 1em;
+}
+.prose a {
+  color: var(--color-text);
+  text-decoration: underline;
+  text-decoration-color: var(--color-border-strong);
+  text-underline-offset: 3px;
+  text-decoration-skip-ink: auto;
+  transition: text-decoration-color 150ms ease-out;
+}
+.prose a:hover {
+  text-decoration-color: var(--color-brand);
+}
+.prose ul,
+.prose ol {
+  margin: 0 0 1em;
+  padding-left: 1.4em;
+}
+/* The reset strips list markers and nothing restored them, so every list
+   rendered as bare indented lines. Square, because everything here is. */
+.prose ul {
+  list-style: square;
+}
+.prose ol {
+  list-style: decimal;
+}
+.prose li {
+  margin-bottom: 0.35em;
+}
+.prose li::marker {
+  color: var(--color-text-muted);
+}
+.prose img,
+.prose video {
+  max-width: 100%;
+  height: auto;
+  margin: 1.25em 0;
+  outline: 1px solid var(--t-img-outline);
+  outline-offset: -1px;
+}
+.prose code,
+.prose kbd {
+  font-family: var(--font-mono);
+  font-size: 0.86em;
+  background: var(--color-surface-2);
+  padding: 0.15em 0.4em;
+  color: var(--color-text);
+}
+.prose pre {
+  background: var(--color-bg-deep);
+  box-shadow: var(--t-elevation);
+  padding: 1em 1.25em;
+  overflow-x: auto;
+  margin: 1.25em 0;
+}
+.prose pre code {
+  background: none;
+  padding: 0;
+  font-size: 13px;
+}
+.prose pre::-webkit-scrollbar {
+  height: 8px;
+}
+.prose pre::-webkit-scrollbar-thumb {
+  background: var(--t-scroll-thumb);
+}
+.prose blockquote {
+  border-left: 2px solid var(--color-brand);
+  margin: 1.25em 0;
+  padding: 0.25em 0 0.25em 1.25em;
+  color: var(--color-text-muted);
+}
+.prose hr {
+  border: 0;
+  border-top: 1px solid var(--color-border-subtle);
+  margin: 2em 0;
+}
+.prose table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 1.25em 0;
+  font-size: 14px;
+}
+.prose th,
+.prose td {
+  border: 1px solid var(--color-border-subtle);
+  padding: 0.5em 0.75em;
+  text-align: left;
+}
+.prose th {
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  font-weight: 600;
+  background: var(--color-surface);
+}
+.prose .button,
+.prose a.button {
+  /* The ported pages ship these as an icon and a label in one anchor. The
+     icon's viewBox is 32px and nothing constrained it, so the "button" was
+     a giant filled square with a caption. Sized like the site's own
+     buttons: rounded-lg, icon at text scale, label beside it. */
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55em;
+  width: fit-content;
+  background: var(--color-primary);
+  color: var(--color-primary-foreground);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 14px;
+  padding: 0.55em 1em;
+  /* Prose paragraphs only carry bottom margins, so the space above the
+     button arrives from the paragraph before it and the space below has to
+     be the button's own: 1em + 0.25em above, matched below. */
+  margin: 0.25em 0 1.25em;
+  border-radius: var(--radius-lg);
+}
+.prose .button svg {
+  width: 1.15em;
+  height: 1.15em;
+  flex: none;
+}
+.prose .button:hover {
+  background: color-mix(in oklch, var(--color-primary) 85%, black);
+}
+.prose figure {
+  margin: 1.25em 0;
+}
+.prose figcaption {
+  font-size: 13px;
+  color: var(--color-text-muted);
+  margin-top: 0.5em;
+}
+.prose iframe {
+  max-width: 100%;
+  border: 0;
+}
+
+/* Centred in the column. Last in this section on purpose: every rule above
+   sets its element's margins with a shorthand, which resets the inline
+   margins this needs. */
+.prose
+  > :is(
+    p,
+    ul,
+    ol,
+    dl,
+    h1,
+    h2,
+    h3,
+    h4,
+    blockquote,
+    hr,
+    pre,
+    table,
+    figure,
+    img,
+    video,
+    iframe
+  ) {
+  margin-inline: auto;
+}
+
+/* --------------------------------------- ported structural page layouts */
+
+/* Pages built from repeating records (teams, patrons, sponsorships,
+   workstations, AIR) break out of the reading measure and lay out as grids
+   instead of one entry per line. */
+.ported:has(
+  .team__members,
+  .workstations__images,
+  .sponsorship,
+  .resident,
+  .rule
+) {
+  max-width: none;
+}
+
+/* People: teams, patrons, security credits */
+.ported .team {
+  margin-top: 3em;
+  border-top: 1px solid var(--color-border-subtle);
+  padding-top: 2em;
+}
+.ported .team:first-child {
+  margin-top: 0;
+  border-top: 0;
+  padding-top: 0;
+}
+.ported .team__name {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: 1.25rem;
+}
+.ported .team__description {
+  margin: 0.25em 0 0;
+  color: var(--color-text-muted);
+  font-size: 14px;
+}
+.ported .team__members {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(9.5rem, 1fr));
+  gap: 2rem 1.25rem;
+  margin-top: 1.75em;
+}
+/* The name is the link, but the whole record is the target: hovering a face
+   or a country and getting nothing back reads as a dead card. The anchor is
+   stretched over the article, which makes the card clickable and puts the
+   name's own hover state under every part of it. */
+.ported .member {
+  position: relative;
+  min-width: 0;
+}
+.ported .member__name a::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+}
+.ported .member:has(a:focus-visible) {
+  outline: 2px solid var(--t-brand);
+  outline-offset: 2px;
+}
+.ported .member__name a:focus-visible {
+  outline: none;
+}
+.ported .member__avatar {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1;
+  object-fit: cover;
+  margin: 0;
+  background: var(--color-surface);
+}
+.ported .member__name {
+  margin: 0.7em 0 0;
+  font-family: var(--font-sans);
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 0;
+}
+.ported .member__name a {
+  color: var(--color-text);
+  /* Drawn from the start in nothing, so arriving is a colour and not a line
+     appearing under the text. */
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-underline-offset: 3px;
+  transition: text-decoration-color 150ms ease-out;
+}
+.ported .member__name a:hover {
+  text-decoration-color: var(--color-brand);
+}
+.ported .member__meta {
+  margin: 0.2em 0 0;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--color-text-muted);
+}
+
+/* AIR residents: avatar beside the bio */
+.ported .resident {
+  display: grid;
+  grid-template-columns: 7.5rem minmax(0, 42rem);
+  gap: 0.35em 1.5rem;
+  align-items: start;
+  margin: 2em 0;
+}
+.ported .resident > :not(.resident__avatar) {
+  grid-column: 2;
+}
+.ported .resident__avatar {
+  grid-column: 1;
+  grid-row: 1 / span 6;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1;
+  object-fit: cover;
+  background: var(--color-surface);
+  /* On the name's cap height, not its line box - see .sponsorship__logo. The
+     name here is 1.05rem. */
+  margin: calc(0.455 * 1.05rem) 0 0;
+}
+.ported .resident__name {
+  margin: 0;
+  font-family: var(--font-sans);
+}
+.ported .resident p {
+  max-width: none;
+}
+@media (max-width: 480px) {
+  .ported .resident {
+    grid-template-columns: 1fr;
+  }
+  .ported .resident__avatar {
+    grid-row: auto;
+    max-width: 7.5rem;
+  }
+}
+
+/* Sponsorships: logo beside the terms */
+.ported .sponsorship {
+  display: grid;
+  grid-template-columns: 6rem minmax(0, 42rem);
+  gap: 0.25em 1.5rem;
+  align-items: start;
+  margin: 2.5em 0;
+  border-top: 1px solid var(--color-border-subtle);
+  padding-top: 2em;
+}
+.ported .sponsorship:first-of-type {
+  border-top: 0;
+  padding-top: 0;
+  margin-top: 1.5em;
+}
+.ported .sponsorship > :not(.sponsorship__logo) {
+  grid-column: 2;
+}
+.ported .sponsorship__logo {
+  grid-column: 1;
+  grid-row: 1 / span 6;
+  width: 100%;
+  height: auto;
+  outline: none;
+  /* Dropped to the name's cap height rather than to the top of its line box.
+     The heading is 1.25rem on the prose's 1.65 line-height, which leaves
+     4.5px of half-leading above the em box and another 4.45px between the
+     font's ascender and the top of an H: 0.447em in all, and without it the
+     logo reads as floating above a name that starts 9px lower. */
+  margin: calc(0.447 * 1.25rem) 0 0;
+}
+/* The logo is a figure in prose, and prose gives its images a margin of their
+   own; here the row it sits in is the alignment. */
+.ported .sponsorship__logo img {
+  margin: 0;
+}
+.ported .sponsorship__name {
+  margin: 0;
+  font-family: var(--font-sans);
+}
+.ported .sponsorship__terms {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--color-brand);
+  margin: 0;
+}
+.ported .sponsorship__body p {
+  max-width: none;
+}
+
+/* Workstations: photo wall */
+.ported .workstations__images {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+  gap: 0.75rem;
+  margin-top: 1.5em;
+}
+.ported .workstations__images img {
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  margin: 0;
+}
+/* The original page's lightbox markup is JS-driven; hide the dead shell */
+.ported .workstations__modal,
+.ported .workstations__backdrop {
+  display: none;
+}
+
+/* Meetup rules: two-column list */
+.ported .rules {
+  margin-top: 1.5em;
+}
+.ported .rules > *:not(.rules__header) {
+  margin: 0;
+}
+.ported .rule {
+  display: grid;
+  grid-template-columns: minmax(10rem, 16rem) minmax(0, 1fr);
+  gap: 1.5rem;
+  padding: 0.85em 0;
+  border-bottom: 1px solid var(--color-border-subtle);
+  max-width: 48rem;
+}
+.ported .rule__name {
+  margin: 0;
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 14px;
+}
+.ported .rule p,
+.ported .rule dd {
+  margin: 0;
+  font-size: 14px;
+}
+/* The class is on the iframe itself, not on a wrapper - the old selector
+   matched nothing and the embed rendered at its hardcoded 600x450. */
+.ported iframe.meetups__embed {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  border: 1px solid var(--color-border-subtle);
+  background: var(--color-surface);
+}
+.ported .meetups__calendar {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+/* The credits live at the end of the security page now. A rule above and
+   room around it make the section read as its own zone rather than the
+   prose running on; the closing note steps back from the grid. */
+.ported #credits {
+  margin-top: 3em;
+  padding-top: 2.5em;
+  border-top: 1px solid var(--color-border-subtle);
+}
+.ported #credits .team {
+  margin-top: 0;
+}
+.ported .team__note {
+  margin-top: 2.5em;
+  font-size: 14px;
+  color: var(--color-text-secondary);
+}
+
+/* ------------------------------------------- ported marketplace docs */
+
+.docs {
+  max-width: 46rem;
+}
+.docs .intro {
+  font-size: 1.05rem;
+  color: var(--color-text);
+}
+.docs .callout {
+  border: 1px solid var(--color-border-strong);
+  border-left: 2px solid var(--color-brand);
+  background: var(--color-surface);
+  padding: 1em 1.25em;
+  margin: 1.5em 0;
+}
+.docs .prominent-callout {
+  border-left-color: var(--color-tn-orange);
+}
+.docs .callout strong {
+  color: var(--color-text);
+}
+.docs .callout p {
+  margin: 0.5em 0 0;
+  font-size: 14px;
+}
+.docs .docs-section {
+  margin-top: 3em;
+  border-top: 1px solid var(--color-border-subtle);
+  padding-top: 2em;
+}
+.docs .step-number {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--color-brand);
+  letter-spacing: 0.08em;
+}
+.docs .docs-section > h2 {
+  margin-top: 0.35em;
+}
+.docs .inline-code {
+  font-family: var(--font-mono);
+  font-size: 0.86em;
+  background: var(--color-surface-2);
+  padding: 0.15em 0.4em;
+  color: var(--color-text);
+}
+.docs .check-list {
+  list-style: none;
+  padding: 0;
+  margin: 1em 0;
+}
+.docs .check-list li {
+  display: flex;
+  gap: 0.75em;
+  align-items: baseline;
+  padding: 0.6em 0;
+  border-bottom: 1px solid var(--color-border-subtle);
+}
+.docs .check-list li > span[aria-hidden] {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--color-brand);
+  flex-shrink: 0;
+}
+.docs .check-list strong {
+  color: var(--color-text);
+}
+.docs .code-block {
+  background: var(--color-bg-deep);
+  box-shadow: var(--t-elevation);
+  margin: 1.25em 0;
+  overflow: hidden;
+}
+.docs .code-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1em;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--color-text-muted);
+  padding: 0.5em 1em;
+  border-bottom: 1px solid var(--color-border-subtle);
+}
+.docs .code-block pre {
+  background: none;
+  box-shadow: none;
+  margin: 0;
+}
+.docs .copy-button {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--color-text-secondary);
+  background: none;
+  border: 1px solid var(--color-border-strong);
+  padding: 0.2em 0.7em;
+  cursor: pointer;
+  transition: color 150ms ease-out;
+}
+.docs .copy-button:hover {
+  color: var(--color-text);
+}
+.docs .syntax-key {
+  color: var(--color-tn-cyan);
+}
+.docs .syntax-string {
+  color: var(--color-brand);
+}
+.docs .syntax-number {
+  color: var(--color-tn-orange);
+}
+.docs .field-row,
+.docs .manifest-reference dl > div {
+  display: grid;
+  grid-template-columns: minmax(9rem, 14rem) 1fr;
+  gap: 1em;
+  padding: 0.6em 0;
+  border-bottom: 1px solid var(--color-border-subtle);
+  font-size: 14px;
+}
+.docs .field-row dt,
+.docs .field-row > :first-child {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--color-text);
+}
+.docs .example-file,
+.docs .example-file-tree {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  background: var(--color-bg-deep);
+  box-shadow: var(--t-elevation);
+  padding: 1em 1.25em;
+  margin: 1.25em 0;
+  overflow-x: auto;
+}
+.docs .tree-branch {
+  color: var(--color-text-muted);
+}
+.docs .official-reference a:not(.button),
+.docs .submit-action a:not(.button) {
+  color: var(--color-text);
+}
+.docs .troubleshooting-list dt {
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  font-weight: 600;
+  margin-top: 1em;
+}
+.docs .sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+}
+
+/* ---------------------------------------------------------------- hero fx */
+
+@keyframes caret-blink {
+  0%,
+  49% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0;
+  }
+}
+.hero-caret {
+  animation: caret-blink 1.1s steps(1) infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-caret {
+    animation: none;
+  }
+}
+
+/* The hero's server-rendered word stays out of sight while an effect is
+   about to make it (see etchInitScript). The canvas hides it for good once
+   it has painted. */
+.etch-pending [data-hero-wordmark] {
+  visibility: hidden;
+}
+
+/* The edge of the music card's cover until the sound has been turned on
+   once: a brand-ink border that breathes, so the button asks for the click
+   without moving. Held still for anyone who asked for less motion. */
+@keyframes music-ring {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.3;
+  }
+}
+.music-ring {
+  animation: music-ring 1.8s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .music-ring {
+    animation: none;
+  }
+}
+
+/* The music card's seek range: a transparent track over the painted
+   progress line, and no handle to speak of - the end of the line is the
+   handle. The thumb is kept a sliver wide and invisible so dragging works
+   the way a range drags. */
+.music-seek::-webkit-slider-runnable-track {
+  height: 14px;
+  background: transparent;
+}
+.music-seek::-moz-range-track {
+  height: 14px;
+  background: transparent;
+}
+.music-seek::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 1px;
+  height: 14px;
+  background: transparent;
+  border: 0;
+}
+.music-seek::-moz-range-thumb {
+  width: 1px;
+  height: 14px;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+}
+
+@keyframes notice-in {
+  from {
+    opacity: 0;
+    transform: translateX(12px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.notice-in {
+  animation: notice-in 300ms ease-out both;
+}
+/* The first-visit theme hint sits top right, which on a phone is exactly
+   where the open menu puts its links. The menu is the newer intent and it
+   carries a "Change the theme" row of its own, so the hint steps out of the
+   way and comes back when the sheet closes. */
+[data-nav-menu='open'] .notice-in {
+  display: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .notice-in {
+    animation: none;
+  }
+}
+
+@keyframes canvas-warmup {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.hero-canvas-in {
+  animation: canvas-warmup 900ms ease-out both;
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-canvas-in {
+    animation: none;
+  }
+}
+
+/* ---------------------------------------------------------------- nav mark */
+
+/* Hovering the mark redraws it: the frame first, then the stems and the
+   spiral out to its tail. At rest every stroke is fully drawn. */
+.mark-draw path {
+  stroke-dasharray: 1;
+}
+@keyframes mark-draw {
+  from {
+    stroke-dashoffset: 1;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+@keyframes mark-draw-back {
+  from {
+    stroke-dashoffset: -1;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+.mark-draw-trigger:is(:hover, :focus-visible) .mark-draw path {
+  animation: mark-draw 650ms cubic-bezier(0.45, 0, 0.25, 1) both;
+}
+.mark-draw-trigger:is(:hover, :focus-visible) .mark-draw path:nth-child(2) {
+  animation-duration: 110ms;
+  animation-delay: 250ms;
+  animation-timing-function: ease-out;
+}
+.mark-draw-trigger:is(:hover, :focus-visible) .mark-draw path:nth-child(3) {
+  animation-duration: 470ms;
+  animation-delay: 360ms;
+}
+.mark-draw-trigger:is(:hover, :focus-visible) .mark-draw path:nth-child(4) {
+  animation-name: mark-draw-back;
+  animation-duration: 70ms;
+  animation-delay: 540ms;
+}
+.mark-draw-trigger:is(:hover, :focus-visible) .mark-draw path:nth-child(5) {
+  animation-name: mark-draw-back;
+  animation-duration: 70ms;
+  animation-delay: 600ms;
+}
+@media (prefers-reduced-motion: reduce) {
+  .mark-draw path {
+    animation: none;
+  }
+}
+
+/* ----------------------------------------------------------------- figures */
+
+/* The charts beside the news draw left to right once their card is on
+   screen; the numbers count up in the component on the same cue. */
+.figure-chart {
+  clip-path: inset(0 100% 0 0);
+}
+.figure-live .figure-chart {
+  clip-path: inset(0);
+  transition: clip-path 1.2s cubic-bezier(0.21, 0.47, 0.32, 0.98);
+}
+@media (prefers-reduced-motion: reduce) {
+  .figure-chart,
+  .figure-live .figure-chart {
+    clip-path: none;
+    transition: none;
+  }
+}
+
+/* ----------------------------------------------------------- team clusters */
+
+/* The faces sit at their open spacing and are drawn together by a transform.
+   Hovering one lifts it to the top and parts the stack around it: everything
+   after it slides right, everything before it slides left, and the rest of
+   the overlap stays as it was. The same happens to a face picked by tap. The
+   team's name fans the whole cluster out. */
+.team-cluster {
+  --team-time: 320ms;
+  --team-ease: cubic-bezier(0.33, 1, 0.68, 1);
+  /* Face and gap: seven faces at their open spacing have to fit the content
+     column, since that is the row's layout width even while it is pulled
+     together. 44px faces need 356px; a 360px phone has 328px, a 320px one
+     288px. */
+  --team-face: 44px;
+  --team-gap: 8px;
+}
+@media (max-width: 399px) {
+  .team-cluster {
+    --team-face: 40px;
+    --team-gap: 6px;
+  }
+}
+@media (max-width: 349px) {
+  .team-cluster {
+    --team-face: 36px;
+    --team-gap: 6px;
+  }
+}
+.team-faces {
+  margin-right: calc((var(--n) - 1) * -20px);
+  transition: margin-right var(--team-time) var(--team-ease);
+}
+.team-face {
+  --shift: 0px;
+  z-index: var(--z);
+  transform: translateX(calc(var(--i) * -20px + var(--shift)));
+  transition: transform var(--team-time) var(--team-ease);
+}
+.team-face a {
+  transition:
+    scale var(--team-time) var(--team-ease),
+    box-shadow 150ms ease-out,
+    color 150ms ease-out;
+}
+.team-face[data-picked] {
+  z-index: 60;
+}
+.team-face[data-picked] a {
+  scale: 1.15;
+}
+.team-face[data-picked] ~ .team-face {
+  --shift: 14px;
+}
+.team-face:has(~ .team-face[data-picked]) {
+  --shift: -14px;
+}
+@media (hover: hover) {
+  .team-face:hover {
+    z-index: 60;
+  }
+  .team-face:hover a {
+    scale: 1.15;
+  }
+  .team-face:hover ~ .team-face {
+    --shift: 14px;
+  }
+  .team-face:has(~ .team-face:hover) {
+    --shift: -14px;
+  }
+}
+/* The first face stays put, so the row keeps its left edge. Listed after
+   the parting rules, which it has to outrank. */
+.team-faces > .team-face:first-child {
+  --shift: 0px;
+}
+.team-cluster[data-open] .team-faces {
+  margin-right: 0;
+}
+.team-cluster[data-open] .team-face {
+  transform: none;
+}
+/* The name under the cluster fades in, and again when it changes hands. */
+.team-named {
+  animation: team-named 200ms ease-out both;
+}
+@keyframes team-named {
+  from {
+    opacity: 0;
+    translate: 0 2px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .team-faces,
+  .team-face,
+  .team-face a {
+    transition: none;
+  }
+  .team-named {
+    animation: none;
+  }
+}
+
+/* -------------------------------------------------------------- hero intro */
+
+@keyframes hero-rise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.hero-intro [data-hero-stagger] {
+  animation: hero-rise 550ms cubic-bezier(0.21, 0.47, 0.32, 0.98) both;
+  animation-delay: calc(var(--stagger, 0) * 90ms);
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-intro [data-hero-stagger] {
+    animation: none;
+  }
+}

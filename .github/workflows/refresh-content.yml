@@ -1,0 +1,74 @@
+# Keeps the plugin catalogue current without anyone running the importer by
+# hand. Everything else the site shows comes from this repository's own
+# files and needs no refreshing: the news the Ruby build renders, the manual
+# the bot regenerates, the themes page contributors edit, the assets. The
+# catalogue and the similarity map derived from it come from the marketplace
+# repository, and the release version from the OS repository's releases, so
+# they are fetched here on a schedule and committed.
+#
+# A commit pushed with the workflow's own token does not trigger other
+# workflows - GitHub stops workflows from setting each other off by
+# accident - so a refresh that only pushed would sit in git undeployed until
+# the next human push. This one asks the deploy to run, explicitly, after it
+# has pushed.
+name: Refresh plugin catalogue
+
+on:
+  schedule:
+    # Every six hours, off the top of the hour to stay clear of the crowd.
+    - cron: '17 */6 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: write
+
+concurrency:
+  group: refresh-content
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      - name: Refresh the catalogue, the similarity map, the release and the figures
+        # The figures come from GitHub's own API. Unauthenticated, a runner
+        # shares an hourly allowance of sixty requests with every other job
+        # on its address, and a refused request means the figures quietly
+        # stay as they were. The workflow's own token raises that to a
+        # thousand an hour for this repository and costs nothing.
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: npm run refresh-data
+
+      - name: Commit what changed
+        run: |
+          git add src/data public/data
+          if git diff --cached --quiet; then
+            echo "Nothing changed upstream."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Refresh the data that comes from outside" \
+            -m "$(git diff --cached --stat | tail -1)"
+          git pull --rebase origin "${GITHUB_REF_NAME}"
+          git push origin HEAD:"${GITHUB_REF_NAME}"
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+        id: commit
+
+      - name: Deploy what changed
+        if: steps.commit.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run pages.yml --ref "${GITHUB_REF_NAME}"

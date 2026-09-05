@@ -1,0 +1,199 @@
+import { Link } from '@tanstack/react-router'
+import { OmarchyWordmark } from '@/components/Brand'
+import { PixelBackdrop } from '@/components/HeroShader'
+import {
+  BasecampMark,
+  CloudflareMark,
+  HeyMark,
+  ThirtySevenSignalsMark,
+} from '@/components/PartnerLogos'
+import { useTopLink } from '@/lib/hash-scroll'
+import release from '@/data/version.json'
+
+const columns = [
+  {
+    title: 'Explore',
+    links: [
+      { label: 'Manual', to: '/manual/' },
+      { label: 'Plugins', to: '/plugins/' },
+      { label: 'Themes', to: '/themes/' },
+      { label: 'News', to: '/news/' },
+      { label: 'Download the ISO', href: release.isoUrl },
+    ],
+  },
+  {
+    title: 'Community',
+    links: [
+      { label: 'Discord', href: 'https://discord.gg/tXFUdasqhY' },
+      { label: 'Meetups', splat: 'meetups' },
+      { label: 'Teams', to: '/teams/' },
+      { label: 'Artists in Residence', splat: 'air' },
+      { label: 'Workstations', splat: 'workstations' },
+    ],
+  },
+  {
+    title: 'Foundation',
+    links: [
+      { label: 'Omacom Foundation', splat: 'foundation' },
+      { label: 'Patrons', splat: 'patrons' },
+      { label: 'Sponsorships', splat: 'sponsorships' },
+    ],
+  },
+  {
+    title: 'Project',
+    links: [
+      { label: 'GitHub', href: 'https://github.com/omacom/omarchy' },
+      { label: 'Security', splat: 'security' },
+      { label: 'Brand', splat: 'brand' },
+      {
+        label: 'Merch',
+        href: 'https://supply.37signals.com/collections/omarchy',
+      },
+      { label: 'Omakub', splat: 'omakub' },
+    ],
+  },
+] as const
+
+const focusRing =
+  'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring'
+
+const footerLink = `text-text-secondary transition-colors duration-150 ease-out hover:text-text ${focusRing}`
+
+const creditLink = `text-text-secondary transition-colors duration-150 ease-out hover:text-text ${focusRing}`
+
+export function SiteFooter() {
+  const homeLink = useTopLink()
+  return (
+    <footer
+      className="relative isolate overflow-hidden border-t border-border-subtle"
+      style={{
+        // The field paints this itself; declared here so the ground is
+        // already right for the frame before the canvas warms up.
+        background: 'var(--t-field-bg)',
+        paddingBottom: 'env(safe-area-inset-bottom)',
+      }}
+    >
+      <PixelBackdrop className="footer-rise" />
+
+      <div className="footer-rise relative mx-auto max-w-6xl px-4 py-14 sm:px-6">
+        <div className="flex flex-col gap-10 lg:flex-row lg:justify-between">
+          {/* Wide enough to hold "Incubated at 37signals, makers of Basecamp
+              and HEY" on one line; at 20rem it broke with "and HEY" alone on
+              the second. */}
+          <div className="max-w-sm">
+            {/* The way back up: home, at the top, like the mark in the bar.
+                Hovering lifts it to the exact colour the hero's pixels rise
+                to, since that is the tint the field uses for a hovered
+                logo. */}
+            <Link
+              to="/"
+              aria-label="Omarchy home"
+              onClick={homeLink}
+              data-quiet
+              className={`group block ${focusRing}`}
+            >
+              <OmarchyWordmark className="h-6 w-auto text-brand transition-colors duration-150 ease-out group-hover:text-(--t-field-hover)" />
+            </Link>
+            <p
+              data-quiet
+              className="mt-4 text-sm leading-relaxed text-text-muted"
+            >
+              <span className="block">
+                Beautiful, fun &amp; opinionated Linux by{' '}
+                <a href="https://dhh.dk" className={footerLink}>
+                  DHH
+                </a>
+                .
+              </span>
+              <span className="block">
+                The malleable OS for the age of agents.
+              </span>
+            </p>
+
+            {/* Who is behind it and who carries it: attribution belongs with
+                the identity, not down in the fine print with the legal. */}
+            <div className="mt-4 flex flex-col gap-4 text-[13px] text-text-muted [text-wrap:pretty]">
+              <p data-quiet>
+                Incubated at{' '}
+                {/* The link stays plain inline text, so its words sit on the
+                    paragraph's own baseline; an inline-flex box aligned to
+                    the middle of the line dropped them below it. The mark is
+                    an inline glyph beside them, nudged to sit on that same
+                    baseline. */}
+                <a href="https://37signals.com" className={creditLink}>
+                  <ThirtySevenSignalsMark className="mr-[3px] inline-block size-4 shrink-0 align-[-0.28em]" />
+                  37signals
+                </a>
+                , makers of{' '}
+                <a href="https://basecamp.com" className={creditLink}>
+                  <BasecampMark className="mr-[5px] inline-block h-4 w-auto align-[-0.28em]" />
+                  Basecamp
+                </a>{' '}
+                and{' '}
+                <a href="https://hey.com" className={creditLink}>
+                  <HeyMark className="mr-[5px] inline-block h-4 w-auto align-[-0.28em]" />
+                  HEY
+                </a>
+              </p>
+              <p data-quiet>
+                Sponsored hosting by{' '}
+                <a href="https://cloudflare.com" className={creditLink}>
+                  <CloudflareMark className="mr-[5px] inline-block h-3 w-auto shrink-0 align-[-0.15em]" />
+                  Cloudflare
+                </a>
+              </p>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-2 gap-10 sm:grid-cols-4">
+            {columns.map((col) => (
+              <nav key={col.title} data-quiet aria-label={col.title}>
+                <h2 className="font-sans text-xs tracking-widest text-text-muted uppercase">
+                  {col.title}
+                </h2>
+                <ul className="mt-3.5 flex flex-col gap-2.5">
+                  {col.links.map((link) => (
+                    <li key={link.label}>
+                      {'splat' in link ? (
+                        <Link
+                          to="/$/"
+                          params={{ _splat: link.splat }}
+                          className={`text-sm ${footerLink}`}
+                        >
+                          {link.label}
+                        </Link>
+                      ) : 'to' in link ? (
+                        <Link to={link.to} className={`text-sm ${footerLink}`}>
+                          {link.label}
+                        </Link>
+                      ) : (
+                        <a href={link.href} className={`text-sm ${footerLink}`}>
+                          {link.label}
+                        </a>
+                      )}
+                    </li>
+                  ))}
+                </ul>
+              </nav>
+            ))}
+          </div>
+        </div>
+
+        {/* The fine print, and only the fine print. */}
+        <div className="mt-12 flex flex-col gap-2 border-t border-border-subtle pt-6 text-[13px] text-text-muted sm:flex-row sm:items-center sm:justify-between">
+          <p data-quiet>
+            <Link to="/$/" params={{ _splat: 'brand' }} className={footerLink}>
+              Omarchy is a pending trademark
+            </Link>
+          </p>
+          <p data-quiet>
+            Partner inquiries:{' '}
+            <a href="mailto:david@omarchy.org" className={footerLink}>
+              david@omarchy.org
+            </a>
+          </p>
+        </div>
+      </div>
+    </footer>
+  )
+}
