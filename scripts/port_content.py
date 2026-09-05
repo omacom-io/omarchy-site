@@ -136,11 +136,24 @@ def parse_teams(html: str) -> list[dict]:
                 'href': person.group(1),
                 'avatar': avatar.group(1) if avatar else None,
             })
+        # The line under a team's members, when it has one: a sentence with
+        # at most one link in it (the security page, the rangers' address).
+        note = None
+        note_m = re.search(r'<p class="team__note">(.*?)</p>', body, re.S)
+        if note_m:
+            raw = note_m.group(1)
+            link = re.search(r'<a href="([^"]+)">([^<]*)</a>', raw)
+            note = {
+                'text': html_mod.unescape(re.sub(r'<[^>]+>', '', raw).strip()),
+                'href': link.group(1) if link else None,
+                'linkText': html_mod.unescape(link.group(2).strip()) if link else None,
+            }
         teams.append({
             'id': team_id,
             'name': html_mod.unescape(name.group(1).strip()) if name else team_id,
             'description': html_mod.unescape(desc.group(1).strip()) if desc else '',
             'members': members,
+            'note': note,
         })
     return teams
 

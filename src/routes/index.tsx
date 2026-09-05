@@ -194,7 +194,7 @@ function Home() {
     <Button
       variant="outline"
       nativeButton={false}
-      render={<Link to="/$/" params={{ _splat: 'teams' }} />}
+      render={<Link to="/teams/" />}
     >
       All teams
       <ArrowRightIcon data-icon="inline-end" />

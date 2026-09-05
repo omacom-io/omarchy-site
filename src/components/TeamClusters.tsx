@@ -139,8 +139,7 @@ export function TeamClusters() {
                   }
                 >
                   <Link
-                    to="/$/"
-                    params={{ _splat: 'teams' }}
+                    to="/teams/"
                     aria-label={`${rest} more on the teams page`}
                     className="flex size-11 items-center justify-center rounded-full bg-surface-2 font-mono text-xs text-text-secondary ring-2 ring-bg transition-colors duration-150 ease-out hover:text-text focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
                   >
