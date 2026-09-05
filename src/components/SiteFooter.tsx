@@ -7,7 +7,7 @@ import {
   HeyMark,
   ThirtySevenSignalsMark,
 } from '@/components/PartnerLogos'
-import { OPEN_PICKER_EVENT } from '@/lib/theme'
+import { useTopLink } from '@/lib/hash-scroll'
 import release from '@/data/version.json'
 
 const columns = [
@@ -62,6 +62,7 @@ const footerLink = `text-text-secondary transition-colors duration-150 ease-out 
 const creditLink = `text-text-secondary transition-colors duration-150 ease-out hover:text-text ${focusRing}`
 
 export function SiteFooter() {
+  const homeLink = useTopLink()
   return (
     <footer
       className="relative isolate overflow-hidden border-t border-border-subtle"
@@ -80,21 +81,19 @@ export function SiteFooter() {
               and HEY" on one line; at 20rem it broke with "and HEY" alone on
               the second. */}
           <div className="max-w-sm">
-            {/* The same handle as the hero's wordmark: it opens the picker,
-                and hovering lifts it to the exact colour the hero's pixels
-                rise to, since that is the tint the field itself uses for a
-                hovered logo. */}
-            <button
-              type="button"
-              aria-label="Omarchy: change the theme"
-              onClick={() =>
-                window.dispatchEvent(new CustomEvent(OPEN_PICKER_EVENT))
-              }
+            {/* The way back up: home, at the top, like the mark in the bar.
+                Hovering lifts it to the exact colour the hero's pixels rise
+                to, since that is the tint the field uses for a hovered
+                logo. */}
+            <Link
+              to="/"
+              aria-label="Omarchy home"
+              onClick={homeLink}
               data-quiet
-              className={`group block cursor-pointer ${focusRing}`}
+              className={`group block ${focusRing}`}
             >
               <OmarchyWordmark className="h-6 w-auto text-brand transition-colors duration-150 ease-out group-hover:text-(--t-field-hover)" />
-            </button>
+            </Link>
             <p
               data-quiet
               className="mt-4 text-sm leading-relaxed text-text-muted"

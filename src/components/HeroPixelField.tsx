@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react'
-import { OPEN_PICKER_EVENT, PICKER_STATE_EVENT, THEME_EVENT } from '@/lib/theme'
+import { PICKER_STATE_EVENT, THEME_EVENT } from '@/lib/theme'
 import { GRID_CLEAR_EVENT, GRID_EVENT } from '@/lib/pixel-grid'
 import {
   WORDMARK_HEIGHT,
@@ -459,10 +459,16 @@ export function HeroPixelField({
     let beatPulse = 0
 
     let effect = effectFromLocation()
+    /** 1 while the pointer rests on a lit pixel of the word (see below). */
+    let logoHoverTarget = 0
     const beginEtch = () => {
       const token = ++etchToken
       etch?.free()
       etch = null
+      // The hover lift is disarmed for the run, and comes back only with
+      // the next real mouse move: a finished word should not change colour
+      // under a pointer that has not moved since it clicked.
+      logoHoverTarget = 0
       void startEtch(
         glyph.rows,
         glyph.width,
@@ -575,11 +581,12 @@ export function HeroPixelField({
     let targetStrength = 0
     let pings: Ping[] = []
     let holding: { x: number; y: number; start: number } | null = null
-    // The wordmark doubles as the theme button: hovering any of its lit
-    // pixels raises the whole logo to the hover tint, and a click opens
-    // the picker rather than firing a stamp.
+    // The wordmark is a button: hovering any of its lit pixels raises the
+    // whole logo to the hover tint, and a click plays the word in again
+    // with another effect rather than firing a stamp. The 404 gives the
+    // press its own meaning (home). With motion reduced there is no effect
+    // to play, so the word is not a button there.
     let logoHover = 0
-    let logoHoverTarget = 0
     let logoPending = false
     let pickerOpen = false
 
@@ -862,6 +869,9 @@ export function HeroPixelField({
         etch = null
       }
       const etching = etch !== null || awaitingFirstEtch
+      // While an effect is making the word, the hover lift stays out of
+      // it: the click was to watch the effect, in its own colours.
+      if (etching) logoHover = 0
 
       /** The strongest live stamp covering a device-px point, if any. */
       const stampAt = (cx: number, cy: number) => {
@@ -1254,7 +1264,8 @@ export function HeroPixelField({
       // move after it closes re-arms it. Without this, choosing a theme
       // dropped you straight back into a hovered logo, since the pointer
       // never left it.
-      const onLogo = !pickerOpen && inside && onLogoAt(x, y)
+      const pressable = Boolean(press.current) || (isHero && !reducedMotion)
+      const onLogo = pressable && !pickerOpen && inside && onLogoAt(x, y)
       logoHoverTarget = onLogo ? 1 : 0
       if (sectionEl) sectionEl.style.cursor = onLogo ? 'pointer' : ''
       if (!inside) return
@@ -1269,7 +1280,7 @@ export function HeroPixelField({
       if (!inside) return
       pointer.x = x
       pointer.y = y
-      // A press on the wordmark is a theme-picker click, not a stamp.
+      // A press on the wordmark plays the word in again, not a stamp.
       if (onLogoAt(x, y)) {
         logoPending = true
         return
@@ -1288,7 +1299,7 @@ export function HeroPixelField({
         const { inside, x, y } = locate(event)
         if (inside && onLogoAt(x, y)) {
           if (press.current) press.current()
-          else window.dispatchEvent(new CustomEvent(OPEN_PICKER_EVENT))
+          else if (isHero && !reducedMotion) beginEtch()
         }
         return
       }
