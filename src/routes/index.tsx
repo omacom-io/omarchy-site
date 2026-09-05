@@ -30,6 +30,7 @@ import { cn } from '@/lib/utils'
 import { getNewsIndex } from '@/lib/content'
 import { getPluginHighlights } from '@/lib/plugins'
 import themes from '@/data/themes.json'
+import banner from '@/data/banner.json'
 import release from '@/data/version.json'
 import { SITE_DESCRIPTION, seo } from '@/lib/seo'
 
@@ -133,6 +134,42 @@ const communityCards = [
     cta: 'Browse the store',
   },
 ]
+
+const NEWS_PATH = /^\/news\/(\d{4})\/(\d{2})\/([^/]+)\/?$/
+
+/** The callout pill. A news address is a router link, so the music keeps
+ *  playing across the visit; anything else is a plain link. */
+function HeroCallout({ href, html }: { href: string; html: string }) {
+  const className =
+    'group inline-flex max-w-full items-center gap-2 border border-brand/40 bg-bg/60 px-3.5 py-1.5 text-left font-mono text-[13px] leading-snug text-brand transition-colors duration-150 ease-out hover:border-brand hover:bg-brand hover:text-bg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring'
+  const inner = (
+    <>
+      {/* Wraps on a narrow screen rather than cutting the news short; the
+          <s> the old numbers wear when a figure is updated stays legible. */}
+      <span
+        className="min-w-0 [&_s]:text-current/60"
+        dangerouslySetInnerHTML={{ __html: html }}
+      />
+      <ArrowRightIcon className="size-4 shrink-0 transition-transform duration-150 ease-out group-hover:translate-x-0.5" />
+    </>
+  )
+  const news = NEWS_PATH.exec(href)
+  if (news)
+    return (
+      <Link
+        to="/news/$year/$month/$slug/"
+        params={{ year: news[1], month: news[2], slug: news[3] }}
+        className={className}
+      >
+        {inner}
+      </Link>
+    )
+  return (
+    <a href={href} className={className}>
+      {inner}
+    </a>
+  )
+}
 
 function Home() {
   const { top, total, news } = Route.useLoaderData()
@@ -252,6 +289,20 @@ function Home() {
             the screen. */}
         <div className="pointer-events-none relative flex flex-1 flex-col items-center px-6">
           <div className="flex-1" />
+          {/* The callout, when there is one: the line the site keeps in its
+              index.html for the news of the moment, read at build time. A
+              pill over the word, first thing read top down, five cells
+              above it as the copy is five below. The field stands clear of
+              it like it does of the copy. Nothing shifts when there is
+              none; the block is simply shorter. */}
+          {banner ? (
+            <div
+              data-hero-quiet
+              className="pointer-events-auto mb-12 flex w-full justify-center lg:mb-[calc(var(--pxr)*5)]"
+            >
+              <HeroCallout href={banner.href} html={banner.html} />
+            </div>
+          ) : null}
           {/* The slot the field measures its cell size from. Server-rendered
               as the SVG so the wordmark is there before any script runs, then
               handed over to the canvas once it has painted the same pixels. */}
@@ -310,12 +361,17 @@ function Home() {
               {/* Both stay fully opaque, hover included: the default hover
                   drops the fill to 80% and the outline variant is a tinted
                   translucent panel, which lets the field show through the
-                  one place on the site with a moving background. Height
-                  still tracks the lattice; width follows the label so the
-                  padding is not eaten by a cell count. */}
+                  one place on the site with a moving background. Both are
+                  40px tall, the pill above the word 32px: two heights on
+                  one 8px grid, and the pill stays a line, not a third
+                  button. Width follows the label. The padding is set by
+                  eye: 16px on the text side, 12px on the icon side, since
+                  the glyphs leave white space inside their own box and the
+                  eye adds it to the padding. The play triangle also moves a
+                  pixel toward its point. */}
               <Button
                 size="lg"
-                className="lg:h-[calc(var(--pxr)*4)]"
+                className="h-10 pr-4 has-data-[icon=inline-start]:pl-3"
                 nativeButton={false}
                 onClick={installLink}
                 render={<Link to="/" hash="install" />}
@@ -326,12 +382,15 @@ function Home() {
               <Button
                 size="lg"
                 variant="outline"
-                className="lg:h-[calc(var(--pxr)*4)]"
+                className="h-10 pr-4 has-data-[icon=inline-start]:pl-3"
                 nativeButton={false}
                 onClick={watchLink}
                 render={<Link to="/" hash="watch" />}
               >
-                <PlayIcon data-icon="inline-start" />
+                {/* Filled, and its point is its right edge, so it gets two
+                    pixels more room before the label than the outlined
+                    download glyph needs. */}
+                <PlayIcon data-icon="inline-start" className="mr-0.5" />
                 See it in action
               </Button>
             </div>
