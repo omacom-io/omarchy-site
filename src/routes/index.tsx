@@ -1,5 +1,5 @@
 import { Link, createFileRoute } from '@tanstack/react-router'
-import { useEffect, useState } from 'react'
+import { useEffect, useLayoutEffect, useState } from 'react'
 import {
   ArrowRightIcon,
   BrushIcon,
@@ -14,6 +14,7 @@ import {
 import { OmarchyWordmark } from '@/components/Brand'
 import { HeroNavGhost } from '@/components/SiteHeader'
 import { HeroShader } from '@/components/HeroShader'
+import { EtchPicker } from '@/components/EtchPicker'
 import { InstallCommand } from '@/components/InstallCommand'
 import { CardRail } from '@/components/CardRail'
 import { Figures } from '@/components/Figures'
@@ -138,6 +139,23 @@ function Home() {
   const installLink = useHashLink('install')
   const watchLink = useHashLink('watch')
   const [painted, setPainted] = useState(false)
+  const [etchAsked, setEtchAsked] = useState(false)
+  useEffect(() => {
+    setEtchAsked(new URLSearchParams(window.location.search).has('etch'))
+  }, [])
+  // The canvas cuts the word in as an entrance, so when it is going to, the
+  // server-rendered word steps aside at once rather than showing whole and
+  // then vanishing to be redrawn. Reduced motion keeps the plain handover.
+  useEffect(() => {
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches)
+      setPainted(true)
+  }, [])
+  // The class from the head kept the word hidden until now. It can only go
+  // once the word's own hidden class is in the DOM, before the next paint,
+  // or the word shows for a frame in between.
+  useLayoutEffect(() => {
+    if (painted) document.documentElement.classList.remove('etch-pending')
+  }, [painted])
 
   // Intro stagger plays once per session; returning within the session
   // renders the resting state immediately.
@@ -217,6 +235,10 @@ function Home() {
         style={{ background: 'var(--t-field-bg)' }}
       >
         <HeroShader onPainted={() => setPainted(true)} />
+        {/* The effect panel: always on the dev server, and on the live
+            preview only for an address that asks (?etch=...), while the
+            effects are being tried. Temporary, like the rest of the etch. */}
+        {import.meta.env.DEV || etchAsked ? <EtchPicker /> : null}
 
         {/* The bar's labels, blended against the canvas. They have to live in
             here to reach it: the real header is sticky, and a sticky element

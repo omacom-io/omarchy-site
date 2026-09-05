@@ -1354,6 +1354,13 @@ h6 {
   }
 }
 
+/* The hero's server-rendered word stays out of sight while an effect is
+   about to make it (see etchInitScript). The canvas hides it for good once
+   it has painted. */
+.etch-pending [data-hero-wordmark] {
+  visibility: hidden;
+}
+
 /* The edge of the music card's cover until the sound has been turned on
    once: a brand-ink border that breathes, so the button asks for the click
    without moving. Held still for anyone who asked for less motion. */

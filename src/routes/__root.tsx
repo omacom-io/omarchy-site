@@ -12,6 +12,7 @@ import monoWoff2 from '@fontsource-variable/jetbrains-mono/files/jetbrains-mono-
 import '../styles.css'
 import appCss from '../styles.css?url'
 import { themeInitScript } from '@/lib/theme'
+import { etchInitScript } from '@/lib/etch'
 import { OG_IMAGE, SITE_DESCRIPTION } from '@/lib/seo'
 import { SiteHeader } from '@/components/SiteHeader'
 import { NotFoundHero } from '@/components/NotFoundHero'
@@ -53,7 +54,7 @@ export const Route = createRootRoute({
       // colour the page is actually showing that strip, section by section.
       { name: 'theme-color', content: '#1a1b26' },
     ],
-    scripts: [{ children: themeInitScript }],
+    scripts: [{ children: themeInitScript }, { children: etchInitScript }],
     links: [
       { rel: 'stylesheet', href: appCss },
       // The wordmark is the largest thing above the fold on the home page.
