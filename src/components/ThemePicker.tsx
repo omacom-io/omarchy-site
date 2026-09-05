@@ -25,6 +25,11 @@ import { cn } from '@/lib/utils'
  * applies immediately, so the page behind the picker is the live preview,
  * exactly like the desktop re-theming behind Omarchy's own picker.
  */
+/** A theme's desktop screenshot, the card it shows as in the deck. WebP,
+ *  since twenty-two of them as PNG came to eight megabytes. */
+const previewSrc = (id: string) =>
+  `/assets/images/theme-previews/${id}.webp`
+
 /** Omarchy's card slant: a 2.5% lean, top edge shifted right of the bottom. */
 const PARALLELOGRAM = 'polygon(2.5% 0%, 100% 0%, 97.5% 100%, 0% 100%)'
 
@@ -159,26 +164,32 @@ export function ThemePicker() {
     )
   }, [open])
 
-  // Warm the preview images once the page is idle: they are only in the
-  // DOM while the picker is open, so without this the first open fetched
-  // and decoded them on the spot and visibly stuttered. Low priority
-  // keeps the warm-up from competing with real content.
+  // Warm the preview images the deck is about to show: they are only in
+  // the DOM while the picker is open, so without this the first open
+  // fetched and decoded them on the spot and visibly stuttered. Only the
+  // front card and the two either side are ever visible, so those five are
+  // warmed once the page is idle, and each turn of the deck warms the next
+  // pair before they slide in. Warming all twenty-two cost every visitor
+  // several megabytes for a picker most never open. Low priority keeps the
+  // warm-up from competing with real content.
+  const warmed = useRef(new Set<string>())
+  const warmAround = useCallback((at: number) => {
+    for (let d = -2; d <= 2; d++) {
+      const theme =
+        SITE_THEMES[(at + d + SITE_THEMES.length) % SITE_THEMES.length]
+      if (warmed.current.has(theme.id)) continue
+      warmed.current.add(theme.id)
+      const img = new Image()
+      img.fetchPriority = 'low'
+      img.decoding = 'async'
+      img.src = previewSrc(theme.id)
+      // Not every browser has decode(), whatever lib.dom promises.
+      // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+      img.decode?.().catch(() => {})
+    }
+  }, [])
   useEffect(() => {
     let cancelled = false
-    const warmed: HTMLImageElement[] = []
-    const warm = () => {
-      if (cancelled) return
-      for (const theme of SITE_THEMES) {
-        const img = new Image()
-        img.fetchPriority = 'low'
-        img.decoding = 'async'
-        img.src = `/assets/images/theme-previews/${theme.id}.png`
-        // Not every browser has decode(), whatever lib.dom promises.
-        // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
-        img.decode?.().catch(() => {})
-        warmed.push(img)
-      }
-    }
     // Safari went years without requestIdleCallback and some WebViews still
     // have none, so the fallback is load-bearing however certain lib.dom is
     // that the callback is always there. Naming the optional type is a
@@ -187,11 +198,18 @@ export function ThemePicker() {
       (window as { requestIdleCallback?: (cb: () => void) => void })
         .requestIdleCallback ??
       ((cb: () => void) => window.setTimeout(cb, 1500))
-    idle(() => warm())
+    idle(() => {
+      if (cancelled) return
+      const at = SITE_THEMES.findIndex((t) => t.id === readTheme())
+      warmAround(at >= 0 ? at : 0)
+    })
     return () => {
       cancelled = true
     }
-  }, [])
+  }, [warmAround])
+  useEffect(() => {
+    if (open) warmAround(index)
+  }, [open, index, warmAround])
 
   // The welcome notice, the way Omarchy teaches its own hotkeys on first
   // boot: one card, top right, first visit only. It is also the way in on
@@ -394,7 +412,7 @@ export function ThemePicker() {
                       slides sideways inside the frame to present its middle
                       in that sliver rather than a bare edge. */}
                     <img
-                      src={`/assets/images/theme-previews/${theme.id}.png`}
+                      src={previewSrc(theme.id)}
                       alt={`${theme.name} theme preview`}
                       width={1800}
                       height={1012}
@@ -408,7 +426,7 @@ export function ThemePicker() {
                         if (img.dataset.retried) return
                         img.dataset.retried = ''
                         window.setTimeout(() => {
-                          img.src = `/assets/images/theme-previews/${theme.id}.png?retry`
+                          img.src = `${previewSrc(theme.id)}?retry`
                         }, 1000)
                       }}
                       className="w-full select-none object-cover transition-[transform,filter] duration-300 ease-out"
