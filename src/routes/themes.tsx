@@ -48,7 +48,7 @@ function ThemesPage() {
             }
             className="text-text underline decoration-border-strong underline-offset-4 transition-colors duration-150 ease-out hover:decoration-brand"
           >
-            press T to try six of them
+            press T to try the ones that ship with Omarchy
           </button>
           .
         </p>

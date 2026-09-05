@@ -159,10 +159,10 @@ export function ThemePicker() {
     )
   }, [open])
 
-  // Warm the six preview images once the page is idle: they are only in
-  // the DOM while the picker is open, so without this the first open
-  // fetched and decoded ~2MB on the spot and visibly stuttered. Low
-  // priority keeps the warm-up from competing with real content.
+  // Warm the preview images once the page is idle: they are only in the
+  // DOM while the picker is open, so without this the first open fetched
+  // and decoded them on the spot and visibly stuttered. Low priority
+  // keeps the warm-up from competing with real content.
   useEffect(() => {
     let cancelled = false
     const warmed: HTMLImageElement[] = []
@@ -322,7 +322,7 @@ export function ThemePicker() {
       >
         {SITE_THEMES.map((theme, i) => {
           // Signed distance from the front card, wrapped so the fan is
-          // symmetric: -2..3 for six themes.
+          // symmetric around the front of the deck.
           const raw = i - index
           const half = SITE_THEMES.length / 2
           const offset =
@@ -451,7 +451,7 @@ export function ThemePicker() {
           filled box sat on top of the preview. The name is set in the
           theme's own two inks, and the dimmer decides which is which: the
           lighter one fills the letters and the darker one edges them. On a
-          dark theme that is text on ground; on Rosé Pine and White it is
+          dark theme that is text on ground; on a light theme it is the
           the page's cream or white, edged in the theme's text colour, since
           dark letters would sink into the dimmer. */}
       <button
