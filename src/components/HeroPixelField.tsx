@@ -6,7 +6,7 @@ import {
   WORDMARK_ROWS,
   WORDMARK_WIDTH,
 } from '@/data/wordmark-bitmap'
-import { BANDS, music } from '@/lib/music'
+import { BANDS, loadMusic, music } from '@/lib/music'
 
 /**
  * A word drawn on the field's own lattice. The hero wears the wordmark; the
@@ -60,7 +60,7 @@ const CELLS_PER_NOISE = 9
 /** Cursor reach, in grid cells. */
 const CURSOR_CELLS = 12
 
-/* The track. While it plays, the field itself listens: each column of
+/* The track. From the first paint, the field itself listens: each column of
  * cells belongs to a band of the spectrum, mirrored about the middle with
  * the bass at the outer edges where the resting field is densest and the
  * treble towards the centre, and the band's loudness decides how far up
@@ -304,10 +304,13 @@ export function HeroPixelField({
     // the new colors. Reduced motion repaints once, immediately.
     let palette = readPalette()
 
-    // The music: the bands are smoothed with a quick rise and a slow fall
-    // so peaks snap and tails linger, and the beat pulse decays frame by
-    // frame. Only the hero listens, and never under reduced motion.
+    // The music: it is moving from the first paint, muted, off the track's
+    // timeline, and live once the sound is on. The bands are smoothed with
+    // a quick rise and a slow fall so peaks snap and tails linger, and the
+    // beat pulse decays frame by frame. Only the hero listens, and never
+    // under reduced motion.
     const spectrumOn = isHero && !reducedMotion
+    if (spectrumOn) void loadMusic()
     const bandsNow = new Float32Array(BANDS)
     let beatPulse = 0
 

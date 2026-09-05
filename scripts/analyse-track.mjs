@@ -1,24 +1,27 @@
 #!/usr/bin/env node
 /**
- * Listen to a track offline and write down where its beats are.
+ * Listen to the track once, here, so the page can move to it before the
+ * reader has clicked anything.
  *
- * The page does not use this: it hears the track live through the Web
- * Audio analyser (src/lib/music.ts). This is the yardstick for checking
- * that live detector - the same sixteen bands and onset rule, run over the
- * whole file at leisure, with the beat times written out.
+ * Browsers will not let a page analyse audio until there has been a
+ * gesture, and the homepage starts muted with the field already moving. So
+ * the spectrum and the beats are worked out ahead of time and shipped as a
+ * small timeline: sixteen bands, fifteen times a second, and the beats with
+ * how hard each lands. Once the sound is on, the page hears the track live
+ * instead (src/lib/music.ts) and this timeline is left behind.
  *
- *   OUT=beats.json node scripts/analyse-track.mjs <file-or-url.mp3>
+ *   node scripts/analyse-track.mjs public/music/<track>.mp3
  *
- * Needs ffmpeg on the PATH.
+ * Writes src/data/track.json. Needs ffmpeg on the PATH.
  */
 import { execFileSync } from 'node:child_process'
 import { writeFileSync, mkdtempSync, rmSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import path from 'node:path'
 
-const [, , input, srcUrl] = process.argv
+const [, , input] = process.argv
 if (!input) {
-  console.error('usage: analyse-track.mjs <track.mp3> [public url]')
+  console.error('usage: analyse-track.mjs <track.mp3>')
   process.exit(1)
 }
 
@@ -183,20 +186,14 @@ for (let f = 1; f < frames - 1; f++) {
 }
 
 const out = {
-  title: 'We Can Fix Everything (The Ultimate Machine)',
-  artist: 'Kevin Koontz',
-  src:
-    srcUrl ??
-    'https://radio.omarchy.org/tracks/Kevin%20Koontz%20-%20We%20Can%20Fix%20Everything%20(The%20Ultimate%20Machine).mp3',
-  radio: 'https://radio.omarchy.org/',
   duration: Math.round(duration * 100) / 100,
   fps: FPS,
   bands: BANDS,
   spectrum: Buffer.from(packed).toString('base64'),
   beats,
 }
-const target = path.resolve(process.env.OUT ?? 'track-analysis.json')
+const target = path.resolve(process.env.OUT ?? 'src/data/track.json')
 writeFileSync(target, JSON.stringify(out))
 console.log(
-  `${out.title}: ${duration.toFixed(1)}s, ${frames} frames x ${BANDS} bands, ${beats.length} beats -> ${path.relative(process.cwd(), target)} (${Math.round(JSON.stringify(out).length / 1024)} KB)`,
+  `${duration.toFixed(1)}s, ${frames} frames x ${BANDS} bands, ${beats.length} beats -> ${path.relative(process.cwd(), target)} (${Math.round(JSON.stringify(out).length / 1024)} KB)`,
 )

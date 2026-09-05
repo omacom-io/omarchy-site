@@ -1354,6 +1354,27 @@ h6 {
   }
 }
 
+/* The edge of the music card's cover until the sound has been turned on
+   once: a brand-ink border that breathes, so the button asks for the click
+   without moving. Held still for anyone who asked for less motion. */
+@keyframes music-ring {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.3;
+  }
+}
+.music-ring {
+  animation: music-ring 1.8s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .music-ring {
+    animation: none;
+  }
+}
+
 /* The music card's seek range: a transparent track over the painted
    progress line, and no handle to speak of - the end of the line is the
    handle. The thumb is kept a sliver wide and invisible so dragging works

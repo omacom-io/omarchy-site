@@ -200,6 +200,33 @@ export function DownloadIcon(props: IconProps) {
   )
 }
 
+/** IconVolumeFull from the square outlined set. */
+export function VolumeIcon(props: IconProps) {
+  return (
+    <svg {...base(props)}>
+      <path
+        d="M19.2478 4.75216C21.1027 6.60704 22.25 9.16954 22.25 12C22.25 14.8305 21.1027 17.393 19.2478 19.2478M15.8891 8.11091C16.8844 9.10622 17.5 10.4812 17.5 12C17.5 13.5188 16.8844 14.8938 15.8891 15.8891M1.75 7.75H6L12.25 4.25V19.75L6 16.25H1.75V7.75Z"
+        stroke="currentColor"
+        strokeWidth="1.5"
+      />
+    </svg>
+  )
+}
+
+/** IconVolumeOff from the square outlined set. */
+export function VolumeOffIcon(props: IconProps) {
+  return (
+    <svg {...base(props)}>
+      <path
+        d="M21.5 10L19.3787 12.1213M19.3787 12.1213L17.2574 14.2426M19.3787 12.1213L17.2574 10M19.3787 12.1213L21.5 14.2426M1.75 7.75H6L12.25 4.25V19.75L6 16.25H1.75V7.75Z"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="square"
+      />
+    </svg>
+  )
+}
+
 /** IconPause from the square filled set, the pair of the play mark. */
 export function PauseIcon(props: IconProps) {
   return (

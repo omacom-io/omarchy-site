@@ -1,13 +1,17 @@
 /**
- * The homepage track, heard by the field.
+ * The homepage track, and how the field hears it.
  *
- * Nothing is precomputed. When the reader presses play, the track streams
- * through the Web Audio analyser on its way to the
- * speakers, and every frame the field asks what is coming out right now:
- * thirty-two bands of the spectrum, and whether a beat just landed. So the
- * picture is the sound, whatever track is playing, and swapping the track
- * needs no other change. Browsers only allow this after a gesture, which
- * is why the field is calm until the button is pressed.
+ * It starts muted, and the field is already moving: browsers will not let
+ * a page analyse audio before a gesture, so scripts/analyse-track.mjs
+ * listened to the track once and wrote a timeline of sixteen bands and the
+ * beats, and a silent clock runs through it from the moment the page
+ * paints, looping. No audio is fetched for that.
+ *
+ * Turning the sound on loads the track, starts it where the clock is, and
+ * from then on the sound itself is read through the Web Audio analyser on
+ * its way to the speakers - thirty-two bands and a live beat detector - so
+ * the picture is exactly what is playing. Muting again pauses the track
+ * and the silent clock carries on from there.
  */
 
 export const MUSIC_EVENT = 'omarchy-music'
@@ -22,7 +26,12 @@ export const TRACK = {
   radio: 'https://radio.omarchy.org/',
 }
 
-export type MusicState = 'paused' | 'loading' | 'playing' | 'failed'
+/**
+ * muted: the silent clock and the timeline. loading: the sound was asked
+ * for and is on its way. playing: the sound is on and heard live. failed:
+ * the sound could not start; the timeline carries on.
+ */
+export type MusicState = 'muted' | 'loading' | 'playing' | 'failed'
 
 export const BANDS = 32
 const LOW_HZ = 50
@@ -44,13 +53,27 @@ const BEAT_GAP_MS = 220
 /** Frames of onset history the threshold is judged against. */
 const HISTORY = 48
 
+type Timeline = {
+  duration: number
+  fps: number
+  bands: number
+  spectrum: string
+  beats: Array<[at: number, strength: number]>
+}
+
+let timeline: Timeline | null = null
+let frames: Uint8Array | null = null
+let timelineLoading: Promise<void> | null = null
+/** The silent clock: when position zero was, in performance.now() ms. */
+let clockZero = -1
+
 let audio: HTMLAudioElement | null = null
 let context: AudioContext | null = null
 let analyser: AnalyserNode | null = null
 let freq: Float32Array<ArrayBuffer> = new Float32Array(0)
 let bins: Array<[from: number, to: number]> = []
-let state: MusicState = 'paused'
-/** Whether play has been pressed at all this visit. */
+let state: MusicState = 'muted'
+/** Whether the sound has ever been turned on this visit. */
 let touched = false
 
 // Per-band running floor and peak, so each band swings across its whole
@@ -62,20 +85,34 @@ const peak = new Float32Array(BANDS).fill(0.3)
 /** The raw low bands last frame: onsets are judged on the sound itself,
  *  not on the auto-ranged picture, which magnifies small changes. */
 const rawNow = new Float32Array(BANDS)
-/** The low bands' loudness last frame, in dB, for the rise. */
 const previous = new Float32Array(BANDS)
 const history = new Float32Array(HISTORY)
 let historyAt = 0
 let fluxPeak = 1
 let lastSampleAt = -1
 let lastBeatAt = -Infinity
-/** Last frame's rise, and whether it was still climbing: a beat is called
- *  on the frame after its peak, so a single hit is one beat, not two. */
+/** Last frame's rise: a beat is called on the frame after its peak, so a
+ *  single hit is one beat, not two. */
 let lastFlux = 0
 let lastFluxMean = 0
+/** Where the timeline was last read, for beats between reads. */
+let timelineAt = -1
+const meterBands = new Float32Array(BANDS)
 
 function announce() {
   window.dispatchEvent(new CustomEvent(MUSIC_EVENT, { detail: state }))
+}
+
+/** Fetch the timeline once and start the silent clock. */
+export function loadMusic(): Promise<void> {
+  timelineLoading ??= import('@/data/track.json').then((mod) => {
+    timeline = mod.default as Timeline
+    const raw = atob(timeline.spectrum)
+    frames = new Uint8Array(raw.length)
+    for (let i = 0; i < raw.length; i++) frames[i] = raw.charCodeAt(i)
+    if (clockZero < 0) clockZero = performance.now()
+  })
+  return timelineLoading
 }
 
 /** Which analyser bins make up each band, spaced evenly in pitch. */
@@ -112,10 +149,6 @@ function wire() {
       announce()
     }
   })
-  audio.addEventListener('pause', () => {
-    state = 'paused'
-    announce()
-  })
   audio.addEventListener('error', () => {
     state = 'failed'
     announce()
@@ -133,8 +166,17 @@ function wire() {
   analyser.connect(context.destination)
 }
 
+/** Seconds into the track by the silent clock, looping. */
+function clockPosition(now: number) {
+  if (!timeline || clockZero < 0) return 0
+  return ((now - clockZero) / 1000) % timeline.duration
+}
+
+/** Whether the sound is what is being heard right now. */
+const live = () => state === 'playing' && audio !== null && !audio.paused
+
 export type MusicSample = {
-  /** The bands, 0..1, low to high. All zero while paused. */
+  /** The bands, 0..1, low to high. Zero until the timeline has arrived. */
   bands: Float32Array
   /** A beat that landed this frame, 0..1 by strength, else 0. */
   beat: number
@@ -142,25 +184,82 @@ export type MusicSample = {
 
 const sample: MusicSample = { bands: new Float32Array(BANDS), beat: 0 }
 
+/** The timeline's bands at a position, spread from sixteen to thirty-two. */
+function timelineBands(position: number, out: Float32Array) {
+  if (!timeline || !frames) {
+    out.fill(0)
+    return
+  }
+  const n = timeline.bands
+  const total = frames.length / n
+  const f = position * timeline.fps
+  const a = Math.floor(f) % total
+  const b = (a + 1) % total
+  const mix = f - Math.floor(f)
+  for (let i = 0; i < BANDS; i++) {
+    // Each output band sits between two timeline bands.
+    const at = ((i + 0.5) / BANDS) * n - 0.5
+    const lo = Math.max(0, Math.min(n - 1, Math.floor(at)))
+    const hi = Math.min(n - 1, lo + 1)
+    const t = Math.max(0, Math.min(1, at - lo))
+    const early = frames[a * n + lo] * (1 - t) + frames[a * n + hi] * t
+    const late = frames[b * n + lo] * (1 - t) + frames[b * n + hi] * t
+    out[i] = (early * (1 - mix) + late * mix) / 255
+  }
+}
+
+/** The strongest timeline beat in (from, to], or 0. Handles the loop. */
+function timelineBeat(from: number, to: number): number {
+  if (!timeline) return 0
+  let best = 0
+  const beats = timeline.beats
+  const hit = (lo: number, hi: number) => {
+    for (const [at, strength] of beats) {
+      if (at > hi) break
+      if (at > lo && strength > best) best = strength
+    }
+  }
+  if (to >= from) hit(from, to)
+  else {
+    hit(from, timeline.duration)
+    hit(-1, to)
+  }
+  return best
+}
+
+/** A band's level from the analyser's current frame, auto-ranged. */
+function liveBand(b: number) {
+  const [from, to] = bins[b]
+  let power = 0
+  for (let k = from; k < to; k++)
+    if (freq[k] > DB_FLOOR) power += 10 ** (freq[k] / 10)
+  const db = power > 0 ? 10 * Math.log10(power / (to - from)) : DB_FLOOR
+  const raw = Math.max(0, Math.min(1, (db - DB_FLOOR) / -DB_FLOOR))
+  return { raw, level: (raw - floor[b]) / Math.max(0.15, peak[b] - floor[b]) }
+}
+
 export const music = {
   get state() {
     return state
   },
-  get playing() {
+  /** Whether the sound is on, or about to be. */
+  get sounding() {
     return state === 'playing' || state === 'loading'
   },
   get touched() {
     return touched
   },
 
-  /** Start the sound. Must be called from a click or a key press. */
-  async play() {
+  /** Turn the sound on, from where the clock is. Must follow a gesture. */
+  async unmute() {
     touched = true
     try {
+      if (!timeline) await loadMusic()
       wire()
       state = 'loading'
       announce()
       if (context!.state !== 'running') await context!.resume()
+      audio!.currentTime = clockPosition(performance.now())
       await audio!.play()
     } catch {
       state = 'failed'
@@ -168,90 +267,71 @@ export const music = {
     }
   },
 
-  pause() {
-    audio?.pause()
+  /** Sound off. The silent clock picks up from where the sound was. */
+  mute() {
+    if (audio && timeline) {
+      const at = audio.currentTime
+      audio.pause()
+      clockZero = performance.now() - at * 1000
+    }
+    state = 'muted'
+    announce()
   },
 
   toggle() {
-    if (this.playing) this.pause()
-    else void this.play()
+    if (this.sounding) this.mute()
+    else void this.unmute()
   },
 
   /** How far through the track, 0..1. */
   get progress() {
-    if (!audio || !audio.duration) return 0
-    return audio.currentTime / audio.duration
+    if (!timeline) return 0
+    return this.time / timeline.duration
   },
-  /** Seconds in, and seconds long. Zero until the track has loaded. */
+  /** Seconds in, and seconds long. */
   get time() {
-    return audio?.currentTime ?? 0
+    return live() ? audio!.currentTime : clockPosition(performance.now())
   },
   get duration() {
-    return audio?.duration || 0
+    return timeline?.duration ?? 0
   },
   /**
    * Jump to a point in the track, in seconds. Stops a touch short of the
    * end: the track loops, and landing on the very end wraps to the start.
    */
   seek(seconds: number) {
-    if (!audio || !audio.duration) return
-    audio.currentTime = Math.max(0, Math.min(audio.duration - 0.5, seconds))
+    if (!timeline) return
+    const at = Math.max(0, Math.min(timeline.duration - 0.5, seconds))
+    if (audio && this.sounding) audio.currentTime = at
+    clockZero = performance.now() - at * 1000
+    timelineAt = at
   },
 
   /**
-   * Four coarse levels for a small meter - bass, low mids, high mids,
-   * treble - read straight from the analyser, apart from the field's own
-   * sampling so the beat detector is left alone. Zero while paused.
-   */
-  meter(out: Float32Array) {
-    if (!analyser || state !== 'playing') {
-      out.fill(0)
-      return
-    }
-    analyser.getFloatFrequencyData(freq)
-    const per = BANDS / out.length
-    for (let m = 0; m < out.length; m++) {
-      let level = 0
-      for (let b = Math.floor(m * per); b < Math.floor((m + 1) * per); b++) {
-        const [from, to] = bins[b]
-        let power = 0
-        for (let k = from; k < to; k++)
-          if (freq[k] > DB_FLOOR) power += 10 ** (freq[k] / 10)
-        const db = power > 0 ? 10 * Math.log10(power / (to - from)) : DB_FLOOR
-        const raw = Math.max(0, Math.min(1, (db - DB_FLOOR) / -DB_FLOOR))
-        const span = Math.max(0.15, peak[b] - floor[b])
-        level = Math.max(level, (raw - floor[b]) / span)
-      }
-      out[m] = Math.max(0, Math.min(1, level))
-    }
-  },
-
-  /**
-   * What the speakers are doing this frame. `now` is the rAF clock. Call
+   * What the track is doing this frame: heard live when the sound is on,
+   * read from the timeline when it is not. `now` is the rAF clock. Call
    * once per frame; the beat detector keeps state between calls.
    */
   sample(now: number): MusicSample {
-    if (!analyser || state !== 'playing') {
-      sample.bands.fill(0)
-      sample.beat = 0
+    if (!live()) {
+      // The timeline. Beats are the ones between the last read and this.
+      const position = clockPosition(now)
+      timelineBands(position, sample.bands)
+      sample.beat = timelineAt < 0 ? 0 : timelineBeat(timelineAt, position)
+      timelineAt = position
       lastSampleAt = -1
       return sample
     }
+    timelineAt = -1
+
     // Exact decibels per bin, so a loud bass never clips flat.
-    analyser.getFloatFrequencyData(freq)
+    analyser!.getFloatFrequencyData(freq)
 
     // Each band: the loudness of its bins in dB, placed between the
     // quietest and the loudest the band has recently been, so a bass-heavy
     // mix still shows its treble and a dense master leaves room to move.
     for (let b = 0; b < BANDS; b++) {
-      const [from, to] = bins[b]
-      let power = 0
-      for (let k = from; k < to; k++) {
-        const db = freq[k]
-        if (db > DB_FLOOR) power += 10 ** (db / 10)
-      }
-      const db = power > 0 ? 10 * Math.log10(power / (to - from)) : DB_FLOOR
-      const raw = Math.max(0, Math.min(1, (db - DB_FLOOR) / -DB_FLOOR))
+      const { raw } = liveBand(b)
       rawNow[b] = raw
       peak[b] = Math.max(peak[b] * 0.9993, raw, 0.2)
       floor[b] = Math.min(raw, floor[b] + (peak[b] - floor[b]) * 0.003)
@@ -264,8 +344,6 @@ export const music = {
     // hero was scrolled away) the memory is stale, so it is rebuilt first.
     let beat = 0
     const stale = lastSampleAt < 0 || now - lastSampleAt > 200
-    // The rise: how much louder the low end is than last frame, in the
-    // same log terms the picture uses.
     let flux = 0
     for (let b = 0; b < LOW_BANDS; b++) {
       flux += Math.max(0, rawNow[b] - previous[b])
@@ -300,6 +378,32 @@ export const music = {
     lastSampleAt = now
     sample.beat = beat
     return sample
+  },
+
+  /**
+   * Four coarse levels for a small meter - bass, low mids, high mids,
+   * treble - from whichever source is current, without disturbing the
+   * frame sampler above.
+   */
+  meter(out: Float32Array) {
+    const per = BANDS / out.length
+    if (!live()) {
+      timelineBands(clockPosition(performance.now()), meterBands)
+      for (let m = 0; m < out.length; m++) {
+        let level = 0
+        for (let b = Math.floor(m * per); b < Math.floor((m + 1) * per); b++)
+          level = Math.max(level, meterBands[b])
+        out[m] = level
+      }
+      return
+    }
+    analyser!.getFloatFrequencyData(freq)
+    for (let m = 0; m < out.length; m++) {
+      let level = 0
+      for (let b = Math.floor(m * per); b < Math.floor((m + 1) * per); b++)
+        level = Math.max(level, liveBand(b).level)
+      out[m] = Math.max(0, Math.min(1, level))
+    }
   },
 }
 
