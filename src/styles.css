@@ -1354,6 +1354,34 @@ h6 {
   }
 }
 
+/* The music card's seek range: a transparent track over the painted
+   progress line, and no handle to speak of - the end of the line is the
+   handle. The thumb is kept a sliver wide and invisible so dragging works
+   the way a range drags. */
+.music-seek::-webkit-slider-runnable-track {
+  height: 14px;
+  background: transparent;
+}
+.music-seek::-moz-range-track {
+  height: 14px;
+  background: transparent;
+}
+.music-seek::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 1px;
+  height: 14px;
+  background: transparent;
+  border: 0;
+}
+.music-seek::-moz-range-thumb {
+  width: 1px;
+  height: 14px;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+}
+
 @keyframes notice-in {
   from {
     opacity: 0;

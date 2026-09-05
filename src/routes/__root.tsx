@@ -19,6 +19,7 @@ import { SiteFooter } from '@/components/SiteFooter'
 import { ThemePicker } from '@/components/ThemePicker'
 import { SearchPalette } from '@/components/SearchPalette'
 import { PixelSnap } from '@/components/PixelSnap'
+import { MusicControl } from '@/components/MusicControl'
 
 export const Route = createRootRoute({
   head: () => ({
@@ -151,6 +152,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
         </div>
         <ThemePicker />
         <SearchPalette />
+        <MusicControl />
         <PixelSnap />
         {import.meta.env.DEV ? <DevTools /> : null}
         <Scripts />

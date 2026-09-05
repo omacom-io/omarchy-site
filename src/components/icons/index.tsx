@@ -200,6 +200,16 @@ export function DownloadIcon(props: IconProps) {
   )
 }
 
+/** IconPause from the square filled set, the pair of the play mark. */
+export function PauseIcon(props: IconProps) {
+  return (
+    <svg {...base(props)}>
+      <path d="M4 3V21H10V3H4Z" fill="currentColor" />
+      <path d="M14 3V21H20V3H14Z" fill="currentColor" />
+    </svg>
+  )
+}
+
 /** IconUsb from the square outlined set. */
 export function UsbIcon(props: IconProps) {
   return (

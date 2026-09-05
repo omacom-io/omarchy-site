@@ -6,6 +6,7 @@ import {
   WORDMARK_ROWS,
   WORDMARK_WIDTH,
 } from '@/data/wordmark-bitmap'
+import { BANDS, music } from '@/lib/music'
 
 /**
  * A word drawn on the field's own lattice. The hero wears the wordmark; the
@@ -58,6 +59,29 @@ const NOISE_SIZE = 128
 const CELLS_PER_NOISE = 9
 /** Cursor reach, in grid cells. */
 const CURSOR_CELLS = 12
+
+/* The track. While it plays, the field itself listens: each column of
+ * cells belongs to a band of the spectrum, mirrored about the middle with
+ * the bass at the outer edges where the resting field is densest and the
+ * treble towards the centre, and the band's loudness decides how far up
+ * from the bottom that column's dither thickens. Nothing is drawn on top
+ * of the field; the same cells, the same dither, a different reason to
+ * light. The ramp still keeps the middle clear for the word and the copy.
+ * Beats push the cursor's glow out for a moment, and a hard beat fires the
+ * click ripple from under the pointer. */
+/** How much of the field's height the loudest band may climb. */
+const SPECTRUM_REACH = 0.92
+/** How dense a column gets, and how much of it wears the main ink. */
+const SPECTRUM_DENSITY = 0.7
+const SPECTRUM_HEAT = 0.5
+/** Below this a band is resting and its column shows nothing extra. */
+const SPECTRUM_FLOOR = 0.08
+/** How much of a band's height a beat adds, and how fast that fades. */
+const BEAT_REACH = 0.8
+const BEAT_DECAY = 0.84
+/** Beats at least this strong, against the hardest of the last seconds,
+ *  throw a ripple from the pointer: about every other beat of a groove. */
+const BEAT_RIPPLE = 0.8
 
 /**
  * The square-spiral logo glyph as a 15x15 bitmap, taken from
@@ -279,6 +303,14 @@ export function HeroPixelField({
     // Re-read the palette when the theme changes; the next frame paints in
     // the new colors. Reduced motion repaints once, immediately.
     let palette = readPalette()
+
+    // The music: the bands are smoothed with a quick rise and a slow fall
+    // so peaks snap and tails linger, and the beat pulse decays frame by
+    // frame. Only the hero listens, and never under reduced motion.
+    const spectrumOn = isHero && !reducedMotion
+    const bandsNow = new Float32Array(BANDS)
+    let beatPulse = 0
+
     const onTheme = () => {
       palette = readPalette()
       if (reducedMotion) draw(lastDraw)
@@ -368,9 +400,14 @@ export function HeroPixelField({
      * them. Hovering is unaffected - the hero still lights up under its own
      * buttons, which is the part worth keeping.
      */
+    // A press that belongs to something else is not a press on the field:
+    // any link, button or form control, anything in the site header, and
+    // anything that marks itself out (the music card, the dev panel).
     const onControl = (target: EventTarget | null) =>
       target instanceof Element &&
-      target.closest('a, button, [role="button"]') !== null
+      target.closest(
+        'a, button, input, select, textarea, label, [role="button"], header, [data-no-stamp]',
+      ) !== null
 
     /** 0..1: how far a held press has charged. */
     const chargeOf = (now: number, start: number) =>
@@ -523,9 +560,42 @@ export function HeroPixelField({
       ctx.fillStyle = palette.bg
       ctx.fillRect(0, 0, width, height)
 
+      // What the speakers are doing this frame. Bands rise fast and fall
+      // slowly, so a hit lands at once and its tail lingers.
+      let beatNow = 0
+      let listening = false
+      if (spectrumOn) {
+        const heard = music.sample(time)
+        for (let i = 0; i < BANDS; i++) {
+          const rise = heard.bands[i] > bandsNow[i]
+          bandsNow[i] += (heard.bands[i] - bandsNow[i]) * (rise ? 0.7 : 0.14)
+          if (bandsNow[i] > 0.01) listening = true
+        }
+        beatNow = heard.beat
+        beatPulse = Math.max(beatPulse * BEAT_DECAY, beatNow)
+        if (beatPulse < 0.005) beatPulse = 0
+      }
+
       // The reach follows the strength, so a quiet response is a smaller
-      // patch as well as a fainter one.
-      const reach = CURSOR_CELLS * wmCW * (0.45 + 0.55 * strength)
+      // patch as well as a fainter one. A beat pushes it out.
+      const reach =
+        CURSOR_CELLS *
+        wmCW *
+        (0.45 + 0.55 * strength) *
+        (1 + BEAT_REACH * beatPulse)
+
+      // A hard beat with the pointer on the field: a ripple from under it,
+      // small and quick, the way a tap would.
+      if (beatNow >= BEAT_RIPPLE && strength > 0.05 && !holding) {
+        pings.push({
+          x: pointer.x,
+          y: pointer.y,
+          born: time,
+          from: 0.35,
+          to: 0.9 + beatNow,
+          life: 0.45,
+        })
+      }
 
       // Resolve each live click stamp once per frame, not once per cell.
       const stamps: {
@@ -643,6 +713,34 @@ export function HeroPixelField({
             lum += waveAmount * 1.15
           }
 
+          // The spectrum: this column's band, blended with its neighbour
+          // so the bands do not read as bars, thickening the dither from
+          // the bottom up to as high as the band is loud, densest low and
+          // thinning towards the top. Gated by the ramp, so the word and
+          // the copy keep their clear ground.
+          let specAmount = 0
+          if (listening && shade > 0.002) {
+            const across = (c + 0.5) / cols
+            const side = Math.abs(across - 0.5) * 2
+            const bandPos = (1 - side) * BANDS - 0.5
+            const b0 = Math.max(0, Math.min(BANDS - 1, Math.floor(bandPos)))
+            const b1 = Math.min(BANDS - 1, b0 + 1)
+            const mixB = Math.max(0, Math.min(1, bandPos - b0))
+            const raw = bandsNow[b0] * (1 - mixB) + bandsNow[b1] * mixB
+            const level = Math.max(
+              0,
+              (raw - SPECTRUM_FLOOR) / (1 - SPECTRUM_FLOOR),
+            )
+            const fromBottom = rows - 1 - r
+            const tall = level * rows * SPECTRUM_REACH
+            if (level > 0 && fromBottom < tall) {
+              // Eases off towards the top rather than thinning in a straight
+              // line, so the body of a column stays full higher up.
+              specAmount = level * (1 - fromBottom / tall) ** 0.85
+              lum += specAmount * SPECTRUM_DENSITY * Math.min(1, shade * 3)
+            }
+          }
+
           // Pure Bayer would light the same low-index cells everywhere and
           // read as a regular lattice at this density, so a fixed per-cell
           // offset scatters the resting field while the ordered structure
@@ -652,7 +750,11 @@ export function HeroPixelField({
             0.22 * jitter[(row & 63) * 64 + (col & 63)]
           if (lum <= threshold) continue
 
-          const heat = Math.max(glowAmount, waveAmount)
+          const heat = Math.max(
+            glowAmount,
+            waveAmount,
+            specAmount * SPECTRUM_HEAT,
+          )
           ctx.fillStyle =
             heat > 0.34 ? palette.lit : heat > 0.1 ? palette.mid : palette.dim
           const x = Math.round(xLeft)
