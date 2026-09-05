@@ -2,10 +2,10 @@ import { Link, useLocation } from '@tanstack/react-router'
 import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import type { RefObject } from 'react'
 import {
-  BrushIcon,
   DownloadIcon,
   GithubIcon,
   MenuBarsIcon,
+  PaletteIcon,
   SearchIcon,
 } from '@/components/icons'
 import { OmarchyMarkDrawn } from '@/components/Brand'
@@ -457,8 +457,7 @@ export function SiteHeader() {
     </Button>
   )
 
-  /** The same brush the picker's own hint card shows, so the thing that
-   *  teaches the shortcut and the thing that opens it are one mark. */
+  /** The palette, filled, for the theme picker. */
   const theme = (
     <Button
       variant="ghost"
@@ -468,7 +467,7 @@ export function SiteHeader() {
       className="relative h-8 w-8 text-text-secondary transition-[background-color,transform] hover:text-text before:absolute before:-inset-1 lg:h-[calc(var(--pxr)*3)] lg:w-[calc(var(--pxr)*3)]"
       onClick={() => window.dispatchEvent(new CustomEvent(OPEN_PICKER_EVENT))}
     >
-      <BrushIcon className="size-5" />
+      <PaletteIcon className="size-5" />
     </Button>
   )
 
@@ -628,7 +627,7 @@ export function SiteHeader() {
             }}
             className="flex items-center gap-2.5 py-3 text-left text-[15px] text-text-secondary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
           >
-            <BrushIcon className="size-5" />
+            <PaletteIcon className="size-5" />
             Change the theme
           </button>
           <div className="mt-2 flex items-center gap-2.5 border-t border-border-subtle pt-4 pb-2">
@@ -720,7 +719,7 @@ export function HeroNavGhost() {
               <SearchIcon className="size-5" />
             </span>
             <span className="flex h-8 w-8 items-center justify-center lg:h-[calc(var(--pxr)*3)] lg:w-[calc(var(--pxr)*3)]">
-              <BrushIcon className="size-5" />
+              <PaletteIcon className="size-5" />
             </span>
             <span className="flex h-8 w-8 items-center justify-center lg:h-[calc(var(--pxr)*3)] lg:w-[calc(var(--pxr)*3)]">
               <GithubIcon className="size-5" />
