@@ -11,7 +11,7 @@ import {
   PlayIcon,
   StoreIcon,
 } from '@/components/icons'
-import { OmarchyWordmark } from '@/components/Brand'
+import { OmarchyWordmark, WORDMARK_BANDS } from '@/components/Brand'
 import { HeroNavGhost } from '@/components/SiteHeader'
 import { HeroShader } from '@/components/HeroShader'
 import { EtchPicker } from '@/components/EtchPicker'
@@ -255,17 +255,15 @@ function Home() {
           {/* The slot the field measures its cell size from. Server-rendered
               as the SVG so the wordmark is there before any script runs, then
               handed over to the canvas once it has painted the same pixels. */}
-          {/* In the same bands the field paints the word at rest: five rows
-              of crest, two of hover, four of lit, three of mid, five of dim,
-              over the nineteen rows of the mask. So the handover to the
-              canvas changes no pixel. */}
+          {/* In the same bands the field paints the word at rest, so the
+              handover to the canvas changes no pixel. */}
           <OmarchyWordmark
             data-hero-wordmark
             className={
               'w-[88%] max-w-4xl text-[color:var(--t-field-lit)]' +
               (painted ? ' invisible' : '')
             }
-            background="linear-gradient(to bottom, var(--t-field-crest) 0 26.316%, var(--t-field-hover) 26.316% 36.842%, var(--t-field-lit) 36.842% 57.895%, var(--t-field-mid) 57.895% 73.684%, var(--t-field-dim) 73.684% 100%)"
+            background={WORDMARK_BANDS}
           />
           {/* Straight under the word, five cells of the lattice down, on
               every screen. */}

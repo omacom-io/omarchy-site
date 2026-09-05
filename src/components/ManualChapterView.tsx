@@ -1,4 +1,5 @@
 import { Link } from '@tanstack/react-router'
+import { OmarchyWordmark, WORDMARK_BANDS } from '@/components/Brand'
 import { ArrowLeftIcon, ArrowRightIcon } from '@/components/icons'
 import { chapterLink } from '@/components/ManualLayout'
 import type { getManualChapter } from '@/lib/content'
@@ -15,6 +16,17 @@ export function ManualChapterView({ data }: { data: ChapterData }) {
   return (
     <div className="manual-chapter">
       <article>
+        {/* The welcome chapter is the front door of the manual, and the one
+            page a new reader is sent to, so the wordmark stands over it, as
+            wide as the prose and in the hero's own bands. Every other
+            chapter opens straight on its title. */}
+        {chapter.slug === 'index' ? (
+          <OmarchyWordmark
+            label="Omarchy"
+            className="mx-auto mb-10 w-full max-w-(--measure) text-[color:var(--t-field-lit)]"
+            background={WORDMARK_BANDS}
+          />
+        ) : null}
         <h1 className="mx-auto w-full max-w-(--measure) text-3xl font-semibold tracking-tight text-text">
           {chapter.title}
         </h1>
