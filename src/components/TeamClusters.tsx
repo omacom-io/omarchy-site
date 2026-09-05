@@ -38,7 +38,11 @@ export function TeamClusters() {
   return (
     <ul
       ref={root}
-      className="mt-10 flex flex-wrap items-start gap-x-12 gap-y-8"
+      // Clipped on the x axis: a row of faces is laid out at its open width
+      // and pulled together with a transform, and a transform does not
+      // shrink the box, so without this the widest row could reach past the
+      // edge of a narrow phone and let the whole page scroll sideways.
+      className="mt-10 flex flex-wrap items-start gap-x-12 gap-y-8 overflow-x-clip"
     >
       {teams.map((team) => {
         const isOpen = open === team.id
@@ -76,7 +80,7 @@ export function TeamClusters() {
                 transform; a negative margin trims the row to what is seen,
                 so the three clusters sit close, and grows with the fan. */}
             <ul
-              className="team-faces flex gap-2"
+              className="team-faces flex gap-(--team-gap)"
               style={
                 {
                   '--n': shown.length + (rest > 0 ? 1 : 0),
@@ -114,7 +118,7 @@ export function TeamClusters() {
                         // The brand ring is an outline drawn inward, over
                         // the photo's edge: a ring outside it left a dark
                         // hairline between the two.
-                        'block size-11 overflow-hidden rounded-full ring-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring ' +
+                        'block size-(--team-face) overflow-hidden rounded-full ring-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring ' +
                         (isPicked
                           ? 'ring-bg-deep outline-2 -outline-offset-2 outline-brand'
                           : 'ring-bg-deep hover:outline-2 hover:-outline-offset-2 hover:outline-brand')
@@ -146,7 +150,7 @@ export function TeamClusters() {
                   <Link
                     to="/teams/"
                     aria-label={`${rest} more on the teams page`}
-                    className="flex size-11 items-center justify-center rounded-full bg-surface-2 font-mono text-xs text-text-secondary ring-2 ring-bg-deep transition-colors duration-150 ease-out hover:text-text focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+                    className="flex size-(--team-face) items-center justify-center rounded-full bg-surface-2 font-mono text-xs text-text-secondary ring-2 ring-bg-deep transition-colors duration-150 ease-out hover:text-text focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
                   >
                     +{rest}
                   </Link>

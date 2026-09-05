@@ -2086,6 +2086,24 @@ h6 {
 .team-cluster {
   --team-time: 320ms;
   --team-ease: cubic-bezier(0.33, 1, 0.68, 1);
+  /* Face and gap: seven faces at their open spacing have to fit the content
+     column, since that is the row's layout width even while it is pulled
+     together. 44px faces need 356px; a 360px phone has 328px, a 320px one
+     288px. */
+  --team-face: 44px;
+  --team-gap: 8px;
+}
+@media (max-width: 399px) {
+  .team-cluster {
+    --team-face: 40px;
+    --team-gap: 6px;
+  }
+}
+@media (max-width: 349px) {
+  .team-cluster {
+    --team-face: 36px;
+    --team-gap: 6px;
+  }
 }
 .team-faces {
   margin-right: calc((var(--n) - 1) * -20px);
