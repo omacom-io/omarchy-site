@@ -26,7 +26,7 @@ const columns = [
     links: [
       { label: 'Discord', href: 'https://discord.gg/tXFUdasqhY' },
       { label: 'Meetups', splat: 'meetups' },
-      { label: 'Teams', splat: 'teams' },
+      { label: 'Teams', to: '/teams/' },
       { label: 'Artists in Residence', splat: 'air' },
       { label: 'Workstations', splat: 'workstations' },
     ],

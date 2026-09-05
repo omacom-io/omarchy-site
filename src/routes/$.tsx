@@ -5,8 +5,9 @@ import { cn } from '@/lib/utils'
 
 /**
  * Serves every standalone page ported from omarchy.org: /air, /foundation,
- * /meetups, /patrons, /security, /security/credits, /sponsorships, /teams,
- * /workstations, /potato, /server, /omakub, /brand. Unknown paths 404.
+ * /meetups, /patrons, /security, /security/credits, /sponsorships,
+ * /workstations, /potato, /server, /omakub, /brand. Unknown paths 404. The
+ * teams page has a route of its own, built from teams.json.
  */
 /**
  * The pages ported from omarchy.org are a title and a body of HTML, and
@@ -68,11 +69,6 @@ const PORTED: Partial<Record<string, { title: string; description: string }>> =
       title: 'Sponsorships - Omarchy',
       description:
         'How the Omacom Foundation funds the projects Omarchy is built on, starting with an exclusive three-year sponsorship of Hyprland.',
-    },
-    teams: {
-      title: 'Teams - Omarchy',
-      description:
-        'The people guiding Omarchy: Core sets the direction, Security keeps the system safe, and the Rangers help everyone else find their way.',
     },
     workstations: {
       title: 'Workstations - Omarchy',

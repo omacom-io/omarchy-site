@@ -13,6 +13,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as SplatRouteImport } from './routes/$'
 import { Route as R404RouteImport } from './routes/404'
 import { Route as ManualRouteImport } from './routes/manual'
+import { Route as TeamsRouteImport } from './routes/teams'
 import { Route as ThemesRouteImport } from './routes/themes'
 import { Route as ManualIndexRouteImport } from './routes/manual.index'
 import { Route as ManualSlugRouteImport } from './routes/manual.$slug'
@@ -42,6 +43,11 @@ const R404Route = R404RouteImport.update({
 const ManualRoute = ManualRouteImport.update({
   id: '/manual',
   path: '/manual',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TeamsRoute = TeamsRouteImport.update({
+  id: '/teams',
+  path: '/teams',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ThemesRoute = ThemesRouteImport.update({
@@ -100,6 +106,7 @@ export interface FileRoutesByFullPath {
   '/$': typeof SplatRoute
   '/404': typeof R404Route
   '/manual': typeof ManualRouteWithChildren
+  '/teams': typeof TeamsRoute
   '/themes': typeof ThemesRoute
   '/manual/$slug': typeof ManualSlugRoute
   '/plugins/$pluginId': typeof PluginsPluginIdRoute
@@ -115,6 +122,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/$': typeof SplatRoute
   '/404': typeof R404Route
+  '/teams': typeof TeamsRoute
   '/themes': typeof ThemesRoute
   '/manual/$slug': typeof ManualSlugRoute
   '/plugins/$pluginId': typeof PluginsPluginIdRoute
@@ -132,6 +140,7 @@ export interface FileRoutesById {
   '/$': typeof SplatRoute
   '/404': typeof R404Route
   '/manual': typeof ManualRouteWithChildren
+  '/teams': typeof TeamsRoute
   '/themes': typeof ThemesRoute
   '/manual/$slug': typeof ManualSlugRoute
   '/plugins/$pluginId': typeof PluginsPluginIdRoute
@@ -150,6 +159,7 @@ export interface FileRouteTypes {
     | '/$'
     | '/404'
     | '/manual'
+    | '/teams'
     | '/themes'
     | '/manual/$slug'
     | '/plugins/$pluginId'
@@ -165,6 +175,7 @@ export interface FileRouteTypes {
     | '/'
     | '/$'
     | '/404'
+    | '/teams'
     | '/themes'
     | '/manual/$slug'
     | '/plugins/$pluginId'
@@ -181,6 +192,7 @@ export interface FileRouteTypes {
     | '/$'
     | '/404'
     | '/manual'
+    | '/teams'
     | '/themes'
     | '/manual/$slug'
     | '/plugins/$pluginId'
@@ -198,6 +210,7 @@ export interface RootRouteChildren {
   SplatRoute: typeof SplatRoute
   R404Route: typeof R404Route
   ManualRoute: typeof ManualRouteWithChildren
+  TeamsRoute: typeof TeamsRoute
   ThemesRoute: typeof ThemesRoute
   PluginsPluginIdRoute: typeof PluginsPluginIdRoute
   PluginsDevelopRoute: typeof PluginsDevelopRoute
@@ -236,6 +249,13 @@ declare module '@tanstack/react-router' {
       path: '/manual'
       fullPath: '/manual'
       preLoaderRoute: typeof ManualRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/teams': {
+      id: '/teams'
+      path: '/teams'
+      fullPath: '/teams'
+      preLoaderRoute: typeof TeamsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/themes': {
@@ -329,6 +349,7 @@ const rootRouteChildren: RootRouteChildren = {
   SplatRoute: SplatRoute,
   R404Route: R404Route,
   ManualRoute: ManualRouteWithChildren,
+  TeamsRoute: TeamsRoute,
   ThemesRoute: ThemesRoute,
   PluginsPluginIdRoute: PluginsPluginIdRoute,
   PluginsDevelopRoute: PluginsDevelopRoute,

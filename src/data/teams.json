@@ -46,7 +46,8 @@
     "href": "https://x.com/kwilczynski",
     "avatar": "/assets/images/team/krzysztof-wilczynski.webp"
    }
-  ]
+  ],
+  "note": null
  },
  {
   "id": "security",
@@ -95,7 +96,12 @@
     "href": "https://dhh.dk",
     "avatar": "/assets/images/team/dhh.webp"
    }
-  ]
+  ],
+  "note": {
+   "text": "Report a security issue",
+   "href": "/security/",
+   "linkText": "Report a security issue"
+  }
  },
  {
   "id": "rangers",
@@ -120,6 +126,11 @@
     "href": "https://x.com/niraletter",
     "avatar": "/assets/images/team/nira.webp"
    }
-  ]
+  ],
+  "note": {
+   "text": "Want to help? Apply to rangers@omarchy.org",
+   "href": "mailto:rangers@omarchy.org",
+   "linkText": "rangers@omarchy.org"
+  }
  }
 ]
