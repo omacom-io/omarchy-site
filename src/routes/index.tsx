@@ -228,11 +228,13 @@ function Home() {
             isolates everything inside it from the page behind. */}
         <HeroNavGhost />
 
+        {/* The wordmark, the tagline and the buttons are one block, with
+            the same space above it, under the bar, as below it, at the foot
+            of the screen. Before, the word sat a third of the way down and
+            the copy at the very bottom, and the eye had to read the foot of
+            the screen. */}
         <div className="pointer-events-none relative flex flex-1 flex-col items-center px-6">
-          {/* 2.1 : 1 puts the wordmark's center about 5.7% above the
-              viewport's, the classic optical center. Dead center would read
-              as sitting low and crowd the copy below. */}
-          <div className="flex-[2.1]" />
+          <div className="flex-1" />
           {/* The slot the field measures its cell size from. Server-rendered
               as the SVG so the wordmark is there before any script runs, then
               handed over to the canvas once it has painted the same pixels. */}
@@ -248,11 +250,11 @@ function Home() {
             }
             background="linear-gradient(to bottom, var(--t-field-crest) 0 26.316%, var(--t-field-hover) 26.316% 36.842%, var(--t-field-lit) 36.842% 57.895%, var(--t-field-mid) 57.895% 73.684%, var(--t-field-dim) 73.684% 100%)"
           />
-          <div className="flex-1" />
-
+          {/* Straight under the word, five cells of the lattice down, on
+              every screen. */}
           <div
             data-hero-quiet
-            className="pointer-events-auto flex w-full max-w-2xl flex-col items-center pb-24 text-center"
+            className="pointer-events-auto mt-12 flex w-full max-w-2xl flex-col items-center text-center lg:mt-[calc(var(--pxr)*5)]"
           >
             <h1
               data-hero-stagger
@@ -319,6 +321,7 @@ function Home() {
               </Button>
             </div>
           </div>
+          <div className="flex-1" />
         </div>
       </section>
 
