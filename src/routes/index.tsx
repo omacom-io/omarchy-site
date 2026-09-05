@@ -26,6 +26,7 @@ import { ThemeCard } from '@/components/ThemeCard'
 import { VideoCarousel } from '@/components/VideoCarousel'
 import { Button } from '@/components/ui/button'
 import { useHashLink } from '@/lib/hash-scroll'
+import { cn } from '@/lib/utils'
 import { getNewsIndex } from '@/lib/content'
 import { getPluginHighlights } from '@/lib/plugins'
 import themes from '@/data/themes.json'
@@ -565,50 +566,75 @@ function Home() {
         </div>
       </section>
 
-      {/* news + foundation */}
+      {/* news: what the project said lately, full width. The figures used to
+          sit beside it and made one screen answer four questions at once;
+          they have the section after this one now, so each can be read on
+          its own. */}
       <section className="border-t border-border-subtle bg-bg-deep">
         <div className="mx-auto max-w-6xl px-4 py-24 sm:px-6">
-          <div className="grid gap-10 lg:grid-cols-[1fr_20rem]">
-            <div>
-              <SectionHeading
-                title="Latest from the project"
-                action={allNews}
-              />
-              <ul className="mt-8 divide-y divide-border-subtle">
-                {news.slice(0, 6).map((post) => (
-                  <li key={post.slug}>
-                    <Link
-                      to="/news/$year/$month/$slug/"
-                      params={{
-                        year: post.year,
-                        month: post.month,
-                        slug: post.slug,
-                      }}
-                      className="group flex flex-col gap-1 py-4 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
-                    >
-                      <time
-                        dateTime={post.date}
-                        className="font-mono text-xs text-text-muted"
-                      >
-                        {post.dateStr}
-                      </time>
-                      <span className="font-sans text-[15px] font-medium text-text transition-colors duration-150 ease-out group-hover:text-brand">
-                        {post.title}
-                      </span>
-                      <span className="text-sm text-text-secondary [text-wrap:pretty]">
-                        {post.excerpt}
-                      </span>
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-              <SectionActions>{allNews}</SectionActions>
-            </div>
+          <SectionHeading title="Latest from the project" action={allNews} />
+          {/* Two columns of three: six posts down one wide column read as a
+              thin list. Each item draws its own line, so the rules meet
+              across the gap where a divide-y would stagger. */}
+          <ul className="mt-8 grid border-t border-border-subtle sm:grid-cols-2 sm:gap-x-10">
+            {/* Six on a wide screen, three on a phone: one column of six
+                posts is a page of scrolling before the numbers, and the
+                button under the list leads to the rest. */}
+            {news.slice(0, 6).map((post, i) => (
+              <li
+                key={post.slug}
+                className={cn(
+                  'border-b border-border-subtle',
+                  i >= 3 && 'hidden sm:block',
+                )}
+              >
+                <Link
+                  to="/news/$year/$month/$slug/"
+                  params={{
+                    year: post.year,
+                    month: post.month,
+                    slug: post.slug,
+                  }}
+                  className="group flex h-full flex-col gap-1.5 py-5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+                >
+                  <time
+                    dateTime={post.date}
+                    className="font-mono text-xs text-text-muted"
+                  >
+                    {post.dateStr}
+                  </time>
+                  <span className="font-sans text-base font-medium text-text transition-colors duration-150 ease-out group-hover:text-brand">
+                    {post.title}
+                  </span>
+                  {/* Two lines of the post, enough to tell what it is about;
+                      the whole first paragraph made six posts read as one
+                      wall of text, and the title carried less weight than
+                      the excerpt under it. */}
+                  <span className="line-clamp-2 text-[13px] leading-relaxed text-text-secondary [text-wrap:pretty]">
+                    {post.excerpt}
+                  </span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+          <SectionActions>{allNews}</SectionActions>
+        </div>
+      </section>
 
-            {/* The project in numbers, beside the news the numbers come
-                from. Three cards, each counting up once as it arrives. */}
-            <Figures />
-          </div>
+      {/* the figures, on their own: the foundation's funding, the ISO
+          downloads and the repository, one card each, counting up as they
+          arrive. Same ground as the news they are drawn from; the rule
+          between the two is enough of a break. */}
+      <section
+        id="figures"
+        className="border-t border-border-subtle bg-bg-deep"
+      >
+        <div className="mx-auto max-w-6xl px-4 py-24 sm:px-6">
+          <SectionHeading
+            title="The project in numbers"
+            description="What the foundation has announced, what the download post counted, and what the repository shows. Each card links to where its number comes from."
+          />
+          <Figures />
         </div>
       </section>
 
