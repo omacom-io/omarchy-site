@@ -52,6 +52,16 @@ const BEAT_FLOOR = 0.3
 const PEAK_MEMORY = 0.996
 /** Decibels the picture spans, from silence to the loudest a band gets. */
 const DB_FLOOR = -90
+/**
+ * How much of the live reading reaches the picture. The analyser ranges
+ * every band across its whole span moment to moment, where the timeline
+ * was scaled once over the whole track, so the live picture would be a
+ * great deal busier than the one the page opens with; this keeps the live
+ * picture clearly livelier than the muted one, without being a wall.
+ */
+const LIVE_GAIN = 0.9
+/** And how much of the timeline does, while the sound is off. */
+const MUTED_GAIN = 0.6
 /** Two beats cannot land closer than this, in ms. */
 const BEAT_GAP_MS = 220
 /** Frames of onset history the threshold is judged against. */
@@ -231,7 +241,7 @@ function timelineBands(position: number, out: Float32Array) {
     const t = Math.max(0, Math.min(1, at - lo))
     const early = frames[a * n + lo] * (1 - t) + frames[a * n + hi] * t
     const late = frames[b * n + lo] * (1 - t) + frames[b * n + hi] * t
-    out[i] = (early * (1 - mix) + late * mix) / 255
+    out[i] = ((early * (1 - mix) + late * mix) / 255) * MUTED_GAIN
   }
 }
 
@@ -382,7 +392,8 @@ export const music = {
       peak[b] = Math.max(peak[b] * 0.9993, raw, 0.2)
       floor[b] = Math.min(raw, floor[b] + (peak[b] - floor[b]) * 0.003)
       const span = Math.max(0.15, peak[b] - floor[b])
-      sample.bands[b] = Math.max(0, Math.min(1, (raw - floor[b]) / span))
+      sample.bands[b] =
+        Math.max(0, Math.min(1, (raw - floor[b]) / span)) * LIVE_GAIN
     }
 
     // A beat: the low end got louder since last frame by more than it has
@@ -448,7 +459,7 @@ export const music = {
       let level = 0
       for (let b = Math.floor(m * per); b < Math.floor((m + 1) * per); b++)
         level = Math.max(level, liveBand(b).level)
-      out[m] = Math.max(0, Math.min(1, level))
+      out[m] = Math.max(0, Math.min(1, level)) * LIVE_GAIN
     }
   },
 }

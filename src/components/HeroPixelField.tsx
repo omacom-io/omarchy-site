@@ -67,8 +67,8 @@ const CURSOR_CELLS = 12
  * from the bottom that column's dither thickens. Nothing is drawn on top
  * of the field; the same cells, the same dither, a different reason to
  * light. The ramp still keeps the middle clear for the word and the copy.
- * Beats push the cursor's glow out for a moment, and a hard beat fires the
- * click ripple from under the pointer. */
+ * Beats push the cursor's glow out for a moment. The logo stamp stays a
+ * click's, and a click's only. */
 /** How much of the field's height the loudest band may climb. */
 const SPECTRUM_REACH = 0.92
 /** How dense a column gets, and how much of it wears the main ink. */
@@ -76,12 +76,19 @@ const SPECTRUM_DENSITY = 0.7
 const SPECTRUM_HEAT = 0.5
 /** Below this a band is resting and its column shows nothing extra. */
 const SPECTRUM_FLOOR = 0.08
+/* The glow on its own. After the pointer has been still for a while, or
+ * has left the page, or on a screen with no pointer at all, the glow
+ * wanders the field by itself along a slow looping path, so the hero is
+ * never sitting still. It fades in over a second or so, and the real
+ * pointer takes it back the instant it moves. The wandering glow is a
+ * little quieter than a real cursor, and still hushes near the copy. */
+/** Ms without a pointer move before the glow sets off on its own. */
+const IDLE_MS = 2500
+/** How bright the wandering glow is, against a real cursor's. */
+const WANDER_STRENGTH = 0.7
 /** How much of a band's height a beat adds, and how fast that fades. */
 const BEAT_REACH = 0.8
 const BEAT_DECAY = 0.84
-/** Beats at least this strong, against the hardest of the last seconds,
- *  throw a ripple from the pointer: about every other beat of a groove. */
-const BEAT_RIPPLE = 0.8
 
 /**
  * The square-spiral logo glyph as a 15x15 bitmap, taken from
@@ -372,6 +379,12 @@ export function HeroPixelField({
     // the pointer cursor belongs to while it is over the word.
     const sectionEl = host.closest<HTMLElement>('section, main')
     const pointer = { x: -1e4, y: -1e4 }
+    /** Where the glow actually is this frame: the pointer, the wander, or
+     *  part way between while one hands over to the other. */
+    const glow = { x: -1e4, y: -1e4 }
+    let lastMoveAt = -Infinity
+    /** 0 while the pointer has the glow, 1 while the wander does. */
+    let wanderBlend = 0
     let visible = true
     let strength = 0
     let targetStrength = 0
@@ -552,10 +565,48 @@ export function HeroPixelField({
     const draw = (time: number) => {
       const t = reducedMotion ? 0 : time / 1000
 
+      // The wander: on once the pointer has been still long enough, or
+      // never came, and off the moment it moves. It eases in slowly and
+      // hands back quickly. Its path is a slow swing over the top of the
+      // field and down either side, an arc that stays clear of the copy
+      // below, where the glow would only be hushed, and wobbles so it
+      // never quite repeats.
+      const idle =
+        isHero &&
+        !reducedMotion &&
+        !holding &&
+        !pickerOpen &&
+        (!finePointer || time - lastMoveAt > IDLE_MS)
+      wanderBlend += ((idle ? 1 : 0) - wanderBlend) * (idle ? 0.025 : 0.2)
+      if (wanderBlend < 0.001) wanderBlend = 0
+      let wanderStrength = 0
+      if (wanderBlend > 0) {
+        const ts = time / 1000
+        const angle = -Math.PI / 2 + 1.45 * Math.sin(ts * 0.12)
+        const wobble = 1 + 0.07 * Math.sin(ts * 0.29 + 1.7)
+        const wx = width * (0.5 + 0.44 * wobble * Math.cos(angle))
+        const wy = height * (0.46 + 0.36 * wobble * Math.sin(angle))
+        const box = host.getBoundingClientRect()
+        wanderStrength =
+          strengthAt(box.left + wx / dpr, box.top + wy / dpr) * WANDER_STRENGTH
+        // Eased blend, so the handover is a glide rather than a slide.
+        const k = wanderBlend * wanderBlend * (3 - 2 * wanderBlend)
+        const fromX = pointer.x < -1e3 ? wx : pointer.x
+        const fromY = pointer.y < -1e3 ? wy : pointer.y
+        glow.x = fromX + (wx - fromX) * k
+        glow.y = fromY + (wy - fromY) * k
+      } else {
+        glow.x = pointer.x
+        glow.y = pointer.y
+      }
+
       // The pointer itself is never smoothed: the cells under the cursor are
       // the cells that light. Only the fade in and out of the field's
-      // response is eased.
-      strength += (targetStrength - strength) * 0.3
+      // response is eased. While the wander has the glow, its own strength
+      // is the goal instead.
+      const strengthGoal =
+        targetStrength + (wanderStrength - targetStrength) * wanderBlend
+      strength += (strengthGoal - strength) * 0.3
       logoHover = reducedMotion
         ? logoHoverTarget
         : logoHover + (logoHoverTarget - logoHover) * 0.25
@@ -586,19 +637,6 @@ export function HeroPixelField({
         wmCW *
         (0.45 + 0.55 * strength) *
         (1 + BEAT_REACH * beatPulse)
-
-      // A hard beat with the pointer on the field: a ripple from under it,
-      // small and quick, the way a tap would.
-      if (beatNow >= BEAT_RIPPLE && strength > 0.05 && !holding) {
-        pings.push({
-          x: pointer.x,
-          y: pointer.y,
-          born: time,
-          from: 0.35,
-          to: 0.9 + beatNow,
-          life: 0.45,
-        })
-      }
 
       // Resolve each live click stamp once per frame, not once per cell.
       const stamps: {
@@ -697,8 +735,8 @@ export function HeroPixelField({
 
           let glowAmount = 0
           if (strength > 0.01) {
-            const dx = cx - pointer.x
-            const dy = cy - pointer.y
+            const dx = cx - glow.x
+            const dy = cy - glow.y
             const dist = Math.sqrt(dx * dx + dy * dy)
             if (dist < reach) {
               // Squared falloff: the reach is wide but only the middle of it
@@ -772,10 +810,10 @@ export function HeroPixelField({
       const cursorOnWordmark =
         isHero &&
         strength > 0.01 &&
-        pointer.x > wmX - reach &&
-        pointer.x < wmX + glyph.width * wmCW + reach &&
-        pointer.y > wmY - reach &&
-        pointer.y < wmY + glyph.height * wmCH + reach
+        glow.x > wmX - reach &&
+        glow.x < wmX + glyph.width * wmCW + reach &&
+        glow.y > wmY - reach &&
+        glow.y < wmY + glyph.height * wmCH + reach
 
       // Cell edges snap to whole device px with rounding against the shared
       // fractional grid, so adjacent cells always meet exactly: no seams
@@ -816,8 +854,8 @@ export function HeroPixelField({
           let crest = stamps.length > 0 ? stampAt(cx, cy) : 0
 
           if (cursorOnWordmark) {
-            const dx = cx - pointer.x
-            const dy = cy - pointer.y
+            const dx = cx - glow.x
+            const dy = cy - glow.y
             const dist = Math.sqrt(dx * dx + dy * dy)
             if (dist < reach) {
               const falloff = 1 - dist / reach
@@ -918,6 +956,7 @@ export function HeroPixelField({
 
     const onPointerMove = (event: PointerEvent) => {
       if (!visible) return
+      lastMoveAt = performance.now()
       const { inside, strength: level, x, y } = locate(event)
       // While a press is held or the picker is up, the glow stays muted no
       // matter where the cursor wanders; only a move after both are done
