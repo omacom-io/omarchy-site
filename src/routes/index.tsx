@@ -623,12 +623,9 @@ function Home() {
 
       {/* the figures, on their own: the foundation's funding, the ISO
           downloads and the repository, one card each, counting up as they
-          arrive. Same ground as the news they are drawn from; the rule
-          between the two is enough of a break. */}
-      <section
-        id="figures"
-        className="border-t border-border-subtle bg-bg-deep"
-      >
+          arrive. On the light ground, so the page keeps trading dark and
+          light section by section. */}
+      <section id="figures" className="border-t border-border-subtle">
         <div className="mx-auto max-w-6xl px-4 py-24 sm:px-6">
           <SectionHeading
             title="The project in numbers"
@@ -641,7 +638,7 @@ function Home() {
       {/* the teams, between the project and the people around it: this is
           who steers it. All three on one line as clusters of faces, rather
           than Core alone as a grid of cards. */}
-      <section className="border-t border-border-subtle">
+      <section className="border-t border-border-subtle bg-bg-deep">
         <div className="mx-auto max-w-6xl px-4 py-24 sm:px-6">
           <SectionHeading
             title="The people steering it"
@@ -654,7 +651,7 @@ function Home() {
       </section>
 
       {/* community */}
-      <section className="border-t border-border-subtle bg-bg-deep">
+      <section className="border-t border-border-subtle">
         <div className="mx-auto max-w-6xl px-4 py-24 sm:px-6">
           <SectionHeading
             title="Be the Omarch"
