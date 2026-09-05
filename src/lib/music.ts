@@ -10,8 +10,11 @@
  * Turning the sound on loads the track, starts it where the clock is, and
  * from then on the sound itself is read through the Web Audio analyser on
  * its way to the speakers - thirty-two bands and a live beat detector - so
- * the picture is exactly what is playing. Muting again pauses the track
- * and the silent clock carries on from there.
+ * the picture is exactly what is playing. Turning it off again only turns
+ * the volume down, after the analyser: the track keeps playing and the
+ * sound is there again the moment it is asked for. With the sound off the
+ * field goes back to the timeline, at the track's position, so it looks
+ * the way the page opened; the live reading is for when it can be heard.
  */
 
 export const MUSIC_EVENT = 'omarchy-music'
@@ -27,9 +30,10 @@ export const TRACK = {
 }
 
 /**
- * muted: the silent clock and the timeline. loading: the sound was asked
- * for and is on its way. playing: the sound is on and heard live. failed:
- * the sound could not start; the timeline carries on.
+ * muted: the sound is off - off the timeline before the track has ever
+ * been started, and off the live track after, at zero volume. loading:
+ * the sound was asked for and is on its way. playing: the sound is on.
+ * failed: the sound could not start; the timeline carries on.
  */
 export type MusicState = 'muted' | 'loading' | 'playing' | 'failed'
 
@@ -64,12 +68,18 @@ type Timeline = {
 let timeline: Timeline | null = null
 let frames: Uint8Array | null = null
 let timelineLoading: Promise<void> | null = null
-/** The silent clock: when position zero was, in performance.now() ms. */
-let clockZero = -1
+/** The silent clock: when position zero was, in performance.now() ms. A
+ *  seek can put that before the page opened, so this is not a sign of
+ *  anything; null is the clock not having started. */
+let clockZero: number | null = null
 
 let audio: HTMLAudioElement | null = null
 let context: AudioContext | null = null
 let analyser: AnalyserNode | null = null
+/** The volume, after the analyser: what sound off turns down. */
+let volume: GainNode | null = null
+/** Whether the track is actually running, whatever the volume. */
+let running = false
 let freq: Float32Array<ArrayBuffer> = new Float32Array(0)
 let bins: Array<[from: number, to: number]> = []
 let state: MusicState = 'muted'
@@ -110,7 +120,7 @@ export function loadMusic(): Promise<void> {
     const raw = atob(timeline.spectrum)
     frames = new Uint8Array(raw.length)
     for (let i = 0; i < raw.length; i++) frames[i] = raw.charCodeAt(i)
-    if (clockZero < 0) clockZero = performance.now()
+    clockZero ??= performance.now()
   })
   return timelineLoading
 }
@@ -140,14 +150,20 @@ function wire() {
   audio.preload = 'auto'
   audio.src = TRACK.src
   audio.addEventListener('playing', () => {
-    state = 'playing'
-    announce()
+    running = true
+    if (state === 'loading') {
+      state = 'playing'
+      announce()
+    }
   })
   audio.addEventListener('waiting', () => {
     if (state === 'playing') {
       state = 'loading'
       announce()
     }
+  })
+  audio.addEventListener('pause', () => {
+    running = false
   })
   audio.addEventListener('error', () => {
     state = 'failed'
@@ -162,18 +178,29 @@ function wire() {
   analyser.smoothingTimeConstant = 0
   freq = new Float32Array(analyser.frequencyBinCount)
   layoutBands(context.sampleRate)
+  volume = context.createGain()
   context.createMediaElementSource(audio).connect(analyser)
-  analyser.connect(context.destination)
+  analyser.connect(volume)
+  volume.connect(context.destination)
+}
+
+/** Fade the volume to a level over a few ms, so there is no click. */
+function setVolume(level: number) {
+  if (!context || !volume) return
+  const now = context.currentTime
+  volume.gain.cancelScheduledValues(now)
+  volume.gain.setValueAtTime(volume.gain.value, now)
+  volume.gain.linearRampToValueAtTime(level, now + 0.06)
 }
 
 /** Seconds into the track by the silent clock, looping. */
 function clockPosition(now: number) {
-  if (!timeline || clockZero < 0) return 0
+  if (!timeline || clockZero === null) return 0
   return ((now - clockZero) / 1000) % timeline.duration
 }
 
-/** Whether the sound is what is being heard right now. */
-const live = () => state === 'playing' && audio !== null && !audio.paused
+/** Whether the track itself is running, and so can be read live. */
+const live = () => running && audio !== null && !audio.paused
 
 export type MusicSample = {
   /** The bands, 0..1, low to high. Zero until the timeline has arrived. */
@@ -250,30 +277,46 @@ export const music = {
     return touched
   },
 
-  /** Turn the sound on, from where the clock is. Must follow a gesture. */
+  /**
+   * Turn the sound on. The first time, that loads the track and starts it
+   * where the clock is; after that the track is already running and only
+   * the volume comes back up. Must follow a gesture.
+   */
   async unmute() {
     touched = true
+    if (live()) {
+      setVolume(1)
+      state = 'playing'
+      announce()
+      return
+    }
     try {
       if (!timeline) await loadMusic()
       wire()
       state = 'loading'
       announce()
       if (context!.state !== 'running') await context!.resume()
+      setVolume(1)
       audio!.currentTime = clockPosition(performance.now())
       await audio!.play()
     } catch {
-      state = 'failed'
-      announce()
+      // Turned off again before it started: that is not a failure.
+      if (state === 'loading') {
+        state = 'failed'
+        announce()
+      }
     }
   },
 
-  /** Sound off. The silent clock picks up from where the sound was. */
+  /**
+   * Sound off. If the track is running it keeps running, silently: the
+   * field keeps hearing it, and the sound is one press away. If it was
+   * still loading, that is called off and the silent clock, which never
+   * stopped, carries on.
+   */
   mute() {
-    if (audio && timeline) {
-      const at = audio.currentTime
-      audio.pause()
-      clockZero = performance.now() - at * 1000
-    }
+    if (live()) setVolume(0)
+    else audio?.pause()
     state = 'muted'
     announce()
   },
@@ -302,7 +345,9 @@ export const music = {
   seek(seconds: number) {
     if (!timeline) return
     const at = Math.max(0, Math.min(timeline.duration - 0.5, seconds))
-    if (audio && this.sounding) audio.currentTime = at
+    // The track itself if it is running, sound on or off; the silent
+    // clock in any case, so the two agree if the sound stops.
+    if (live()) audio!.currentTime = at
     clockZero = performance.now() - at * 1000
     timelineAt = at
   },
@@ -313,9 +358,10 @@ export const music = {
    * once per frame; the beat detector keeps state between calls.
    */
   sample(now: number): MusicSample {
-    if (!live()) {
-      // The timeline. Beats are the ones between the last read and this.
-      const position = clockPosition(now)
+    if (!live() || !this.sounding) {
+      // The timeline, at wherever the track is. Beats are the ones between
+      // the last read and this.
+      const position = live() ? audio!.currentTime : clockPosition(now)
       timelineBands(position, sample.bands)
       sample.beat = timelineAt < 0 ? 0 : timelineBeat(timelineAt, position)
       timelineAt = position
@@ -387,8 +433,8 @@ export const music = {
    */
   meter(out: Float32Array) {
     const per = BANDS / out.length
-    if (!live()) {
-      timelineBands(clockPosition(performance.now()), meterBands)
+    if (!live() || !this.sounding) {
+      timelineBands(this.time, meterBands)
       for (let m = 0; m < out.length; m++) {
         let level = 0
         for (let b = Math.floor(m * per); b < Math.floor((m + 1) * per); b++)
