@@ -1,6 +1,6 @@
 ---
 title: Omarchy tops 100,000 downloads in a week
-date: 2026-08-28
+date: 2026-08-28 20:55 +0200
 author: DHH
 author_url: https://dhh.dk
 description: A hundred thousand people installed Omarchy in seven days, and we moved nearly a petabyte doing it.

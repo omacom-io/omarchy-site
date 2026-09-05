@@ -1,6 +1,6 @@
 ---
 title: Omarchy Patronage is now open to everyone
-date: 2026-09-03
+date: 2026-09-03 07:00 -0400
 author: DHH
 author_url: https://dhh.dk
 description: Patronage of the Omacom Foundation is now open to everyone in four tiers, each with its own badge, and there's more spending on the way.

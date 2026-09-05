@@ -38,7 +38,7 @@ def split_front_matter(source, file)
   return [{}, source] unless source.start_with?("---\n")
 
   match = source.match(/\A---\s*\n(.*?)\n---\s*\n/m) or abort "Unclosed front matter in #{file}"
-  metadata = YAML.safe_load(match[1], permitted_classes: [Date], aliases: false) || {}
+  metadata = YAML.safe_load(match[1], permitted_classes: [Date, Time], aliases: false) || {}
   [metadata.transform_keys(&:to_s), source[match.end(0)..]]
 end
 
@@ -50,7 +50,7 @@ SITE_URL = "https://omarchy.org"
 FEED_URL = "#{SITE_URL}/news/rss.xml"
 
 def rfc822(date)
-  date.strftime("%a, %d %b %Y %H:%M:%S GMT")
+  date.new_offset(0).strftime("%a, %d %b %Y %H:%M:%S GMT")
 end
 
 def cdata(text)
@@ -106,8 +106,8 @@ def load_post(file)
   relative = file.delete_prefix("#{CONTENT_DIR}/").sub(/\.md\z/, "")
   year, month = relative.split("/")
   date = metadata["date"]
-  date = Date.parse(date.to_s) if date
-  date ||= Date.new(Integer(year), Integer(month), 1)
+  date = DateTime.parse(date.to_s) if date
+  date ||= DateTime.new(Integer(year), Integer(month), 1)
 
   assets = markdown.scan(RELATIVE_ASSET).flatten.uniq
   assets.each do |asset|

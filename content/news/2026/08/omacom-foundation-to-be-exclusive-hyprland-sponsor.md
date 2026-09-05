@@ -1,6 +1,6 @@
 ---
 title: Omacom Foundation to be exclusive Hyprland sponsor
-date: 2026-08-21
+date: 2026-08-21 17:50 +0200
 author: DHH
 author_url: https://dhh.dk
 ---

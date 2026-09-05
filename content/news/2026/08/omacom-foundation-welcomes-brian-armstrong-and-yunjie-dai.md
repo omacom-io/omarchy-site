@@ -1,6 +1,6 @@
 ---
 title: Omacom Foundation welcomes Brian Armstrong and Yunjie Dai
-date: 2026-08-31
+date: 2026-08-31 15:03 +0200
 author: DHH
 author_url: https://dhh.dk
 description: Two more Founding Patrons join the mission with $1 million each, and the foundation hits $12 million.

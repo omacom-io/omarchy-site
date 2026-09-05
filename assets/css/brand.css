@@ -48,6 +48,10 @@
   width: min(28em, 85%);
 }
 
+.brand__figure--oma img {
+  width: min(14em, 55%);
+}
+
 .brand__files {
   display: grid;
   gap: var(--space-small);

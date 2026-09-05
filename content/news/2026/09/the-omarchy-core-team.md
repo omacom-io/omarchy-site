@@ -1,6 +1,6 @@
 ---
 title: The Omarchy Core Team
-date: 2026-08-19
+date: 2026-08-19 15:17 +0200
 author: DHH
 author_url: https://dhh.dk
 ---

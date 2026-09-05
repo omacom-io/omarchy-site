@@ -1,6 +1,6 @@
 ---
 title: The first plugin competition
-date: 2026-08-19
+date: 2026-08-19 17:26 +0200
 author: DHH
 author_url: https://dhh.dk
 ---

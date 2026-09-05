@@ -5,13 +5,57 @@
     <link>https://omarchy.org/news</link>
     <description>Notes on the people, ideas, and releases shaping Omarchy.</description>
     <language>en</language>
-    <lastBuildDate>Thu, 03 Sep 2026 00:00:00 GMT</lastBuildDate>
+    <lastBuildDate>Thu, 03 Sep 2026 19:45:00 GMT</lastBuildDate>
     <atom:link href="https://omarchy.org/news/rss.xml" rel="self" type="application/rss+xml"/>
+<item>
+  <title>Omacom Foundation secures $1.95M in tokens from leading labs</title>
+  <link>https://omarchy.org/news/2026/09/omacom-foundation-secures-tokens-from-leading-labs</link>
+  <guid isPermaLink="true">https://omarchy.org/news/2026/09/omacom-foundation-secures-tokens-from-leading-labs</guid>
+  <pubDate>Thu, 03 Sep 2026 19:45:00 GMT</pubDate>
+  <dc:creator>DHH</dc:creator>
+  <description><![CDATA[Meta Superintelligence Labs joins as Founding Token Patron with $1.5 million in tokens, and Anthropic, OpenAI, and Fireworks each add $150,000 as Distinguished Token Patrons.]]></description>
+  <content:encoded><![CDATA[<p>Omarchy isn’t just a beautiful, fun &amp; agentic Linux distribution for those who end up using it. It’s also built that way! With beauty, fun, and a whole lot of tokens. In fact, <a href="https://github.com/omacom/omarchy/releases/tag/v4.0.0">Omarchy Quattro</a> has almost exclusively been built by agents. Because they’re just incredibly good at stuff like bash, QML, and debugging Linux issues.</p>
+
+<p>To continue to make Omarchy better now that we’ve attracted hundreds of thousands of users and cocreators, we need to keep the tokens flowing. This is how we accelerate, improve, and deliver on all the amazing contributions that have been pouring out. We already have a backlog of 1,600+ PRs from just a few weeks after launch! Ain’t nobody getting through that without agentic assistance.</p>
+
+<p>Thus, I’m thrilled to announce that we’ve secured a motherload of tokens from most of the major labs for this mission! First is <a href="https://www.meta.com/superintelligence/">Meta Superintelligence Labs</a> who is coming on as a <a href="https://omarchy.org/patrons/#founding-token-patrons">Founding Token Patron</a> with $1.5m in tokens! Their new Meta Muse Spark model is putting down great numbers at an awesome price. So $1.5m is basically unlimited tokens! (We’ll try to exhaust them nonetheless!)</p>
+
+<p>But we’re also thrilled to welcome two of the other leading frontier labs, <a href="https://www.anthropic.com">Anthropic</a> and <a href="https://openai.com">OpenAI</a>, as <a href="https://omarchy.org/patrons/#distinguished-token-patrons">Distinguished Token Patrons</a> with $150,000 in token donations each. These will become particularly handy when paired with the security clearance needed to strip the guardrails we need for security research and fixes.</p>
+
+<p>And for open-weight models, I’m equally thrilled to announce <a href="https://fireworks.ai">Fireworks</a> as a Distinguished Token Patron as well with $150,000 in tokens pledged. I’ve been a frequent user of the Kimi K models in particular, and especially when running at fast mode. We will put these speedy tokens to great use as well!</p>
+
+<p>Combined, this is another $1.95 million pledged to the <a href="https://omarchy.org/foundation/">Omacom Foundation</a>. Which then puts our <a href="https://omarchy.org/patrons/">total pledges</a> to $14.95 million dollars. What a crazy number to type out for a distro that early detractors dismissed as a bunch of dotfiles (which to be fair wasn’t entirely wrong at the time, but then we just kept fixing everything!).</p>
+
+<p>With all these tokens, we can fix everything. And that’s what we’re going to do!</p>
+]]></content:encoded>
+</item>
+
+<item>
+  <title>Omacom Foundation accelerates spending goals</title>
+  <link>https://omarchy.org/news/2026/09/omacom-foundation-accelerates-spending-goals</link>
+  <guid isPermaLink="true">https://omarchy.org/news/2026/09/omacom-foundation-accelerates-spending-goals</guid>
+  <pubDate>Thu, 03 Sep 2026 11:05:00 GMT</pubDate>
+  <dc:creator>DHH</dc:creator>
+  <description><![CDATA[Everything raised this year will be spent over the next three. That means yearly budgets in excess of $4 million for 2027, 2028, and 2029.]]></description>
+  <content:encoded><![CDATA[<p>This is the big chance for Linux. The desktop is up for grabs in a way it hasn’t been in decades. The agents have made the operating system malleable. The hardware has never been better. And the competition has never been more eager to annoy its own users. We’re not going to let this moment pass!</p>
+
+<p>So the <a href="https://omarchy.org/foundation/">Omacom Foundation</a> is accelerating its spending goals. Everything raised this year will be spent over the next three. Not parked in an endowment. Not dripped out over a decade. Spent!</p>
+
+<p>With <a href="https://omarchy.org/news/2026/09/omacom-foundation-reaches-13-million">$13 million already committed</a>, that means yearly budgets in excess of $4 million for 2027, 2028, and 2029. And more as money comes in from <a href="https://omarchy.org/patrons/">patrons of all types</a>. Founding, Distinguished, Corporate, and everyone who <a href="https://omarchy.org/news/2026/09/omacom-patronage-is-open-to-everyone">joined the mission today</a>.</p>
+
+<p>That money goes to the <a href="https://omarchy.org/sponsorships/">open-source projects</a> Omarchy is built on. To the <a href="https://omarchy.org/air/">artists</a> who make it beautiful. To the <a href="https://omarchy.org/news/2026/09/omacom-foundation-hires-krzysztof-wilczynski">developers</a> who make it fast, compatible, and secure. To competitions, grants, and infrastructure. To everything it takes to fulfill the Linux on the Desktop prophecy.</p>
+
+<p>The money is not the point. The mission is. But it sure helps to have both!</p>
+
+<p>Want to be part of it? <a href="https://donate.omarchy.org">Become a patron</a> through our new open patronage. And if you’re interested in the Founding Patron or Distinguished Patron options, for individuals or corporations alike, write <a href="mailto:david@omarchy.org">david@omarchy.org</a>.</p>
+]]></content:encoded>
+</item>
+
 <item>
   <title>Omarchy Patronage is now open to everyone</title>
   <link>https://omarchy.org/news/2026/09/omacom-patronage-is-open-to-everyone</link>
   <guid isPermaLink="true">https://omarchy.org/news/2026/09/omacom-patronage-is-open-to-everyone</guid>
-  <pubDate>Thu, 03 Sep 2026 00:00:00 GMT</pubDate>
+  <pubDate>Thu, 03 Sep 2026 11:00:00 GMT</pubDate>
   <dc:creator>DHH</dc:creator>
   <description><![CDATA[Patronage of the Omacom Foundation is now open to everyone in four tiers, each with its own badge, and there's more spending on the way.]]></description>
   <content:encoded><![CDATA[<p>The reception of the <a href="https://omarchy.org/foundation/">Omacom Foundation</a> has been nothing short of amazing. Twelve Founding Patrons, four Distinguished Patrons, two Distinguished Corporate Patrons, and <a href="https://omarchy.org/news/2026/09/omacom-foundation-reaches-13-million">$13 million committed to the mission</a> in under two weeks.</p>
@@ -34,7 +78,7 @@
   <title>Omacom Foundation hires kernel developer Krzysztof Wilczyński</title>
   <link>https://omarchy.org/news/2026/09/omacom-foundation-hires-krzysztof-wilczynski</link>
   <guid isPermaLink="true">https://omarchy.org/news/2026/09/omacom-foundation-hires-krzysztof-wilczynski</guid>
-  <pubDate>Thu, 03 Sep 2026 00:00:00 GMT</pubDate>
+  <pubDate>Thu, 03 Sep 2026 10:12:00 GMT</pubDate>
   <dc:creator>DHH</dc:creator>
   <description><![CDATA[The foundation's first full-time employee will lead the Omarchy Kernel work on performance, compatibility, and security.]]></description>
   <content:encoded><![CDATA[<p>The <a href="https://omarchy.org/foundation/">Omacom Foundation</a> just made its first full-time hire! <a href="https://x.com/kwilczynski">Krzysztof Wilczyński</a> is joining to lead our work on the Omarchy Kernel. This is exactly what the foundation was set up to do: pay great people to work on hard problems for the benefit of everyone.</p>
@@ -50,31 +94,10 @@
 </item>
 
 <item>
-  <title>Omacom Foundation accelerates spending goals</title>
-  <link>https://omarchy.org/news/2026/09/omacom-foundation-accelerates-spending-goals</link>
-  <guid isPermaLink="true">https://omarchy.org/news/2026/09/omacom-foundation-accelerates-spending-goals</guid>
-  <pubDate>Thu, 03 Sep 2026 00:00:00 GMT</pubDate>
-  <dc:creator>DHH</dc:creator>
-  <description><![CDATA[Everything raised this year will be spent over the next three. That means yearly budgets in excess of $4 million for 2027, 2028, and 2029.]]></description>
-  <content:encoded><![CDATA[<p>This is the big chance for Linux. The desktop is up for grabs in a way it hasn’t been in decades. The agents have made the operating system malleable. The hardware has never been better. And the competition has never been more eager to annoy its own users. We’re not going to let this moment pass!</p>
-
-<p>So the <a href="https://omarchy.org/foundation/">Omacom Foundation</a> is accelerating its spending goals. Everything raised this year will be spent over the next three. Not parked in an endowment. Not dripped out over a decade. Spent!</p>
-
-<p>With <a href="https://omarchy.org/news/2026/09/omacom-foundation-reaches-13-million">$13 million already committed</a>, that means yearly budgets in excess of $4 million for 2027, 2028, and 2029. And more as money comes in from <a href="https://omarchy.org/patrons/">patrons of all types</a>. Founding, Distinguished, Corporate, and everyone who <a href="https://omarchy.org/news/2026/09/omacom-patronage-is-open-to-everyone">joined the mission today</a>.</p>
-
-<p>That money goes to the <a href="https://omarchy.org/sponsorships/">open-source projects</a> Omarchy is built on. To the <a href="https://omarchy.org/air/">artists</a> who make it beautiful. To the <a href="https://omarchy.org/news/2026/09/omacom-foundation-hires-krzysztof-wilczynski">developers</a> who make it fast, compatible, and secure. To competitions, grants, and infrastructure. To everything it takes to fulfill the Linux on the Desktop prophecy.</p>
-
-<p>The money is not the point. The mission is. But it sure helps to have both!</p>
-
-<p>Want to be part of it? <a href="https://donate.omarchy.org">Become a patron</a> through our new open patronage. And if you’re interested in the Founding Patron or Distinguished Patron options, for individuals or corporations alike, write <a href="mailto:david@omarchy.org">david@omarchy.org</a>.</p>
-]]></content:encoded>
-</item>
-
-<item>
   <title>Omarchy Quattro crosses 200,000 ISO downloads</title>
   <link>https://omarchy.org/news/2026/09/quattro-crosses-200000-iso-downloads</link>
   <guid isPermaLink="true">https://omarchy.org/news/2026/09/quattro-crosses-200000-iso-downloads</guid>
-  <pubDate>Wed, 02 Sep 2026 00:00:00 GMT</pubDate>
+  <pubDate>Wed, 02 Sep 2026 16:29:00 GMT</pubDate>
   <dc:creator>DHH</dc:creator>
   <description><![CDATA[Two hundred thousand Quattro ISOs in under 19 days, downloads from 215 countries and territories, and a date for the first million.]]></description>
   <content:encoded><![CDATA[<p>Two hundred thousand ISO downloads of <a href="https://github.com/omacom/omarchy/releases/tag/v4.0.0">Omarchy Quattro</a> in just 18 days! On average, someone has pulled a fresh Omarchy every 8 seconds since Quattro shipped. At the peak, we shipped 1,165 ISOs in a single hour. One every 3 seconds!</p>
@@ -93,7 +116,7 @@
   <title>Omacom Foundation reaches $13M with four Distinguished Patrons</title>
   <link>https://omarchy.org/news/2026/09/omacom-foundation-reaches-13-million</link>
   <guid isPermaLink="true">https://omarchy.org/news/2026/09/omacom-foundation-reaches-13-million</guid>
-  <pubDate>Wed, 02 Sep 2026 00:00:00 GMT</pubDate>
+  <pubDate>Wed, 02 Sep 2026 11:03:00 GMT</pubDate>
   <dc:creator>DHH</dc:creator>
   <description><![CDATA[Ryan R. Hughes, Ed Huang, Adrien Treccani, and Max Schoening each pledge $100,000, and the foundation hits $13 million.]]></description>
   <content:encoded><![CDATA[<p>The <a href="https://omarchy.org/foundation/">Omacom Foundation</a> just crossed $13 million! Our first four <a href="https://omarchy.org/patrons/#distinguished-patrons">Distinguished Patrons</a> have pledged $100,000 each to the mission:</p>
@@ -113,10 +136,33 @@
 </item>
 
 <item>
+  <title>1Password and 37signals become Distinguished Corporate Patrons</title>
+  <link>https://omarchy.org/news/2026/08/1password-and-37signals-become-distinguished-corporate-patrons</link>
+  <guid isPermaLink="true">https://omarchy.org/news/2026/08/1password-and-37signals-become-distinguished-corporate-patrons</guid>
+  <pubDate>Mon, 31 Aug 2026 13:20:00 GMT</pubDate>
+  <dc:creator>DHH</dc:creator>
+  <description><![CDATA[The first two Distinguished Corporate Patrons each pledge $100,000 a year for three years, taking the Omacom Foundation to $12.6 million.]]></description>
+  <content:encoded><![CDATA[<p>The <a href="https://omarchy.org/foundation/">Omacom Foundation</a> has its first two Distinguished Corporate Patrons! <a href="https://1password.com">1Password</a> and <a href="https://37signals.com">37signals</a> are each contributing $100,000 a year for the next three years, which takes the foundation’s funding to $12.6 million.</p>
+
+<p><a href="https://1password.com">1Password</a> has been part of Omarchy from day one (and part of <a href="https://omakub.org">Omakub</a> before that!). Because it’s kept my credentials safe for many years before switching to Linux was even a twinkle in my eye.</p>
+
+<p>Like Dropbox, it’s one of the essential tools to enable the <a href="https://world.hey.com/dhh/no-backup-no-cry-274e0c31">no backup, no cry</a> method. Whenever I set up a new machine (which is about three times a week these days!), the first thing I do is <em>Install &gt; Service &gt; 1Password</em>. Then setting up my agents, logging into <a href="https://basecamp.com">Basecamp</a> and <a href="https://www.hey.com/">HEY</a>, and everything else is just trivial. Yet perfectly safe, perfectly secure.</p>
+
+<p><a href="https://37signals.com">37signals</a> has been the incubation station for Omarchy since before it had a name. We’ve already <a href="https://world.hey.com/dhh/all-in-on-omarchy-at-37signals-68162450">switched the whole technical team over to Omarchy</a>, and we’ve been footing all manner of bills on the road to Quattro (and before). Now the support is formal, through the foundation, on the same terms as everyone else.</p>
+
+<p>It’s worth noting, too, that corporate money and individual money all buy the same thing: recognition for being part of the mission. There’s no quid pro quo here.</p>
+
+<p>Omarchy will always base its decisions on what makes for the very best malleable OS in the world. And that’s even more specifically defined with the “by DHH” byline when you install the system. Before this can be an amazing system for everyone, it first has to be an amazing system for me, personally. Put your own mask on first and all that!</p>
+
+<p>Want your company to be part of this historic transformation of the operating system? Write <a href="mailto:david@omarchy.org">david@omarchy.org</a>.</p>
+]]></content:encoded>
+</item>
+
+<item>
   <title>Omacom Foundation welcomes Brian Armstrong and Yunjie Dai</title>
   <link>https://omarchy.org/news/2026/08/omacom-foundation-welcomes-brian-armstrong-and-yunjie-dai</link>
   <guid isPermaLink="true">https://omarchy.org/news/2026/08/omacom-foundation-welcomes-brian-armstrong-and-yunjie-dai</guid>
-  <pubDate>Mon, 31 Aug 2026 00:00:00 GMT</pubDate>
+  <pubDate>Mon, 31 Aug 2026 13:03:00 GMT</pubDate>
   <dc:creator>DHH</dc:creator>
   <description><![CDATA[Two more Founding Patrons join the mission with $1 million each, and the foundation hits $12 million.]]></description>
   <content:encoded><![CDATA[<p>The <a href="https://omarchy.org/foundation/">Omacom Foundation</a> keeps compounding! Two more Founding Patrons have joined our mission with $1 million each, taking our treasury chest to $12 million: Brian Armstrong and Yunjie Dai.</p>
@@ -148,33 +194,10 @@
 </item>
 
 <item>
-  <title>1Password and 37signals become Distinguished Corporate Patrons</title>
-  <link>https://omarchy.org/news/2026/08/1password-and-37signals-become-distinguished-corporate-patrons</link>
-  <guid isPermaLink="true">https://omarchy.org/news/2026/08/1password-and-37signals-become-distinguished-corporate-patrons</guid>
-  <pubDate>Mon, 31 Aug 2026 00:00:00 GMT</pubDate>
-  <dc:creator>DHH</dc:creator>
-  <description><![CDATA[The first two Distinguished Corporate Patrons each pledge $100,000 a year for three years, taking the Omacom Foundation to $12.6 million.]]></description>
-  <content:encoded><![CDATA[<p>The <a href="https://omarchy.org/foundation/">Omacom Foundation</a> has its first two Distinguished Corporate Patrons! <a href="https://1password.com">1Password</a> and <a href="https://37signals.com">37signals</a> are each contributing $100,000 a year for the next three years, which takes the foundation’s funding to $12.6 million.</p>
-
-<p><a href="https://1password.com">1Password</a> has been part of Omarchy from day one (and part of <a href="https://omakub.org">Omakub</a> before that!). Because it’s kept my credentials safe for many years before switching to Linux was even a twinkle in my eye.</p>
-
-<p>Like Dropbox, it’s one of the essential tools to enable the <a href="https://world.hey.com/dhh/no-backup-no-cry-274e0c31">no backup, no cry</a> method. Whenever I set up a new machine (which is about three times a week these days!), the first thing I do is <em>Install &gt; Service &gt; 1Password</em>. Then setting up my agents, logging into <a href="https://basecamp.com">Basecamp</a> and <a href="https://www.hey.com/">HEY</a>, and everything else is just trivial. Yet perfectly safe, perfectly secure.</p>
-
-<p><a href="https://37signals.com">37signals</a> has been the incubation station for Omarchy since before it had a name. We’ve already <a href="https://world.hey.com/dhh/all-in-on-omarchy-at-37signals-68162450">switched the whole technical team over to Omarchy</a>, and we’ve been footing all manner of bills on the road to Quattro (and before). Now the support is formal, through the foundation, on the same terms as everyone else.</p>
-
-<p>It’s worth noting, too, that corporate money and individual money all buy the same thing: recognition for being part of the mission. There’s no quid pro quo here.</p>
-
-<p>Omarchy will always base its decisions on what makes for the very best malleable OS in the world. And that’s even more specifically defined with the “by DHH” byline when you install the system. Before this can be an amazing system for everyone, it first has to be an amazing system for me, personally. Put your own mask on first and all that!</p>
-
-<p>Want your company to be part of this historic transformation of the operating system? Write <a href="mailto:david@omarchy.org">david@omarchy.org</a>.</p>
-]]></content:encoded>
-</item>
-
-<item>
   <title>The first plugin competition winners</title>
   <link>https://omarchy.org/news/2026/08/the-first-plugin-competition-winners</link>
   <guid isPermaLink="true">https://omarchy.org/news/2026/08/the-first-plugin-competition-winners</guid>
-  <pubDate>Fri, 28 Aug 2026 00:00:00 GMT</pubDate>
+  <pubDate>Fri, 28 Aug 2026 20:58:00 GMT</pubDate>
   <dc:creator>DHH</dc:creator>
   <description><![CDATA[Radio Atlas, Omagotchi, and AirPods take the podium in the first Omarchy plugin competition.]]></description>
   <content:encoded><![CDATA[<p>The votes are in! <a href="https://omarchy.org/teams/">Omarchy Core</a> went through the submissions, voted, and we have a podium for <a href="https://omarchy.org/news/2026/08/the-first-plugin-competition">the first plugin competition</a>.</p>
@@ -196,10 +219,31 @@
 </item>
 
 <item>
+  <title>Omarchy tops 100,000 downloads in a week</title>
+  <link>https://omarchy.org/news/2026/08/100000-downloads-in-a-week</link>
+  <guid isPermaLink="true">https://omarchy.org/news/2026/08/100000-downloads-in-a-week</guid>
+  <pubDate>Fri, 28 Aug 2026 18:55:00 GMT</pubDate>
+  <dc:creator>DHH</dc:creator>
+  <description><![CDATA[A hundred thousand people installed Omarchy in seven days, and we moved nearly a petabyte doing it.]]></description>
+  <content:encoded><![CDATA[<p>One hundred thousand downloads of the Omarchy ISO in the past week! One hundred thousand people who decided that this was the week they’d finally try Linux (or come back to it). What a bunch of bosses!</p>
+
+<p>In terms of bandwidth, we flung nearly <em>one petabyte</em> in those same seven days. A thousand terabytes of Linux in a week between ISOs and package updates!</p>
+
+<p>This would surely have taken Omarchy down in another age. Sent us scrambling for mirrors or torrents (and thinking about needing another mortgage on the house to pay the hosting bill). But we didn’t need to.</p>
+
+<p>That’s because <a href="https://www.cloudflare.com/">Cloudflare</a> sits in front of all of it: the ISOs, the Omarchy packages, and our Arch mirror. It’s all on R2 and behind their CDN. Neither of which of course ever broke a sweat. And that’s the reason a hundred thousand people had a fast, boring, uneventful download from anywhere in the world in the past week.</p>
+
+<p>Thank you to everyone at Cloudflare, and to <a href="https://x.com/eastdakota">Matthew Prince</a> in particular. Matthew is also one of the <a href="https://omarchy.org/patrons/">Founding Patrons</a>, which means he’s backing this project with both the infrastructure and his own money. Muchas gracias, señor!</p>
+
+<p>A hundred thousand ISOs in a week. Wow.</p>
+]]></content:encoded>
+</item>
+
+<item>
   <title>Introducing Omarchy AIR</title>
   <link>https://omarchy.org/news/2026/08/introducing-omarchy-air</link>
   <guid isPermaLink="true">https://omarchy.org/news/2026/08/introducing-omarchy-air</guid>
-  <pubDate>Fri, 28 Aug 2026 00:00:00 GMT</pubDate>
+  <pubDate>Fri, 28 Aug 2026 09:06:00 GMT</pubDate>
   <dc:creator>DHH</dc:creator>
   <description><![CDATA[A six-month, funded residency for the artists who make Omarchy beautiful. The first two are HANCORE and OldJobobo.]]></description>
   <content:encoded><![CDATA[<p>Omarchy insists that a computer should be as beautiful as it is productive. That premise has been carried by the theme makers and other Omarchy artists since day one. Building whole palettes, on their own time, for free, because they wanted their machine to look like something.</p>
@@ -223,31 +267,10 @@
 </item>
 
 <item>
-  <title>Omarchy tops 100,000 downloads in a week</title>
-  <link>https://omarchy.org/news/2026/08/100000-downloads-in-a-week</link>
-  <guid isPermaLink="true">https://omarchy.org/news/2026/08/100000-downloads-in-a-week</guid>
-  <pubDate>Fri, 28 Aug 2026 00:00:00 GMT</pubDate>
-  <dc:creator>DHH</dc:creator>
-  <description><![CDATA[A hundred thousand people installed Omarchy in seven days, and we moved nearly a petabyte doing it.]]></description>
-  <content:encoded><![CDATA[<p>One hundred thousand downloads of the Omarchy ISO in the past week! One hundred thousand people who decided that this was the week they’d finally try Linux (or come back to it). What a bunch of bosses!</p>
-
-<p>In terms of bandwidth, we flung nearly <em>one petabyte</em> in those same seven days. A thousand terabytes of Linux in a week between ISOs and package updates!</p>
-
-<p>This would surely have taken Omarchy down in another age. Sent us scrambling for mirrors or torrents (and thinking about needing another mortgage on the house to pay the hosting bill). But we didn’t need to.</p>
-
-<p>That’s because <a href="https://www.cloudflare.com/">Cloudflare</a> sits in front of all of it: the ISOs, the Omarchy packages, and our Arch mirror. It’s all on R2 and behind their CDN. Neither of which of course ever broke a sweat. And that’s the reason a hundred thousand people had a fast, boring, uneventful download from anywhere in the world in the past week.</p>
-
-<p>Thank you to everyone at Cloudflare, and to <a href="https://x.com/eastdakota">Matthew Prince</a> in particular. Matthew is also one of the <a href="https://omarchy.org/patrons/">Founding Patrons</a>, which means he’s backing this project with both the infrastructure and his own money. Muchas gracias, señor!</p>
-
-<p>A hundred thousand ISOs in a week. Wow.</p>
-]]></content:encoded>
-</item>
-
-<item>
   <title>Introducing Omarchy Rangers</title>
   <link>https://omarchy.org/news/2026/08/introducing-the-omarchy-rangers</link>
   <guid isPermaLink="true">https://omarchy.org/news/2026/08/introducing-the-omarchy-rangers</guid>
-  <pubDate>Thu, 27 Aug 2026 00:00:00 GMT</pubDate>
+  <pubDate>Thu, 27 Aug 2026 18:59:00 GMT</pubDate>
   <dc:creator>DHH</dc:creator>
   <description><![CDATA[The first Omarchy Rangers are here to help people find their way, and applications are open.]]></description>
   <content:encoded><![CDATA[<p>Omarchy has grown so fast that thousands of people are arriving at once, and most of them are arriving from macOS or Windows. That’s a lot of first installations, a lot of “where do I even start”, and a lot of questions that benefit from a real answer from someone who is used to helping others.</p>
@@ -276,7 +299,7 @@
   <title>Omacom Foundation to be premier mise sponsor</title>
   <link>https://omarchy.org/news/2026/08/omacom-foundation-to-be-premier-mise-sponsor</link>
   <guid isPermaLink="true">https://omarchy.org/news/2026/08/omacom-foundation-to-be-premier-mise-sponsor</guid>
-  <pubDate>Tue, 25 Aug 2026 00:00:00 GMT</pubDate>
+  <pubDate>Tue, 25 Aug 2026 18:28:00 GMT</pubDate>
   <dc:creator>DHH</dc:creator>
   <description><![CDATA[Third sponsorship out the door! The Omacom Foundation is becoming a premier sponsor of mise , and thereby of jdx , who has spent years building the tool that quietly makes managing different versions of Ruby, Node, Go a joy to manage, and…]]></description>
   <content:encoded><![CDATA[<p>Third sponsorship out the door! The Omacom Foundation is becoming a premier sponsor of <a href="https://mise.jdx.dev/">mise</a>, and thereby of <a href="https://x.com/jdxcode">jdx</a>, who has spent years building the tool that quietly makes managing different versions of Ruby, Node, Go a joy to manage, and gives all your agent tooling in upgrade channel that can keep up with the pace of shipping.</p>
@@ -300,7 +323,7 @@
   <title>Omarchy meetups around the world</title>
   <link>https://omarchy.org/news/2026/08/omarchy-meetups-around-the-world</link>
   <guid isPermaLink="true">https://omarchy.org/news/2026/08/omarchy-meetups-around-the-world</guid>
-  <pubDate>Mon, 24 Aug 2026 00:00:00 GMT</pubDate>
+  <pubDate>Mon, 24 Aug 2026 11:07:00 GMT</pubDate>
   <dc:creator>DHH</dc:creator>
   <description><![CDATA[Find an Omarchy meetup near you or start one yourself and add it to the global calendar.]]></description>
   <content:encoded><![CDATA[<p>Omarchy has grown into a global community, with ~35,000 members on <a href="https://discord.com/invite/tXFUdasqhY">the Discord</a>, and now it’s time we started meeting face to face. So we’re launching <a href="https://omarchy.org/meetups/">Omarchy Meetups</a> with a shared calendar for gatherings around the world.</p>
@@ -319,7 +342,7 @@
   <title>Omacom Foundation to be premier Quickshell sponsor</title>
   <link>https://omarchy.org/news/2026/08/omacom-foundation-to-be-premier-quickshell-sponsor</link>
   <guid isPermaLink="true">https://omarchy.org/news/2026/08/omacom-foundation-to-be-premier-quickshell-sponsor</guid>
-  <pubDate>Mon, 24 Aug 2026 00:00:00 GMT</pubDate>
+  <pubDate>Mon, 24 Aug 2026 10:49:00 GMT</pubDate>
   <dc:creator>DHH</dc:creator>
   <description><![CDATA[More money in , more money out! Our second major sponsorship from the Omacom Foundation is going to outfoxxed for his superb work on Quickshell . It’s only been part of the public release for a week, but it’s already crystal clear that it…]]></description>
   <content:encoded><![CDATA[<p><a href="https://omarchy.org/news/2026/08/omacom-foundation-funding-hits-10m">More money in</a>, more money out! Our second major sponsorship from the Omacom Foundation is going to <a href="https://x.com/outfoxxedd">outfoxxed</a> for his superb work on <a href="https://quickshell.org/">Quickshell</a>. It’s only been part of the public release for a week, but it’s already crystal clear that it was the missing, pivotal piece for us to truly achieve <a href="https://world.hey.com/dhh/the-malleable-computer-7c187a9b">The Malleable Computer</a>.</p>
@@ -336,7 +359,7 @@
   <title>Omacom Foundation funding hits $10m</title>
   <link>https://omarchy.org/news/2026/08/omacom-foundation-funding-hits-10m</link>
   <guid isPermaLink="true">https://omarchy.org/news/2026/08/omacom-foundation-funding-hits-10m</guid>
-  <pubDate>Mon, 24 Aug 2026 00:00:00 GMT</pubDate>
+  <pubDate>Mon, 24 Aug 2026 10:29:00 GMT</pubDate>
   <dc:creator>DHH</dc:creator>
   <description><![CDATA[Drew Houston and Peter Steinberger join the Omacom Foundation as Founding Patrons, taking total funding to $10 million.]]></description>
   <content:encoded><![CDATA[<p>The Omacom Foundation’s funding has just hit $10 million with two new <a href="https://omarchy.org/patrons/">Founding Patrons</a> joining the mission: <a href="https://x.com/drewhouston">Drew Houston</a>, cofounder and co-CEO of <a href="https://www.dropbox.com">Dropbox</a>, and <a href="https://x.com/steipete">Peter Steinberger</a>, creator of <a href="https://openclaw.ai">OpenClaw</a>.</p>
@@ -358,31 +381,10 @@
 </item>
 
 <item>
-  <title>Omacom Foundation to be exclusive Hyprland sponsor</title>
-  <link>https://omarchy.org/news/2026/08/omacom-foundation-to-be-exclusive-hyprland-sponsor</link>
-  <guid isPermaLink="true">https://omarchy.org/news/2026/08/omacom-foundation-to-be-exclusive-hyprland-sponsor</guid>
-  <pubDate>Fri, 21 Aug 2026 00:00:00 GMT</pubDate>
-  <dc:creator>DHH</dc:creator>
-  <description><![CDATA[What better way to start spending some of the treasure we just raised for the Omacom Foundation than on the most cracked Linux kid in Poland: Vaxry ! As the creator of Hyprland , he’s responsible for one of the three core technologies in…]]></description>
-  <content:encoded><![CDATA[<p>What better way to start spending some of the treasure we <a href="https://omarchy.org/news/2026/08/omacom-foundation-launches-with-8-million">just raised for the Omacom Foundation</a> than on the most cracked Linux kid in Poland: <a href="https://x.com/vaxryy">Vaxry</a>!</p>
-
-<p>As the creator of <a href="https://hypr.land/">Hyprland</a>, he’s responsible for one of the three core technologies in Omarchy (Arch Linux/Hyprland/Quickshell), and I’m thrilled to announce an exclusive sponsorship that lets him focus fully on developing it further without any need to think about commercial development or fundraising.</p>
-
-<p>We’re signing up for the long term with Vaxry to support the long term future of Omarchy. Our exclusive sponsorship deal is set for three years, with an option for another two.</p>
-
-<p>The deal also allows for Hyprland’s existing <a href="https://hypr.land/news/hyprperks/">Hyprperks</a> program to be released for free, for everyone, as the paid subscriptions will end. But Hyprland will still accept personal donations to let individuals buy into the project’s development and to support Vaxry and the team.</p>
-
-<p>Many thanks to <a href="https://37signals.com">37signals</a> (hello self! 😂), <a href="https://www.butterfly.so/">Butterfly</a>, and <a href="https://frame.work/">Framework</a> for helping Hyprland get to this point. Thrilled that the Omacom Foundation can take over from October 10, and give one of the best developers in this new Linux moment the chance to go all-in.</p>
-
-<p>(* This deal does not include any direct assistance in getting Vaxry a girlfriend, but I’ll personally be available as a reference for any inquiries on the matter.)</p>
-]]></content:encoded>
-</item>
-
-<item>
-  <title>Omacom Foundation launches with $13 million</title>
+  <title>Omacom Foundation launches with $14.95 million</title>
   <link>https://omarchy.org/news/2026/08/omacom-foundation-launches-with-8-million</link>
   <guid isPermaLink="true">https://omarchy.org/news/2026/08/omacom-foundation-launches-with-8-million</guid>
-  <pubDate>Fri, 21 Aug 2026 00:00:00 GMT</pubDate>
+  <pubDate>Fri, 21 Aug 2026 15:57:00 GMT</pubDate>
   <dc:creator>DHH</dc:creator>
   <description><![CDATA[It’s time to dream big. Omarchy Quattro has given people a chance to experience what the malleable computer of the future looks like, and they like it (a lot!). It now feels like a moral obligation to make this future more broadly…]]></description>
   <content:encoded><![CDATA[<p>It’s time to dream big. Omarchy Quattro has given people a chance to experience what the malleable computer of the future looks like, and they like it (a lot!). It now feels like a moral obligation to make this future more broadly available and fundamentally change how people relate to their computers for the first time in what seems like forever.</p>
@@ -424,6 +426,20 @@
   <li><a href="https://37signals.com">37signals</a></li>
 </ul>
 
+<p>This Founding Token Patron is contributing $1.5 million in tokens to the mission:</p>
+
+<ul>
+  <li><a href="https://www.meta.com/superintelligence/">Meta Superintelligence Labs</a></li>
+</ul>
+
+<p>And these Distinguished Token Patrons are each contributing $150,000 in tokens:</p>
+
+<ul>
+  <li><a href="https://www.anthropic.com">Anthropic</a></li>
+  <li><a href="https://fireworks.ai">Fireworks</a></li>
+  <li><a href="https://openai.com">OpenAI</a></li>
+</ul>
+
 <p>This is a ridiculous sum of money, so I intend to make sure it lasts a long time, and that we make the most of it. But just as important as the incredible cushion is the vote of confidence delivered by these pledges.</p>
 
 <p>We’re going to make the prophecy of The Year of Linux on the Desktop come true. All the pieces are now in place. Time to go all in!</p>
@@ -435,6 +451,55 @@
 <p><em>UPDATE: 1Password and 37signals <a href="https://omarchy.org/news/2026/08/1password-and-37signals-become-distinguished-corporate-patrons">joined as Distinguished Corporate Patrons on August 31</a>.</em></p>
 
 <p><em>UPDATE: Ryan, Ed, Adrien, and Max <a href="https://omarchy.org/news/2026/09/omacom-foundation-reaches-13-million">joined as Distinguished Patrons on September 2</a>.</em></p>
+
+<p><em>UPDATE: Meta Superintelligence Labs, Anthropic, OpenAI, and Fireworks <a href="https://omarchy.org/news/2026/09/omacom-foundation-secures-tokens-from-leading-labs">joined as Token Patrons on September 3</a>.</em></p>
+]]></content:encoded>
+</item>
+
+<item>
+  <title>Omacom Foundation to be exclusive Hyprland sponsor</title>
+  <link>https://omarchy.org/news/2026/08/omacom-foundation-to-be-exclusive-hyprland-sponsor</link>
+  <guid isPermaLink="true">https://omarchy.org/news/2026/08/omacom-foundation-to-be-exclusive-hyprland-sponsor</guid>
+  <pubDate>Fri, 21 Aug 2026 15:50:00 GMT</pubDate>
+  <dc:creator>DHH</dc:creator>
+  <description><![CDATA[What better way to start spending some of the treasure we just raised for the Omacom Foundation than on the most cracked Linux kid in Poland: Vaxry ! As the creator of Hyprland , he’s responsible for one of the three core technologies in…]]></description>
+  <content:encoded><![CDATA[<p>What better way to start spending some of the treasure we <a href="https://omarchy.org/news/2026/08/omacom-foundation-launches-with-8-million">just raised for the Omacom Foundation</a> than on the most cracked Linux kid in Poland: <a href="https://x.com/vaxryy">Vaxry</a>!</p>
+
+<p>As the creator of <a href="https://hypr.land/">Hyprland</a>, he’s responsible for one of the three core technologies in Omarchy (Arch Linux/Hyprland/Quickshell), and I’m thrilled to announce an exclusive sponsorship that lets him focus fully on developing it further without any need to think about commercial development or fundraising.</p>
+
+<p>We’re signing up for the long term with Vaxry to support the long term future of Omarchy. Our exclusive sponsorship deal is set for three years, with an option for another two.</p>
+
+<p>The deal also allows for Hyprland’s existing <a href="https://hypr.land/news/hyprperks/">Hyprperks</a> program to be released for free, for everyone, as the paid subscriptions will end. But Hyprland will still accept personal donations to let individuals buy into the project’s development and to support Vaxry and the team.</p>
+
+<p>Many thanks to <a href="https://37signals.com">37signals</a> (hello self! 😂), <a href="https://www.butterfly.so/">Butterfly</a>, and <a href="https://frame.work/">Framework</a> for helping Hyprland get to this point. Thrilled that the Omacom Foundation can take over from October 10, and give one of the best developers in this new Linux moment the chance to go all-in.</p>
+
+<p>(* This deal does not include any direct assistance in getting Vaxry a girlfriend, but I’ll personally be available as a reference for any inquiries on the matter.)</p>
+]]></content:encoded>
+</item>
+
+<item>
+  <title>The first plugin competition</title>
+  <link>https://omarchy.org/news/2026/08/the-first-plugin-competition</link>
+  <guid isPermaLink="true">https://omarchy.org/news/2026/08/the-first-plugin-competition</guid>
+  <pubDate>Wed, 19 Aug 2026 15:26:00 GMT</pubDate>
+  <dc:creator>DHH</dc:creator>
+  <description><![CDATA[The Omarchy Plugin Marketplace is already home to over 500 plugins and growing very fast. We have a million ideas for how we can improve this setup, including with automated agent-powered security reviews, but let’s not have perfect be…]]></description>
+  <content:encoded><![CDATA[<p>The <a href="https://omarchyplugins.com/">Omarchy Plugin Marketplace</a> is already home to over 500 plugins and growing very fast. We have a million ideas for how we can improve this setup, including with automated agent-powered security reviews, but let’s not have perfect be the enemy of good and fun for now!</p>
+
+<p>So in celebration of this huge outburst of creativity, we’ll be hosting the first plugin competition using <a href="https://x.com/dhh/status/2088362620617425277">the four grand</a> that I received from yapping endlessly about Omarchy on X last week.</p>
+
+<p>The rules are as follows:</p>
+
+<ol>
+  <li>All plugins submitted to the repository before Monday August 24 at 9am CEST are eligible (including the ones already listed).</li>
+  <li>The winners will be selected by the new <a href="https://omarchy.org/news/2026/09/the-omarchy-core-team/">Omarchy Core</a>, which will vote to find a podium.</li>
+  <li>The prize money will be $2,500 for first, $1,000 for second, and $500 for third.</li>
+  <li>You must be able to receive payment by Zelle, Venmo, PayPal, or EU IBAN to collect the prize money.</li>
+</ol>
+
+<p>The winners will be announced next week when we’re done reviewing all submissions, but no later than Friday, August 28.</p>
+
+<p>Have fun and may the best ideas and execution win!</p>
 ]]></content:encoded>
 </item>
 
@@ -442,7 +507,7 @@
   <title>The Omarchy Core Team</title>
   <link>https://omarchy.org/news/2026/09/the-omarchy-core-team</link>
   <guid isPermaLink="true">https://omarchy.org/news/2026/09/the-omarchy-core-team</guid>
-  <pubDate>Wed, 19 Aug 2026 00:00:00 GMT</pubDate>
+  <pubDate>Wed, 19 Aug 2026 13:17:00 GMT</pubDate>
   <dc:creator>DHH</dc:creator>
   <description><![CDATA[Omarchy’s explosive growth demands structured teams in response, and we’re going to get started by incorporating The Omarchy Core Team. This group will share the responsibility of driving the direction of our distro, ensuring we continue…]]></description>
   <content:encoded><![CDATA[<p>Omarchy’s explosive growth demands structured teams in response, and we’re going to get started by incorporating The Omarchy Core Team. This group will share the responsibility of driving the direction of our distro, ensuring we continue to push forward, and assisting other contributors.</p>
@@ -466,32 +531,6 @@
 <p>To infinity and beyond!</p>
 
 <p><img src="https://omarchy.org/news/2026/09/the-omarchy-core-team/core-team.webp" alt="DHH, Ryan Hughes, Tobi Lütke, Bjarne Øverli, HANCORE, and Spencer Bull" /></p>
-]]></content:encoded>
-</item>
-
-<item>
-  <title>The first plugin competition</title>
-  <link>https://omarchy.org/news/2026/08/the-first-plugin-competition</link>
-  <guid isPermaLink="true">https://omarchy.org/news/2026/08/the-first-plugin-competition</guid>
-  <pubDate>Wed, 19 Aug 2026 00:00:00 GMT</pubDate>
-  <dc:creator>DHH</dc:creator>
-  <description><![CDATA[The Omarchy Plugin Marketplace is already home to over 500 plugins and growing very fast. We have a million ideas for how we can improve this setup, including with automated agent-powered security reviews, but let’s not have perfect be…]]></description>
-  <content:encoded><![CDATA[<p>The <a href="https://omarchyplugins.com/">Omarchy Plugin Marketplace</a> is already home to over 500 plugins and growing very fast. We have a million ideas for how we can improve this setup, including with automated agent-powered security reviews, but let’s not have perfect be the enemy of good and fun for now!</p>
-
-<p>So in celebration of this huge outburst of creativity, we’ll be hosting the first plugin competition using <a href="https://x.com/dhh/status/2088362620617425277">the four grand</a> that I received from yapping endlessly about Omarchy on X last week.</p>
-
-<p>The rules are as follows:</p>
-
-<ol>
-  <li>All plugins submitted to the repository before Monday August 24 at 9am CEST are eligible (including the ones already listed).</li>
-  <li>The winners will be selected by the new <a href="https://omarchy.org/news/2026/09/the-omarchy-core-team/">Omarchy Core</a>, which will vote to find a podium.</li>
-  <li>The prize money will be $2,500 for first, $1,000 for second, and $500 for third.</li>
-  <li>You must be able to receive payment by Zelle, Venmo, PayPal, or EU IBAN to collect the prize money.</li>
-</ol>
-
-<p>The winners will be announced next week when we’re done reviewing all submissions, but no later than Friday, August 28.</p>
-
-<p>Have fun and may the best ideas and execution win!</p>
 ]]></content:encoded>
 </item>
 

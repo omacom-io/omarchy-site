@@ -1,6 +1,6 @@
 ---
 title: Omacom Foundation to be premier Quickshell sponsor
-date: 2026-08-24
+date: 2026-08-24 12:49 +0200
 author: DHH
 author_url: https://dhh.dk
 ---

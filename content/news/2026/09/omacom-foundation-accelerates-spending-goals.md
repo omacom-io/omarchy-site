@@ -1,6 +1,6 @@
 ---
 title: Omacom Foundation accelerates spending goals
-date: 2026-09-03
+date: 2026-09-03 07:05 -0400
 author: DHH
 author_url: https://dhh.dk
 description: Everything raised this year will be spent over the next three. That means yearly budgets in excess of $4 million for 2027, 2028, and 2029.
